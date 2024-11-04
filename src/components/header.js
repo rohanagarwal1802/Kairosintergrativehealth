@@ -155,6 +155,7 @@ const Header = () => {
                 fontSize: "0.75rem", // Smaller font size
               }}
               onClick={() => {
+                router.push('/bookanappointment')
                 // Define the action when the button is clicked (e.g., navigate to a different page or open a modal)
               }}
             >

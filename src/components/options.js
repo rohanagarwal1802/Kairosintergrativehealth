@@ -1,7 +1,9 @@
 import { Divider, Typography, Box } from "@mui/material";
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm'; // Import the icon you want to use
-
+import { useRouter } from "next/router";
+//
 const Options = () => {
+  const router=useRouter()
   return [
     {
       title: "Home",
@@ -53,6 +55,7 @@ const Options = () => {
             "&:hover": { backgroundColor: "#FFC300" }, // Slightly darker on hover
           }}
           onClick={() => {
+            router.push('/bookanappointment')
             // Define the action when the button is clicked (e.g., navigate to a different page or open a modal)
           }}
         >
