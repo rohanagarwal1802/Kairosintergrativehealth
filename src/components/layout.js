@@ -4,7 +4,6 @@ import { Box, ThemeProvider } from "@mui/material";
 import Footer from "./footer";
 import GoToTopIcon from "./goToTop"; // Import GoToTopIcon component
 import theme from "./ThemeProvider";
-import Image from "next/image";
 
 const Layout = ({ children }) => {
   const [showGoToTop, setShowGoToTop] = useState(false);
@@ -20,21 +19,22 @@ const Layout = ({ children }) => {
 
   return (
     <>
-     {/* <Image
-            src="/images/logo.jpg"
-            alt="Icon"
-            height={40}
-            width={20}
-            // style={{ width: "100px", height: "auto", cursor: "pointer" }}
-            onClick={() => router.push("/")} // Clicking the logo redirects to homepage
-          /> */}
       <Header />
-      <ThemeProvider theme={theme}>
-        <Box component="main" sx={{ paddingTop: "64px" }}>
-          {children}
-        </Box>
-      </ThemeProvider>
-      <Footer />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        {/* Apply theme only to the main content area */}
+        <ThemeProvider theme={theme}>
+          <Box component="main" sx={{ flexGrow: 1, paddingTop: "64px" }}>
+            {children}
+          </Box>
+        </ThemeProvider>
+        <Footer />
+      </Box>
       {showGoToTop && <GoToTopIcon />}
     </>
   );
