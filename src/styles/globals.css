@@ -1,7 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #ffffff;
-  --base-font-size: 14px; /* Adjust base font size here */
+  --base-font-size: 20px; /* Adjust base font size here */
 }
 
 @media (prefers-color-scheme: dark) {

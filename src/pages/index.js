@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
+import { Box,Typography } from "@mui/material";
 
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
 import FeedbackClients from "@/components/Home/feedback";
@@ -15,8 +15,43 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.png" />
       </Head>
-     <PeoplePreferUs/>
-     <FeedbackClients/>
+      <br/><br></br>
+      
+      {/* Background Image Container */}
+      <Box
+  sx={{
+    backgroundImage: 'url("/imageBackground.png")',
+    backgroundSize: "cover", // Ensures the image covers the full container
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    width: "100vw",
+    height: "auto", // Allow dynamic height
+    paddingTop: "56.25%", // Maintain 16:9 aspect ratio
+    mt: "1%",
+    position: "relative", // Enables positioning for the text overlay
+  }}
+>
+  {/* Overlayed Text */}
+  <Typography
+    variant="h3" // Choose the size you prefer
+    sx={{
+      color: "white",
+      position: "absolute", // Overlay text on the background
+      top: "50%", // Center vertically
+      left: "50%", // Center horizontally
+      transform: "translate(-50%, -50%)", // Correct centering
+      textAlign: "center", // Align text
+      fontWeight: "bold", // Make the text stand out
+      textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Add shadow for better readability
+    }}
+  >
+    Your Inspiring Phrase Goes Here!
+  </Typography>
+</Box>
+
+
+      <PeoplePreferUs />
+      <FeedbackClients />
     </>
   );
 }
