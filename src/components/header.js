@@ -55,7 +55,7 @@ const Header = () => {
     <AppBar position="fixed" elevation={4} sx={{ background: "#f8f9fa", color: "black", padding: "8px 16px", borderBottom: "1px solid #dee2e6" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
-          <Image src="/images/logo.jpg" alt="Icon" height={50} width={50} />
+          <Image src="/logo.png" alt="Icon" height={100} width={100} />
         </Box>
 
         {/* Desktop Menu */}

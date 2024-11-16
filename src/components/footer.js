@@ -37,7 +37,7 @@ const Footer = () => {
             {/* Logo and Social Media Links */}
             <Box sx={{ textAlign: "center", flex: 1 }}>
               <img
-                src="/images/logo.jpg"
+                src="/logo.png"
                 alt="Kairos Integrative Health Logo"
                 style={{ width: "80px", height: "auto" }}  // Smaller logo
               />

@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #ffffff;
+  --base-font-size: 14px; /* Adjust base font size here */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -10,10 +11,10 @@
   }
 }
 
-html,
-body {
+html {
   max-width: 100vw;
   overflow-x: hidden;
+  font-size: var(--base-font-size); /* Use base font size here */
 }
 
 body {
