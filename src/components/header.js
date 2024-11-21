@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="fixed" elevation={4} sx={{ background: "#f8f9fa", color: "black", padding: "8px 16px", borderBottom: "1px solid #dee2e6" }}>
+    <AppBar position="fixed" elevation={1} sx={{ background: "#f8f9fa", color: "black", borderBottom: "1px solid #dee2e6" ,}}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
           <Image src="/logo.png" alt="Icon" height={100} width={100} />

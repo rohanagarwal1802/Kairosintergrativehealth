@@ -33,20 +33,50 @@ export default function Home() {
 >
   {/* Overlayed Text */}
   <Typography
-    variant="h3" // Choose the size you prefer
-    sx={{
-      color: "white",
-      position: "absolute", // Overlay text on the background
-      top: "50%", // Center vertically
-      left: "50%", // Center horizontally
-      transform: "translate(-50%, -50%)", // Correct centering
-      textAlign: "center", // Align text
-      fontWeight: "bold", // Make the text stand out
-      textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Add shadow for better readability
-    }}
-  >
+  variant="h5" // Default size for large screens
+  sx={{
+    color: "blanchedalmond",
+    position: "absolute", // Overlay text on the background
+    top: { xs: "10%", sm: "8%", md: "5%" }, // Adjust vertical position responsively
+    left: { xs: "5%", sm: "7%", md: "10%" }, // Adjust horizontal position responsively
+    textAlign: "left", // Align text to the left
+    fontWeight: "bold", // Make the text stand out
+    textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Add shadow for better readability
+    fontSize: {
+      xs: "1rem", // Smaller size for extra-small screens
+      sm: "1.2rem", // Slightly larger size for small screens
+      md: "1.5rem", // Default size for medium screens
+      lg: "1.8rem", // Larger size for large screens
+    },
+    maxWidth: { xs: "90%", sm: "80%", md: "60%" }, // Adjust max width for text wrapping
+  }}
+>
+  I think the top of the home page should state “Opening late November 2024”.
+</Typography>
+
+  {/* <Typography
+  variant="h3" // Default size for large screens
+  sx={{
+    color: "blanchedalmond",
+    position: "absolute", // Overlay text on the background
+    top: "50%", // Center vertically
+    left: "50%", // Center horizontally
+    transform: "translate(-50%, -50%)", // Correct centering
+    textAlign: "center", // Align text
+    fontWeight: "bold", // Make the text stand out
+    textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Add shadow for better readability
+    fontSize: {
+      xs: "1.5rem", // Small screens (extra-small and small)
+      sm: "2rem", // Medium screens
+      md: "2.5rem", // Large screens
+      lg: "3rem", // Extra-large screens
+    },
+  }}
+>
+ 
+
     Your Inspiring Phrase Goes Here!
-  </Typography>
+  </Typography> */}
 </Box>
 
 

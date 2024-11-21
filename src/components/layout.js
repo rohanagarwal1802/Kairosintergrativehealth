@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header />
+      <Header sx={{mb:1}}/>
       <Box
         sx={{
           display: "flex",
@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
             {children}
           </Box>
         </ThemeProvider>
-        <Footer />
+        <Footer sx={{mt:1}}/>
       </Box>
       {showGoToTop && <GoToTopIcon />}
     </>

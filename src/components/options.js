@@ -38,34 +38,34 @@ const Options = () => {
       path: "/contact",
       openInNewTab: false,
     },
-    {
-      title: "Request Appointment",
-      icon: (
-        <Box
-          component="button"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#FFD700", // Golden yellow background
-            color: "white", // White text
-            border: "none",
-            borderRadius: "4px",
-            padding: "8px 16px",
-            cursor: "pointer",
-            "&:hover": { backgroundColor: "#FFC300" }, // Slightly darker on hover
-          }}
-          onClick={() => {
-            router.push('/bookanappointment')
-            // Define the action when the button is clicked (e.g., navigate to a different page or open a modal)
-          }}
-        >
-          <Typography variant="body1" sx={{ marginRight: 1 }}>
-            Request Appointment
-          </Typography>
-          <AccessAlarmIcon /> {/* Icon after the text */}
-        </Box>
-      ),
-    },
+    // {
+    //   title: "Request Appointment",
+    //   icon: (
+    //     <Box
+    //       component="button"
+    //       sx={{
+    //         display: "flex",
+    //         alignItems: "center",
+    //         backgroundColor: "#FFD700", // Golden yellow background
+    //         color: "white", // White text
+    //         border: "none",
+    //         borderRadius: "4px",
+    //         padding: "8px 16px",
+    //         cursor: "pointer",
+    //         "&:hover": { backgroundColor: "#FFC300" }, // Slightly darker on hover
+    //       }}
+    //       onClick={() => {
+    //         router.push('/bookanappointment')
+    //         // Define the action when the button is clicked (e.g., navigate to a different page or open a modal)
+    //       }}
+    //     >
+    //       <Typography variant="body1" sx={{ marginRight: 1 }}>
+    //         Request Appointment
+    //       </Typography>
+    //       <AccessAlarmIcon /> {/* Icon after the text */}
+    //     </Box>
+    //   ),
+    // },
   ];
 };
 
