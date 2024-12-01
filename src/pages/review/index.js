@@ -98,7 +98,7 @@ const Review = () => {
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-                <Rating name="read-only" value={review.no_of_stars} precision={0.5} readOnly />
+                <Rating name="read-only" value={review.rating} precision={0.5} readOnly />
                 <Typography variant="body1" sx={{ color: '#CFD8DC' }}>
                   {new Date(review.created_at).toLocaleDateString()}
                 </Typography>

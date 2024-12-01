@@ -5,6 +5,7 @@ import { Box,Typography } from "@mui/material";
 
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
 import FeedbackClients from "@/components/Home/feedback";
+import ServicesBox from "@/components/Home/services";
 
 export default function Home() {
   return (
@@ -16,11 +17,24 @@ export default function Home() {
         <link rel="icon" href="/logo.png" />
       </Head>
       <br/><br></br>
-      
+      <Box
+  sx={{
+    backgroundImage: `url('/depressionBackground.jpg')`,
+    backgroundSize: 'cover', // Ensures the image covers the entire box
+    backgroundPosition: 'top', // Focuses on the upper part of the image
+    backgroundRepeat: 'no-repeat',
+    
+    padding: 4, // Adds padding around the content
+    borderRadius: 2, // Optional: Adds rounded corners for a softer look
+    height: 'auto', // Dynamically adjusts height to fit content
+    width: '100%', // Ensures it spans the full width
+  }}
+>
+
       {/* Background Image Container */}
       <Box
   sx={{
-    backgroundImage: 'url("/imageBackground.png")',
+    backgroundImage: 'url("/homeImage.png")',
     backgroundSize: "cover", // Ensures the image covers the full container
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -32,7 +46,7 @@ export default function Home() {
   }}
 >
   {/* Overlayed Text */}
-  <Typography
+  {/* <Typography
   variant="h5" // Default size for large screens
   sx={{
     color: "blanchedalmond",
@@ -52,7 +66,7 @@ export default function Home() {
   }}
 >
   I think the top of the home page should state “Opening late November 2024”.
-</Typography>
+</Typography> */}
 
   {/* <Typography
   variant="h3" // Default size for large screens
@@ -77,11 +91,12 @@ export default function Home() {
 
     Your Inspiring Phrase Goes Here!
   </Typography> */}
+</Box> 
 </Box>
-
-
+<ServicesBox/>
       <PeoplePreferUs />
       <FeedbackClients />
+      
     </>
   );
 }

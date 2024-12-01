@@ -1,38 +1,32 @@
 import { Divider, Typography, Box } from "@mui/material";
-const ServicesOptions = () => {
+const ResourcesOptions = () => {
   return [
     {
-      title: "Anxiety",
-      path: "/Anxiety",
+      title: "FAQ",
+      path: "/faq",
       // description: "Explore various mutual fund options to grow your wealth.",
       image: "/images/faq.jpg",
     },
  
     {
-      title: "Therapy",
-      path: "/Therapy",
+      title: "Client Review",
+      path: "/review",
       // description: "Let us manage your investment portfolio for optimal returns.",
       image: "/images/client.jpg",
     },
    
     {
-      title: "Post Traumatic Stress Disorder (PTSD)",
-      path: "/PTSD",
+      title: "Terms of use",
+      path: "/",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/terms.jpg",
     },
     {
-      title: "ADHD",
-      path: "/ADHD",
+      title: "Privacy Policy",
+      path: "/",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/privacy.jpg",
     },
-    {
-        title: "Psychiatry and Therapy",
-        path: "/Psychiatry",
-        // description: "Achieve financial independence with our expert guidance.",
-        image: "/images/privacy.jpg",
-      },
   ];
 };
-export default ServicesOptions;
+export default ResourcesOptions;

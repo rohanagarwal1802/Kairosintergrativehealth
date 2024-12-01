@@ -19,6 +19,8 @@ const GoogleMap = () => {
         width: mapWidth,
         height: mapHeight,
         margin: '0 auto', // Center the map on the page
+        border:'10px solid green',
+        borderRadius: '16px'
       }}
     >
       <Box

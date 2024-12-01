@@ -32,6 +32,7 @@ const AccordionQuestion = ({ question, answer }) => {
         sx={{
           boxShadow: "none",
           "&:before": { display: "none" },
+            backgroundColor:"lightgreen"
         }}
       >
         <AccordionSummary
@@ -39,7 +40,7 @@ const AccordionQuestion = ({ question, answer }) => {
             expanded === "panel1" ? <Typography>−</Typography> : <Typography>+</Typography>
           }
           sx={{
-            backgroundColor: "lightblue",
+            backgroundColor: "whiteSmoke",
             "& .MuiTypography-root": {
               fontWeight: "bold",
               color: "#3b2311",

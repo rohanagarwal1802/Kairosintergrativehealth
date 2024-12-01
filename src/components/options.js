@@ -18,14 +18,14 @@ const Options = () => {
       path: "/about",
     },
     {
-      title: "Services",
+      title: "SERVICES",
       src: "/images/promotions.png",
       icon: <div />,
       path: "/services",
       openInNewTab: false,
     },
     {
-      title: "Blogs",
+      title: "RESOURCES",
       src: "/images/affiliate.png",
       icon: <div />,
       path: "/blogs",

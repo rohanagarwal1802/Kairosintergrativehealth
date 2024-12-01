@@ -94,6 +94,79 @@ const AboutSection = () => {
         </Typography>
       </Box>
 
+ {/* HOW WE STARTED Section */}
+ <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          padding: 4,
+          backgroundColor: "#01796F",
+        }}
+      >
+        <Grid container spacing={4} sx={{ alignItems: "center" }}>
+          {/* Left Column - Text Content */}
+          <Grid item xs={12} md={12}>
+            <Box sx={{ textAlign: "center", color: "white" }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: "bold",
+                  color: "white",
+                  marginBottom: 2,
+                  align:"center"
+                }}
+              >
+                Executive Summary
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "120%",
+                  color: "white",
+                  marginTop: 2,
+                  textAlign:"left"
+                }}
+              >
+                 
+
+After years of experience in both inpatient and outpatient corporate healthcare organizations, our founder, Mark, recognized that the pressure to meet quotas and benchmarks often compromised the quality of care he could provide to his patients. As the healthcare industry continues to adopt a more corporate model, Kairos Integrative Health takes a different approach—one that prioritizes the needs of both patients and healthcare providers. Our clinic offers the community access to high-quality, timely, and evidence-based care. Furthermore, we strive to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of corporate structures. At Kairos Integrative Health, we believe that by placing patient care at the forefront and supporting our providers, we can create a healing environment that benefits everyone.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "120%",
+                  color: "white",
+                  marginTop: 3,
+                  textAlign:"left"
+                }}
+              >
+                At the same time, I was working as a psychologist, and my schedule
+                filled up very quickly. I hired a few therapists so I could connect
+                people to them, and even their slots got full.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "120%",
+                  color: "white",
+                  marginTop: 3,
+                  textAlign:"left"
+                }}
+              >
+                This showed me that there was a big need for professional support out
+                there, and that’s the story of how The Friendly Couch was created. I am
+                fortunate to have had Amod alongside me from the beginning. Together, we
+                work to ensure that people get the professional support they deserve!
+              </Typography>
+            </Box>
+          </Grid>
+
+         
+        </Grid>
+      </Box>
       {/* Vision & Mission Section */}
       <Box
         ref={visionRef}
@@ -112,11 +185,15 @@ const AboutSection = () => {
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1 }}>
-          VISION & MISSION
+        Mission Statement
         </Typography>
-        <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", marginTop: 1 }}>
-          Content of Vision and Mission ....
-        </Typography>
+        <Typography variant="text" sx={{ color: "white", marginTop: 1 }}>
+  Our mission is to deliver{" "}
+  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>comprehensive</Typography> and{" "}
+  <Typography component="span" sx={{ fontWeight: "bold",color:"white" }}>integrative</Typography> mental health services that empower individuals and strengthen the resilience of our{" "}
+  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>community</Typography>. By prioritizing holistic care and fostering enduring patient-provider relationships, we aim to become a trusted pillar of support in our community, improving quality of life and promoting mental wellness for all.
+</Typography>
+
       </Box>
 
       {/* Our Story Section */}
@@ -129,7 +206,7 @@ const AboutSection = () => {
           justifyContent: "center",
           padding: 4,
           textAlign: "center",
-          backgroundColor: "lightgreen",
+          backgroundColor: "#01796F",
           opacity: 0,
           transform: "translateY(20px)",
           transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
@@ -137,120 +214,17 @@ const AboutSection = () => {
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1 }}>
-          OUR STORY
+        Vision
         </Typography>
-        <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", marginTop: 1 }}>
-          This is our journey, tracing our path from the very beginning to where we stand today.
+        <Typography variant="text" sx={{ fontWeight: "text", color: "white", marginTop: 1 }}>
+        Our{" "}  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>vision</Typography> is to be a recognized and{" "} 
+        <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>trusted leader</Typography> in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy, free from corporate constraints, and in alignment with their patients' best interests.
+
+
         </Typography>
       </Box>
 
-      {/* HOW WE STARTED Section */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          padding: 4,
-          backgroundColor: "green",
-        }}
-      >
-        <Grid container spacing={4} sx={{ alignItems: "center" }}>
-          {/* Left Column - Text Content */}
-          <Grid item xs={12} md={6}>
-            <Box sx={{ textAlign: "left", color: "white" }}>
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: "bold",
-                  color: "white",
-                  marginBottom: 2,
-                }}
-              >
-                HOW WE STARTED
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "120%",
-                  color: "white",
-                  marginTop: 2,
-                }}
-              >
-                I’ve always been drawn to thinking outside the box. While I can help
-                individuals in therapy, I know that to truly bring change I need to
-                reach more people. This prompted me to start creating short Instagram
-                videos on topics like culture, parenting, gender, and education which
-                are closely tied to mental health. People said they felt validated
-                watching the content which encouraged me.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "120%",
-                  color: "white",
-                  marginTop: 3,
-                }}
-              >
-                At the same time, I was working as a psychologist, and my schedule
-                filled up very quickly. I hired a few therapists so I could connect
-                people to them, and even their slots got full.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "120%",
-                  color: "white",
-                  marginTop: 3,
-                }}
-              >
-                This showed me that there was a big need for professional support out
-                there, and that’s the story of how The Friendly Couch was created. I am
-                fortunate to have had Amod alongside me from the beginning. Together, we
-                work to ensure that people get the professional support they deserve!
-              </Typography>
-            </Box>
-          </Grid>
-
-          {/* Right Column - Image with Irregular Border */}
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                position: "relative",
-                width: "100%",
-                height: "300px",
-                overflow: "hidden",
-              }}
-            >
-              {/* Image with Irregular Border */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "-15px",
-                  left: "-15px",
-                  width: "calc(100% + 30px)",
-                  height: "calc(100% + 30px)",
-                  background: "linear-gradient(45deg, red, yellow, green, cyan)",
-                  clipPath:
-                    "polygon(0 10%, 10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%)",
-                  zIndex: -1,
-                  animation: "rotateBorder 6s infinite linear",
-                }}
-              />
-              <img
-                src="/founder.jpg"
-                alt="Founder"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
+     
     </>
   );
 };

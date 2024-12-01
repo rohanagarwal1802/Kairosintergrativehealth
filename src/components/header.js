@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/router";
 import Options from "./options";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ResourcesOptions from "./resourcesDropdown";
 import ServicesOptions from "./servicesDropdown";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu"; // Mobile menu icon
@@ -20,13 +21,15 @@ import { useMediaQuery } from "@mui/material"; // To handle media queries
 const Header = () => {
   const router = useRouter();
   const options = Options();
-  const servicesOptions = ServicesOptions();
+  const resourcesOptions = ResourcesOptions();
+  const servicesOptions=ServicesOptions()
 
-  // State for controlling the dropdown menu for "Services"
+  // State for controlling the dropdown menu for "RESOURCES"
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu
   const isServicesMenuOpen = Boolean(anchorEl);
   const isMobile = useMediaQuery("(max-width:900px)"); // Media query for responsiveness
+console.log(options)
 
   // Handle opening the dropdown
   const handleMouseEnter = (event) => {
@@ -39,8 +42,10 @@ const Header = () => {
   };
 
   const handleMenuItemClick = (path) => {
+    console.log(path)
     handleClose();
-    if (path) {
+    if (path && path!=='/services') {
+
       router.push(path);
     }
   };
@@ -72,9 +77,8 @@ const Header = () => {
             >
               {options.map((option, index) => (
                 <React.Fragment key={index}>
-                  {option.title === "Services" ? (
+                  {option.title === "RESOURCES" ? (
                     <Box
-                      onClick={() => router.push(option.path)}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleClose}
                       sx={{ position: "relative", cursor: "pointer" }}
@@ -90,7 +94,7 @@ const Header = () => {
                           fontSize: "0.75rem", // Smaller font size
                         }}
                       >
-                        Services
+                        RESOURCES
                       </Box>
 
                       <Menu
@@ -107,7 +111,7 @@ const Header = () => {
                           },
                         }}
                       >
-                        {servicesOptions.map((service, index) => (
+                        {resourcesOptions.map((service, index) => (
                           <MenuItem
                             key={index}
                             onClick={() => handleMenuItemClick(service.path)}
@@ -120,10 +124,58 @@ const Header = () => {
                       </Menu>
                     </Box>
                   ) : (
+                    option.title === "SERVICES" ? (
+                      <Box
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleClose}
+                        sx={{ position: "relative", cursor: "pointer" }}
+                      >
+                        <Box
+                          sx={{
+                            padding: "6px 12px", // Reduced padding
+                            borderBottom: isSelected(option.path)
+                              ? "2px solid green"
+                              : "none",
+                            color: isSelected(option.path) ? "green" : "inherit",
+                            "&:hover": { backgroundColor: "lightgray" },
+                            fontSize: "0.75rem", // Smaller font size
+                          }}
+                        >
+                          SERVICES
+                        </Box>
+  
+                        <Menu
+                          anchorEl={anchorEl}
+                          open={isServicesMenuOpen}
+                          onClose={handleClose}
+                          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                          PaperProps={{
+                            sx: {
+                              backgroundColor: "black",
+                              color: "white",
+                              boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+                              transition: "transform 0.5s ease, opacity 0.5s ease",
+                            },
+                          }}
+                        >
+                          {servicesOptions.map((service, index) => (
+                            <MenuItem
+                              key={index}
+                              onClick={() => handleMenuItemClick(service.path)}
+                              sx={{ "&:hover": { color: "lightblue" }, fontSize: "0.75rem" }} // Smaller font size
+                            >
+                              <ChevronRightIcon sx={{ marginRight: 0.5 }} /> {/* Reduced margin */}
+                              {service.title}
+                            </MenuItem>
+                          ))}
+                        </Menu>
+                      </Box>
+                    ):
                     <Button
                       key={index}
                       color="inherit"
-                      onClick={() => option.path && router.push(option.path)}
+                      onClick={() => option.path && option.title!=="RESOURCES" && 
+                         router.push(option.path)}
                       sx={{
                         padding: "6px 12px", // Reduced padding
                         borderBottom: isSelected(option.path)
@@ -207,7 +259,7 @@ const Header = () => {
                   padding: "8px", // Reduced padding
                 }}
               >
-                {options.map((option, index) => option.title === "Services" ? (
+                {options.map((option, index) => option.title === "RESOURCES" ? (
                   <Box
                     key={index}
                     onMouseEnter={handleMouseEnter}
@@ -221,7 +273,6 @@ const Header = () => {
                     }}
                   >
                     <Box
-                      onClick={() => router.push(option.path)}
                       sx={{
                         padding: "6px 12px", // Reduced padding
                         borderBottom: isSelected(option.path) ? "2px solid green" : "none",
@@ -232,7 +283,7 @@ const Header = () => {
                         fontSize: "0.75rem", // Smaller font size
                       }}
                     >
-                      Services
+                      RESOURCES
                     </Box>
 
                     <Menu
@@ -249,7 +300,7 @@ const Header = () => {
                         },
                       }}
                     >
-                      {servicesOptions.map((service, index) => (
+                      {resourcesOptions.map((service, index) => (
                         <MenuItem
                           key={index}
                           onClick={() => handleMenuItemClick(service.path)}
@@ -262,6 +313,54 @@ const Header = () => {
                     </Menu>
                   </Box>
                 ) : (
+
+                  option.title === "SERVICES" ? (
+                    <Box
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleClose}
+                      sx={{ position: "relative", cursor: "pointer" }}
+                    >
+                      <Box
+                        sx={{
+                          padding: "6px 12px", // Reduced padding
+                          borderBottom: isSelected(option.path)
+                            ? "2px solid green"
+                            : "none",
+                          color: isSelected(option.path) ? "green" : "inherit",
+                          "&:hover": { backgroundColor: "lightgray" },
+                          fontSize: "0.75rem", // Smaller font size
+                        }}
+                      >
+                        SERVICES
+                      </Box>
+
+                      <Menu
+                        anchorEl={anchorEl}
+                        open={isServicesMenuOpen}
+                        onClose={handleClose}
+                        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                        PaperProps={{
+                          sx: {
+                            backgroundColor: "black",
+                            color: "white",
+                            boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+                            transition: "transform 0.5s ease, opacity 0.5s ease",
+                          },
+                        }}
+                      >
+                        {servicesOptions.map((service, index) => (
+                          <MenuItem
+                            key={index}
+                            onClick={() => handleMenuItemClick(service.path)}
+                            sx={{ "&:hover": { color: "lightblue" }, fontSize: "0.75rem" }} // Smaller font size
+                          >
+                            <ChevronRightIcon sx={{ marginRight: 0.5 }} /> {/* Reduced margin */}
+                            {service.title}
+                          </MenuItem>
+                        ))}
+                      </Menu>
+                    </Box>
+                  ):
                   <Button
                     key={index}
                     fullWidth

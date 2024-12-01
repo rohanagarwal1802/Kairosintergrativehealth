@@ -49,7 +49,8 @@ const Faq = () => {
         onChange={handleChange("panel1")}
         sx={{
           marginBottom: "8px", // Reduced space between accordions
-          boxShadow: "none", // Optional: remove shadow for a cleaner look
+          boxShadow: "none", 
+          backgroundColor:"green"// Optional: remove shadow for a cleaner look
         }}
       >
         <AccordionSummary
@@ -57,7 +58,7 @@ const Faq = () => {
           sx={{
             backgroundColor: "#f1f8ff", // Subtle background color for better contrast
             "&:hover": {
-              backgroundColor: "#e3f2fd", // Hover effect for better UX
+              backgroundColor: "#beeaca", // Hover effect for better UX
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
@@ -109,6 +110,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px", 
           boxShadow: "none",
+            backgroundColor:"green"
         }}
       >
         <AccordionSummary
@@ -116,7 +118,7 @@ const Faq = () => {
           sx={{
             backgroundColor: "#f1f8ff",
             "&:hover": {
-              backgroundColor: "#e3f2fd",
+              backgroundColor: "#beeaca",
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
@@ -140,6 +142,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px", 
           boxShadow: "none",
+            backgroundColor:"green"
         }}
       >
         <AccordionSummary
@@ -147,7 +150,7 @@ const Faq = () => {
           sx={{
             backgroundColor: "#f1f8ff",
             "&:hover": {
-              backgroundColor: "#e3f2fd",
+              backgroundColor: "#beeaca",
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",

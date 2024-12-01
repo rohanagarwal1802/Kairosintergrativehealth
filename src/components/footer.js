@@ -2,11 +2,11 @@ import React from "react";
 import { Box, Typography, Container, IconButton, Link } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Phone, Email } from "@mui/icons-material";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ServicesOptions from "./servicesDropdown";
+import ResourcesOptions from "./resourcesDropdown";
 import XIcon from '@mui/icons-material/X';
 
 const Footer = () => {
-  const servicesOptions = ServicesOptions();
+  const servicesOptions = ResourcesOptions();
 
   return (
     <Box>
