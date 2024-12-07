@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "@/styles/Home.module.css";
-import { Box,Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
 import FeedbackClients from "@/components/Home/feedback";
@@ -16,87 +15,60 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <br/><br></br>
-      <Box
-  sx={{
-    backgroundImage: `url('/depressionBackground.jpg')`,
-    backgroundSize: 'cover', // Ensures the image covers the entire box
-    backgroundPosition: 'top', // Focuses on the upper part of the image
-    backgroundRepeat: 'no-repeat',
-    
-    padding: 4, // Adds padding around the content
-    borderRadius: 2, // Optional: Adds rounded corners for a softer look
-    height: 'auto', // Dynamically adjusts height to fit content
-    width: '100%', // Ensures it spans the full width
-  }}
->
+      <br />
+      <br />
 
       {/* Background Image Container */}
       <Box
-  sx={{
-    backgroundImage: 'url("/homeImage.png")',
-    backgroundSize: "cover", // Ensures the image covers the full container
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    width: "100vw",
-    height: "auto", // Allow dynamic height
-    paddingTop: "56.25%", // Maintain 16:9 aspect ratio
-    mt: "1%",
-    position: "relative", // Enables positioning for the text overlay
-  }}
->
-  {/* Overlayed Text */}
-  {/* <Typography
-  variant="h5" // Default size for large screens
-  sx={{
-    color: "blanchedalmond",
-    position: "absolute", // Overlay text on the background
-    top: { xs: "10%", sm: "8%", md: "5%" }, // Adjust vertical position responsively
-    left: { xs: "5%", sm: "7%", md: "10%" }, // Adjust horizontal position responsively
-    textAlign: "left", // Align text to the left
-    fontWeight: "bold", // Make the text stand out
-    textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Add shadow for better readability
-    fontSize: {
-      xs: "1rem", // Smaller size for extra-small screens
-      sm: "1.2rem", // Slightly larger size for small screens
-      md: "1.5rem", // Default size for medium screens
-      lg: "1.8rem", // Larger size for large screens
-    },
-    maxWidth: { xs: "90%", sm: "80%", md: "60%" }, // Adjust max width for text wrapping
-  }}
->
-  I think the top of the home page should state “Opening late November 2024”.
-</Typography> */}
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: "100vh", // Full height viewport
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        {/* Optimized Responsive Image */}
+        <Image
+          src="/title.jpg"
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          priority
+          style={{
+            zIndex: -1,
+          }}
+        />
 
-  {/* <Typography
-  variant="h3" // Default size for large screens
-  sx={{
-    color: "blanchedalmond",
-    position: "absolute", // Overlay text on the background
-    top: "50%", // Center vertically
-    left: "50%", // Center horizontally
-    transform: "translate(-50%, -50%)", // Correct centering
-    textAlign: "center", // Align text
-    fontWeight: "bold", // Make the text stand out
-    textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Add shadow for better readability
-    fontSize: {
-      xs: "1.5rem", // Small screens (extra-small and small)
-      sm: "2rem", // Medium screens
-      md: "2.5rem", // Large screens
-      lg: "3rem", // Extra-large screens
-    },
-  }}
->
- 
+        {/* Overlayed Text */}
+        <Typography
+          variant="h3"
+          sx={{
+            color: "blanchedalmond",
+            position: "absolute",
+            textAlign: "center",
+            fontWeight: "bold",
+            textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+            px: 2, // Padding for better spacing on smaller screens
+            fontSize: {
+              xs: "1.5rem", // Smaller screens
+              sm: "2rem", // Small screens
+              md: "2.5rem", // Medium screens
+              lg: "3rem", // Large screens
+            },
+          }}
+        >
+          Opening Late November 2024
+        </Typography>
+      </Box>
 
-    Your Inspiring Phrase Goes Here!
-  </Typography> */}
-</Box> 
-</Box>
-<ServicesBox/>
+      {/* Other Components */}
+      <ServicesBox />
       <PeoplePreferUs />
       <FeedbackClients />
-      
     </>
   );
 }

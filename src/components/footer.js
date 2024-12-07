@@ -3,10 +3,12 @@ import { Box, Typography, Container, IconButton, Link } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Phone, Email } from "@mui/icons-material";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ResourcesOptions from "./resourcesDropdown";
+import ServicesOptions from "./servicesDropdown";
 import XIcon from '@mui/icons-material/X';
 
 const Footer = () => {
-  const servicesOptions = ResourcesOptions();
+  const servicesOptions = ServicesOptions();
+  const resourcesOptions=ResourcesOptions();
 
   return (
     <Box>
@@ -79,20 +81,13 @@ const Footer = () => {
               </Box>
             </Box>
 
-            {/* SITEMAP Section */}
+            {/* RESOURCES Section */}
             <Box sx={{ textAlign: "left", flex: 1, "@media (max-width: 900px)": { textAlign: "center" } }}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "14px" }}>
-                SITEMAP
+                SERVICES
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>  {/* Reduced gap */}
-                {[
-                  { title: "Home", path: "/" },
-                  { title: "Our Team", path: "/blogs" },
-                  { title: "Psychiatry & Therapy", path: "/" },
-                  { title: "Complementary & Alternative Medicine", path: "/" },
-                  { title: "Consumer Notices", path: "/" },
-                  { title: "Refer A Patient", path: "/" },
-                ].map((item, index) => (
+                {servicesOptions.map((item, index) => (
                   <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
                     <ChevronRightIcon sx={{ color: "white", fontSize: "small", marginRight: "4px" }} />
                     <Link href={item.path} underline="none" sx={{ color: "white", fontSize: "12px" }}>
@@ -109,7 +104,7 @@ const Footer = () => {
                 RESOURCES
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>  {/* Reduced gap */}
-                {servicesOptions.map((item, index) => (
+                {resourcesOptions.map((item, index) => (
                   <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
                     <ChevronRightIcon sx={{ color: "white", fontSize: "small", marginRight: "4px" }} />
                     <Link href={item.path} underline="none" sx={{ color: "white", fontSize: "12px" }}>
@@ -128,15 +123,19 @@ const Footer = () => {
               <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "12px" }}>
                 <Phone sx={{ verticalAlign: "middle", marginRight: "4px", fontSize: "small" }} />
                 Call to:{" "}
-                <Link href="tel:+917339977720" color="inherit">
-                  +91 73399 77720
+                <Link href="tel:256-980-0620" color="inherit">
+                256-980-0620
+                </Link>
+                <br></br>
+                <Link href="tel:919-918-0622" color="inherit">
+                919-918-0622
                 </Link>
               </Typography>
               <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "12px" }}>
                 <Email sx={{ verticalAlign: "middle", marginRight: "4px", fontSize: "small" }} />
                 Mail to:{" "}
-                <Link href="mailto:markmerritt@kairosintegrativehealth.com" color="inherit">
-                  markmerritt@kairosintegrativehealth.com
+                <Link href="mailto:info@kairosintegrativehealth.com" color="inherit">
+                info@kairosintegrativehealth.com
                 </Link>
               </Typography>
             </Box>
@@ -155,7 +154,7 @@ const Footer = () => {
       >
         <hr style={{ borderColor: "white", borderWidth: "1px", margin: "0 0 8px" }} />
         <Typography variant="body2" sx={{ fontSize: "12px" }}>
-          © Copyright 2022 - 2024, Integrative Behavioral Health & Medicine, Inc. | All Rights Reserved
+        The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216
         </Typography>
       </Box>
     </Box>

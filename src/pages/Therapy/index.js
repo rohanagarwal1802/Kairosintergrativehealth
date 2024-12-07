@@ -31,7 +31,7 @@ return (
   }}
 >
     
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center",mb:-12}}>
   {/* Image */}
   <Box>
     <Image
