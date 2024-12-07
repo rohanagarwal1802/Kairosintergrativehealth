@@ -28,6 +28,9 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
+          // Optional: Ensure the background image does not overflow
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         {/* Optimized Responsive Image */}
@@ -40,6 +43,8 @@ export default function Home() {
           priority
           style={{
             zIndex: -1,
+            // Ensure image stretches to cover the screen and retains aspect ratio
+            objectPosition: "center",
           }}
         />
 
