@@ -5,6 +5,7 @@ import { Box, Typography } from "@mui/material";
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
 import FeedbackClients from "@/components/Home/feedback";
 import ServicesBox from "@/components/Home/services";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <br />
       <br />
 
+<<<<<<< Updated upstream
       {/* Background Image Container */}
       <Box
   sx={{
@@ -54,6 +56,9 @@ export default function Home() {
       <ServicesBox />
       <PeoplePreferUs />
       <FeedbackClients />
+=======
+     <Loader/>
+>>>>>>> Stashed changes
     </>
   );
 }
