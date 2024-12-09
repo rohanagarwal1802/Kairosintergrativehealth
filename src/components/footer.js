@@ -153,7 +153,7 @@ const Footer = () => {
       >
         <hr style={{ borderColor: "white", borderWidth: "1px", margin: "0 0 8px" }} />
         <Typography variant="body2" sx={{ fontSize: "12px" }}>
-        © Copyright 2022 - 2024, Kairos Integrative Health | All Rights Reserved
+        © Copyright 2024, Kairos Integrative Health | All Rights Reserved
         </Typography>
       </Box>
     

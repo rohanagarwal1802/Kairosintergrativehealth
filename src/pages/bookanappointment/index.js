@@ -65,16 +65,16 @@ const AppointMent = () => {
                         width: '90%'
                     }}
                 >
-                    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={{backgroundColor:"#98BF64"}}>
                         <AccordionSummary
-                            expandIcon={expanded === 'panel1' ? <Remove /> : <Add />}
+                            expandIcon={expanded === 'panel1' ? <Remove sx={{color:"white"}}/> : <Add sx={{color:"white"}}/>}
                             aria-controls="panel1-content"
                             id="panel1-header"
                         >
-                            <Typography>Existing Patients</Typography>
+                            <Typography sx={{fontWeight:"bold",color:"white"}}>Existing Patients</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
+                            <Typography sx={{color:"white"}}>
                                 If you are an existing patient, please login to the patient portal where you can request appointments, refills, and send messages to your doctor.
                             </Typography>
                         </AccordionDetails>
@@ -105,16 +105,16 @@ const AppointMent = () => {
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                    <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} sx={{backgroundColor:"#98BF64"}}>
                         <AccordionSummary
-                            expandIcon={expanded === 'panel2' ? <Remove /> : <Add />}
+                            expandIcon={expanded === 'panel2' ? <Remove sx={{color:"white"}}/> : <Add sx={{color:"white"}}/>}
                             aria-controls="panel2-content"
                             id="panel2-header"
                         >
-                            <Typography>New Patients</Typography>
+                            <Typography sx={{fontWeight:"bold",color:"white"}}>New Patients</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
+                            <Typography sx={{color:"white"}}>
                                 If you are a new patient looking to establish care with one of our providers, please start by answering the following questions.
                             </Typography>
                             <PatientForm />

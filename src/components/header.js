@@ -197,13 +197,13 @@ const handleMenuClose = () => {
     sx={{
       display: "flex",
       alignItems: "center",
-      backgroundColor: "#FFD700",
+      backgroundColor: "green",
       color: "white",
       border: "none",
       borderRadius: "4px",
       padding: "6px 12px",
       cursor: "pointer",
-      "&:hover": { backgroundColor: "#FFC300" },
+      "&:hover": { backgroundColor: "green" },
       fontSize: "0.75rem",
     }}
     onClick={() => {
@@ -326,7 +326,20 @@ const handleMenuClose = () => {
   );
 })}
 
-
+<Button
+      color="inherit"
+      onClick={() => console.log("login")} // Navigate directly for normal options
+      sx={{
+        padding: "6px 12px",
+        color: "green",
+        "&:hover": { backgroundColor: "lightgray" },
+        fontSize: "0.75rem",
+        display: "flex", // Ensure consistent display with the other items
+        alignItems: "center", // Align with the other items
+      }}
+    >
+      Patient Portal
+    </Button>
 
     </Box>
   )}

@@ -1,35 +1,30 @@
-import axios from "axios";
-// import jwt from "jsonwebtoken";
+import requireAll from "require-all";
+import path from "path";
 
-const BASE_URL=`${process.env.HOST}/api/register_patients`
-
+const queryDirectoryPath = path.join(process.cwd(), "/lib/query"); // Adjust based on the directory location
+const allQuery = requireAll({
+  dirname: queryDirectoryPath,
+  filter: /(.+)\.js$/,
+  recursive: true,
+});
 
 export default async function handler(req, res) {
-  try {
-    if(req.method!=='POST')
-    {
-        return res.status(401).json({message:"Method not allowed"})
+  if (req.method === "POST") {
+    const addPatients = allQuery["addPatients"];
+    if (!addPatients) {
+      return res.status(500).json({ message: "addPatients function not found." });
     }
 
-    let config = {
-      method: "POST",
-      maxBodyLength: Infinity,
-      url: BASE_URL,
-      data:req.body
-    };
-
-    const response = await axios.request(config);
-
-    // Send the response after processing
-    res.status(response.status).send(response.data);
-  } catch (error) {
-    if(error.status===400)
-    {
-      res.status(error.status).send(error.data);
-      return
+    try {
+      const result = await addPatients([req.body]);
+      return result?.passed
+        ? res.status(201).json({ message: "Patient registered successfully", data: result })
+        : res.status(400).json({ message: "Failed to register patient", data: result });
+    } catch (error) {
+      console.error("Error registering patient:", error.message);
+      res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
-    console.log("Error in register partner", error);
-    // Send an error response if something goes wrong
-    res.status(500).send("Internal Server Error");
+  } else {
+    res.status(405).json({ error: "Method not allowed" });
   }
 }
