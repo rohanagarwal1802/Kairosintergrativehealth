@@ -40,6 +40,12 @@ const ResourcesOptions = () => {
       // description: "Let us manage your investment portfolio for optimal returns.",
       image: "/images/client.jpg",
     },
+    // {
+    //   title: "Refer a Patient",
+    //   path: "/careers",
+    //   // description: "Let us manage your investment portfolio for optimal returns.",
+    //   image: "/images/client.jpg",
+    // },
     {
       title: "Terms of use",
       path: "/",

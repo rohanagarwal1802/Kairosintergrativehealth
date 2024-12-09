@@ -128,7 +128,7 @@ console.log("response of adding patient ===> ",resp)
   return (
     <Box
       sx={{
-        width: { xs: '100%', sm: '98%', },
+        width: { xs: '100%', sm: '100%', },
         mx: 'auto',
         my: 4,
         p: 3,

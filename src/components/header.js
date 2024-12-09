@@ -16,7 +16,7 @@ import ResourcesOptions from "./resourcesDropdown";
 import ServicesOptions from "./servicesDropdown";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu"; // Mobile menu icon
-import { useMediaQuery } from "@mui/material"; // To handle media queries
+import { useTheme,useMediaQuery } from "@mui/material"; // To handle media queries
 
 const Header = () => {
   const router = useRouter();
@@ -100,31 +100,11 @@ const handleMenuClose = () => {
   }}
 >
   {/* Request Appointment Button */}
-  <Box
-    component="button"
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      backgroundColor: "#FFD700",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      padding: "6px 12px",
-      cursor: "pointer",
-      "&:hover": { backgroundColor: "#FFC300" },
-      fontSize: "0.75rem",
-    }}
-    onClick={() => {
-      // Define the action for button click
-    }}
-  >
-    <Typography variant="body2" sx={{ marginRight: 1 }}>
-      Request Appointment
-    </Typography>
-  </Box>
+ 
 
   {/* Menu Options */}
-  {options.map((option, index) => {
+  {!isMobile &&
+  options.map((option, index) => {
     if (option.title === "RESOURCES" || option.title === "SERVICES") {
       return (
         <Box
@@ -138,7 +118,6 @@ const handleMenuClose = () => {
             cursor: "pointer",
           }}
         >
-          {/* Header */}
           <Box
             sx={{
               padding: "6px 12px",
@@ -151,7 +130,6 @@ const handleMenuClose = () => {
             {option.title}
           </Box>
 
-          {/* Dropdown Menu */}
           <Menu
             anchorEl={menuAnchor}
             open={currentMenu === option.title}
@@ -196,19 +174,59 @@ const handleMenuClose = () => {
         {option.title}
       </Button>
     );
-  })}
-
-  {/* Menu Icon for Mobile */}
+  })
+}
+{!isMobile &&
+<Button
+        color="inherit"
+        // onClick={() => }
+        sx={{
+          padding: "6px 12px",
+          // borderBottom: isSelected(option.path) ? "2px solid green" : "none",
+          // color: isSelected(option.path) ? "green" : "inherit",
+          "&:hover": { backgroundColor: "lightgray" },
+          color:"green",
+          fontSize: "0.75rem",
+        }}
+      >
+        Patient Portal
+      </Button>
+}
+   <Box
+    component="button"
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      backgroundColor: "#FFD700",
+      color: "white",
+      border: "none",
+      borderRadius: "4px",
+      padding: "6px 12px",
+      cursor: "pointer",
+      "&:hover": { backgroundColor: "#FFC300" },
+      fontSize: "0.75rem",
+    }}
+    onClick={() => {
+      router.push('/bookanappointment')
+      // Define the action for button click
+    }}
+  >
+    <Typography variant="body2" sx={{ marginRight: 1 }}>
+      Request Appointment
+    </Typography>
+  </Box>
+{isMobile &&
   <IconButton color="inherit" edge="end" onClick={toggleMobileMenu}>
     <MenuIcon />
   </IconButton>
+}
 
   {/* Mobile Menu */}
-  {mobileMenuOpen && (
+  {mobileMenuOpen && isMobile &&(
     <Box
       sx={{
         position: "absolute",
-        top: 60,
+        top: 90,
         right: 0,
         backgroundColor: "white",
         boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
@@ -219,22 +237,97 @@ const handleMenuClose = () => {
         gap: "8px",
       }}
     >
-      {options.map((option, index) => (
-        <Button
-          key={index}
-          color="inherit"
-          onClick={() => option.path && router.push(option.path)}
+{options.map((option, index) => {
+  // If option is RESOURCES or SERVICES, render a dropdown
+  if (option.title === "RESOURCES" || option.title === "SERVICES") {
+    return (
+      <Box
+        key={index}
+        onMouseEnter={(e) => handleMenuOpen(e, option.title)} // Show the menu on hover
+        onMouseLeave={handleMenuClose} // Close the menu when mouse leaves
+        sx={{
+          position: "relative",
+          display: "flex",
+          justifyContent:"center",
+          alignItems: "center", // Ensure it's aligned like the other items
+          cursor: "pointer",
+          fontWeight:"bold"
+        }}
+      >
+        <Box
           sx={{
             padding: "6px 12px",
             borderBottom: isSelected(option.path) ? "2px solid green" : "none",
             color: isSelected(option.path) ? "green" : "inherit",
             "&:hover": { backgroundColor: "lightgray" },
             fontSize: "0.75rem",
+            display: "flex",
+            alignItems: "center", // Ensure alignment is consistent
           }}
         >
           {option.title}
-        </Button>
-      ))}
+        </Box>
+
+        {/* // Mobile Menu Dropdown */}
+        <Menu
+  anchorEl={menuAnchor}
+  open={currentMenu === option.title}
+  onClose={handleMenuClose}
+  anchorOrigin={{ vertical: "bottom", horizontal: "center" }} // Center the dropdown on mobile
+  transformOrigin={{ vertical: "top", horizontal: "center" }} // Align from the center
+  PaperProps={{
+    sx: {
+      backgroundColor: "black",
+      color: "white",
+      boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+      width: "auto", // Ensure it's not too wide for mobile
+      maxWidth: "90%", // Limit width on small screens
+      marginTop: "5px", // Add some spacing between menu and button
+      left: "50%", // Center the dropdown horizontally
+      transform: "translateX(-50%)", // Center the dropdown horizontally by shifting it
+    },
+  }}
+>
+  {(option.title === "RESOURCES" ? resourcesOptions : servicesOptions).map((subOption, idx) => (
+    <MenuItem
+      key={idx}
+      onClick={() => { router.push(subOption.path); handleMenuClose(); toggleMobileMenu(); }}
+      sx={{ "&:hover": { color: "lightblue" }, fontSize: "0.75rem" }}
+    >
+      <ChevronRightIcon sx={{ marginRight: 0.5 }} />
+      {subOption.title}
+    </MenuItem>
+  ))}
+</Menu>
+
+
+      </Box>
+    );
+  }
+
+  // For all other options, render a normal button
+  return (
+    <Button
+      key={index}
+      color="inherit"
+      onClick={() => {(option.path && router.push(option.path));toggleMobileMenu()}} // Navigate directly for normal options
+      sx={{
+        padding: "6px 12px",
+        borderBottom: isSelected(option.path) ? "2px solid green" : "none",
+        color: isSelected(option.path) ? "green" : "inherit",
+        "&:hover": { backgroundColor: "lightgray" },
+        fontSize: "0.75rem",
+        display: "flex", // Ensure consistent display with the other items
+        alignItems: "center", // Align with the other items
+      }}
+    >
+      {option.title}
+    </Button>
+  );
+})}
+
+
+
     </Box>
   )}
 </Box>

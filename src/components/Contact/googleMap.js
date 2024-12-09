@@ -9,7 +9,7 @@ const GoogleMap = () => {
 
   // Adjust width and height based on screen size
   const mapWidth = isSmallScreen ? '100%' : isMediumScreen ? '80%' : '600px';
-  const mapHeight = isSmallScreen ? '300px' : isMediumScreen ? '400px' : '400px';
+  const mapHeight = isSmallScreen ? '300px' : isMediumScreen ? '400px' : '780px';
 
   return (
     <Box

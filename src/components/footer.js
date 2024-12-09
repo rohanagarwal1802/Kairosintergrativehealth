@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Container, IconButton, Link } from "@mui/material";
+import { Box, Typography, Container, IconButton, Link, Grid } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Phone, Email } from "@mui/icons-material";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ResourcesOptions from "./resourcesDropdown";
@@ -8,7 +8,7 @@ import XIcon from '@mui/icons-material/X';
 
 const Footer = () => {
   const servicesOptions = ServicesOptions();
-  const resourcesOptions=ResourcesOptions();
+  const resourcesOptions = ResourcesOptions();
 
   return (
     <Box>
@@ -17,38 +17,32 @@ const Footer = () => {
         sx={{
           backgroundColor: "rgba(29,39,56, 1)",
           color: "#FFFFFF",
-          padding: "20px 0",  // Reduced padding
+          padding: "20px 0",
         }}
       >
         <Container maxWidth="lg">
-          <Box
+          <Grid
+            container
+            spacing={4}
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              padding: "0 10px",  // Reduced padding
-              flexWrap: "wrap",
-              gap: "16px",  // Reduced gap between sections
-              "@media (max-width: 900px)": {
-                flexDirection: "column",
-                textAlign: "center",
-                alignItems: "center",
-              },
+              justifyContent: { xs: "center", lg: "space-between" },  // Center on small screens, space-between on large
+              flexDirection: { xs: "column", lg: "row" },  // Stack on small screens, align in a row on large screens
+              alignItems: { xs: "center", lg: "flex-start" },  // Align to center on small screens
             }}
           >
             {/* Logo and Social Media Links */}
-            <Box sx={{ textAlign: "center", flex: 1 }}>
+            <Grid item xs={12} lg={3} sx={{ textAlign: "center", mb: { xs: 3, lg: 0 } }}>
               <img
                 src="/logo.png"
                 alt="Kairos Integrative Health Logo"
-                style={{ width: "80px", height: "auto" }}  // Smaller logo
+                style={{ width: "80px", height: "auto" }}
               />
               <Box
                 sx={{
                   display: "flex",
-                  gap: "12px",  // Reduced gap between icons
-                  marginTop: "8px",  // Reduced margin-top
-                  justifyContent: "center",
+                  gap: "12px",
+                  marginTop: "8px",
+                  justifyContent: "center",  // Center the social icons on small screens
                 }}
               >
                 <IconButton
@@ -56,7 +50,7 @@ const Footer = () => {
                   href="https://www.linkedin.com/in/saahil2109"
                   target="_blank"
                   color="inherit"
-                  sx={{ fontSize: "small" }}  // Smaller icon size
+                  sx={{ fontSize: "small" }}
                 >
                   <XIcon fontSize="small" />
                 </IconButton>
@@ -79,72 +73,77 @@ const Footer = () => {
                   <Facebook fontSize="small" />
                 </IconButton>
               </Box>
-            </Box>
+            </Grid>
 
-            {/* RESOURCES Section */}
-            <Box sx={{ textAlign: "left", flex: 1, "@media (max-width: 900px)": { textAlign: "center" } }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "14px" }}>
+            {/* SERVICES Section */}
+            <Grid item xs={12} lg={2} sx={{ textAlign: { xs: "center", lg: "left" }, mb: { xs: 3, lg: 0 } }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "18px" }}>
                 SERVICES
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>  {/* Reduced gap */}
+              <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 {servicesOptions.map((item, index) => (
-                  <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
-                    <ChevronRightIcon sx={{ color: "white", fontSize: "small", marginRight: "4px" }} />
-                    <Link href={item.path} underline="none" sx={{ color: "white", fontSize: "12px" }}>
+                  <Box key={index} sx={{ display: "flex", alignItems: "center", paddingLeft: "16px" }}>
+                    <ChevronRightIcon sx={{ color: "white", fontSize: "20px", marginRight: "8px" }} />
+                    <Link href={item.path} underline="none" sx={{ color: "white", fontSize: "16px" }}>
                       {item.title}
                     </Link>
                   </Box>
                 ))}
               </Box>
-            </Box>
+            </Grid>
 
             {/* RESOURCES Section */}
-            <Box sx={{ textAlign: "left", flex: 1, "@media (max-width: 900px)": { textAlign: "center" } }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "14px" }}>
+            <Grid item xs={12} lg={2} sx={{ textAlign: { xs: "center", lg: "left" }, mb: { xs: 3, lg: 0 } }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "18px" }}>
                 RESOURCES
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>  {/* Reduced gap */}
+              <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 {resourcesOptions.map((item, index) => (
-                  <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
-                    <ChevronRightIcon sx={{ color: "white", fontSize: "small", marginRight: "4px" }} />
-                    <Link href={item.path} underline="none" sx={{ color: "white", fontSize: "12px" }}>
+                  <Box key={index} sx={{ display: "flex", alignItems: "center", paddingLeft: "16px" }}>
+                    <ChevronRightIcon sx={{ color: "white", fontSize: "20px", marginRight: "8px" }} />
+                    <Link href={item.path} underline="none" sx={{ color: "white", fontSize: "16px" }}>
                       {item.title}
                     </Link>
                   </Box>
                 ))}
               </Box>
-            </Box>
+            </Grid>
 
             {/* CONTACT Section */}
-            <Box sx={{ textAlign: "left", flex: 1, "@media (max-width: 900px)": { textAlign: "center" } }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "14px" }}>
+            <Grid item xs={12} lg={3} sx={{ textAlign: { xs: "center", lg: "left" } }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", marginBottom: "8px", fontSize: "18px" }}>
                 CONTACT
               </Typography>
-              <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "12px" }}>
-                <Phone sx={{ verticalAlign: "middle", marginRight: "4px", fontSize: "small" }} />
-                Call to:{" "}
-                <Link href="tel:256-980-0620" color="inherit">
-                256-980-0620
-                </Link>
-                <br></br>
-                <Link href="tel:919-918-0622" color="inherit">
-                919-918-0622
-                </Link>
-              </Typography>
-              <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "12px" }}>
-                <Email sx={{ verticalAlign: "middle", marginRight: "4px", fontSize: "small" }} />
-                Mail to:{" "}
-                <Link href="mailto:info@kairosintegrativehealth.com" color="inherit">
-                info@kairosintegrativehealth.com
-                </Link>
-              </Typography>
-            </Box>
-          </Box>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
+                  <Phone sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
+                  Call to:{" "}
+                  <Link href="tel:256-980-0620" color="inherit" sx={{ fontSize: "16px" }}>
+                    256-980-0620
+                  </Link>
+                  <br />
+                  <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
+                    919-918-0622
+                  </Link>
+                </Typography>
+                <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
+                  <Email sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
+                  Mail to:{" "}
+                  <Link href="mailto:info@kairosintegrativehealth.com" color="inherit" sx={{ fontSize: "16px" }}>
+                    info@kairosintegrativehealth.com
+                  </Link>
+                </Typography>
+                <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
+                The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
 
-      {/* Copyright Section */}
-      <Box
+       {/* Copyright Section */}
+       <Box
         sx={{
           backgroundColor: "rgba(29,39,56, 1)",
           color: "white",
@@ -154,9 +153,10 @@ const Footer = () => {
       >
         <hr style={{ borderColor: "white", borderWidth: "1px", margin: "0 0 8px" }} />
         <Typography variant="body2" sx={{ fontSize: "12px" }}>
-        The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216
+        © Copyright 2022 - 2024, Kairos Integrative Health | All Rights Reserved
         </Typography>
       </Box>
+    
     </Box>
   );
 };

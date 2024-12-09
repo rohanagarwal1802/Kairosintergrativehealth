@@ -76,101 +76,100 @@ const ContactForm = ({ getReviews }) => {
   );
 
   return (
-    <>
-      <Box
-        sx={{
-          width: '50%',
-          mx: 'auto',
-          p: 3,
-          borderRadius: 2,
-          boxShadow: 3,
-          bgcolor: '#f5f5f5',
-          mb: 4,
-        }}
-      >
-        <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: '600px', // Limit the form's width for better readability
+        mx: 'auto',
+        p: 3,
+        borderRadius: 2,
+        boxShadow: 3,
+        bgcolor: '#f5f5f5',
+        mb: 4,
+      }}
+    >
+      <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+        <Grid container spacing={2} alignItems="center">
           {/* Full Name, Email, Subject, and Message */}
-          <Grid container spacing={2} alignItems="center" sx={{ mt: 2 }}>
-            <Grid item xs={12}>
-              <TextField
-                label={<RequiredLabel label="Full Name" />}
-                name="full_name"
-                value={formik.values.full_name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-              />
-              {formik.touched.full_name && formik.errors.full_name && (
-                <Typography color="error">{formik.errors.full_name}</Typography>
-              )}
-            </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label={<RequiredLabel label="Full Name" />}
+              name="full_name"
+              value={formik.values.full_name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+            />
+            {formik.touched.full_name && formik.errors.full_name && (
+              <Typography color="error">{formik.errors.full_name}</Typography>
+            )}
+          </Grid>
 
-            <Grid item xs={12}>
-              <TextField
-                label={<RequiredLabel label="Email" />}
-                name="email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-              />
-              {formik.touched.email && formik.errors.email && (
-                <Typography color="error">{formik.errors.email}</Typography>
-              )}
-            </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label={<RequiredLabel label="Email" />}
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+            />
+            {formik.touched.email && formik.errors.email && (
+              <Typography color="error">{formik.errors.email}</Typography>
+            )}
+          </Grid>
 
-            <Grid item xs={12}>
-              <TextField
-                label={<RequiredLabel label="Subject" />}
-                name="subject"
-                value={formik.values.subject}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-              />
-              {formik.touched.subject && formik.errors.subject && (
-                <Typography color="error">{formik.errors.subject}</Typography>
-              )}
-            </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label={<RequiredLabel label="Subject" />}
+              name="subject"
+              value={formik.values.subject}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+            />
+            {formik.touched.subject && formik.errors.subject && (
+              <Typography color="error">{formik.errors.subject}</Typography>
+            )}
+          </Grid>
 
-            <Grid item xs={12}>
-              <TextField
-                label={<RequiredLabel label="Message" />}
-                name="message"
-                value={formik.values.message}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-                multiline
-                rows={4}
-              />
-              {formik.touched.message && formik.errors.message && (
-                <Typography color="error">{formik.errors.message}</Typography>
-              )}
-            </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label={<RequiredLabel label="Message" />}
+              name="message"
+              value={formik.values.message}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+              multiline
+              rows={4}
+            />
+            {formik.touched.message && formik.errors.message && (
+              <Typography color="error">{formik.errors.message}</Typography>
+            )}
+          </Grid>
 
-            {/* Captcha */}
-            <Grid item xs={12}>
-              <TextField
-                label={<RequiredLabel label="Captcha" />}
-                name="captchaVerification"
-                value={formik.values.captchaVerification}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-                helperText={`Please enter: ${captchaValue}`}
-              />
-              <IconButton onClick={refreshCaptcha}>
-                <RefreshIcon />
-              </IconButton>
-              {formik.touched.captchaVerification && formik.errors.captchaVerification && (
-                <Typography color="error">{formik.errors.captchaVerification}</Typography>
-              )}
-            </Grid>
+          {/* Captcha */}
+          <Grid item xs={12}>
+            <TextField
+              label={<RequiredLabel label="Captcha" />}
+              name="captchaVerification"
+              value={formik.values.captchaVerification}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+              helperText={`Please enter: ${captchaValue}`}
+            />
+            <IconButton onClick={refreshCaptcha}>
+              <RefreshIcon />
+            </IconButton>
+            {formik.touched.captchaVerification && formik.errors.captchaVerification && (
+              <Typography color="error">{formik.errors.captchaVerification}</Typography>
+            )}
           </Grid>
 
           {/* Terms and Conditions Checkbox */}
-          <Grid item xs={12} sx={{ mt: 2 }}>
+          <Grid item xs={12}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -203,17 +202,48 @@ const ContactForm = ({ getReviews }) => {
           </Grid>
 
           {/* Submit and Reset Buttons */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
-            <Button variant="outlined" color="secondary" type="reset">
-              Reset
-            </Button>
-            <Button variant="contained" color="yellow" type="submit">
-              Send Message
-            </Button>
-          </Box>
-        </form>
-      </Box>
-    </>
+          <Grid
+  item
+  xs={12}
+  sx={{
+    display: 'flex',
+    flexDirection: { xs: 'column', sm: 'row' }, // Stack buttons on small screens, row on larger
+    justifyContent: { xs: 'center', sm: 'space-between' }, // Center align buttons on small screens, space between on larger
+    mt: 3,
+    alignItems:"center"
+  }}
+>
+  <Button
+    variant="outlined"
+    color="secondary"
+    type="reset"
+    fullWidth
+    sx={{
+      borderRadius: '8px', // Rounded borders
+      mb: { xs: 2, sm: 0 }, // Add margin between stacked buttons
+      width: "fit-content",
+    }}
+  >
+    Reset
+  </Button>
+  <Button
+    variant="contained"
+    color="primary"
+    type="submit"
+    fullWidth
+    sx={{
+      borderRadius: '8px', // Rounded borders
+      width: "fit-content",
+    }}
+  >
+    Send Message
+  </Button>
+</Grid>
+
+
+        </Grid>
+      </form>
+    </Box>
   );
 };
 

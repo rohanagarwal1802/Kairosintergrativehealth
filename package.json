@@ -24,6 +24,7 @@
     "slick-carousel": "^1.8.1",
     "soap": "^1.1.6",
     "xmlbuilder": "^15.1.1",
-    "yup": "^1.5.0"
+    "yup": "^1.5.0",
+    "zustand": "^5.0.2"
   }
 }

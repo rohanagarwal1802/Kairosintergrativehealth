@@ -58,14 +58,11 @@ const AppointMent = () => {
                 To embark on your wellness journey and begin your path towards optimal health and well-being, it is essential to start by completing our patient registration and sign-up process. This will ensure that we have all the necessary information about you and can provide you with tailored support and guidance throughout your wellness journey. To get started, please follow the steps below to register and sign up as a patient.
                 </Typography>
             </Box>
-        </Box><Box display="flex" justifyContent="center" mt={3}>
+        </Box>
+        <Box display="flex" justifyContent="center" mt={3}>
                 <Box
                     sx={{
-                        width: {
-                            xs: '90%', // 90% width on extra-small screens
-                            sm: '80%', // 80% width on small screens
-                            md: '60%', // 60% width on medium screens and above
-                        }
+                        width: '90%'
                     }}
                 >
                     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
