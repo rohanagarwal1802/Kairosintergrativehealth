@@ -30,14 +30,14 @@ return (
   }}
 >
     
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+    <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
   {/* Image */}
   <Box>
     <Image
-      src="/ptsd.png"
+      src="/psychiatry.jpg"
       alt="Mental Well-being"
-      width={400} // Adjust as needed
-      height={400}
+      width={500} // Adjust as needed
+      height={300}
       style={{ borderRadius: "8px" }} // Optional: Add rounded corners
     />
   </Box>

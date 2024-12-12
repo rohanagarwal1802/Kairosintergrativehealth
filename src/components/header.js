@@ -14,6 +14,7 @@ import Options from "./options";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ResourcesOptions from "./resourcesDropdown";
 import ServicesOptions from "./servicesDropdown";
+import AboutOptions from "./aboutDropdown";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu"; // Mobile menu icon
 import { useTheme,useMediaQuery } from "@mui/material"; // To handle media queries
@@ -23,13 +24,16 @@ const Header = () => {
   const options = Options();
   const resourcesOptions = ResourcesOptions();
   const servicesOptions=ServicesOptions()
+  const aboutOptions=AboutOptions()
 
   // State for controlling the dropdown menu for "RESOURCES"
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorE2, setAnchorE2] = useState(null);
+  const [anchorE3, setAnchorE3] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu
   const isResourcesMenuOpen = Boolean(anchorE2);
   const isServicesMenuOpen=Boolean(anchorEl)
+  const isAboutMenuOpen=Boolean(anchorE3)
   const isMobile = useMediaQuery("(max-width:900px)"); // Media query for responsiveness
 console.log(options)
 
@@ -64,6 +68,15 @@ const handleMenuClose = () => {
 
   // Handle closing the dropdown
   const handleCloseForResources = () => {
+    setAnchorE2(null);
+  };
+
+  const handleMouseEnterForAbout = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
+
+  // Handle closing the dropdown
+  const handleCloseForAbout = () => {
     setAnchorE2(null);
   };
 
@@ -105,7 +118,7 @@ const handleMenuClose = () => {
   {/* Menu Options */}
   {!isMobile &&
   options.map((option, index) => {
-    if (option.title === "RESOURCES" || option.title === "SERVICES") {
+    if (option.title === "RESOURCES" || option.title === "SERVICES" || option.title === "ABOUT") {
       return (
         <Box
           key={index}
@@ -143,7 +156,7 @@ const handleMenuClose = () => {
               },
             }}
           >
-            {(option.title === "RESOURCES" ? resourcesOptions : servicesOptions).map((subOption, idx) => (
+            {(option.title === "RESOURCES" ? resourcesOptions :option.title === "SERVICES"? servicesOptions:aboutOptions).map((subOption, idx) => (
               <MenuItem
                 key={idx}
                 onClick={() => handleMenuItemClick(subOption.path)}
@@ -239,7 +252,7 @@ const handleMenuClose = () => {
     >
 {options.map((option, index) => {
   // If option is RESOURCES or SERVICES, render a dropdown
-  if (option.title === "RESOURCES" || option.title === "SERVICES") {
+  if (option.title === "RESOURCES" || option.title === "SERVICES" || option.title === "ABOUT") {
     return (
       <Box
         key={index}
@@ -288,7 +301,7 @@ const handleMenuClose = () => {
     },
   }}
 >
-  {(option.title === "RESOURCES" ? resourcesOptions : servicesOptions).map((subOption, idx) => (
+  {(option.title === "RESOURCES" ? resourcesOptions :option.title === "SERVICES"? servicesOptions:aboutOptions).map((subOption, idx) => (
     <MenuItem
       key={idx}
       onClick={() => { router.push(subOption.path); handleMenuClose(); toggleMobileMenu(); }}

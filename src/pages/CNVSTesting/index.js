@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Stack } from "@mui/material";
 import Image from "next/image";
 
-const GeneticTestingPage = () => {
+const CNVSTestingPage = () => {
   return (
     <Box
       sx={{
@@ -16,8 +16,8 @@ const GeneticTestingPage = () => {
         alignItems: "center",
         padding: { xs: 2, sm: 4 }, // Adjusts padding for different screen sizes
         borderRadius: 2,
-        height: "auto", // Dynamically adjusts height to fit content
-        width: "100%", // Ensures it spans the full width
+        height: "auto",
+        width: "100%",
       }}
     >
       <Box
@@ -30,12 +30,7 @@ const GeneticTestingPage = () => {
         }}
       >
         {/* Image */}
-        <Box
-          sx={{
-            width: { xs: "100%", md: "50%" },
-            textAlign: "center",
-          }}
-        >
+        <Box sx={{ width: { xs: "100%", md: "50%" }, textAlign: "center" }}>
           <Image
             src="/Gtest.jpg"
             alt="Mental Well-being"
@@ -66,7 +61,7 @@ const GeneticTestingPage = () => {
               fontSize: { xs: "1.5rem", md: "2rem" }, // Adjusts font size for responsiveness
             }}
           >
-            Genetic Testing
+            CNS-VS Testing
           </Typography>
 
           <Typography
@@ -77,16 +72,12 @@ const GeneticTestingPage = () => {
               lineHeight: 1.7,
             }}
           >
-            In psychiatry, we utilize a form of genetic testing that analyzes specific
-            genes related to mental health medications. This tool can be helpful in
-            determining treatment options for individuals. By assessing how a person's
-            genetic makeup affects their response to various psychiatric medications, genetic
-            testing can help clinicians select medications that are more likely to be effective
-            and have fewer side effects. This personalized approach aims to enhance treatment
-            outcomes and reduce the trial-and-error process often associated with psychiatric
-            care. Ultimately, genetic testing used at Kairos Integrative Health is a tool
-            to empower patients and providers to make informed decisions about medication
-            management, leading to more tailored and effective mental health treatment.
+            Central Nervous System (CNS) Vital Signs testing is a comprehensive assessment
+            that evaluates cognitive functioning, neurological health, and overall brain
+            performance. This testing measures various domains, including attention,
+            memory, language, and processing speed, providing a detailed overview of
+            cognitive abilities. By tracking changes in CNS function over time, healthcare
+            providers can develop tailored treatment plans and monitor progress effectively.
           </Typography>
         </Stack>
       </Box>
@@ -94,4 +85,4 @@ const GeneticTestingPage = () => {
   );
 };
 
-export default GeneticTestingPage;
+export default CNVSTestingPage;

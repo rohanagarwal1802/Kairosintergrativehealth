@@ -12,10 +12,10 @@ const Options = () => {
       path: "/",
     },
     {
-      title: "About",
+      title: "ABOUT",
       src: "/images/users.png",
       icon: <div />,
-      path: "/about",
+      // path: "/about",
     },
     {
       title: "SERVICES",

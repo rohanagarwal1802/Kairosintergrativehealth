@@ -1,12 +1,14 @@
 import { Divider, Typography, Box } from "@mui/material";
 const ResourcesOptions = () => {
   return [
+
     {
-      title: "FAQ",
-      path: "/faq",
-      // description: "Explore various mutual fund options to grow your wealth.",
-      image: "/images/faq.jpg",
+      title: "Community Partnerships",
+      path: "/communityOutreach",
+      // description: "Let us manage your investment portfolio for optimal returns.",
+      image: "/images/client.jpg",
     },
+   
  
     {
       title: "Client Review",
@@ -14,31 +16,26 @@ const ResourcesOptions = () => {
       // description: "Let us manage your investment portfolio for optimal returns.",
       image: "/images/client.jpg",
     },
-    {
-      title: "Community Outreach",
-      path: "/communityOutreach",
-      // description: "Let us manage your investment portfolio for optimal returns.",
-      image: "/images/client.jpg",
-    },
+    
 
-    {
-      title: "Resilience Roundtable",
-      path: "/Roundtable",
-      // description: "Let us manage your investment portfolio for optimal returns.",
-      image: "/images/client.jpg",
-    },
-
-    {
-      title: "Founder's Desk",
-      path: "/founderDesk",
-      // description: "Let us manage your investment portfolio for optimal returns.",
-      image: "/images/client.jpg",
-    },
+   
+    // {
+    //   title: "Founder's Desk",
+    //   path: "/founderDesk",
+    //   // description: "Let us manage your investment portfolio for optimal returns.",
+    //   image: "/images/client.jpg",
+    // },
     {
       title: "Careers",
       path: "/careers",
       // description: "Let us manage your investment portfolio for optimal returns.",
       image: "/images/client.jpg",
+    },
+    {
+      title: "FAQ",
+      path: "/faq",
+      // description: "Explore various mutual fund options to grow your wealth.",
+      image: "/images/faq.jpg",
     },
     // {
     //   title: "Refer a Patient",

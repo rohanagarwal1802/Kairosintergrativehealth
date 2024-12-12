@@ -78,7 +78,7 @@ const FounderDesk = () => {
             left: 0, // Aligned to the left edge of the image
             bottom: 0, // Aligned to the bottom edge of the image
             width: "50%", // Rectangular shape
-            height: "20%", // Less height for the rectangle
+            height: "fit-content", // Less height for the rectangle
             backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white
             padding: 2,
             borderRadius: "8px 8px 0 0", // Rounded corners at the top

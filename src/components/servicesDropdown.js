@@ -2,8 +2,8 @@ import { Divider, Typography, Box } from "@mui/material";
 const ServicesOptions = () => {
   return [
     {
-      title: "Addiction",
-      path: "/Anxiety",
+      title: "Psychiatry",
+      path: "/Psychiatry",
       // description: "Explore various mutual fund options to grow your wealth.",
       image: "/images/faq.jpg",
     },
@@ -16,14 +16,27 @@ const ServicesOptions = () => {
     },
    
     {
-      title: "Psychiatry",
-      path: "/Psychiatry",
+      title: "Addiction",
+      path: "/Anxiety",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/terms.jpg",
     },
     {
+      title: "Resilience Roundtable",
+      path: "/Roundtable",
+      // description: "Let us manage your investment portfolio for optimal returns.",
+      image: "/images/client.jpg",
+    },
+
+    {
       title: "GeneticTesting",
       path: "/GTesting",
+      // description: "Achieve financial independence with our expert guidance.",
+      image: "/images/privacy.jpg",
+    },
+    {
+      title: "CNS-VS testing",
+      path: "/CNVSTesting",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/privacy.jpg",
     },
