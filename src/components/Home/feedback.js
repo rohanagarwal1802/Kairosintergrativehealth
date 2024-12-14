@@ -53,7 +53,7 @@ import StarIcon from '@mui/icons-material/Star';
             color: "#3b2311",
           }}
         >
-          Feedback from our clients
+          Feedback from our patients
         </Typography>
 
         <Grid
@@ -81,9 +81,7 @@ import StarIcon from '@mui/icons-material/Star';
                 }}
               >
                  <Box display="flex">
-      {[...Array(5)].map((_, index) => (
-        <StarIcon  sx={{ color: "yellow" }} />
-      ))}
+     
     </Box>
                
                 <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
@@ -108,9 +106,9 @@ import StarIcon from '@mui/icons-material/Star';
                 }}
               >
                  <Box display="flex">
-      {[...Array(5)].map((_, index) => (
+      {/* {[...Array(5)].map((_, index) => (
         <StarIcon  sx={{ color: "yellow" }} />
-      ))}
+      ))} */}
     </Box>
                
                 <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
@@ -135,9 +133,9 @@ import StarIcon from '@mui/icons-material/Star';
                 }}
               >
                  <Box display="flex">
-      {[...Array(5)].map((_, index) => (
+      {/* {[...Array(5)].map((_, index) => (
         <StarIcon  sx={{ color: "yellow" }} />
-      ))}
+      ))} */}
     </Box>
                
                 <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>

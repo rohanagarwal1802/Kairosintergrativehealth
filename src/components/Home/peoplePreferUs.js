@@ -52,7 +52,7 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
             color: "#3b2311",
           }}
         >
-          Why people prefer us
+          Get to know us
         </Typography>
 
         <Grid
@@ -93,12 +93,10 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
                   <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
-                  Expertly Trained Therapists
+                Integrative Psychiatry 
                 </Typography>
                 <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                  Use this space to talk about your company's history, background,
-                  mission, or vision. Talk about your philosophy and how it
-                  affected your company's trajectory.
+                Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
                 </Typography>
               </Box>
             </Grid>
@@ -129,12 +127,11 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
                   <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
-                  Expertly Trained Therapists
+                Convenience 
                 </Typography>
                 <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                  Use this space to talk about your company's history, background,
-                  mission, or vision. Talk about your philosophy and how it
-                  affected your company's trajectory.
+                Our clinic makes mental health care convenient with online scheduling, allowing you to book appointments without calling. Secure messaging improves communication with your provider, and Telehealth services offer flexible, remote access to care from home. We're dedicated to making mental health support accessible, efficient, and tailored to your busy lifestyle.
+
                 </Typography>
               </Box>
             </Grid>
@@ -165,12 +162,11 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
                   <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
-                  Expertly Trained Therapists
+                Culture 
                 </Typography>
                 <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                  Use this space to talk about your company's history, background,
-                  mission, or vision. Talk about your philosophy and how it
-                  affected your company's trajectory.
+                Our practice combines cutting-edge treatment with a warm, personal approach. We offer evidence-based therapies while fostering long-lasting relationships built on trust and genuine care with out patients. Our providers take the time to understand each patient’s unique needs, ensuring comprehensive support in a welcoming, approachable environment. We're dedicated to both advanced care and creating a comforting, lasting connection.
+
                 </Typography>
               </Box>
             </Grid>

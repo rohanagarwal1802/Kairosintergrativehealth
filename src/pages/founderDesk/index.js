@@ -109,7 +109,9 @@ const FounderDesk = () => {
         }}
       >
         <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 }}>
-          Welcome to the Founder’s Desk
+        Mark Merritt 
+Lead Clinician
+MSN, MBA, PMHNP-BC
         </Typography>
         <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16 }}>
           Mark Merritt is a dedicated Psychiatric Mental Health Nurse Practitioner (PMHNP) born, raised,
@@ -157,43 +159,82 @@ const FounderDesk = () => {
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     Mark has vast experience in the healthcare industry, spanning:
   </Typography>
-  <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8 }}>
+  <div
+  style={{
+    backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    borderRadius: '10px', // Rounded corners
+    padding: '20px', // Padding inside the box
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
+    maxWidth: '400px', // Restrict width to avoid stretching
+    marginLeft: '0', // Aligns the box to the left
+    marginBottom:10
+  }}
+>
+  <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8, margin: 0 }}>
     <li>Emergency Departments</li>
     <li>Inpatient Psychiatry</li>
     <li>Outpatient Psychiatry</li>
     <li>Substance Abuse Centers</li>
   </ul>
+</div>
+
+
+
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     His diverse background gives him a unique perspective on the healthcare system and a passion for preventing individuals from "falling through the cracks."
   </Typography>
-
+<Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    borderRadius: '10px', // Rounded corners
+    padding: '20px', // Padding inside the box
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
+    maxWidth: '400px', // Restrict width to avoid stretching
+    marginLeft: '0', // Aligns the box to the left
+}}>
   <Typography variant="h5" sx={{ color: '#333', mb: 2, fontWeight: 'bold' }}>
     Career Highlights
   </Typography>
+  </Box>
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    <b>St. Vincent’s East:</b> Mark began his career in the fast-paced Emergency Department and Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
+    <b>St. Vincent’s East:</b> 
+    &nbsp;Mark began his career as a nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
   </Typography>
   <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8 }}>
     <li>Staff Education</li>
     <li>Patient Advocacy</li>
     <li>Process Improvement</li>
+    <li>Patient Care</li>
   </ul>
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    As a <b>Psychiatric Mental Health Nurse Practitioner</b>, Mark provides comprehensive assessments, diagnoses, and treatment for various mental health challenges, including substance use disorders. He collaborates with patients to create personalized treatment plans that foster resilience and improve quality of life.
+    As a <b>Psychiatric Mental Health Nurse Practitioner</b>, Mark has worked alongside Duke and Yale trained psychiatrist and addictionologists in both general psychiatry and addiction specialties.
+     Mark provides comprehensive assessments, diagnoses, and treatment for various mental health challenges, including substance use disorders. He collaborates with patients to create personalized treatment plans that foster resilience and improve quality of life.
   </Typography>
-
+  <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    borderRadius: '10px', // Rounded corners
+    padding: '20px', // Padding inside the box
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
+    maxWidth: '400px', // Restrict width to avoid stretching
+    marginLeft: '0', // Aligns the box to the left
+}}>
   <Typography variant="h5" sx={{ color: '#333', mb: 2, fontWeight: 'bold' }}>
     Educator & Mentor
   </Typography>
+  </Box>
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     Mark is passionate about guiding the next generation of healthcare professionals. He has served as a clinical instructor, focusing on psychiatric and addiction nursing, while inspiring students through education and mentorship.
   </Typography>
-
+  {/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    borderRadius: '10px', // Rounded corners
+    padding: '20px', // Padding inside the box
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
+    maxWidth: '400px', // Restrict width to avoid stretching
+    marginLeft: '0', // Aligns the box to the left
+}}>
   <Typography variant="h5" sx={{ color: '#333', mb: 2, fontWeight: 'bold' }}>
     Life Beyond Work
   </Typography>
+  </Box>
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8 }}>
     Outside of his professional life, Mark enjoys:
   </Typography>
@@ -208,7 +249,7 @@ const FounderDesk = () => {
   </ul>
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mt: 3 }}>
     Mark believes in the harmony of mind, body, and spirit, emphasizing that balancing these components is key to achieving overall mental wellness and a better quality of life.
-  </Typography>
+  </Typography> */}
 </Box>
 </Box>
        

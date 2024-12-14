@@ -36,7 +36,7 @@ const About = () => {
           }}
       >
           {/* Heading */}
-          <Box
+          {/* <Box
               sx={{
                   backgroundColor: "rgba(255, 255, 255, 0.7)",
                   color: "#333",
@@ -67,7 +67,7 @@ const About = () => {
               >
                   Welcome to Kairos Integrative Health
               </Typography>
-          </Box>
+          </Box> */}
 
           {/* Subheading */}
           <Typography
@@ -76,11 +76,13 @@ const About = () => {
                   color: "black",
                   fontWeight: "bold",
                   mb: 4,
+                  mt:1,
                   textAlign: { xs: "center", md: "left" }, // Center on small screens
               }}
           >
               “When it’s time, we’re here.” <br />
-              “Taking action to craft a better you, for you.”
+              “Taking the first step toward seeking mental health care can feel overwhelming, and it’s completely normal to feel uncertain or uneasy about the process. At Kairos Integrative Health, we understand that reaching out for help is a big decision, and we’re here to support you each step of the way. Our team is dedicated to making your experience as comfortable and clear as possible.
+              ”
           </Typography>
 
           {/* Grid for 4 Boxes */}

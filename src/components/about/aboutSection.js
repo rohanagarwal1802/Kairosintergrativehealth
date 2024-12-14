@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Typography, Avatar, Grid } from "@mui/material";
+import { Box, Typography, Avatar, Grid,Divider } from "@mui/material";
 
 // Fade-in hook using Intersection Observer
 const useFadeInOnScroll = () => {
@@ -38,7 +38,7 @@ const AboutSection = () => {
   return (
     <>
       {/* About Section */}
-      <Box
+      {/* <Box
         ref={aboutRef}
         sx={{
           display: "flex",
@@ -53,7 +53,6 @@ const AboutSection = () => {
           ...(isAboutVisible && { opacity: 1, transform: "translateY(0)" }), // Fade-in effect
         }}
       >
-        {/* Animated Image */}
         <Box
           sx={{
             position: "relative",
@@ -78,21 +77,18 @@ const AboutSection = () => {
           <Avatar src="/profile.jpg" alt="Profile Picture" sx={{ width: "100%", height: "100%" }} />
         </Box>
 
-        {/* Name */}
         <Typography variant="h5" sx={{ fontWeight: "bold", marginTop: 3 }}>
           Mark Merritt
         </Typography>
 
-        {/* Designation */}
         <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "gray", marginTop: 1 }}>
           Lead Physiotherapist
         </Typography>
 
-        {/* Qualifications */}
         <Typography variant="body1" sx={{ color: "#555", marginTop: 1 }}>
           BPT, MPT (Orthopedics), Certified Dry Needling Specialist
         </Typography>
-      </Box>
+      </Box> */}
 
  {/* HOW WE STARTED Section */}
  <Box
@@ -100,7 +96,7 @@ const AboutSection = () => {
           display: "flex",
           justifyContent: "center",
           padding: 4,
-          backgroundColor: "#01796F",
+          backgroundColor: "#66BB6A",
         }}
       >
         <Grid container spacing={4} sx={{ alignItems: "center" }}>
@@ -113,7 +109,8 @@ const AboutSection = () => {
                   fontWeight: "bold",
                   color: "white",
                   marginBottom: 2,
-                  align:"center"
+                  align:"center",
+                  fontSize:"100%"
                 }}
               >
                 Executive Summary
@@ -122,7 +119,7 @@ const AboutSection = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: "120%",
+                  fontSize: "80%",
                   color: "white",
                   marginTop: 2,
                   textAlign:"left"
@@ -133,40 +130,14 @@ const AboutSection = () => {
 After years of experience in both inpatient and outpatient corporate healthcare organizations, our founder, Mark, recognized that the pressure to meet quotas and benchmarks often compromised the quality of care he could provide to his patients. As the healthcare industry continues to adopt a more corporate model, Kairos Integrative Health takes a different approach—one that prioritizes the needs of both patients and healthcare providers. Our clinic offers the community access to high-quality, timely, and evidence-based care. Furthermore, we strive to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of corporate structures. At Kairos Integrative Health, we believe that by placing patient care at the forefront and supporting our providers, we can create a healing environment that benefits everyone.
               </Typography>
 
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "120%",
-                  color: "white",
-                  marginTop: 3,
-                  textAlign:"left"
-                }}
-              >
-                At the same time, I was working as a psychologist, and my schedule
-                filled up very quickly. I hired a few therapists so I could connect
-                people to them, and even their slots got full.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: "120%",
-                  color: "white",
-                  marginTop: 3,
-                  textAlign:"left"
-                }}
-              >
-                This showed me that there was a big need for professional support out
-                there, and that’s the story of how The Friendly Couch was created. I am
-                fortunate to have had Amod alongside me from the beginning. Together, we
-                work to ensure that people get the professional support they deserve!
-              </Typography>
+             
             </Box>
           </Grid>
 
          
         </Grid>
       </Box>
+      <Divider sx={{color:"white"}}/>
       {/* Vision & Mission Section */}
       <Box
         ref={visionRef}
@@ -177,25 +148,25 @@ After years of experience in both inpatient and outpatient corporate healthcare 
           justifyContent: "center",
           padding: 4,
           textAlign: "center",
-          backgroundColor: "green",
+          backgroundColor: "#66BB6A",
           opacity: 0,
           transform: "translateY(20px)",
           transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
           ...(isVisionVisible && { opacity: 1, transform: "translateY(0)" }),
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1 }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1,fontSize:"100%" }}>
         Mission Statement
         </Typography>
-        <Typography variant="text" sx={{ color: "white", marginTop: 1 }}>
+        <Typography variant="text" sx={{ color: "white", marginTop: 1 ,fontSize:"80%"}}>
   Our mission is to deliver{" "}
-  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>comprehensive</Typography> and{" "}
-  <Typography component="span" sx={{ fontWeight: "bold",color:"white" }}>integrative</Typography> mental health services that empower individuals and strengthen the resilience of our{" "}
-  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>community</Typography>. By prioritizing holistic care and fostering enduring patient-provider relationships, we aim to become a trusted pillar of support in our community, improving quality of life and promoting mental wellness for all.
+  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>comprehensive</Typography> and{" "}
+  <Typography component="span" sx={{ fontWeight: "bold",color:"white" ,fontSize:"80%"}}>integrative</Typography> mental health services that empower individuals and strengthen the resilience of our{" "}
+  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>community</Typography>. By prioritizing holistic care and fostering enduring patient-provider relationships, we aim to become a trusted pillar of support in our community, improving quality of life and promoting mental wellness for all.
 </Typography>
 
       </Box>
-
+      <Divider sx={{color:"white"}}/>
       {/* Our Story Section */}
       <Box
         ref={storyRef}
@@ -206,19 +177,19 @@ After years of experience in both inpatient and outpatient corporate healthcare 
           justifyContent: "center",
           padding: 4,
           textAlign: "center",
-          backgroundColor: "#01796F",
+          backgroundColor: "#66BB6A",
           opacity: 0,
           transform: "translateY(20px)",
           transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
           ...(isStoryVisible && { opacity: 1, transform: "translateY(0)" }),
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1 }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1,fontSize:"100%" }}>
         Vision
         </Typography>
-        <Typography variant="text" sx={{ fontWeight: "text", color: "white", marginTop: 1 }}>
-        Our{" "}  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>vision</Typography> is to be a recognized and{" "} 
-        <Typography component="span" sx={{ fontWeight: "bold" ,color:"white"}}>trusted leader</Typography> in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy, free from corporate constraints, and in alignment with their patients' best interests.
+        <Typography variant="text" sx={{ fontWeight: "text", color: "white", marginTop: 1,fontSize:"80%" }}>
+        Our{" "}  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>vision</Typography> is to be a recognized and{" "} 
+        <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>trusted leader</Typography> in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy, free from corporate constraints, and in alignment with their patients' best interests.
 
 
         </Typography>

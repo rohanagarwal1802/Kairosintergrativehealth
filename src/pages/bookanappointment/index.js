@@ -6,10 +6,11 @@ import { Add, Remove } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useRouter } from "next/router";
+import useUserStore from "@/components/useUserStore";
 import Image from "next/image";
 
 const AppointMent = () => {
-    const [expanded, setExpanded] = useState(false);
+    const {expanded, setExpanded} = useUserStore();
     const router=useRouter()
 
     const handleChange = (panel) => (event, isExpanded) => {

@@ -8,6 +8,7 @@ import {
   MenuItem,
   IconButton,
   Typography,
+  Avatar
 } from "@mui/material";
 import { useRouter } from "next/router";
 import Options from "./options";
@@ -18,6 +19,8 @@ import AboutOptions from "./aboutDropdown";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu"; // Mobile menu icon
 import { useTheme,useMediaQuery } from "@mui/material"; // To handle media queries
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header = () => {
   const router = useRouter();
@@ -41,6 +44,23 @@ console.log(options)
 
 const [menuAnchor, setMenuAnchor] = useState(null);
 const [currentMenu, setCurrentMenu] = useState(null); // "RESOURCES" or "SERVICES"
+
+const [anchorE4, setAnchorE4] = useState(null);
+
+  const handleMenuOpen1 = (event) => {
+    setAnchorE4(event.currentTarget);
+  };
+
+  const handleMenuClose1 = () => {
+    setAnchorE4(null);
+  };
+
+  const handleLogout = () => {
+    // Define logout functionality
+    localStorage.removeItem("login"); // Example: Clear login token
+    router.push("/login"); // Redirect to login page
+    handleMenuClose1();
+  };
 
 const handleMenuOpen = (event, menuType) => {
   setMenuAnchor(event.currentTarget);
@@ -228,6 +248,50 @@ const handleMenuClose = () => {
       Request Appointment
     </Typography>
   </Box>
+  {!isMobile &&
+  <Box sx={{ display: "flex", alignItems: "center" }}>
+  <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          backgroundColor: "green",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          padding: "6px 12px",
+          cursor: "pointer",
+          "&:hover": { backgroundColor: "green" },
+          fontSize: "0.75rem",
+        
+        }}
+        onClick={handleMenuOpen1}
+      >
+        <Typography variant="body2" sx={{ fontSize: "0.75rem" }}>
+          Rohan Agarwal
+        </Typography>
+        <ArrowDropDownIcon sx={{ marginLeft: "8px", fontSize: "1rem" }} />
+      </Box>
+
+      <Menu
+        anchorEl={anchorE4}
+        open={Boolean(anchorE4)}
+        onClose={handleMenuClose1}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+      <MenuItem onClick={handleLogout}>
+  <LogoutIcon sx={{ width: 24, height: 24, marginRight: 1, color: "red" }} />
+  Logout
+</MenuItem>
+      </Menu>
+    </Box>
+}
 {isMobile &&
   <IconButton color="inherit" edge="end" onClick={toggleMobileMenu}>
     <MenuIcon />
@@ -352,6 +416,22 @@ const handleMenuClose = () => {
       }}
     >
       Patient Portal
+    </Button>
+
+    <Button
+      color="inherit"
+      onClick={() => handleLogout()} // Navigate directly for normal options
+      sx={{
+        padding: "6px 12px",
+        color: "red",
+        "&:hover": { backgroundColor: "lightgray" },
+        fontSize: "0.75rem",
+        display: "flex", // Ensure consistent display with the other items
+        alignItems: "center", // Align with the other items
+      }}
+    >
+        <LogoutIcon sx={{ width: 24, height: 24, marginRight: 1 }} />
+     Log Out
     </Button>
 
     </Box>
