@@ -21,8 +21,9 @@ import MenuIcon from "@mui/icons-material/Menu"; // Mobile menu icon
 import { useTheme,useMediaQuery } from "@mui/material"; // To handle media queries
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LogoutIcon from "@mui/icons-material/Logout";
+import axios from "axios";
 
-const Header = () => {
+const Header = ({userDetails}) => {
   const router = useRouter();
   const options = Options();
   const resourcesOptions = ResourcesOptions();
@@ -55,11 +56,20 @@ const [anchorE4, setAnchorE4] = useState(null);
     setAnchorE4(null);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     // Define logout functionality
+    try{
+      await axios.get('/api/logout').then(()=>{
     localStorage.removeItem("login"); // Example: Clear login token
-    router.push("/login"); // Redirect to login page
+    router.push("/"); // Redirect to login page
     handleMenuClose1();
+    router.reload()
+    })
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
   };
 
 const handleMenuOpen = (event, menuType) => {
@@ -136,80 +146,119 @@ const handleMenuClose = () => {
  
 
   {/* Menu Options */}
-  {!isMobile &&
-  options.map((option, index) => {
-    if (option.title === "RESOURCES" || option.title === "SERVICES" || option.title === "ABOUT") {
-      return (
-        <Box
-          key={index}
-          onMouseEnter={(e) => handleMenuOpen(e, option.title)}
-          onMouseLeave={handleMenuClose}
-          sx={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center", // Align with other menu items
-            cursor: "pointer",
-          }}
-        >
-          <Box
-            sx={{
-              padding: "6px 12px",
-              borderBottom: isSelected(option.path) ? "2px solid green" : "none",
-              color: isSelected(option.path) ? "green" : "inherit",
-              "&:hover": { backgroundColor: "lightgray" },
-              fontSize: "0.75rem",
-            }}
-          >
-            {option.title}
-          </Box>
-
-          <Menu
-            anchorEl={menuAnchor}
-            open={currentMenu === option.title}
-            onClose={handleMenuClose}
-            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-            PaperProps={{
-              sx: {
-                backgroundColor: "black",
-                color: "white",
-                boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
-              },
-            }}
-          >
-            {(option.title === "RESOURCES" ? resourcesOptions :option.title === "SERVICES"? servicesOptions:aboutOptions).map((subOption, idx) => (
-              <MenuItem
-                key={idx}
-                onClick={() => handleMenuItemClick(subOption.path)}
-                sx={{ "&:hover": { color: "lightblue" }, fontSize: "0.75rem" }}
-              >
-                <ChevronRightIcon sx={{ marginRight: 0.5 }} />
-                {subOption.title}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-      );
-    }
-
-    return (
+  {!isMobile && (
+  <>
+  
+    {userDetails?.role==='admin' && (
       <Button
-        key={index}
         color="inherit"
-        onClick={() => option.path && router.push(option.path)}
+        onClick={() => router.push('/admin')}
         sx={{
           padding: "6px 12px",
-          borderBottom: isSelected(option.path) ? "2px solid green" : "none",
-          color: isSelected(option.path) ? "green" : "inherit",
+          borderBottom: "2px solid green",
+          color: "green",
           "&:hover": { backgroundColor: "lightgray" },
           fontSize: "0.75rem",
         }}
       >
-        {option.title}
+        Admin Panel
       </Button>
-    );
-  })
-}
-{!isMobile &&
+    )}
+
+
+    {/* Dynamically rendered options */}
+    {options.map((option, index) => {
+      if (
+        option.title === "RESOURCES" ||
+        option.title === "SERVICES" ||
+        option.title === "ABOUT"
+      ) {
+        return (
+          <Box
+            key={index}
+            onMouseEnter={(e) => handleMenuOpen(e, option.title)}
+            onMouseLeave={handleMenuClose}
+            sx={{
+              position: "relative",
+              display: "flex",
+              alignItems: "center", // Align with other menu items
+              cursor: "pointer",
+            }}
+          >
+            <Box
+              sx={{
+                padding: "6px 12px",
+                borderBottom: isSelected(option.path)
+                  ? "2px solid green"
+                  : "none",
+                color: isSelected(option.path) ? "green" : "inherit",
+                "&:hover": { backgroundColor: "lightgray" },
+                fontSize: "0.75rem",
+              }}
+            >
+              {option.title}
+            </Box>
+
+            <Menu
+              anchorEl={menuAnchor}
+              open={currentMenu === option.title}
+              onClose={handleMenuClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              PaperProps={{
+                sx: {
+                  backgroundColor: "black",
+                  color: "white",
+                  boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+                },
+              }}
+            >
+              {(
+                option.title === "RESOURCES"
+                  ? resourcesOptions
+                  : option.title === "SERVICES"
+                  ? servicesOptions
+                  : aboutOptions
+              ).map((subOption, idx) => (
+                <MenuItem
+                  key={idx}
+                  onClick={() => handleMenuItemClick(subOption.path)}
+                  sx={{
+                    "&:hover": { color: "lightblue" },
+                    fontSize: "0.75rem",
+                  }}
+                >
+                  <ChevronRightIcon sx={{ marginRight: 0.5 }} />
+                  {subOption.title}
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        );
+      }
+
+      return (
+        <Button
+          key={index}
+          color="inherit"
+          onClick={() => option.path && router.push(option.path)}
+          sx={{
+            padding: "6px 12px",
+            borderBottom: isSelected(option.path)
+              ? "2px solid green"
+              : "none",
+            color: isSelected(option.path) ? "green" : "inherit",
+            "&:hover": { backgroundColor: "lightgray" },
+            fontSize: "0.75rem",
+          }}
+        >
+          {option.title}
+        </Button>
+      );
+    })}
+  </>
+)}
+
+{!isMobile && !userDetails &&
 <Button
         color="inherit"
         // onClick={() => }
@@ -225,6 +274,7 @@ const handleMenuClose = () => {
         Patient Portal
       </Button>
 }
+{!userDetails &&
    <Box
     component="button"
     sx={{
@@ -248,7 +298,8 @@ const handleMenuClose = () => {
       Request Appointment
     </Typography>
   </Box>
-  {!isMobile &&
+}
+  {!isMobile && userDetails &&
   <Box sx={{ display: "flex", alignItems: "center" }}>
   <Box
         sx={{
@@ -267,7 +318,7 @@ const handleMenuClose = () => {
         onClick={handleMenuOpen1}
       >
         <Typography variant="body2" sx={{ fontSize: "0.75rem" }}>
-          Rohan Agarwal
+          {userDetails?.role==='admin'?'Admin':'Rohan Agarwal'}
         </Typography>
         <ArrowDropDownIcon sx={{ marginLeft: "8px", fontSize: "1rem" }} />
       </Box>

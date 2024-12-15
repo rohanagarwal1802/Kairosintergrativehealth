@@ -4,8 +4,16 @@ import { Box, Button } from '@mui/material';
 import axios from 'axios';
 import Loader from '@/components/Loader';
 import { jsPDF } from "jspdf"; // Import jsPDF
+import { useRouter } from 'next/router';
 
-const UserTable = () => {
+const UserTable = ({userDetails}) => {
+  const router=useRouter()
+
+  if(userDetails?.role!=='admin')
+  {
+    router.push('/')
+    return
+  }
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(false);
 

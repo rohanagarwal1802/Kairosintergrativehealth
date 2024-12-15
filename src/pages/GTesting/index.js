@@ -4,80 +4,114 @@ import Image from "next/image";
 
 const GeneticTestingPage = () => {
   return (
-    <Box
-      sx={{
-        backgroundImage: `url('/depressionBackground.jpg')`,
-        backgroundSize: "cover", // Ensures the image covers the entire box
-        backgroundPosition: "top", // Focuses on the upper part of the image
-        backgroundRepeat: "no-repeat",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: { xs: 2, sm: 4 }, // Adjusts padding for different screen sizes
-        borderRadius: 2,
-        height: "auto", // Dynamically adjusts height to fit content
-        width: "100%", // Ensures it spans the full width
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" }, // Stacks column on small screens, row on larger
-          alignItems: "center",
-          gap: { xs: 2, md: 4 },
-          p: 2,
-        }}
-      >
-        {/* Image */}
-        <Box
-          sx={{
-            width: { xs: "100%", md: "50%" },
-            textAlign: "center",
-          }}
-        >
-          <Image
-            src="/Gtest.jpg"
-            alt="Mental Well-being"
-            width={500}
-            height={300}
-            style={{
-              width: "100%", // Makes the image responsive
-              height: "auto",
-              borderRadius: "8px", // Adds rounded corners
-            }}
-          />
-        </Box>
 
-        {/* Text Section */}
-        <Stack
-          sx={{
-            maxWidth: "500px",
-            textAlign: { xs: "center", md: "left" }, // Center text on small screens
-            mt: { xs: 2, md: 0 }, // Adds margin on small screens
-          }}
-        >
-          <Typography
-            variant="h4"
+  
+      <>
+        {/* Background Section */}
+       
+          <Box
             sx={{
-              mb: 2,
-              color: "#333",
-              fontWeight: 600,
-              fontSize: { xs: "1.5rem", md: "2rem" }, // Adjusts font size for responsiveness
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" }, // Stack on small screens, row on larger screens
+              justifyContent: "space-between",
+              alignItems: "center",
+              p: 4,
+              gap: 2, // Space between elements
             }}
           >
-            Genetic Testing
+            {/* Left Image Section for Small Screens (Top Image) and Large Screens (Left Image) */}
+            <Box
+              sx={{
+                position: "relative",
+                height: { xs: 250, sm: 350, md: 450 }, // Adjusted for responsiveness
+                width: { xs: "100%", sm: 300, md: 400 }, // Full width for small screens, fixed size for large screens
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                order: { xs: 1, sm: 0 }, // Image on top on small screens, left on larger screens
+                mb: { xs: 3, sm: 0 }, // Margin for small screens to space from other elements
+              }}
+            >
+              {/* Decorative Boxes */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "8%",
+                  left: "-15%",
+                  width: "80%",
+                  height: "35%",
+                  backgroundColor: "#66BB6A",
+                  zIndex: -1,
+                  borderRadius: 2,
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "15%",
+                  left: "-5%",
+                  width: "10%",
+                  height: "20%",
+                  backgroundImage: "radial-gradient(white 10%, transparent 10%)",
+                  backgroundSize: "10px 10px",
+                  zIndex: -1,
+                  borderRadius: 1,
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: "8%",
+                  right: "5%",
+                  width: "60%",
+                  height: "50%",
+                  backgroundColor: "#66BB6A",
+                  zIndex: -1,
+                  borderRadius: 2,
+                }}
+              />
+              {/* Image */}
+              <Box
+                component="img"
+                src="/Gtest.jpg"
+                alt="Founder"
+                sx={{
+                  height: "70%",
+                  width: "70%",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: 3,
+                  zIndex: 1,
+                }}
+              />
+            </Box>
+          
+            {/* Main Content Section */}
+            <Box
+              sx={{
+                maxWidth: "500px",
+                textAlign: "left",
+                backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
+                p: 3,
+                borderRadius: 2,
+                boxShadow: 3,
+                order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
+              }}
+            >
+              {/* Highlight Section */}
+        <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: "inline-block", ml: "5%", mt: 3 }}>
+          <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
+          Genetic Testing
           </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              color: "text.secondary",
-              fontSize: { xs: 14, sm: 16 }, // Adjusts font size for different screen sizes
-              lineHeight: 1.7,
-            }}
-          >
-            In psychiatry, we utilize a form of genetic testing that analyzes specific
+        </Box>
+  
+        {/* Content Section */}
+        <Box>
+         
+  
+          <Box sx={{ ml: "5%" ,mt:"5%"}}>
+          <Typography variant="body2" sx={{ color: "black" }}>
+          In psychiatry, we utilize a form of genetic testing that analyzes specific
             genes related to mental health medications. This tool can be helpful in
             determining treatment options for individuals. By assessing how a person's
             genetic makeup affects their response to various psychiatric medications, genetic
@@ -88,10 +122,87 @@ const GeneticTestingPage = () => {
             to empower patients and providers to make informed decisions about medication
             management, leading to more tailored and effective mental health treatment.
           </Typography>
-        </Stack>
-      </Box>
-    </Box>
-  );
+        </Box>
+  
+        
+         
+        </Box>
+            </Box>
+          
+            {/* Right Image Section for Small Screens (Bottom Image) and Large Screens (Right Image) */}
+            <Box
+              sx={{
+                position: "relative",
+                height: { xs: 250, sm: 350, md: 450 }, // Adjusted for responsiveness
+                width: { xs: "100%", sm: 300, md: 400 }, // Full width for small screens, fixed size for large screens
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                order: { xs: 3, sm: 2 }, // Image on bottom for small screens, right for large screens
+                mt: { xs: 3, sm: 0 }, // Margin for small screens to space from other elements
+              }}
+            >
+              {/* Decorative Boxes */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "8%",
+                  left: "-15%",
+                  width: "80%",
+                  height: "35%",
+                  backgroundColor: "#66BB6A",
+                  zIndex: -1,
+                  borderRadius: 2,
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "15%",
+                  left: "-5%",
+                  width: "10%",
+                  height: "20%",
+                  backgroundImage: "radial-gradient(white 10%, transparent 10%)",
+                  backgroundSize: "10px 10px",
+                  zIndex: -1,
+                  borderRadius: 1,
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: "8%",
+                  right: "5%",
+                  width: "60%",
+                  height: "50%",
+                  backgroundColor: "#66BB6A",
+                  zIndex: -1,
+                  borderRadius: 2,
+                }}
+              />
+              {/* Image */}
+              <Box
+                component="img"
+                src="/Gtest2.jpeg"
+                alt="Founder"
+                sx={{
+                  height: "70%",
+                  width: "70%",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: 3,
+                  zIndex: 1,
+                }}
+              />
+            </Box>
+          </Box>
+      
+  
+       
+      </>
+    );
+  
+  
 };
 
 export default GeneticTestingPage;

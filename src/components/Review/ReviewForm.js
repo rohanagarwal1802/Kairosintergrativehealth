@@ -9,6 +9,7 @@ import {
   Button,
   IconButton,
   Grid,
+  Select, MenuItem, InputLabel, FormControl 
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
@@ -17,6 +18,7 @@ const validationSchema = Yup.object({
   full_name: Yup.string().required('Full Name is required'),
   publishing_name: Yup.string().required('Publishing Name is required'),
   services_availed: Yup.string().required('Services Availed is required'),
+  designation: Yup.string().required('Designation is required'),
   email: Yup.string().email('Invalid email format').required('Email is required'),
   review: Yup.string().required('Review is required'),
   captchaVerification: Yup.string().required('Please verify the captcha'),
@@ -42,6 +44,7 @@ const ReviewForm = ({getReviews}) => {
       full_name: '',
       publishing_name: '',
       services_availed: '',
+      designation:'',
       email: '',
       review: '',
       captchaVerification: '',
@@ -53,6 +56,13 @@ const ReviewForm = ({getReviews}) => {
       try {
         const resp = await axios.post('/api/addReview', values);
         getReviews();
+
+          // Reset the form after submission
+    formik.resetForm();
+    
+    // Reset the captcha value
+    setCaptchaValue(generateCaptcha());
+
         alert('Review submitted successfully');
         console.log('Response:', resp);
       } catch (error) {
@@ -142,25 +152,53 @@ const ReviewForm = ({getReviews}) => {
   </Grid>
 
   <Grid item xs={12} sm={4}>
+  <FormControl fullWidth variant="outlined" sx={{ marginTop: 2 }}>
+    <InputLabel id="services-availed-label"><RequiredLabel label="Services Availed" /></InputLabel>
+    <Select
+      labelId="services-availed-label"
+      id="services_availed"
+      name="services_availed"
+      value={formik.values.services_availed}
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      label="Services Availed"
+      fullWidth
+      
+    >
+      <MenuItem value="Psychiatry">Psychiatry</MenuItem>
+      <MenuItem value="Therapy">Therapy</MenuItem>
+      <MenuItem value="Addiction">Addiction</MenuItem>
+      <MenuItem value="Genetic testing">Genetic testing</MenuItem>
+      <MenuItem value="CNSVS">CNSVS</MenuItem>
+    </Select>
+  </FormControl>
+  {formik.touched.services_availed && formik.errors.services_availed ? (
+    <Typography color="error">{formik.errors.services_availed}</Typography>
+  ) : (
+    <Typography variant="caption" sx={{ color: 'gray', mt: 0.5 }}>
+      Please enter the service availed by you.
+    </Typography>
+  )}
+</Grid>
+<Grid item xs={12} sm={4}>
   <TextField
-    label={<RequiredLabel label="Services Availed" />}
-    name="services_availed"
-    value={formik.values.services_availed}
+    label={<RequiredLabel label="Designation" />}
+    name="designation"
+    value={formik.values.designation}
     onChange={formik.handleChange}
     onBlur={formik.handleBlur}
     fullWidth
   />
-  {formik.touched.services_availed && formik.errors.services_availed ? (
-    <Typography color="error">{formik.errors.services_availed}</Typography>
+  {formik.touched.designation && formik.errors.designation ? (
+    <Typography color="error">{formik.errors.designation}</Typography>
   ): (
         <Typography variant="caption" sx={{ color: 'gray', mt: 0.5 }}>
-          Please enter the service availed by you.
+          Please enter your designation.
         </Typography>
       )}
 </Grid>
 
-
-<Grid item xs={12} sm={6}>
+<Grid item xs={12} sm={8}>
             <TextField
               label={<RequiredLabel label="Email" />}
               name="email"
@@ -176,21 +214,7 @@ const ReviewForm = ({getReviews}) => {
 </Grid>
  {/* Rating */}
    {/* Rating and Review */}
-   <Grid item xs={12} sm={6}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Typography  sx={{ mr: 1 }}>
-                  <RequiredLabel label="Rating" />
-                </Typography>
-                <Rating
-                  name="rating"
-                  value={formik.values.rating}
-                  onChange={formik.handleChange}
-                />
-              </Box>
-              {formik.touched.rating && formik.errors.rating && (
-                <Typography color="error">{formik.errors.rating}</Typography>
-              )}
-            </Grid>
+  
 <Grid item xs={12} sm={6}>
             <TextField
               label={<RequiredLabel label="Review" />}
@@ -208,7 +232,22 @@ const ReviewForm = ({getReviews}) => {
             )}
           </Grid>
          
-         
+          <Grid item xs={12} sm={6}>
+  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Typography sx={{ mr: 1 }}>
+      <RequiredLabel label="Rating" />
+    </Typography>
+    <Rating
+      name="rating"
+      value={formik.values.rating || 0}  // Ensure the value is a valid number (0 for default)
+      onChange={(_, newValue) => formik.setFieldValue('rating', newValue)}  // Custom onChange for Rating
+    />
+  </Box>
+  {formik.touched.rating && formik.errors.rating && (
+    <Typography color="error">{formik.errors.rating}</Typography>
+  )}
+</Grid>
+
 
           {/* Captcha */}
           <Grid item xs={12} sm={6}>

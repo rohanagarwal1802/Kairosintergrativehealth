@@ -79,6 +79,7 @@ const Review = () => {
         padding: { xs: 1, sm: 2, md: 3 },
         paddingLeft: { xs: 1, md: 4 },
         paddingRight: { xs: 1, md: 4 },
+       
       }}
     >
       {reviews.length > 0 ? (
@@ -94,7 +95,8 @@ const Review = () => {
                 mx: { xs: 1, md: 2 },
                 backgroundColor: '#1A4B66',
                 color: 'white',
-                align: "center"
+                align: "center",
+                height:'auto'
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
@@ -111,7 +113,7 @@ const Review = () => {
                 {review.publishing_name}
               </Typography>
               <Typography variant="body2" sx={{ paddingY: 1, color: '#CFD8DC', fontWeight: 'bold' }}>
-                {review.destination}
+                {review.designation}
               </Typography>
             </Card>
           ))}

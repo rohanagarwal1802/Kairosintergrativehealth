@@ -3,14 +3,8 @@ import { Box, Typography, List, ListItem, Grid } from "@mui/material";
 import Image from "next/image";
 import ContactForm from "@/components/Contact/contactForm";
 
-const TherapyPage = () => {
-  const causes = [
-    { title: "Genetics", description: "A family history of anxiety problems may increase the likelihood of developing anxiety disorders." },
-    { title: "Brain Chemistry", description: "Imbalances in neurotransmitters, such as serotonin and dopamine, can contribute to anxiety." },
-    { title: "Trauma", description: "Experiences like abuse, accidents, or natural disasters may heighten the risk of developing anxiety." },
-    { title: "Stressful Life Events", description: "Events like moving, starting a new job, or relationship challenges can trigger anxiety." },
-    { title: "Medical Conditions", description: "Chronic illnesses or hormonal imbalances are often associated with elevated anxiety levels." },
-  ];
+const AddictionPage = () => {
+
 
   return (
     <>
@@ -80,7 +74,7 @@ const TherapyPage = () => {
             {/* Image */}
             <Box
               component="img"
-              src="/therapy.jpg"
+              src="/Addiction.jpg"
               alt="Founder"
               sx={{
                 height: "70%",
@@ -108,7 +102,7 @@ const TherapyPage = () => {
             {/* Highlight Section */}
       <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: "inline-block", ml: "5%", mt: 3 }}>
         <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
-          Therapy
+        Addiction
         </Typography>
       </Box>
 
@@ -116,23 +110,29 @@ const TherapyPage = () => {
       <Box>
         <Box sx={{ ml: "5%", mt: "1%" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-            Therapy Services :
+          Substance Use Medication-Assisted Treatment :
           </Typography>
         </Box>
 
-        <Box sx={{ ml: "5%" }}>
-          <Typography variant="body2" sx={{ color: "black" }}>
-            At Kairos Integrative Health, we do utilize psychotherapies when appropriate. In many cases, best outcomes result from a combination of psychotherapy with medication management. Psychotherapies utilized by our providers can include but are not limited to:
-          </Typography>
-        </Box>
+       
 
         {/* List Section */}
         <Box sx={{ ml: "10%" }}>
           <List>
             {[
-              "Cognitive Behavioral Therapy",
-              "Supportive Psychotherapy",
-              "Motivational Interviewing",
+              `Addiction is a complex, chronic condition that affects both the mind
+and body, often leading to destructive behaviors and strained
+relationships. Whether it involves substances like alcohol,
+prescription medications, or illicit drugs, addiction can feel
+overwhelming, but recovery is possible. At KIH we are committed to
+providing compassionate, evidence-based care tailored to each
+individual&#39;s needs. We work together to develop a personalized
+treatment plan that addresses the underlying causes of addiction
+and promotes long-term recovery.`,
+              `If you are struggling with substance use, we offer medication-assisted
+treatment (MAT) to help you regain control of your life.`,
+              `Please note we do not currently off treatment with Suboxone or other
+medications containing buprenorphine as it is a controlled substance.`,
             ].map((therapy, index) => (
               <ListItem
                 key={index}
@@ -156,22 +156,7 @@ const TherapyPage = () => {
           </List>
         </Box>
 
-        {/* Note Section */}
-        <Box
-          sx={{
-            width: "90%",
-            margin: "auto",
-            mt: 4,
-            p: 3,
-            borderRadius: 2,
-            boxShadow: 3,
-            bgcolor: "#f5f5f5",
-            mb: 4,
-            color: "black",
-          }}
-        >
-          In the setting where you would benefit from more consistent psychotherapy or a psychotherapeutic modality that is not available from our provider(s), we may refer you out to a colleague to obtain appropriate care.
-        </Box>
+       
       </Box>
           </Box>
         
@@ -229,7 +214,7 @@ const TherapyPage = () => {
             {/* Image */}
             <Box
               component="img"
-              src="/therapy2.jpeg"
+              src="/addiction2.jpeg"
               alt="Founder"
               sx={{
                 height: "70%",
@@ -249,4 +234,4 @@ const TherapyPage = () => {
   );
 };
 
-export default TherapyPage;
+export default AddictionPage;

@@ -58,10 +58,9 @@ export default function Home() {
         />
       </Box>
 
-      {/* Other Components */}
       <ServicesBox />
       <PeoplePreferUs />
-      <FeedbackClients />
+      {/* <FeedbackClients /> */}
     </>
   );
 }

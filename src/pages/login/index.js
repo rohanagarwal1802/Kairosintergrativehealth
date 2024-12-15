@@ -244,7 +244,7 @@ const LoginPage = () => {
                   <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
   <Typography variant="body2">
     New on our platform?{" "}
-    <Link href="#" passHref onClick={(e) => { e.preventDefault(); openRequestedAccount(); }}>
+    <Link href="#" passHref sx={{color:"blue"}} onClick={(e) => { e.preventDefault(); openRequestedAccount(); }}>
       Request an account
     </Link>
   </Typography>

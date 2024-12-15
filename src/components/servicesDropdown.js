@@ -17,7 +17,7 @@ const ServicesOptions = () => {
    
     {
       title: "Addiction",
-      path: "/Anxiety",
+      path: "/Addiction",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/terms.jpg",
     },

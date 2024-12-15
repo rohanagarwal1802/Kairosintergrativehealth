@@ -17,7 +17,7 @@ const AccordionQuestion = ({ question, answer }) => {
   }, []);
 
   const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+    setExpanded(isExpanded ? panel : false); // Update state to the current panel
   };
 
   if (!clientRendered) {
@@ -25,14 +25,15 @@ const AccordionQuestion = ({ question, answer }) => {
   }
 
   return (
-    <Box sx={{ padding: "10px", maxWidth: "80%", margin: "auto" }}>
+    <Box sx={{ padding: "10px", maxWidth: "99%", margin: "auto" }}>
       <Accordion
-        expanded={expanded === "panel1"}
+        expanded={expanded === "panel1"} // Only this panel opens when expanded state is "panel1"
         onChange={handleChange("panel1")}
         sx={{
           boxShadow: "none",
           "&:before": { display: "none" },
-            backgroundColor:"lightgreen"
+          backgroundColor: "lightgreen",
+          p: 1,
         }}
       >
         <AccordionSummary

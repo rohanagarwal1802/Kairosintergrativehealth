@@ -7,9 +7,11 @@ import theme from "./ThemeProvider";
 import useUserStore from "./useUserStore";
 import Loader from "./Loader"; // Make sure to import the loader component
 
-const Layout = ({ children }) => {
+const Layout = ({ children,userDetails }) => {
   const [showGoToTop, setShowGoToTop] = useState(false);
   const { loadLoader, setLoadLoader } = useUserStore();
+
+  console.log("children ==>",userDetails)
 
   // Debugging: Check the initial value of loadLoader
   useEffect(() => {
@@ -44,7 +46,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header sx={{ mb: 1 }} />
+      <Header sx={{ mb: 1 }} userDetails={userDetails}/>
       <Box
         sx={{
           display: "flex",
