@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
     console.log("Initializing SOAP client...");
     const client = await soap.createClientAsync(WSDL_URL, options);
-    console.log("SOAP Client Created:", client.describe());
+    console.log("SOAP Client Created:", JSON.stringify(client.describe(), null, 2));
 
     // Construct Request Arguments
     const requestArgs = {
@@ -78,18 +78,18 @@ export default async function handler(req, res) {
               }
             : undefined,
           Practice: {
-            PracticeID: 2,
+            PracticeID: 3,
           },
         },
       },
     };
 
-    console.log("Calling CreatePatient with args:", requestArgs);
+    console.log("Calling CreatePatient with args:", JSON.stringify(requestArgs, null, 2));
 
     // Call the CreatePatient method
     const [result] = await client.CreatePatientAsync(requestArgs);
 
-    console.log("SOAP Response:", result);
+    console.log("SOAP Response:", JSON.stringify(result, null, 2));
 
     const patientId = result?.CreatePatientResponse?.Patient?.PatientID || "unknown";
 
