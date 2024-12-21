@@ -139,6 +139,73 @@ const RoundTable = () => {
             </Typography>
           </Box>
         </Box>
+        <Box
+    sx={{
+      backgroundColor: "rgba(255, 255, 255, 0.7)",
+      color: "#333",
+      mt: "3%",
+      pl: 1,
+      pr: 2,
+      width: "100%",
+      borderRadius: 2,
+      boxShadow: 3,
+      fontWeight: "bold",
+      display: "flex",
+      flexDirection: "column",
+    }}
+  >
+    <Typography
+      variant="subtitle1"
+      sx={{
+        color: "green",
+        fontWeight: "bold",
+        mb: 1,
+        mt: 1,
+        fontSize: 25,
+        textAlign: { xs: "center", md: "left" }, // Center on small screens
+      }}
+    >
+      Interested in joining The Resilience Roundtable?<br />
+    </Typography>
+    <Box
+      sx={{
+        borderRadius: "8px",
+        p: 3,
+        mb: 4,
+        mt: 1,
+        textAlign: { xs: "center", md: "left" }, // Center on small screens
+      }}
+    >
+      <Typography variant="subtitle1" sx={{ color: "black", mb: 2 }}>
+        To attend the Resilience Roundtable, please follow these steps:
+      </Typography>
+      <ul style={{ listStyleType: "disc", margin: 0, paddingLeft: "1.5em", fontWeight: "normal" }}>
+        <li>Fill out the form provided.</li>
+        <li>After submitting, you will receive:
+          <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
+            <li>An invoice via email and/or text.</li>
+            <li>A session link sent to your email once payment is received (allow 24 hours).</li>
+          </ul>
+        </li>
+        <li>Sign up for the monthly Resilience Roundtable by completing the form below.</li>
+        <li>Access Options:
+          <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
+            <li>Member Discounted Plan: $21 per session + 1 Free Friend/Family Member.</li>
+            <li>Guest Access: $30 per session.</li>
+          </ul>
+        </li>
+        <li>Form Details:
+          <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
+            <li>Name of the person filling out the form.</li>
+            <li>Name of the first attendee.</li>
+            <li>Name of the second attendee (if utilizing the Member Discounted Plan).</li>
+            <li>Email address to send the session link.</li>
+          </ul>
+        </li>
+        <li>Payment Method: QuickBooks payment option available.</li>
+      </ul>
+    </Box>
+  </Box>
         <ResilienceRoundtableForm />
       </Box>
 
