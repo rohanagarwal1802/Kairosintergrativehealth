@@ -41,7 +41,7 @@ const validationSchema = Yup.object({
     .max(15, 'Mobile number cannot exceed 15 digits'),
   insurance: Yup.string().required('Insurance is required'),
   questions: Yup.array().of(Yup.string().required('This question is required')),
-  service: Yup.string().required('Service is required'),
+  // service: Yup.string().required('Service is required'),
   captchaVerification: Yup.string().required('Please verify the captcha'),
 });
 
@@ -71,7 +71,7 @@ const PatientForm = () => {
       mobile: '',
       insurance:'',
       questions: Array(5).fill(''), // ensure this is an array with values
-      service: '',
+      // service: '',
       captchaVerification: '',
     },
     validationSchema,
@@ -96,7 +96,17 @@ const PatientForm = () => {
         const response = await axios.post('/api/createPatient', val); // Use 'values' instead of 'data'
     
         if (response.status === 200) {
-          alert('Patient added successfully');
+          try{
+            const responseNewPatient = await axios.post('/api/addNewPatient', values);
+            if (responseNewPatient.status === 200) {
+              alert('Patient added successfully');
+            }
+          }
+          catch(error)
+          {
+            console.error('Error in registering patient: ', error);
+          }
+         
         }
         setLoading(false); // Stop loading after submit
       } catch (error) {
@@ -107,6 +117,9 @@ const PatientForm = () => {
         } else {
           alert('An error occurred while submitting the form.');
         }
+      }
+      finally{
+        setLoading(false)
       }
     },
     
@@ -265,7 +278,7 @@ const PatientForm = () => {
           )}
 
           {/* Additional Question */}
-          <Box sx={{ mt: 2 }}>
+          {/* <Box sx={{ mt: 2 }}>
             <Typography>How can we help?</Typography>
             <RadioGroup
               row
@@ -280,7 +293,7 @@ const PatientForm = () => {
             {formik.touched.service && formik.errors.service && (
               <Typography color="error">{formik.errors.service}</Typography>
             )}
-          </Box>
+          </Box> */}
 
           {/* Captcha */}
           <Box sx={{ mt: 2 }}>

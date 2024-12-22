@@ -43,7 +43,7 @@ function AppointmentFormModal({ open, onClose }) {
         location: values.location,
         appointmentDate: values.appointmentDate,
       };
-
+// console.log("data ===>",data)
       // Simulated API call
       const res = await axios.post("/api/bookAppointmentOnTebra", data);
       if(res.status==='success')

@@ -1,24 +1,82 @@
 [
-    {
-      "id": 1,
-      "firstname": "John",
-      "lastname": "Doe",
-      "dob": "1990-01-01T00:00:00Z",
-      "email": "john.doe@example.com",
-      "mobile": "1234567890",
-      "password": "hashedPassword",
-      "service": "Therapy",
-      "insurance": "ABC Insurance",
-      "howDidYouHear": "Google",
-      "isActive": true,
-      "created_at": "2024-01-01T00:00:00Z",
-      "updated_at": "2024-01-01T00:00:00Z",
-      "deleted_at": null,
-      "permissionToText": false,
-      "schedulingAnAppointment": true,
-      "over18": true,
-      "hospitalizedWithin4Weeks": false,
-      "makingAppointmentToDiscussDisability": false
-    }
-  ]
-  
+  {
+    "id": 1,
+    "firstname": "John",
+    "lastname": "Doe",
+    "dob": "1990-01-01T00:00:00Z",
+    "email": "john.doe@example.com",
+    "mobile": "1234567890",
+    "password": "hashedPassword",
+    "service": "Therapy",
+    "insurance": "ABC Insurance",
+    "howDidYouHear": "Google",
+    "isActive": true,
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z",
+    "deleted_at": null,
+    "permissionToText": false,
+    "schedulingAnAppointment": true,
+    "over18": true,
+    "hospitalizedWithin4Weeks": false,
+    "makingAppointmentToDiscussDisability": false
+  },
+  {
+    "0": {
+      "firstname": "Rohan",
+      "lastname": "Agarwal",
+      "dob": "2024-12-03",
+      "email": "rahul93149@gmail.com",
+      "mobile": "7865412300",
+      "insurance": "insurance",
+      "questions": [
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no"
+      ],
+      "captchaVerification": "x04t07"
+    },
+    "id": 2,
+    "created_at": "2024-12-22T09:24:20.818Z",
+    "updated_at": "2024-12-22T09:24:20.819Z"
+  },
+  {
+    "id": 3,
+    "firstname": "Rohan",
+    "lastname": "Agarwal",
+    "dob": "2024-12-03",
+    "email": "rahul93149@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "insurance",
+    "questions": [
+      "no",
+      "no",
+      "yes",
+      "yes",
+      "no"
+    ],
+    "captchaVerification": "x04t07",
+    "created_at": "2024-12-22T09:26:40.581Z",
+    "updated_at": "2024-12-22T09:26:40.581Z"
+  },
+  {
+    "id": 4,
+    "firstname": "Rohan",
+    "lastname": "Agarwal",
+    "dob": "2024-12-03",
+    "email": "rahul93149@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "insurance",
+    "questions": [
+      "no",
+      "no",
+      "yes",
+      "yes",
+      "no"
+    ],
+    "captchaVerification": "x04t07",
+    "created_at": "2024-12-22T09:48:05.062Z",
+    "updated_at": "2024-12-22T09:48:05.062Z"
+  }
+]

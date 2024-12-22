@@ -4,7 +4,8 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
    
     try {
-      const result = await Patients.createPatient([req.body]);
+      const result = await Patients.createPatient(req.body);
+      console.log(result)
       return result?.passed
         ? res.status(201).json({ message: "Patient registered successfully", data: result })
         : res.status(400).json({ message: "Failed to register patient", data: result });

@@ -12,9 +12,9 @@ export default async function handler(req, res) {
     });
   }
 
-  const { location,startDate } = req.body;
+  const { location,appointmentDate } = req.body;
 
-  console.log("start date ==>",startDate)
+  console.log("start date ==>",appointmentDate)
   let location_id = 1;
   if (location === "Tele Health") {
     location_id = 2;
@@ -142,7 +142,9 @@ export default async function handler(req, res) {
       return time;
     }
 
-    const start_time = currentDate.toLocaleString('en-US', { timeZone: "America/New_York" });
+    const stDate=new Date(appointmentDate)
+    stDate.setHours(12, 0, 0, 0); 
+    const start_time = stDate.toLocaleString('en-US', { timeZone: "America/New_York" });
     const end_time = getNext90MinutesTime(start_time);
 
     const createdAtISO = formatDOBToISO(new Date());
