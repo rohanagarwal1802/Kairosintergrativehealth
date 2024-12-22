@@ -1,347 +1,326 @@
-// // components/PatientForm.js
-// import React from 'react';
-// import { useFormik } from 'formik';
-// import * as Yup from 'yup';
-// import {
-//   Box,
-//   Typography,
-//   TextField,
-//   Select,
-//   MenuItem,
-//   FormControl,
-//   InputLabel,
-//   RadioGroup,
-//   FormControlLabel,
-//   Radio,
-//   Button,
-//   IconButton,
-// } from '@mui/material';
-// import RefreshIcon from '@mui/icons-material/Refresh';
-// import axios from 'axios';
+import React, { useState, forwardRef } from 'react'
+import {
+  Box,
+  Button,
+  TextField,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Modal,
+  Typography,
+  IconButton,
+  CircularProgress
+} from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
+import SaveIcon from '@mui/icons-material/Save'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import { Formik, Form } from 'formik'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
-// // Validation Schema
-// const validationSchema = Yup.object({
-//   firstname: Yup.string().required('First Name is required'),
-//   lastname: Yup.string(),
-//   dob: Yup.date().required('Date of Birth is required').nullable(),
-//   email: Yup.string().email('Invalid email format').required('Email is required'),
-//   mobile: Yup.string()
-//     .required('Mobile is required')
-//     .matches(/^[0-9]+$/, 'Mobile number must be digits only')
-//     .min(10, 'Mobile number must be at least 10 digits')
-//     .max(15, 'Mobile number cannot exceed 15 digits'),
-//   preferredProvider: Yup.string().required('Preferred Provider is required'),
-//   howDidYouHear: Yup.string().required('This field is required'),
-//   preferredTime: Yup.string().required('Preferred Time Slot is required'),
-//   questions: Yup.array().of(Yup.string().required('This question is required')),
-//   service: Yup.string().required('Service is required'),
-//   captchaVerification: Yup.string().required('Please verify the captcha')
-// });
+function FilterTransactionDialog({
+  open,
+  onClose,
+  transactions,
+  setTransactions,
+  preTransactions,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  status,
+  setStatus,
+  paymentMode,
+  setPaymentMode
+}) {
+  const [loading, setLoading] = useState(false)
 
-// const PatientForm = () => {
-//   const [captchaValue, setCaptchaValue] = React.useState('');
+  // Date Picker Change Handler
+  const onDateChange = (dates, setFieldValue) => {
+    const [start, end] = dates
+    setFieldValue('startDate', start)
+    setFieldValue('endDate', end)
+  }
 
-//   // Function to generate captcha
-//   const generateCaptcha = () => {
-//     return Math.random().toString(36).substring(2, 8); 
-//   };
+  // Form submission
+  const handleFilter = async (values, { setSubmitting, setFieldValue }) => {
+    // debugger
+    const { status, payment_mode, startDate, endDate } = values
+    if (endDate === '' || !endDate) {
+      setFieldValue('startDate', '')
+      setStartDate('')
+    }
+    setStatus(status)
+    setPaymentMode(payment_mode)
+    setStartDate(startDate)
+    setEndDate(endDate)
+    let filteredTransactions = preTransactions
 
-//   // Set initial captcha value on mount
-//   React.useEffect(() => {
-//     setCaptchaValue(generateCaptcha());
-//   }, []);
-// //
-//   const formik = useFormik({
-//     initialValues: {
-//       firstname: '',
-//       lastname: '',
-//       dob: '',
-//       email: '',
-//       mobile: '',
-//       preferredProvider: '',
-//       howDidYouHear: '',
-//       preferredTime: '',
-//       questions: Array(6).fill(''),
-//       service: '',
-//       captchaVerification: ''
-//     },
-//     validationSchema,
-//     onSubmit: async (values) => {
-//       console.log('Form Data', values);
-//      try{
-//         const questions=values.questions;
-//         const dobDate = new Date(values.dob);
-//         const formattedDob = dobDate.toISOString();
-//         const data ={
-//             ...values,
-//             dob: new Date(values.dob).toISOString(),
+    // Filtering logic
+    if (status !== '' && payment_mode !== '' && startDate && endDate) {
+      const start = new Date(startDate)
+      start.setHours(0, 0, 0, 0) // Start of the day
 
-//             timeSlot:values.preferredTime,
-//             willing_recommened_treatment_plan:
-// questions[0]==="yes"?true:false,
-// thinking_about_harming_themselves:
-// questions[1]==="yes"?true:false,
-// experiencing_beliefs:
-// questions[2]==="yes"?true:false,
-// document_required:
-// questions[3]==="yes"?true:false,
-// hasRecievedDiagnosisOrHaveSymptoms:
-// questions[4]==="yes"?true:false,
-// struggling_with_substance_use:
-// questions[5]==="yes"?true:false,
+      const end = new Date(endDate)
+      end.setHours(23, 59, 59, 999)
+      filteredTransactions = await preTransactions.filter(
+        transaction =>
+          transaction.status === status &&
+          transaction.payment_mode === payment_mode &&
+          new Date(transaction.createdAt) >= new Date(start) &&
+          new Date(transaction.createdAt) <= new Date(end)
+      )
+    } else if (status !== '' && payment_mode !== '') {
+      filteredTransactions = await preTransactions.filter(
+        transaction => transaction.status === status && transaction.payment_mode === payment_mode
+      )
+    } else if (payment_mode !== '' && startDate && endDate) {
+      const start = new Date(startDate)
+      start.setHours(0, 0, 0, 0) // Start of the day
 
-//         }
-// const resp=await axios.post('/api/addNewPatient',data)
-// alert("Patient added succesfully")
-// console.log("response of adding patient ===> ",resp)
-//      }
-//      catch(error){
-//       if(error.status===400)
-//       {
-//         alert("Duplicate Email or Mobile.")
-//         return
-//       }
-//        console.log("error in registering partner ===>",error) 
-//      }
+      const end = new Date(endDate)
+      end.setHours(23, 59, 59, 999)
+      filteredTransactions = await preTransactions.filter(
+        transaction =>
+          transaction.payment_mode === payment_mode &&
+          new Date(transaction.createdAt) >= new Date(start) &&
+          new Date(transaction.createdAt) <= new Date(end)
+      )
+    } else if (status !== '' && startDate && endDate) {
+      const start = new Date(startDate)
+      start.setHours(0, 0, 0, 0) // Start of the day
 
-//       // Handle form submission (e.g., API call)
-//     },
-//     onReset: () => {
-//       setCaptchaValue(generateCaptcha()); // Refresh captcha on reset
-//     }
-//   });
+      const end = new Date(endDate)
+      end.setHours(23, 59, 59, 999)
+      filteredTransactions = await preTransactions.filter(
+        transaction =>
+          transaction.status === status &&
+          new Date(transaction.createdAt) >= new Date(start) &&
+          new Date(transaction.createdAt) <= new Date(end)
+      )
+    } else if (status !== '') {
+      filteredTransactions = await preTransactions.filter(transaction => transaction.status === status)
+    } else if (payment_mode !== '') {
+      filteredTransactions = await preTransactions.filter(transaction => transaction.payment_mode === payment_mode)
+    } else if (startDate && endDate) {
+      // Set the start of the day for startDate and the end of the day for endDate
+      const start = new Date(startDate)
+      start.setHours(0, 0, 0, 0) // Start of the day
 
-//   const refreshCaptcha = () => {
-//     setCaptchaValue(generateCaptcha());
-//     formik.setFieldValue('captchaVerification', ''); // Clear captcha input on refresh
-//   };
+      const end = new Date(endDate)
+      end.setHours(23, 59, 59, 999) // End of the day
 
-//   const RequiredLabel = ({ label }) => (
-//     <Typography component="span">
-//       {label}
-//       <Typography component="span" color="error" sx={{ ml: 0.5 }}>
-//         *
-//       </Typography>
-//     </Typography>
-//   );
+      filteredTransactions = preTransactions.filter(
+        transaction => new Date(transaction.createdAt) >= start && new Date(transaction.createdAt) <= end
+      )
+    }
 
-//   return (
-//     <Box
-//       sx={{
-//         width: { xs: '100%', sm: '98%', },
-//         mx: 'auto',
-//         my: 4,
-//         p: 3,
-//         borderRadius: 2,
-//         boxShadow: 3,
-//         bgcolor: '#f5f5f5'
-//       }}
-//     >
-//       <Typography variant="h4" align="center" gutterBottom sx={{ color: 'navy' }}>
-//         Patient Portal
-//       </Typography>
-//       <hr style={{ width: '80%', margin: 'auto', borderColor: 'black' }} />
+    setTransactions(filteredTransactions)
+    onClose()
+  }
 
-//       <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
-//         {/* Preferred Provider and How did you hear from us */}
-//         <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, gap: 2 }}>
-//           <FormControl fullWidth>
-//             <InputLabel><RequiredLabel label="Preferred Provider" /></InputLabel>
-//             <Select
-//               name="preferredProvider"
-//               value={formik.values.preferredProvider}
-//               onChange={formik.handleChange}
-//               onBlur={formik.handleBlur}
-//             >
-//               <MenuItem value="Dr. Smith">Dr. Smith</MenuItem>
-//               <MenuItem value="Dr. Johnson">Dr. Johnson</MenuItem>
-//               <MenuItem value="Dr. Williams">Dr. Williams</MenuItem>
-//             </Select>
-//             {formik.touched.preferredProvider && formik.errors.preferredProvider && (
-//               <Typography color="error">{formik.errors.preferredProvider}</Typography>
-//             )}
-//           </FormControl>
+  const ExampleCustomInput = React.forwardRef(({ label, value, onClick, onClear, values }, ref) => (
+    <TextField
+      onClick={onClick}
+      value={value}
+      label={label}
+      autoComplete='off'
+      InputProps={{
+        endAdornment: (
+          <>
+            <IconButton
+              edge='end'
+              size='small'
+              onClick={onClick}
+              sx={{
+                cursor: 'pointer',
+                '&:hover': { backgroundColor: 'transparent' }
+              }}
+            >
+              <ArrowDropDownIcon />
+            </IconButton>
+            {value && (
+              <IconButton
+                edge='end'
+                size='small'
+                onClick={onClear} // Clears the field
+                sx={{
+                  cursor: 'pointer',
+                  '&:hover': { backgroundColor: 'transparent' }
+                }}
+              >
+                <ClearIcon />
+              </IconButton>
+            )}
+          </>
+        )
+      }}
+      fullWidth
+      inputProps={{
+        style: { cursor: 'pointer', userSelect: 'none' }
+      }}
+      ref={ref}
+    />
+  ))
 
-//           <FormControl fullWidth>
-//             <InputLabel><RequiredLabel label="How did you hear from us" /></InputLabel>
-//             <Select
-//               name="howDidYouHear"
-//               value={formik.values.howDidYouHear}
-//               onChange={formik.handleChange}
-//               onBlur={formik.handleBlur}
-//             >
-//               <MenuItem value="Online">Online</MenuItem>
-//               <MenuItem value="Friend">Friend</MenuItem>
-//               <MenuItem value="Advertisement">Advertisement</MenuItem>
-//             </Select>
-//             {formik.touched.howDidYouHear && formik.errors.howDidYouHear && (
-//               <Typography color="error">{formik.errors.howDidYouHear}</Typography>
-//             )}
-//           </FormControl>
-//         </Box>
+  return (
+    <Modal open={open} onClose={onClose} disableScrollLock>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: { xs: '90%', sm: 400 }, // Responsive width for small devices
+          bgcolor: 'background.paper',
+          boxShadow: 24,
+          p: 4,
+          borderRadius: 2,
+          overflow: 'auto' // Ensures the content fits on small screens
+        }}
+      >
+        <Typography variant='h6' mb={2} sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem' } }}>
+          Filter Transactions
+        </Typography>
 
-//         {/* Text Fields */}
-//         <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, gap: 2 }}>
-//           <TextField
-//             label={<RequiredLabel label="Patient's First Name" />}
-//             name="firstname"
-//             value={formik.values.firstname}
-//             onChange={formik.handleChange}
-//             onBlur={formik.handleBlur}
-//             fullWidth
-//           />
-//           {formik.touched.firstname && formik.errors.firstname && (
-//             <Typography color="error">{formik.errors.firstname}</Typography>
-//           )}
+        <Formik
+          enableReinitialize
+          initialValues={{
+            status: status,
+            payment_mode: paymentMode,
+            startDate: startDate,
+            endDate: endDate
+          }}
+          onSubmit={handleFilter}
+        >
+          {({ values, handleChange, isSubmitting, resetForm, setFieldValue }) => (
+            <Form>
+              {/* Status Selection */}
+              <FormControl fullWidth margin='normal'>
+                <InputLabel>Status</InputLabel>
+                <Select
+                  name='status'
+                  value={values.status}
+                  onChange={handleChange}
+                  label='Status'
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        maxHeight: '200px'
+                      }
+                    }
+                  }}
+                  endAdornment={
+                    values.status && (
+                      <IconButton edge='end' size='small' onClick={() => setFieldValue('status', '')}>
+                        <ClearIcon />
+                      </IconButton>
+                    )
+                  }
+                >
+                  <MenuItem value='captured'>Success</MenuItem>
+                  <MenuItem value='failed'>Failed</MenuItem>
+                </Select>
+              </FormControl>
 
-//           <TextField
-//             label="Patient's Last Name"
-//             name="lastname"
-//             value={formik.values.lastname}
-//             onChange={formik.handleChange}
-//             onBlur={formik.handleBlur}
-//             fullWidth
-//           />
-//           {formik.touched.lastname && formik.errors.lastname && (
-//             <Typography color="error">{formik.errors.lastname}</Typography>
-//           )}
+              {/* Payment Method Selection */}
+              <FormControl fullWidth margin='normal'>
+                <InputLabel>Payment Method</InputLabel>
+                <Select
+                  name='payment_mode'
+                  value={values.payment_mode}
+                  onChange={handleChange}
+                  label='Payment Method'
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        maxHeight: '200px'
+                      }
+                    }
+                  }}
+                  endAdornment={
+                    values.payment_mode && (
+                      <IconButton edge='end' size='small' onClick={() => setFieldValue('payment_mode', '')}>
+                        <ClearIcon />
+                      </IconButton>
+                    )
+                  }
+                >
+                  <MenuItem value='card'>Card</MenuItem>
+                  <MenuItem value='netbanking'>Net Banking</MenuItem>
+                  <MenuItem value='wallet'>Wallet</MenuItem>
+                  <MenuItem value='upi'>UPI</MenuItem>
+                </Select>
+              </FormControl>
 
-//           <TextField
-//             label={<RequiredLabel label="Patient's Date of Birth" />}
-//             name="dob"
-//             type="date"
-//             InputLabelProps={{ shrink: true }}
-//             value={formik.values.dob}
-//             onChange={formik.handleChange}
-//             onBlur={formik.handleBlur}
-//             fullWidth
-//           />
-//           {formik.touched.dob && formik.errors.dob && (
-//             <Typography color="error">{formik.errors.dob}</Typography>
-//           )}
+              {/* Date Range Picker */}
+              <FormControl fullWidth margin='normal'>
+                <div
+                  style={{
+                    position: 'relative',
+                    marginTop: '16px', // Default margin-top for small screens
+                    '@media (min-width:600px)': { marginTop: '0px' } // Adjust for larger screens
+                  }}
+                >
+                  <DatePicker
+                    selected={values.startDate}
+                    onChange={dates => onDateChange(dates, setFieldValue)} // Passing setFieldValue
+                    startDate={values.startDate}
+                    endDate={values.endDate}
+                    maxDate={new Date()}
+                    selectsRange
+                    dateFormat='dd-MM-yyyy'
+                    customInput={
+                      <ExampleCustomInput
+                        label='Date Range'
+                        onClear={() => {
+                          setFieldValue('startDate', null)
+                          setFieldValue('endDate', null)
+                        }}
+                        values={values}
+                      />
+                    }
+                  />
+                </div>
+              </FormControl>
 
-//           <TextField
-//             label={<RequiredLabel label="Patient's Email" />}
-//             name="email"
-//             type="email"
-//             value={formik.values.email}
-//             onChange={formik.handleChange}
-//             onBlur={formik.handleBlur}
-//             fullWidth
-//           />
-//           {formik.touched.email && formik.errors.email && (
-//             <Typography color="error">{formik.errors.email}</Typography>
-//           )}
+              {/* Action Buttons */}
+              <Box display='flex' justifyContent='flex-end' mt={3} gap={2}>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  startIcon={<SaveIcon />}
+                  type='submit'
+                  disabled={isSubmitting || loading}
+                >
+                  {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Apply'}
+                </Button>
+                <Button
+                  variant='contained'
+                  color='warning'
+                  startIcon={<ClearIcon />}
+                  onClick={() => {
+                    setTransactions(preTransactions)
+                    setStatus('')
+                    setPaymentMode('')
+                    setEndDate(null)
+                    setStartDate(null)
+                    setFieldValue('status', '')
+                    setFieldValue('payment_mode', '')
+                    setFieldValue('startDate', null)
+                    setFieldValue('endDate', null)
+                  }}
+                >
+                  Clear
+                </Button>
+              </Box>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+    </Modal>
+  )
+}
 
-//           <TextField
-//             label={<RequiredLabel label="Patient's Mobile" />}
-//             name="mobile"
-//             type="tel"
-//             value={formik.values.mobile}
-//             onChange={formik.handleChange}
-//             onBlur={formik.handleBlur}
-//             fullWidth
-//           />
-//           {formik.touched.mobile && formik.errors.mobile && (
-//             <Typography color="error">{formik.errors.mobile}</Typography>
-//           )}
-
-//           <FormControl fullWidth>
-//             <InputLabel><RequiredLabel label="Preferred Time Slot" /></InputLabel>
-//             <Select
-//               name="preferredTime"
-//               value={formik.values.preferredTime}
-//               onChange={formik.handleChange}
-//               onBlur={formik.handleBlur}
-//             >
-//               <MenuItem value="Morning">Morning</MenuItem>
-//               <MenuItem value="Afternoon">Afternoon</MenuItem>
-//               <MenuItem value="Evening">Evening</MenuItem>
-//             </Select>
-//             {formik.touched.preferredTime && formik.errors.preferredTime && (
-//               <Typography color="error">{formik.errors.preferredTime}</Typography>
-//             )}
-//           </FormControl>
-//         </Box>
-
-//         {/* Radio Questions */}
-//         {[
-//           "Do you have any allergies?",
-//           "Have you had recent surgery?",
-//           "Are you taking any medications?",
-//           "Do you smoke?",
-//           "Do you exercise regularly?",
-//           "Have you traveled internationally recently?"
-//         ].map((question, index) => (
-//           <Box key={index} sx={{ mt: 2 }}>
-//             <Typography><RequiredLabel label={question} /></Typography>
-//             <RadioGroup
-//               row
-//               name={`questions[${index}]`}
-//               value={formik.values.questions[index]}
-//               onChange={formik.handleChange}
-//             >
-//               <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-//               <FormControlLabel value="no" control={<Radio />} label="No" />
-//             </RadioGroup>
-//             {formik.touched.questions?.[index] && formik.errors.questions?.[index] && (
-//               <Typography color="error">{formik.errors.questions[index]}</Typography>
-//             )}
-//           </Box>
-//         ))}
-
-
-
-//         {/* Additional Question */}
-//         <Box sx={{ mt: 2 }}>
-//           <Typography>What service are you looking for?</Typography>
-//           <Typography><RequiredLabel label={"service"} /></Typography>
-//           <RadioGroup
-//             row
-//             name="service"
-//             value={formik.values.service}
-//             onChange={formik.handleChange}
-//           >
-//             <FormControlLabel value="Therapy Only" control={<Radio />} label="Therapy Only" />
-//             <FormControlLabel value="Medication Management & Therapy" control={<Radio />} label="Medication Management & Therapy" />
-//           </RadioGroup>
-//           {formik.touched.service && formik.errors.service && (
-//             <Typography color="error">{formik.errors.service}</Typography>
-//           )}
-//         </Box>
-
-//         {/* Captcha */}
-//         <Box sx={{ mt: 2, display: 'flex', alignItems: 'center' }}>
-//           <TextField
-//            label={<RequiredLabel label="Captcha" />}
-//             name="captchaVerification"
-//             value={formik.values.captchaVerification}
-//             onChange={formik.handleChange}
-//             onBlur={formik.handleBlur}
-//             fullWidth
-//             helperText={`Please enter: ${captchaValue}`}
-//           />
-          
-//           <IconButton onClick={refreshCaptcha}>
-//             <RefreshIcon />
-//           </IconButton>
-//         </Box>
-//         {formik.touched.captchaVerification && formik.errors.captchaVerification && (
-//           <Typography color="error">{formik.errors.captchaVerification}</Typography>
-//         )}
-
-//         {/* Submit and Reset Buttons */}
-//         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
-//           <Button variant="contained" color="primary" type="submit">
-//             Submit
-//           </Button>
-//           <Button variant="outlined" color="secondary" type="reset">
-//             Reset
-//           </Button>
-//         </Box>
-//       </form>
-//     </Box>
-//   );
-// };
-
-// export default PatientForm;
+export default FilterTransactionDialog
