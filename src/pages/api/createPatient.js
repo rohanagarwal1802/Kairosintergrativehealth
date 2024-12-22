@@ -87,8 +87,8 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
         Patient: {
           FirstName: firstname,
           LastName: lastname,
-          DateOfBirth: formattedDob,
-          DOB: formattedDob,
+          DateOfBirth: 2012-12-12,
+          DOB: 2012-12-12,
           EmailAddress: email,
           MobilePhone: mobile,
           Alert: {

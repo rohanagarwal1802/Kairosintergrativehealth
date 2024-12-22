@@ -15,6 +15,9 @@ const useUserStore = create((set) => ({
   toResetPassword: false,
   setResetPassword: (value) => set({ toResetPassword: value }),
 
+  loginLoader: false,
+  setLoginLoader: (value) => set({ loginLoader: value }),
+
 }));
 
 export default useUserStore;
