@@ -8,57 +8,54 @@ import TextContainer from '@/components/textContainer';
 import { useRouter } from 'next/router';
 import CustomPaginationGrid from '@/components/customPagination';
 
-const UserTable = ({ userDetails }) => {
+const ContactMessages = ({ userDetails }) => {
   const [pageSize, setPageSize] = useState(10);
   const router = useRouter();
+console.log(userDetails)
+//   if (userDetails?.role !== 'admin') {
+//     router.push('/');
+//     return;
+//   }
 
-  if (userDetails?.role !== 'admin') {
-    router.push('/');
-    return;
-  }
-
-  const [userData, setUserData] = useState();null
+  const [messages, setMessages] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const getPatientData = async () => {
+    const getMessages = async () => {
       try {
         setLoading(true);
-        const patient = await axios.get('/api/getPatient');
-        setUserData(patient.data);
+        const message = await axios.get('/api/getContactMessages');
+        console.log("Messages",message.data.data)
+        setMessages(message.data.data);
       } catch (error) {
-        setUserData([])
+        setMessages([])
         console.log(error);
       } finally {
         setLoading(false);
       }
     };
-    getPatientData();
+    getMessages();
   }, []);
-
+if(!Array.isArray(messages))
+{
+    return
+}
   const columns = [
-    { field: 'firstname', headerName: 'First Name', width: 150 },
-    { field: 'lastname', headerName: 'Last Name', width: 150 },
-    { field: 'dob', headerName: 'Date of Birth', width: 180 },
-    { field: 'email', headerName: 'Email', width: 250 },
-    { field: 'mobile', headerName: 'Mobile', width: 150 },
-    { field: 'insurance', headerName: 'Insurance', width: 120 },
-    { field: 'isRegistered', headerName: 'Is Active', width: 120 },
-    { field: 'created_at', headerName: 'Created At', width: 200 },
-    { field: 'updated_at', headerName: 'Updated At', width: 200 },
+    { field: 'full_name', headerName: 'Full Name', width: 150 },
+    { field: 'email', headerName: 'Email', width: 300 },
+    { field: 'subject', headerName: 'Subject', width: 200 },
+    { field: 'message', headerName: 'Message', width: 500},
+    { field: 'created_at', headerName: 'Posted At', width: 200 },
   ];
 
-  const rows = userData.map((user) => ({
+  const rows = messages.map((user) => ({
     id: user?.id,
-    firstname: user?.firstname,
-    lastname: user?.lastname,
-    dob: user?.dob,
+    full_name: user?.full_name,
     email: user?.email,
     mobile: user?.mobile,
-    insurance: user?.insurance,
-    isRegistered: user?.isRegistered ,
+    subject: user?.subject,
+    message: user?.message ,
     created_at: new Date(user?.created_at).toLocaleString(),
-    updated_at: new Date(user?.updated_at).toLocaleString(),
   }));
 
   const handleDownloadExcel = () => {
@@ -69,18 +66,15 @@ const UserTable = ({ userDetails }) => {
     // Set column widths for better readability
     const wscols = [
       { wch: 15 }, // First Name
-      { wch: 15 }, // Last Name
-      { wch: 20 }, // DOB
       { wch: 30 }, // Email
       { wch: 15 }, // Mobile
-      { wch: 10 }, // Insurance
-      { wch: 10 }, // Is Active
+      { wch: 10 }, // Subject
+      { wch: 50 }, // message
       { wch: 25 }, // Created At
-      { wch: 25 }, // Updated At
     ];
     worksheet['!cols'] = wscols;
 
-    XLSX.writeFile(workbook, 'patient-data.xlsx'); // Save the Excel file
+    XLSX.writeFile(workbook, 'contact-messages.xlsx'); // Save the Excel file
   };
 
   return loading ? (
@@ -89,7 +83,7 @@ const UserTable = ({ userDetails }) => {
     <Box>
 
 <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
-    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Patient Details</h1>
+    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Contact Messages</h1>
   </Box>
       <Box
         sx={{
@@ -172,4 +166,4 @@ const UserTable = ({ userDetails }) => {
   );
 };
 
-export default UserTable;
+export default ContactMessages;

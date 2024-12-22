@@ -213,7 +213,7 @@ const LoginPage = () => {
                           }}
                         />
                       </Grid>
-                      <Grid item xs={12}>
+                      {/* <Grid item xs={12}>
                         <Box
                           display="flex"
                           alignItems="center"
@@ -227,7 +227,7 @@ const LoginPage = () => {
                             <LinkStyled>Forgot Password?</LinkStyled>
                           </Link>
                         </Box>
-                      </Grid>
+                      </Grid> */}
                       <Grid item xs={12}>
                         <Button
                           fullWidth
@@ -244,8 +244,8 @@ const LoginPage = () => {
                   <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
   <Typography variant="body2">
     New on our platform?{" "}
-    <Link href="#" passHref sx={{color:"blue"}} onClick={(e) => { e.preventDefault(); openRequestedAccount(); }}>
-      Request an account
+    <Link href="#" passHref  onClick={(e) => { e.preventDefault(); openRequestedAccount(); }}>
+    <LinkStyled>   Request an account</LinkStyled>
     </Link>
   </Typography>
 </Box>

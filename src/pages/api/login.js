@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import cookie from "cookie";
+import Patients from "../../../lib/models/PatientDetails";
+
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -36,49 +38,30 @@ export default async function handler(req, res) {
   }
 
   // If the email and password don't match, proceed with the usual API call
-  const payload = { email };  // Avoid storing password in JWT payload
   try {
-    const bearerToken = jwt.sign(payload, process.env.secretKey);
-    const eightHoursInSeconds = 8 * 60 * 60;
 
-    const config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: `${process.env.HOST}/login`,
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json",
-      },
-    };
 
-    const response = await axios.request(config);
+   
 
-    if (response.status === 201) {
-      const jwtCookie = cookie.serialize("userToken", bearerToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: eightHoursInSeconds,
-        sameSite: "strict",
-        path: "/",
-      });
-      res.setHeader("Set-Cookie", jwtCookie);
-      return res.status(response.status).json(response.data);  // Send data directly
-    } else if (response.status === 200) {
-      const tokenFromResponse = response.data;
+    const response = await Patients.loginPatient(email,password);
+if(response==="Wrong Password" || response==="Patient Not Found")
+{
+  return res.status(403).json({message:response});
+}
+   
+      // const tokenFromResponse = response.data;
+      console.log("response ==>",response)
       const tenDaysInSeconds = 10 * 24 * 60 * 60;
-      const jwtCookie = cookie.serialize("auth_token", tokenFromResponse, {
+      const jwtCookie = cookie.serialize("userToken", response, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         maxAge: tenDaysInSeconds,
         sameSite: "strict",
         path: "/",
       });
-      res.setHeader("Set-Cookie", jwtCookie);
-      return res.status(response.status).json(response.data);  // Send data directly
-    } else {
-      console.error("Unexpected response status:", response.status);
-      return res.status(response.status).json(response.data);
-    }
+     await res.setHeader("Set-Cookie", jwtCookie);
+      return res.status(200).json(response);  // Send data directly
+    
   } catch (error) {
     // Improved error logging
     console.error("API call failed:", error);  // Log the entire error object

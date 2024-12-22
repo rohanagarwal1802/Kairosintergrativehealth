@@ -1,15 +1,17 @@
 import Patients from "../../../lib/models/PatientDetails";
 
 export default async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "patch") {
    
     try {
       console.log("req.body ==>",req.body)
-      const result = await Patients.createPatient(req.body);
+      if(!req.body.id)
+      {
+        res.status(400).json({ message: "Please provide Id" });
+      }
+      const result = await Patients.updatePatient(req.body);
       console.log(result)
-      return result?.passed
-        ? res.status(201).json({ message: "Patient registered successfully", data: result })
-        : res.status(400).json({ message: "Failed to register patient", data: result });
+      return res.status(201).json({ message: "Patient updated successfully", data: result })
     } catch (error) {
       console.error("Error registering patient:", error.message);
       res.status(500).json({ message: "Internal Server Error", error: error.message });

@@ -43,31 +43,12 @@ export default async function handler(req, res) {
       },
     };
 
-
+    
 
     console.log("Initializing SOAP client...");
     const client = await soap.createClientAsync(WSDL_URL, options);
     console.log("SOAP Client Created:", JSON.stringify(client.describe(), null, 2));
 
-    const getPatientRequestArgs = {
-      request: {
-        RequestHeader: {
-          ClientVersion: 1.0,
-          CustomerKey: process.env.KAREO_CUSTOMER_KEY,
-          Password: process.env.KAREO_PASSWORD,
-          User: process.env.KAREO_USERNAME,
-        },
-        Fields:{},
-        Filter: {
-          // PatientID: 1,
-        },
-      },
-    };
-
-    // Call the GetPatient method
-    const [PatientResult] = await client.GetAllPatientsAsync(getPatientRequestArgs);
-    console.log("SOAP Response of Patient Details:", JSON.stringify(PatientResult, null, 2));
-// return PatientResult
     // Construct Request Arguments
     const requestArgs = {
       request: {

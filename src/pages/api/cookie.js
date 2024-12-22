@@ -1,6 +1,6 @@
 import getTokenFromCookie from "../utils/access";
 import jwt from "jsonwebtoken";
-import axios from "axios";
+import Patients from "../../../lib/models/PatientDetails";
 import requireAll from "require-all";
 import path from "path";
 
@@ -41,37 +41,38 @@ export default async function handler(req, res) {
         return res.status(200).send(adminInfo);
       }
 
-      const userInfo = {
-        id: decodedToken.id,
-        firstname: decodedToken.firstname,
-        lastname: decodedToken.lastname,
-        email: decodedToken.email,
-        mobile: decodedToken.mobile,
-        service: decodedToken.service,
-        permissionToText: decodedToken.permissionToText,
-        schedulingAnAppointment: decodedToken.schedulingAnAppointment,
+      // const userInfo = {
+      //   id: decodedToken.id,
+      //   firstname: decodedToken.firstname,
+      //   lastname: decodedToken.lastname,
+      //   email: decodedToken.email,
+      //   mobile: decodedToken.mobile,
+      //   service: decodedToken.service,
+      //   permissionToText: decodedToken.permissionToText,
+      //   schedulingAnAppointment: decodedToken.schedulingAnAppointment,
 
-        over18: decodedToken.over18,
-        hospitalizedWithin4Weeks: decodedToken.hospitalizedWithin4Weeks,
-        makingAppointmentToDiscussDisability: decodedToken.makingAppointmentToDiscussDisability,
-        insurance: decodedToken.insurance,
-        howDidYouHear: decodedToken.howDidYouHear,
-        dob:decodedToken.dob
-      };
+      //   over18: decodedToken.over18,
+      //   hospitalizedWithin4Weeks: decodedToken.hospitalizedWithin4Weeks,
+      //   makingAppointmentToDiscussDisability: decodedToken.makingAppointmentToDiscussDisability,
+      //   insurance: decodedToken.insurance,
+      //   howDidYouHear: decodedToken.howDidYouHear,
+      //   dob:decodedToken.dob
+      // };
 
-      let config = {
-        method: "GET",
-        maxBodyLength: Infinity,
-        url: `${process.env.HOST}/verifyToken`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      };
+      // let config = {
+      //   method: "GET",
+      //   maxBodyLength: Infinity,
+      //   url: `${process.env.HOST}/verifyToken`,
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": "application/json",
+      //   },
+      // };
 
-      const response = await axios.request(config);
+      const response = await Patients.getPatientsByToken(token);
+      console.log(response)
 
-      if (response.data === "") {
+      if (response === "") {
         // Clear cookies if user not found
         res.setHeader("Set-Cookie", [
           "userToken=; Max-Age=0; Path=/; HttpOnly; SameSite=Strict;", // Ensure the path is correct
@@ -82,7 +83,7 @@ export default async function handler(req, res) {
           message: "User Not Found.",
         });
       } else {
-        return res.status(200).send(userInfo);
+        return res.status(200).send(response);
       }
     } catch (error) {
       console.error("Error in Cookie", error?.message);

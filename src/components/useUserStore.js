@@ -6,6 +6,10 @@ const useUserStore = create((set) => ({
   expanded: true,
   setExpanded: (value) => set({ expanded: value }),
 
+  pageDisplay: "",
+  setPageDisplay: (value) => set({ pageDisplay: value }),
+
+
 
 }));
 

@@ -7,13 +7,39 @@ import { useRouter } from "next/router";
 import LoginPage from "./login";
 import axios from "axios";
 import Loader from "@/components/Loader";
+import useUserStore from "@/components/useUserStore";
+import MakePassword from "@/components/makePassword";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const [pageDisplay, setPageDisplay] = useState(""); // Tracks page state
+  const {pageDisplay, setPageDisplay} = useUserStore(); // Tracks page state
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Tracks auth status
   const [userDetails, setUserDetails] = useState(null); // Stores user data
   const [loading,setLoading]=useState(false)
+const url=router.asPath;
+
+  const checkPageDisplay=async ()=>{
+    try{
+setLoading(true)
+const response=await axios.post('/api/verifyToken',url)
+if(response.data.hasVerified && response.data.token)
+{
+  setUserDetails(response.data.token)
+  setPageDisplay("makePassword")
+}
+else
+{
+  setPageDisplay("app")
+}
+setIsAuthChecked(true); // Mark auth check as complete
+setLoading(false); // Stop loading
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
+   
+  }
 
   useEffect(() => {
     const checkServerStatus = async () => {
@@ -28,9 +54,9 @@ export default function App({ Component, pageProps }) {
           setUserDetails(res.data); // Set user details
           setPageDisplay("app"); // Show the app layout
           if (res.data?.role === "admin") {
-            router.push("/Admin"); // Redirect to admin panel
+          await  router.push("/Admin"); // Redirect to admin panel
           } else {
-            router.push("/");
+          await  router.push("/userAppointments");
           }
         } else {
           setPageDisplay("app"); // Show login page
@@ -46,8 +72,14 @@ export default function App({ Component, pageProps }) {
       }
     };
     
-
-    checkServerStatus(); // Run the check on page load
+    if(url.includes("/?verify="))
+      {
+        checkPageDisplay()
+      }
+      else
+      {
+    checkServerStatus();
+       } // Run the check on page load
   }, [router.pathname]); // Dependency ensures no redundant checks
 
   // Default layout if not defined in the component
@@ -58,6 +90,7 @@ export default function App({ Component, pageProps }) {
   // Conditional rendering based on auth status
   const getComponent = () => {
     if (!isAuthChecked || loading) return <Loader />; // Show loader during auth check
+    if(pageDisplay==="makePassword") return <MakePassword token={userDetails}/>;
     if (pageDisplay === "login") return <LoginPage />; // Show login page
     return getLayout(<Component {...pageProps} userDetails={userDetails} />); // Show main app
   };

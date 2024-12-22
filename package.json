@@ -19,6 +19,7 @@
         "bcryptjs": "^2.4.3",
         "cookie": "^1.0.2",
         "cors": "^2.8.5",
+        "crypto": "^1.0.1",
         "date-fns": "^4.1.0",
         "dotenv": "^16.4.7",
         "flatted": "^3.3.2",
@@ -41,6 +42,7 @@
         "sequelize": "^6.37.5",
         "slick-carousel": "^1.8.1",
         "soap": "^1.1.6",
+        "xlsx": "^0.18.5",
         "xmlbuilder": "^15.1.1",
         "yup": "^1.5.0",
         "zustand": "^5.0.2"

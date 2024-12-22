@@ -47,19 +47,26 @@ const ContactForm = ({ getReviews }) => {
     validationSchema,
     onSubmit: async (values) => {
       console.log('Form Data', values);
+      
       try {
-        const resp = await axios.post('/api/addReview', values);
-        getReviews();
-        alert('Form submitted successfully');
-        console.log('Response:', resp);
+        const { captchaVerification, ...dataToSend } = values;  // Exclude captchaVerification
+        const resp = await axios.post('/api/addNewMessage', dataToSend);
+  
+        if (resp.data) {
+          formik.handleReset();  // Reset the form if the response is successful
+          alert('Your Message submitted successfully');
+          console.log('Response:', resp);
+        }
       } catch (error) {
         console.error('Error submitting form:', error);
+        alert('There was an error submitting the form. Please try again.');
       }
     },
     onReset: () => {
-      setCaptchaValue(generateCaptcha());
+      setCaptchaValue(generateCaptcha());  // Reset captcha value when the form is reset
     },
   });
+  
 
   const refreshCaptcha = () => {
     setCaptchaValue(generateCaptcha());
