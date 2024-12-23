@@ -1,41 +1,48 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import PsychologyIcon from '@mui/icons-material/Psychology';
-
-const services = [
-  { name: "Psychiatry", icon: "/icons/psychiatry.svg" },
-  { name: "Therapy", icon: "/icons/therapy.svg" },
-  { name: "Holistic Wellness Programmes", icon: "/icons/holistic.svg" },
-  { name: "Genetic Testing", icon: "/icons/genetic.svg" },
-  { name: "Online Workshops", icon: "/icons/workshops.svg" },
-];
+import ServicesOptions from "../servicesDropdown";
+// Services list with custom icons
+const services = ServicesOptions()
 
 const ServicesBox = () => {
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         alignItems: "center",
         backgroundColor: "#d9fbd9", // Light green background
         padding: "20px",
         borderRadius: "8px",
+        overflowX: "auto", // Enable horizontal scrolling if items overflow
+        whiteSpace: "nowrap", // Prevent items from wrapping
       }}
     >
       {services.map((service) => (
         <Box
-          key={service.name}
+          key={service.title}
           sx={{
-            display: "flex",
+            display: "inline-flex", // Ensure items stay in one line
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            maxWidth: "150px",
+            marginX: "10px", // Horizontal margin between items
           }}
         >
-          <PsychologyIcon sx={{color:"black"}}/>
-          <Typography variant="subtitle1" sx={{ fontWeight: 500 ,color:"black"}}>
-            {service.name}
+          {service.icon}
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontWeight: 500,
+              color: "black",
+              fontSize: {
+                xs: "14px", // Smaller text for mobile
+                sm: "16px",
+              },
+              marginTop: "8px", // Space between icon and text
+            }}
+          >
+            {service.title}
           </Typography>
         </Box>
       ))}

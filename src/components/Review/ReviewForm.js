@@ -22,10 +22,7 @@ const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email format').required('Email is required'),
   review: Yup.string().required('Review is required'),
   captchaVerification: Yup.string().required('Please verify the captcha'),
-  rating: Yup.number()
-    .required('Rating is required')
-    .min(1, 'Rating must be at least 1 star')
-    .max(5, 'Rating cannot exceed 5 stars')
+ 
 });
 
 const ReviewForm = ({getReviews}) => {
@@ -48,7 +45,6 @@ const ReviewForm = ({getReviews}) => {
       email: '',
       review: '',
       captchaVerification: '',
-      rating: '',
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -232,21 +228,6 @@ const ReviewForm = ({getReviews}) => {
             )}
           </Grid>
          
-          <Grid item xs={12} sm={6}>
-  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-    <Typography sx={{ mr: 1 }}>
-      <RequiredLabel label="Rating" />
-    </Typography>
-    <Rating
-      name="rating"
-      value={formik.values.rating || 0}  // Ensure the value is a valid number (0 for default)
-      onChange={(_, newValue) => formik.setFieldValue('rating', newValue)}  // Custom onChange for Rating
-    />
-  </Box>
-  {formik.touched.rating && formik.errors.rating && (
-    <Typography color="error">{formik.errors.rating}</Typography>
-  )}
-</Grid>
 
 
           {/* Captcha */}

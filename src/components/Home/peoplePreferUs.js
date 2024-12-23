@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Typography, Grid, Box } from "@mui/material";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 
- function PeoplePreferUs() {
+function PeoplePreferUs() {
   const headingRef = useRef(null);
 
   useEffect(() => {
@@ -31,13 +31,17 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 
   return (
     <>
-
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "left",
           flexDirection: "column",
-          minHeight: "100vh",
+          // minHeight: "100vh",
+          
+            
+        
+          paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for mobile, tablet, and desktop
+          marginTop: { xs: 4, sm: 6, md: 8 }, // Space at the top for smaller screens
         }}
       >
         <Typography
@@ -46,10 +50,10 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
           className="heading" // Apply custom CSS class for transition
           sx={{
             textAlign: "center",
-            marginTop: "60px",
             marginBottom: "20px",
             fontWeight: "bold",
             color: "#3b2311",
+            fontSize: { xs: "24px", sm: "28px", md: "32px" }, // Responsive font size
           }}
         >
           Get to know us
@@ -59,117 +63,119 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
           container
           spacing={6}
           sx={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            paddingX: "16px",
+            maxWidth: "100%", // Take full width
             justifyContent: "center",
+            margin: "0 auto",
           }}
         >
-         
-            <Grid item xs={12} sm={6} md={3} >
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Box
+              sx={{
+                padding: "20px",
+                textAlign: "left",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                borderRadius: 2,
+                boxShadow: 2,
+                
+                "&:hover": {
+                  transform: "translateY(-10px)",
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+                },
+              }}
+            >
               <Box
-                elevation={2}
                 sx={{
-                  padding: "20px",
-                  textAlign: "left",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-10px)",
-                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-                  },
+                  marginBottom: "15px",
+                  backgroundColor: "green",
+                  borderRadius: "50%",
+                  padding: "10px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Box
-                  sx={{
-                    marginBottom: "15px",
-                    backgroundColor: "green",
-                    borderRadius: "50%",
-                    padding: "10px",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
-                </Box>
-                <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
-                Integrative Psychiatry 
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
-                </Typography>
+                <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
               </Box>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} >
-              <Box
-                elevation={2}
-                sx={{
-                  padding: "20px",
-                  textAlign: "left",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-10px)",
-                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    marginBottom: "15px",
-                    backgroundColor: "green",
-                    borderRadius: "50%",
-                    padding: "10px",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
-                </Box>
-                <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
-                Convenience 
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                Our clinic makes mental health care convenient with online scheduling, allowing you to book appointments without calling. Secure messaging improves communication with your provider, and Telehealth services offer flexible, remote access to care from home. We're dedicated to making mental health support accessible, efficient, and tailored to your busy lifestyle.
+              <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
+                Integrative Psychiatry
+              </Typography>
+              <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
+                Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit.
+              </Typography>
+            </Box>
+          </Grid>
 
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} >
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Box
+              sx={{
+                padding: "20px",
+                textAlign: "left",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                borderRadius: 2,
+                boxShadow: 2,
+                "&:hover": {
+                  transform: "translateY(-10px)",
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+                },
+              }}
+            >
               <Box
-                elevation={2}
                 sx={{
-                  padding: "20px",
-                  textAlign: "left",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-10px)",
-                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-                  },
+                  marginBottom: "15px",
+                  backgroundColor: "green",
+                  borderRadius: "50%",
+                  padding: "10px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Box
-                  sx={{
-                    marginBottom: "15px",
-                    backgroundColor: "green",
-                    borderRadius: "50%",
-                    padding: "10px",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
-                </Box>
-                <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
-                Culture 
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                Our practice combines cutting-edge treatment with a warm, personal approach. We offer evidence-based therapies while fostering long-lasting relationships built on trust and genuine care with out patients. Our providers take the time to understand each patient’s unique needs, ensuring comprehensive support in a welcoming, approachable environment. We're dedicated to both advanced care and creating a comforting, lasting connection.
-
-                </Typography>
+                <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
               </Box>
-            </Grid>
+              <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
+                Convenience
+              </Typography>
+              <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
+                Our clinic makes mental health care convenient with online scheduling, secure messaging, and Telehealth services, making mental health support more accessible, efficient, and tailored to your busy lifestyle.
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Box
+              sx={{
+                padding: "20px",
+                textAlign: "left",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                borderRadius: 2,
+                boxShadow: 2,
+                "&:hover": {
+                  transform: "translateY(-10px)",
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  marginBottom: "15px",
+                  backgroundColor: "green",
+                  borderRadius: "50%",
+                  padding: "10px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
+                Culture
+              </Typography>
+              <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
+                We combine cutting-edge treatment with a warm, personal approach, offering evidence-based therapies while fostering long-lasting relationships with our patients.
+              </Typography>
+            </Box>
+          </Grid>
         </Grid>
       </Box>
 
@@ -187,4 +193,5 @@ import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
     </>
   );
 }
-export default PeoplePreferUs
+
+export default PeoplePreferUs;

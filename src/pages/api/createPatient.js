@@ -23,14 +23,9 @@ export default async function handler(req, res) {
       });
     }
 
-    const date = new Date(dob);
-      
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');  // Month is zero-based
-    const day = String(date.getDate()).padStart(2, '0');
-  
-    const date_of_birth= `${year}-${month}-${day}`;
-  
+    const formattedDob = format(new Date(dob), "yyyy-MM-dd");
+    console.log("Formatted DOB:", formattedDob);
+
     // SOAP Client Options
     const options = {
       wsdl_headers: {
@@ -42,8 +37,6 @@ export default async function handler(req, res) {
         },
       },
     };
-
-    
 
     console.log("Initializing SOAP client...");
     const client = await soap.createClientAsync(WSDL_URL, options);
@@ -60,7 +53,7 @@ export default async function handler(req, res) {
         Patient: {
           FirstName: firstname,
           LastName: lastname,
-          DateofBirth: date_of_birth,
+          DOB: dob,
           EmailAddress: email,
           MobilePhone: mobile,
           Alert: {
@@ -85,7 +78,7 @@ export default async function handler(req, res) {
               }
             : undefined,
           Practice: {
-            PracticeID: 1,
+            PracticeID: 3,
           },
         },
       },
@@ -98,11 +91,11 @@ export default async function handler(req, res) {
 
     console.log("SOAP Response:", JSON.stringify(result, null, 2));
 
-    // const patientId = result?.CreatePatientResponse?.Patient?.PatientID || "unknown";
+    const patientId = result?.CreatePatientResponse?.Patient?.PatientID || "unknown";
 
     res.status(200).json({
       status: "success",
-      result,
+      patientId,
       message: "Patient created successfully!",
     });
   } catch (error) {

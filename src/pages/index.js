@@ -8,6 +8,8 @@ import FeedbackClients from "@/components/Home/feedback";
 import ServicesBox from "@/components/Home/services";
 import Loader from "@/components/Loader";
 import useUserStore from "@/components/useUserStore";
+import ComplimentaryCallBox from "@/components/Home/complemetaryPhone";
+import ImageGallery from "@/components/Home/reviewImages";
 
 export default function Home() {
   const {loadLoader, setLoadLoader} = useUserStore();
@@ -58,9 +60,11 @@ export default function Home() {
         />
       </Box>
 
+<ComplimentaryCallBox/>
       <ServicesBox />
-      <PeoplePreferUs />
-      {/* <FeedbackClients /> */}
+      <PeoplePreferUs /> 
+      <ImageGallery/>
+       {/* <FeedbackClients /> */}
     </>
   );
 }
