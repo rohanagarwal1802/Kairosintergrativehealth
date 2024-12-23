@@ -114,9 +114,9 @@ if(patient_detail.data.status===true)
 
             console.log("dsjhdj",responseNewPatient)
             if (responseNewPatient.data.data.passed===true) {
-              formik.handleReset()
-              alert('Patient added successfully. Email will be sent to you shortly');
-              router.push("/login")
+              // formik.handleReset()
+              alert('Patient added successfully. Please create your password to login.');
+              router.push(`/?verify=${responseNewPatient.data.data.result.whitelist}`)
               
             }
           }

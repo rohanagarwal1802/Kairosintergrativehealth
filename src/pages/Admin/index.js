@@ -25,6 +25,7 @@ const UserTable = ({ userDetails }) => {
       try {
         setLoading(true);
         const patient = await axios.get('/api/getPatient');
+        console.log(patient.data)
         setUserData(patient.data);
       } catch (error) {
         setUserData([])
@@ -36,6 +37,12 @@ const UserTable = ({ userDetails }) => {
     getPatientData();
   }, []);
 
+  if(loading)
+  {
+    return <Loader/>
+  }
+if(!Array.isArray(userData))
+  return
   const columns = [
     { field: 'firstname', headerName: 'First Name', width: 150 },
     { field: 'lastname', headerName: 'Last Name', width: 150 },
