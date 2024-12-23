@@ -1,51 +1,81 @@
 import { Divider, Typography, Box } from "@mui/material";
+import CustomIcon from "./customIcon";
+
 const ServicesOptions = () => {
   return [
     {
       title: "Psychiatry",
       path: "/Psychiatry",
-      // description: "Explore various mutual fund options to grow your wealth.",
-      image: "/images/faq.jpg",
+      icon: (
+        <CustomIcon
+          src={"/phyciatry_icon.png"}
+          alt="Psychiatry Icon"
+          color={"white"}
+          size={50}
+        />
+      ),
     },
- 
     {
       title: "Therapy",
       path: "/Therapy",
-      // description: "Let us manage your investment portfolio for optimal returns.",
-      image: "/images/client.jpg",
+      icon: (
+        <CustomIcon
+          src={"/therapy_icon.png"}
+          alt="Therapy Icon"
+          color={"white"}
+          size={50}
+        />
+      ),
     },
-   
     {
       title: "Addiction",
       path: "/Addiction",
-      // description: "Achieve financial independence with our expert guidance.",
-      image: "/images/terms.jpg",
+      icon: (
+        <CustomIcon
+          src={"/addiction_icon.png"}
+          alt="Addiction Icon"
+          color={"white"}
+          size={50}
+        />
+      ),
     },
     {
       title: "Resilience Roundtable",
       path: "/Roundtable",
-      // description: "Let us manage your investment portfolio for optimal returns.",
-      image: "/images/client.jpg",
+      icon: (
+        <CustomIcon
+          src={"/roundtable_icon.png"}
+          alt="Resilience Icon"
+          color={"white"}
+          size={50}
+        />
+      ),
     },
-
     {
-      title: "GeneticTesting",
+      title: "Genetic Testing",
       path: "/GTesting",
-      // description: "Achieve financial independence with our expert guidance.",
-      image: "/images/privacy.jpg",
+      icon: (
+        <CustomIcon
+          src={"/genetic_icon.png"}
+          alt="Genetic Icon"
+          color={"white"}
+          size={50}
+        />
+      ),
     },
     {
       title: "CNS-VS testing",
       path: "/CNVSTesting",
-      // description: "Achieve financial independence with our expert guidance.",
-      image: "/images/privacy.jpg",
+      icon: (
+        <CustomIcon
+          src={"/cnvs_icon.png"}
+          alt="CNVS Icon"
+          color={"white"}
+          size={50}
+        />
+      ),
     },
-    // {
-    //     title: "Psychiatry and Therapy",
-    //     path: "/Psychiatry",
-    //     // description: "Achieve financial independence with our expert guidance.",
-    //     image: "/images/privacy.jpg",
-    //   },
   ];
 };
+
 export default ServicesOptions;

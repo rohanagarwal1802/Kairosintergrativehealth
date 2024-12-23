@@ -5,6 +5,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ResourcesOptions from "./resourcesDropdown";
 import ServicesOptions from "./servicesDropdown";
 import XIcon from '@mui/icons-material/X';
+import FaxIcon from '@mui/icons-material/Fax';
 
 const Footer = () => {
   const servicesOptions = ServicesOptions();
@@ -47,7 +48,7 @@ const Footer = () => {
               >
                 <IconButton
                   component="a"
-                  href="https://www.linkedin.com/in/saahil2109"
+                  href="https://www.facebook.com/profile.php?id=61568307689433"
                   target="_blank"
                   color="inherit"
                   sx={{ fontSize: "small" }}
@@ -56,7 +57,7 @@ const Footer = () => {
                 </IconButton>
                 <IconButton
                   component="a"
-                  href="https://www.instagram.com/hippiebull"
+                  href="https://www.instagram.com/kairosintegrativehealth/"
                   target="_blank"
                   color="inherit"
                   sx={{ fontSize: "small" }}
@@ -65,7 +66,7 @@ const Footer = () => {
                 </IconButton>
                 <IconButton
                   component="a"
-                  href="https://www.facebook.com"
+                  href="https://www.facebook.com/profile.php?id=61568307689433"
                   target="_blank"
                   color="inherit"
                   sx={{ fontSize: "small" }}
@@ -117,20 +118,25 @@ const Footer = () => {
               <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
                   <Phone sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
-                  Call to:{" "}
+                  Call :{" "}
                   <Link href="tel:256-980-0620" color="inherit" sx={{ fontSize: "16px" }}>
                     256-980-0620
                   </Link>
                   <br />
-                  <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
-                    919-918-0622
-                  </Link>
+                 
                 </Typography>
                 <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
                   <Email sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
-                  Mail to:{" "}
+                  Mail :{" "}
                   <Link href="mailto:info@kairosintegrativehealth.com" color="inherit" sx={{ fontSize: "16px" }}>
                     info@kairosintegrativehealth.com
+                  </Link>
+                </Typography>
+                <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
+                  <FaxIcon sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
+                  Fax :{" "}
+                  <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
+                    919-918-0622
                   </Link>
                 </Typography>
                 <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>

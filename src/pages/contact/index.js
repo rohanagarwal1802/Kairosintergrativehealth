@@ -9,7 +9,7 @@ return (
     
     <Box
   sx={{
-    backgroundImage: `url('/contactBackground.jpg')`,
+    backgroundImage: `url('/depressionBackground.jpg')`,
     backgroundSize: 'cover', // Ensures the image covers the entire box
     backgroundPosition: 'top', // Focuses on the upper part of the image
     backgroundRepeat: 'no-repeat',
@@ -83,7 +83,7 @@ return (
 
 <Box
       sx={{
-        backgroundImage: `url('/contactBackground2.jpg')`,
+        backgroundImage: `url('/depressionBackground.jpg')`,
         backgroundSize: 'cover', // Ensures the image scales to cover the container
         backgroundPosition: 'bottom', // Focuses on the bottom part of the image
         backgroundRepeat: 'no-repeat',
