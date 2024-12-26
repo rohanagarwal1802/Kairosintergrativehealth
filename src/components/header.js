@@ -128,7 +128,7 @@ const handleMenuClose = () => {
   return (
     <AppBar position="fixed" elevation={1} sx={{ background: "#f8f9fa", color: "black", borderBottom: "1px solid #dee2e6" ,}}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Box sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+        <Box sx={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={()=>router.push("/")}>
           <Image src="/logo.png" alt="Icon" height={100} width={100} />
         </Box>
 

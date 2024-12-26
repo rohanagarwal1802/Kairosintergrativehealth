@@ -8,24 +8,24 @@ import { useRouter } from "next/router";
 
 const featureArray = [
   {
-    feature: "Compassionate",
+    feature: "Compassionate ",
     icon: <DiamondIcon />,
-    content: "Meeting you where you are and working together to craft a better you, for You!",
+    content: "We meet you where you are…",
   },
   {
     feature: "Competent",
     icon: <InsertChartIcon />,
-    content: "We provide evidence-based treatments tailored to create a holistic plan that supports your unique needs, helping you achieve your goals pland improve your overall well-being.",
+    content: "We provide evidence-based treatment plans that supports your unique needs, helping you achieve your goals and improve your overall well-being.",
   },
   {
     feature: "Centered",
     icon: <DiamondIcon />,
-    content: "We take a grounded approach in bringing each individual back to their center, fostering self-awareness, and delivering compassionate, evidence-based care to guide them toward healing and personal growth within a supportive environment.",
+    content: "We take a grounded approach in bringing each individual back to their center, fostering self-awareness while guiding them toward healing and personal growth in a supportive environment.",
   },
   {
     feature: "Clear",
     icon: <InsertChartIcon />,
-    content: "We prioritize clarity and transparency with each individual we work with, providing a compassionate and approachable atmosphere that fosters a sense of community and trust in our mental health services.",
+    content: "We prioritize clarity and transparency with each individual we work with, providing an and approachable atmosphere tthat fosters community and trust in our mental health services.",
   },
   {
     feature: "Climbing",
@@ -42,7 +42,7 @@ const About = () => {
     <Box
   sx={{
     padding: { xs: 2, sm: 4 },
-    backgroundImage: "url(/about.jpg)",
+    backgroundColor: "#C8AF8F",
     backgroundSize: "cover", // Ensures the image covers the entire area while maintaining aspect ratio
     backgroundPosition: "center", // Centers the image
     backgroundRepeat: "no-repeat", // Prevents tiling
@@ -68,15 +68,15 @@ const About = () => {
      <Typography
     variant="subtitle1"
     sx={{
-      color: "green",
+      color: "#GF7863",
       fontWeight: "bold",
       mb: 1,
       mt: 1,
       fontSize:25,
-      textAlign: { xs: "center", md: "left" }, // Center on small screens
+      textAlign: { xs: "center", md: "center" }, // Center on small screens
     }}
   >
-        “When it’s time, we’re here.” <br />
+        About KIH <br />
     </Typography>
     <Typography
     variant="subtitle1"
@@ -124,8 +124,7 @@ const About = () => {
         },
       }}
     >
-      {feature.icon}
-      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#333" }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#GF7863" }}>
         {feature.feature}
       </Typography>
       <Typography sx={{ color: "black", fontSize: "0.9rem" }}>
@@ -139,7 +138,7 @@ const About = () => {
 <Grid item xs={12} sm={6} md={4}>
   <Box
     sx={{
-      backgroundColor: "#66BB6A",
+      backgroundColor: "#2A3923",
       color: "#fff",
       padding: 2,
       mt: "5%",
@@ -160,7 +159,7 @@ const About = () => {
       },
     }}
   >
-       <Typography sx={{ color: "white", fontSize: "0.9rem",mb:"5%" }}>
+       <Typography sx={{ color: "#ECE7E2", fontSize: "0.9rem",mb:"5%" }}>
       “When it’s time, we’re here.”
       <br />
       “Taking action to craft a better you, for you.”
@@ -176,6 +175,7 @@ const About = () => {
           paddingRight: 2,
           borderRadius: "50px",
           textTransform: "capitalize",
+          backgroundColor:"#2A3923"
         }}
         onClick={()=>router.push('/bookanappointment')}
         endIcon={<ArrowForwardIosIcon />}

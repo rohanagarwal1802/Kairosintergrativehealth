@@ -39,7 +39,7 @@ const ComplimentaryCallBox = () => {
         Click here to schedule a complimentary phone call to see if KIH is a good fit for you
       </Typography>
 
-      <Button
+      {/* <Button
         variant="contained"
         sx={{
           backgroundColor: "#007BFF", // Custom button color
@@ -54,7 +54,7 @@ const ComplimentaryCallBox = () => {
         onClick={handleClick}
       >
         Complimentary Phone Call
-      </Button>
+      </Button> */}
     </Box>
   );
 };

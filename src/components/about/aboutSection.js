@@ -127,7 +127,8 @@ const AboutSection = () => {
               >
                  
 
-After years of experience in both inpatient and outpatient corporate healthcare organizations, our founder, Mark, recognized that the pressure to meet quotas and benchmarks often compromised the quality of care he could provide to his patients. As the healthcare industry continues to adopt a more corporate model, Kairos Integrative Health takes a different approach—one that prioritizes the needs of both patients and healthcare providers. Our clinic offers the community access to high-quality, timely, and evidence-based care. Furthermore, we strive to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of corporate structures. At Kairos Integrative Health, we believe that by placing patient care at the forefront and supporting our providers, we can create a healing environment that benefits everyone.
+                 : As the healthcare industry continues to adopt a more streamlined model, Kairos Integrative Health takes a different approach. Our approach prioritizes the needs of both our patients and our providers. KIH offers our community access to high-quality, timely, and evidence-based care while also striving to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of streamlined practices. 
+                 Our belief is simple by placing patient care at the forefront and supporting our providers, we create a sustainable, healing environment that benefits everyone.
               </Typography>
 
              
@@ -160,11 +161,11 @@ After years of experience in both inpatient and outpatient corporate healthcare 
         </Typography>
         <Typography variant="text" sx={{ color: "white", marginTop: 1 ,fontSize:"80%"}}>
   Our mission is to deliver{" "}
-  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>comprehensive</Typography> and{" "}
-  <Typography component="span" sx={{ fontWeight: "bold",color:"white" ,fontSize:"80%"}}>integrative</Typography> mental health services that empower individuals and strengthen the resilience of our{" "}
-  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>community</Typography>. By prioritizing holistic care and fostering enduring patient-provider relationships, we aim to become a trusted pillar of support in our community, improving quality of life and promoting mental wellness for all.
-</Typography>
+ comprehensive and{" "}
+integrativemental health services that empower individuals and strengthen the resilience of our{" "}
+ community. By prioritizing holistic care and fostering enduring patient-provider relationships, we aim to become a trusted pillar of support in our community, improving quality of life and promoting mental wellness for all.
 
+ </Typography>
       </Box>
       <Divider sx={{color:"white"}}/>
       {/* Our Story Section */}
@@ -187,12 +188,13 @@ After years of experience in both inpatient and outpatient corporate healthcare 
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1,fontSize:"100%" }}>
         Vision
         </Typography>
-        <Typography variant="text" sx={{ fontWeight: "text", color: "white", marginTop: 1,fontSize:"80%" }}>
-        Our{" "}  <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>vision</Typography> is to be a recognized and{" "} 
-        <Typography component="span" sx={{ fontWeight: "bold" ,color:"white",fontSize:"80%"}}>trusted leader</Typography> in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy, free from corporate constraints, and in alignment with their patients' best interests.
+        <Typography variant="text" sx={{ color: "white", marginTop: 1 ,fontSize:"80%"}}>
+        Our{" "} vision is to be a recognized and{" "} 
+       
+       trusted leader in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy,and in alignment with their patients' best interests.
+</Typography>
 
-
-        </Typography>
+       
       </Box>
 
      

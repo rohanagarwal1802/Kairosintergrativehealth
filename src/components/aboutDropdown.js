@@ -1,7 +1,7 @@
 const AboutOptions = () => {
   return [
     {
-      title: "About Kairos",
+      title: "About KIH",
       path: "/about",
       // description: "Explore various mutual fund options to grow your wealth.",
       image: "/images/faq.jpg",

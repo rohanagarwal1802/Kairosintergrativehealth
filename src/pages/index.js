@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
 import FeedbackClients from "@/components/Home/feedback";
@@ -12,9 +12,12 @@ import ComplimentaryCallBox from "@/components/Home/complemetaryPhone";
 import ImageGallery from "@/components/Home/reviewImages";
 
 export default function Home() {
-  const {loadLoader, setLoadLoader} = useUserStore();
+  const { loadLoader, setLoadLoader } = useUserStore();
 
- 
+  const handlePhoneCallClick = () => {
+    // Add logic to trigger the phone call box/modal
+    router.push('/bookanappointment')
+  };
 
   return (
     <>
@@ -41,30 +44,54 @@ export default function Home() {
       <Box
         sx={{
           position: "relative",
-          width: "100%", // Adjust width as needed
-          aspectRatio: "16/9", // Keeps the aspect ratio
+          width: "100%",
+          aspectRatio: "16/9",
           overflow: "hidden",
-          margin: "0 auto", // Centers the Box horizontally
+          margin: "0 auto",
         }}
       >
         <Image
           src="/title.jpg"
           alt="Kairos Integrative Health Background"
           layout="fill"
-          objectFit="contain" // Ensures the entire image is visible
+          objectFit="contain"
           quality={100}
           priority
-          style={{
-            objectPosition: "center", // Centers the image to avoid cutting from any side
-          }}
+          style={{ objectPosition: "center" }}
         />
       </Box>
 
-<ComplimentaryCallBox/>
+      <ComplimentaryCallBox />
       <ServicesBox />
-      <PeoplePreferUs /> 
-      <ImageGallery/>
-       {/* <FeedbackClients /> */}
+      <PeoplePreferUs />
+      <ImageGallery />
+      {/* <FeedbackClients /> */}
+
+      {/* Sticky Button */}
+      <Box
+        sx={{
+          position: "sticky",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          backgroundColor: "white",
+          textAlign: "center",
+          padding: "10px 0",
+          boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handlePhoneCallClick}
+          sx={{
+            padding: "12px 24px",
+            fontSize: "16px",
+          }}
+        >
+          Complimentary Phone Call
+        </Button>
+      </Box>
     </>
   );
 }

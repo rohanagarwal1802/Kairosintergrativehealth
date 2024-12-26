@@ -100,7 +100,7 @@ function PeoplePreferUs() {
                 Integrative Psychiatry
               </Typography>
               <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit.
+                Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person's body, mind, and spirit.
               </Typography>
             </Box>
           </Grid>

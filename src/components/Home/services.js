@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import ServicesOptions from "../servicesDropdown";
+import CustomIcon from "../customIcon";
 // Services list with custom icons
 const services = ServicesOptions()
 
@@ -11,7 +12,7 @@ const ServicesBox = () => {
         display: "flex",
         justifyContent: "space-evenly",
         alignItems: "center",
-        backgroundColor: "#d9fbd9", // Light green background
+        backgroundColor: "#ECE7E2", // Light green background
         padding: "20px",
         borderRadius: "8px",
         overflowX: "auto", // Enable horizontal scrolling if items overflow
@@ -29,7 +30,13 @@ const ServicesBox = () => {
             marginX: "10px", // Horizontal margin between items
           }}
         >
-          {service.icon}
+           <CustomIcon
+          src={service.image}
+          alt={service.title}
+          color={"white"}
+          path={service.path}
+          size={50}
+        />
           <Typography
             variant="subtitle1"
             sx={{

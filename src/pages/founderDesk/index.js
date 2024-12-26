@@ -3,7 +3,7 @@ import { Box, Typography, Stack } from "@mui/material";
 
 const FounderDesk = () => {
   return (
-    <><Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", p: 4 }}>
+    <><Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", p: 4,  backgroundColor:"#C8AF8F",zIndex:-2, }}>
       {/* Image Section */}
       <Box
         sx={{
@@ -13,6 +13,7 @@ const FounderDesk = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+        
           ml: { xs: 0, md: -4 }, // Shifts the image to the left on medium and larger screens
         }}
       >
@@ -25,7 +26,7 @@ const FounderDesk = () => {
             width: "80%",
             height: "35%",
             backgroundColor: "#66BB6A",
-            zIndex: -1,
+            zIndex: 0,
             borderRadius: 2,
           }} />
 
@@ -54,7 +55,7 @@ const FounderDesk = () => {
             width: "60%",
             height: "50%",
             backgroundColor: "#66BB6A",
-            zIndex: -1,
+            zIndex: 0,
             borderRadius: 2,
           }} />
         {/* Image */}
@@ -110,16 +111,15 @@ const FounderDesk = () => {
       >
         <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 }}>
         Mark Merritt 
-Lead Clinician
+
 MSN, MBA, PMHNP-BC
         </Typography>
-        <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16 }}>
-          Mark Merritt is a dedicated Psychiatric Mental Health Nurse Practitioner (PMHNP) born, raised,
-          and practicing in Birmingham, Alabama, with a passion for enhancing the well-being of in his
-          community. With an extensive educational background, including a Master of Science in
-          Psychiatric Mental Health Nursing, a Master of Business Administration, and a Bachelor of
+        <Typography variant="body1" sx={{ color: "black", fontSize: 16 }}>
+          Mark Merritt is a dedicated Psychiatric Mental Health Nurse Practitioner (PMHNP) <b>born</b>, <b>raised</b>,
+          and <b>practicing</b> in Birmingham, Alabama, with a passion for enhancing the well-being of in his
+          community. With an extensive educational background, including a Master of Science in Nursing specializing and psychiatric – mental health nursing, a Master of Business Administration, and a Bachelor of
           Science in Public Health, Mark utilizes his training and experience in population and individual
-          based settings to provide a diverse understanding to everyone’s unique presentation.
+          based settings to provide 7.a diverse understanding to each individual’s unique presentation, 8.enhancing the well-being of his community.
         </Typography>
       </Stack>
     </Box>
@@ -152,12 +152,12 @@ MSN, MBA, PMHNP-BC
     border: '1px solid #ddd',
   }}
 >
-  <Typography variant="h4" sx={{ color: 'black', mb: 2, fontWeight: 'bold' }}>
+  <Typography variant="h4" sx={{ color: 'black', mb: 2, fontWeight: 'bold',textAlign:"center" }}>
     Meet Mark
   </Typography>
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    Mark has vast experience in the healthcare industry, spanning:
+  Mark’s vast experience in our healthcare system spans:
   </Typography>
   <div
   style={{
@@ -182,9 +182,9 @@ MSN, MBA, PMHNP-BC
 
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    His diverse background gives him a unique perspective on the healthcare system and a passion for preventing individuals from "falling through the cracks."
+  His diverse background gives him a unique perspective of our healthcare system and a passion for preventing individuals from "falling through the cracks."
   </Typography>
-<Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+{/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -194,23 +194,30 @@ MSN, MBA, PMHNP-BC
   <Typography variant="h5" sx={{ color: '#333', mb: 2, fontWeight: 'bold' }}>
     Career Highlights
   </Typography>
-  </Box>
+  </Box> */}
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     <b>St. Vincent’s East:</b> 
-    &nbsp;Mark began his career as a nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
-  </Typography>
-  <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8 }}>
-    <li>Staff Education</li>
-    <li>Patient Advocacy</li>
-    <li>Process Improvement</li>
-    <li>Patient Care</li>
-  </ul>
-
-  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    As a <b>Psychiatric Mental Health Nurse Practitioner</b>, Mark has worked alongside Duke and Yale trained psychiatrist and addictionologists in both general psychiatry and addiction specialties.
-     Mark provides comprehensive assessments, diagnoses, and treatment for various mental health challenges, including substance use disorders. He collaborates with patients to create personalized treatment plans that foster resilience and improve quality of life.
+    &nbsp;Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
   </Typography>
   <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    borderRadius: '10px', // Rounded corners
+    padding: '20px', // Padding inside the box
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
+    maxWidth: '400px', // Restrict width to avoid stretching
+    marginLeft: '0', // Aligns the box to the left
+}}>
+  <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8 }}>
+   
+    <li>Patient Care</li>
+    <li>Patient Advocacy</li>
+    <li>Process and Policy Improvement</li>
+    <li>Staff Education</li>
+  </ul>
+</Box>
+  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
+  Advancing in his career, Mark began his career as a Psychiatric Mental Health Nurse Practitioner in NC where he worked alongside Duke and Yale trained psychiatrist and addictionologist in general psychiatry and addiction specialties.
+  </Typography>
+  {/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -220,7 +227,7 @@ MSN, MBA, PMHNP-BC
   <Typography variant="h5" sx={{ color: '#333', mb: 2, fontWeight: 'bold' }}>
     Educator & Mentor
   </Typography>
-  </Box>
+  </Box> */}
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     Mark is passionate about guiding the next generation of healthcare professionals. He has served as a clinical instructor, focusing on psychiatric and addiction nursing, while inspiring students through education and mentorship.
   </Typography>
