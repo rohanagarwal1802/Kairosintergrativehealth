@@ -18,6 +18,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import BlankLayout from "@/components/blankLayout";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
+import useUserStore from "@/components/useUserStore";
 
 export default function CreatePassword() {
   const [password, setPassword] = useState("");
@@ -25,6 +26,7 @@ export default function CreatePassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router=useRouter()
+
 
   const handleTogglePasswordVisibility = () => setShowPassword(!showPassword);
   const handleToggleConfirmPasswordVisibility = () =>

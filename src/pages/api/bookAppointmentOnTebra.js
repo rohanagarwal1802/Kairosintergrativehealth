@@ -1,4 +1,4 @@
-import soap from "soap";
+import * as soap from 'soap';
 import { parse, isValid } from 'date-fns';
 
 export default async function handler(req, res) {
@@ -12,7 +12,45 @@ export default async function handler(req, res) {
     });
   }
 
-  const { location,appointmentDate } = req.body;
+  const { service,location,appointmentDate,patientId } = req.body;
+
+  if(!service || !location || !appointmentDate || !patientId)
+  {
+    return res.status(403).json({
+      status: "error",
+      message: "Required credentials are missing!",
+    });
+  }
+
+let PSYCIATRY_ID=process.env.PSYCIATRY_ID
+let THERAPY_ID=process.env.THERAPY_ID
+let ADDICTION_ID=process.env.ADDICTION_ID
+let GENETICTESTING_ID=process.env.GENETICTESTING_ID
+let CNVS_ID=process.env.CNVS_ID
+
+let appointment_reasonId=0
+
+
+if(service==="Phyciatry")
+{
+  appointment_reasonId=PSYCIATRY_ID
+}
+else if(service==="Therapy"){
+  appointment_reasonId=THERAPY_ID
+}
+else if(service==="Addiction"){
+  appointment_reasonId=ADDICTION_ID
+}
+else if(service==="Genetic Testing"){
+  appointment_reasonId=GENETICTESTING_ID
+}
+else if(service==="CNS-VS Testing"){
+  appointment_reasonId=CNVS_ID
+}
+
+
+// console.log("credentials",service,patientId,process.env.PSYCIATRY_ID,process.env.THERAPY_ID,process.env.ADDICTION_ID,process.env.GENETICTESTING_ID)
+
 
   console.log("start date ==>",appointmentDate)
   let location_id = 1;
@@ -45,7 +83,7 @@ export default async function handler(req, res) {
           User: process.env.KAREO_USERNAME,
         },
         Filter: {
-          PatientID: 1,
+          PatientID: parseInt(patientId),
         },
       },
     };
@@ -169,7 +207,7 @@ export default async function handler(req, res) {
         Appointment: {
           AppointmentId: 1,
           AppointmentName: "Consultation",
-          AppointmentReasonId: 93,
+          AppointmentReasonId: appointment_reasonId,
           AppointmentStatus: "Tentative",
           AppointmentType: "P",
           CreatedAt: createdAtISO,
@@ -202,7 +240,7 @@ export default async function handler(req, res) {
           PracticeId: result_res.Patient.PracticeId,
           ProviderId: 1,
           ResourceId: location_id,
-          ServiceLocationId: 1,
+          ServiceLocationId: location_id,
           StartTime: startTimeISO,
           UpdatedAt: current_date,
           UpdatedBy: 1,

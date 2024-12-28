@@ -12,11 +12,28 @@ import MakePassword from "@/components/makePassword";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const {pageDisplay, setPageDisplay} = useUserStore(); // Tracks page state
+  const {pageDisplay, setPageDisplay,login,setLogin} = useUserStore(); // Tracks page state
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Tracks auth status
   const [userDetails, setUserDetails] = useState(null); // Stores user data
-  const [loading,setLoading]=useState(false)
+  const [loading,setLoading]=useState(true)
 const url=router.asPath;
+
+// useEffect(() => {
+//   // Check if 'login' exists in localStorage and is "true"
+//   if (localStorage.getItem("login") === "true") {
+//     setLogin(true);
+//   }
+// }, []);
+useEffect(()=>{
+  if(login===false)
+  {
+    router.push('/')
+  }
+  else
+  {
+    router.push(pageDisplay)
+  }
+},[login])
 
   const checkPageDisplay=async ()=>{
     try{
@@ -47,28 +64,45 @@ setLoading(false); // Stop loading
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // Helper function for delay
     
       try {
-        const res = await axios.get("/api/cookie");
+        const res = await axios.get("/api/cookie", { withCredentials: true });
         console.log("res.data", res.data);
     
         if (res.data) {
           setUserDetails(res.data); // Set user details
-          setPageDisplay("app"); // Show the app layout
+          localStorage.setItem("login", "true");
+          // setLogin(true);
+          console.log("pageDisplay ==>",pageDisplay)
+          if(pageDisplay===""){
+         // Show the app layout
           if (res.data?.role === "admin") {
-          await  router.push("/Admin"); // Redirect to admin panel
+            setPageDisplay("Admin"); 
+          // await  router.push("/Admin"); // Redirect to admin panel
           } else {
-          await  router.push("/userAppointments");
+            setPageDisplay("userAppointments"); 
+          // await  router.push("/userAppointments");
           }
+          setLogin(true);
+        }
         } else {
           setPageDisplay("app"); // Show login page
+          if(login===true)
+          {
           localStorage.setItem("login", "false");
+          setLogin(false)
+          }
         }
       } catch (error) {
         setPageDisplay("app"); // On error, show login page
-        localStorage.setItem("login", "false");
+        if(login===true)
+          {
+          localStorage.setItem("login", "false");
+          setLogin(false)
+          }
       } finally {
-        await delay(3000); // Ensure a 5-second delay
+        await delay(1000); // Ensure a 5-second delay
         setIsAuthChecked(true); // Mark auth check as complete
         setLoading(false); // Stop loading
+       
       }
     };
     

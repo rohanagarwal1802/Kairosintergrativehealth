@@ -1,72 +1,94 @@
-import jwt from "jsonwebtoken";
-import axios from "axios";
-import cookie from "cookie";
-import Patients from "../../../lib/models/PatientDetails";
+import jwt from 'jsonwebtoken';
+import { serialize } from "cookie";
+import Patients from '../../../lib/models/PatientDetails';
+import dotenv from 'dotenv';
+import crypto from 'crypto';
 
+// Load environment variables
+dotenv.config();
 
+/**
+ * Helper function to hash a secret key to ensure it is 32 bytes.
+ * @param {string} key - The secret key to hash.
+ * @returns {string} - A hashed and truncated key.
+ */
+const hashSecretKey = (key) => {
+  return crypto.createHash('sha256').update(key).digest('base64').substring(0, 32);
+};
+
+/**
+ * Helper function to create a cookie for JWT.
+ * @param {string} token - JWT token.
+ * @param {boolean} isLocalhost - Whether the environment is localhost.
+ * @param {number} maxAge - Max age of the cookie in seconds.
+ * @returns {string} - Serialized cookie.
+ */
+const createJwtCookie = (token, isLocalhost, maxAge) => {
+  console.log("Creating cookie with token:", token);
+  return serialize('userToken', token, {
+    httpOnly: true,
+    secure: !isLocalhost,  // Secure only in production
+    maxAge,
+    sameSite: 'strict',
+    path: '/',
+  });
+};
+
+/**
+ * API handler for login functionality.
+ * Supports both Admin and Patient login.
+ */
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   const { email, password } = req.body;
+  const { EMAIL_USER, EMAIL_PASS, secretKey } = process.env;
 
-  // Check if the email and password match the admin credentials
-  if (email === process.env.EMAIL_USER && password === process.env.EMAIL_PASS) {
-    // Create payload indicating it's an admin
-    const payload = { email, role: "admin" };
+  // Validate presence of environment variables
+  if (!EMAIL_USER || !EMAIL_PASS || !secretKey) {
+    console.error('Environment variables are missing. Ensure .env is properly configured.');
+    return res.status(500).json({ message: 'Server configuration error' });
+  }
+
+  // Hash the secret key to ensure it is 32 bytes
+  const hashedSecretKey = hashSecretKey(secretKey);
+
+  const isLocalhost = req.headers.host.includes('localhost');
+
+  // Admin Login
+  if (email === EMAIL_USER && password === EMAIL_PASS) {
     try {
-      const bearerToken = jwt.sign(payload, process.env.secretKey);
-      const eightHoursInSeconds = 8 * 60 * 60;
+      const payload = { email, role: 'admin' };
+      const bearerToken = jwt.sign(payload, hashedSecretKey, { expiresIn: '8h' });
 
-      // Set the token as a cookie
-      const jwtCookie = cookie.serialize("userToken", bearerToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',  // Set secure flag conditionally
-        maxAge: eightHoursInSeconds,
-        sameSite: "strict",  // Can be 'Lax' if cross-site issues arise
-        path: "/",
-      });
+      const jwtCookie = createJwtCookie(bearerToken, isLocalhost, 8 * 60 * 60); // 8 hours
 
-      // Set the cookie and return success response (no need to send the token in body)
-      res.setHeader("Set-Cookie", jwtCookie);
-      return res.status(200).json({ message: "Admin login successful" });
+      res.setHeader('Set-Cookie', jwtCookie);
+      return res.status(200).json({ message: 'Admin login successful' });
     } catch (error) {
-      console.error("Error generating JWT:", error);
-      return res.status(500).json({ message: "Error generating JWT" });
+      console.error('Error generating JWT for admin:', error);
+      return res.status(500).json({ message: 'Error generating admin JWT' });
     }
   }
 
-  // If the email and password don't match, proceed with the usual API call
+  // Patient Login
   try {
+    const response = await Patients.loginPatient(email, password);
 
+    if (response === 'Wrong Password' || response === 'Patient Not Found') {
+      return res.status(403).json({ message: response });
+    }
 
-   
+    const jwtCookie = createJwtCookie(response, isLocalhost, 10 * 24 * 60 * 60); // 10 days
 
-    const response = await Patients.loginPatient(email,password);
-if(response==="Wrong Password" || response==="Patient Not Found")
-{
-  return res.status(403).json({message:response});
-}
-   
-      // const tokenFromResponse = response.data;
-      console.log("response ==>",response)
-      const tenDaysInSeconds = 10 * 24 * 60 * 60;
-      const jwtCookie = cookie.serialize("userToken", response, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: tenDaysInSeconds,
-        sameSite: "strict",
-        path: "/",
-      });
-     await res.setHeader("Set-Cookie", jwtCookie);
-      return res.status(200).json(response);  // Send data directly
-    
+    res.setHeader('Set-Cookie', jwtCookie);
+    return res.status(200).json({ message: 'Patient login successful' });
   } catch (error) {
-    // Improved error logging
-    console.error("API call failed:", error);  // Log the entire error object
+    console.error('Error during patient login:', error);
     const statusCode = error.response ? error.response.status : 500;
-    const errorMessage = error.response ? error.response.data : "Internal Server Error";
+    const errorMessage = error.response ? error.response.data : 'Internal Server Error';
     return res.status(statusCode).json({ message: errorMessage });
   }
 }

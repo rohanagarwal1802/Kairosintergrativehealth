@@ -44,6 +44,7 @@ const UserTable = ({ userDetails }) => {
 if(!Array.isArray(userData))
   return
   const columns = [
+    { field: 'sno', headerName: 'S.No', width: 150 },
     { field: 'firstname', headerName: 'First Name', width: 150 },
     { field: 'lastname', headerName: 'Last Name', width: 150 },
     { field: 'dob', headerName: 'Date of Birth', width: 180 },
@@ -55,8 +56,9 @@ if(!Array.isArray(userData))
     { field: 'updated_at', headerName: 'Updated At', width: 200 },
   ];
 
-  const rows = userData.map((user) => ({
+  const rows = userData.map((user,index) => ({
     id: user?.id,
+    sno: index + 1, // Add serial number starting from 1
     firstname: user?.firstname,
     lastname: user?.lastname,
     dob: user?.dob,
@@ -75,6 +77,7 @@ if(!Array.isArray(userData))
 
     // Set column widths for better readability
     const wscols = [
+      { wch: 15 },
       { wch: 15 }, // First Name
       { wch: 15 }, // Last Name
       { wch: 20 }, // DOB
@@ -169,7 +172,7 @@ if(!Array.isArray(userData))
                       Pagination: CustomPaginationGrid,
                       Toolbar: GridToolbar,
                     }}
-                    localeText={{ noRowsLabel: "No Appointments Available" }}
+                    localeText={{ noRowsLabel: "No Patients Available" }}
                     getRowClassName={(params) =>
                       params.row.isExpired ? "expired-row" : ""
                     }

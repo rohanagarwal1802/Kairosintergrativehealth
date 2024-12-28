@@ -96,7 +96,7 @@ const AboutSection = () => {
           display: "flex",
           justifyContent: "center",
           padding: 4,
-          backgroundColor: "#66BB6A",
+          backgroundColor: "#6F7863",
         }}
       >
         <Grid container spacing={4} sx={{ alignItems: "center" }}>
@@ -127,7 +127,7 @@ const AboutSection = () => {
               >
                  
 
-                 : As the healthcare industry continues to adopt a more streamlined model, Kairos Integrative Health takes a different approach. Our approach prioritizes the needs of both our patients and our providers. KIH offers our community access to high-quality, timely, and evidence-based care while also striving to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of streamlined practices. 
+                 As the healthcare industry continues to adopt a more streamlined model, Kairos Integrative Health takes a different approach. Our approach prioritizes the needs of both our patients and our providers. KIH offers our community access to high-quality, timely, and evidence-based care while also striving to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of streamlined practices. 
                  Our belief is simple by placing patient care at the forefront and supporting our providers, we create a sustainable, healing environment that benefits everyone.
               </Typography>
 
@@ -149,7 +149,7 @@ const AboutSection = () => {
           justifyContent: "center",
           padding: 4,
           textAlign: "center",
-          backgroundColor: "#66BB6A",
+          backgroundColor: "#6F7863",
           opacity: 0,
           transform: "translateY(20px)",
           transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
@@ -178,7 +178,7 @@ integrativemental health services that empower individuals and strengthen the re
           justifyContent: "center",
           padding: 4,
           textAlign: "center",
-          backgroundColor: "#66BB6A",
+          backgroundColor: "#6F7863",
           opacity: 0,
           transform: "translateY(20px)",
           transition: "opacity 0.6s ease-out, transform 0.6s ease-out",

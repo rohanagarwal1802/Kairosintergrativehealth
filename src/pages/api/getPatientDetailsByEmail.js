@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     // Fetch patient details from the database
     const patients = await Patients.getPatientByEmail(req.body.email);
     
-    return res.status(200).json({status:patients});
+    return res.status(200).json({status:patients.status,patient:patients.patient});
   } catch (error) {
     // Handle specific JWT errors
 

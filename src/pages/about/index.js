@@ -68,7 +68,7 @@ const About = () => {
      <Typography
     variant="subtitle1"
     sx={{
-      color: "#GF7863",
+      color: "#6F7863",
       fontWeight: "bold",
       mb: 1,
       mt: 1,
@@ -124,7 +124,7 @@ const About = () => {
         },
       }}
     >
-      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#GF7863" }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#6F7863" }}>
         {feature.feature}
       </Typography>
       <Typography sx={{ color: "black", fontSize: "0.9rem" }}>
@@ -139,7 +139,7 @@ const About = () => {
   <Box
     sx={{
       backgroundColor: "#2A3923",
-      color: "#fff",
+      color: "#ECE7E2",
       padding: 2,
       mt: "5%",
       width: "100%", // Ensures full width on all screens
@@ -161,8 +161,8 @@ const About = () => {
   >
        <Typography sx={{ color: "#ECE7E2", fontSize: "0.9rem",mb:"5%" }}>
       “When it’s time, we’re here.”
-      <br />
-      “Taking action to craft a better you, for you.”
+      {/* <br />
+      “Taking action to craft a better you, for you.” */}
     </Typography>
     
     <Box sx={{ display: "flex", justifyContent: "center" }}>

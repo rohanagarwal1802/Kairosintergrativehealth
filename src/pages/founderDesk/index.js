@@ -64,7 +64,7 @@ const FounderDesk = () => {
           src="/founder.jpg"
           alt="Founder"
           sx={{
-            height: "70%",
+            height: "79%",
             width: "70%",
             objectFit: "cover",
             borderRadius: 2,

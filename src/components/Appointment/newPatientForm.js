@@ -94,7 +94,7 @@ const PatientForm = () => {
         val.insurance=insurance
 
         const patient_detail=await axios.post('/api/getPatientDetailsByEmail',{email:email})
-        console.log("Patient Details ",patient_detail)
+        // console.log("Patient Details ",patient_detail)
 if(patient_detail.data.status===true)
 {
   alert("Patient Already exists with email.")
@@ -104,12 +104,14 @@ if(patient_detail.data.status===true)
         
         console.log('Data being sent to server: ', questions); // Log the data
         const response = await axios.post('/api/createPatient', val); // Use 'values' instead of 'data'
-    
+
+        console.log("response",response)
+    const patientID=response.data.patientId.CreatePatientResult.PatientID
         if (response.status === 200) {
           try{
             const responseNewPatient = await axios.post('/api/addNewPatient', {
               ...values, 
-              TebraValues: response.data // Assuming response.data contains the data you want to send
+              patientId:patientID // Assuming response.data contains the data you want to send
             });
 
             console.log("dsjhdj",responseNewPatient)

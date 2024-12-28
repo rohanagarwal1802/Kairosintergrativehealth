@@ -324,5 +324,109 @@
     "isRegistered": "false",
     "created_at": "2024-12-22T11:12:35.988Z",
     "updated_at": "2024-12-22T11:12:35.988Z"
+  },
+  {
+    "id": 11,
+    "firstname": "rohan",
+    "lastname": "Agarwal",
+    "dob": "2024-12-01",
+    "email": "rahul931p@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "assb",
+    "questions": [
+      "yes",
+      "yes",
+      "yes",
+      "no",
+      "yes"
+    ],
+    "captchaVerification": "ub4i4h",
+    "TebraValues": {
+      "status": "success",
+      "patientId": "unknown",
+      "message": "Patient created successfully!"
+    },
+    "isRegistered": true,
+    "created_at": "2024-12-28T10:02:07.975Z",
+    "updated_at": "2024-12-28T10:02:48.936Z",
+    "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhaHVsOTMxcEBnbWFpbC5jb20iLCJpYXQiOjE3MzUzODAxMjcsImV4cCI6MTczNTQ2NjUyN30.8ijjStHvD5080LOsT7wEuGxpwq6MMa1qnCSIRlhWDsQ",
+    "password": "d9c8d628d22d49204ab119c5a9fcd40f:ddafc4b7ca4c39d6a3d0",
+    "verifiedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhaHVsOTMxcEBnbWFpbC5jb20iLCJpYXQiOjE3MzUzODAxMjcsImV4cCI6MTczNTQ2NjUyN30.8ijjStHvD5080LOsT7wEuGxpwq6MMa1qnCSIRlhWDsQ"
+  },
+  {
+    "id": 12,
+    "firstname": "rohan",
+    "lastname": "Agarwal",
+    "dob": "2024-12-03",
+    "email": "rahul931pp@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "insurance",
+    "questions": [
+      "yes",
+      "yes",
+      "yes",
+      "yes",
+      "yes"
+    ],
+    "captchaVerification": "qp0lax",
+    "TebraValues": {
+      "status": "success",
+      "patientId": "unknown",
+      "message": "Patient created successfully!"
+    },
+    "isRegistered": "false",
+    "created_at": "2024-12-28T10:24:52.835Z",
+    "updated_at": "2024-12-28T10:24:52.835Z",
+    "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhaHVsOTMxcHBAZ21haWwuY29tIiwiaWF0IjoxNzM1MzgxNDkyLCJleHAiOjE3MzU0Njc4OTJ9.w_F990_rRfqfNFiYb2pKCnDHDQrwOBjQKAvHPdTN-mM"
+  },
+  {
+    "id": 13,
+    "firstname": "rohan",
+    "lastname": "Agarwal",
+    "dob": "2024-12-02",
+    "email": "rahul931ppp@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "insurance1",
+    "questions": [
+      "yes",
+      "yes",
+      "yes",
+      "yes",
+      "yes"
+    ],
+    "captchaVerification": "79hjxf",
+    "TebraValues": {
+      "status": "success",
+      "patientId": "unknown",
+      "message": "Patient created successfully!"
+    },
+    "isRegistered": "false",
+    "created_at": "2024-12-28T10:28:32.933Z",
+    "updated_at": "2024-12-28T10:28:32.933Z",
+    "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhaHVsOTMxcHBwQGdtYWlsLmNvbSIsImlhdCI6MTczNTM4MTcxMiwiZXhwIjoxNzM1NDY4MTEyfQ.n-Lz5IOKBZc90dvdEnkgPuQpQUnY78hEaqbvE8mLS1g"
+  },
+  {
+    "id": 14,
+    "firstname": "Rahul",
+    "lastname": "Agarwal",
+    "dob": "2024-12-04",
+    "email": "aaap1@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "insurance",
+    "questions": [
+      "yes",
+      "yes",
+      "no",
+      "yes",
+      "yes"
+    ],
+    "captchaVerification": "nrl112",
+    "patientId": 97,
+    "isRegistered": true,
+    "created_at": "2024-12-28T11:31:14.308Z",
+    "updated_at": "2024-12-28T18:31:02.560Z",
+    "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYXAxQGdtYWlsLmNvbSIsImlhdCI6MTczNTM4NTQ3NCwiZXhwIjoxNzM1NDcxODc0fQ.yCOkh7eEQy6Q5honrAf6URf_HRP-68qjBIR7TfatWUY",
+    "password": "69138f306bdc8aec6b6930fcdb474b0e:a3bd26d79ed3e4e052fa",
+    "verifiedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYXAxQGdtYWlsLmNvbSIsImlhdCI6MTczNTM4NTQ3NCwiZXhwIjoxNzM1NDcxODc0fQ.yCOkh7eEQy6Q5honrAf6URf_HRP-68qjBIR7TfatWUY"
   }
 ]

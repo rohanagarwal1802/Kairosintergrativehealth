@@ -57,7 +57,6 @@ const ResilienceRoundtableForm = () => {
   const [open,setOpen]=useState(false)
   const [scanner,setScanner]=useState(null) 
   const [type,setType]=useState(null)
-
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -79,51 +78,72 @@ const ResilienceRoundtableForm = () => {
     firstAttendeeName: '',
     secondAttendeeName: '',
   };
-
+  
+  const phoneNumberRegex = /^\d{3}-\d{3}-\d{4}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
   const validationSchema = Yup.object({
     firstName: Yup.string().required('First name is required'),
     lastName: Yup.string().required('Last name is required'),
-    email: Yup.string().email('Invalid email format').required('Email is required'),
+    email: Yup.string()
+      .matches(emailRegex, 'Invalid email format')
+      .required('Email is required'),
     phoneNumber: Yup.string()
-      .matches(/^\d{3}-\d{3}-\d{4}$/, 'Invalid phone number format')
+      .matches(phoneNumberRegex, 'Invalid phone number format')
       .required('Phone number is required'),
     dob: Yup.date().required('Date of birth is required'),
-    attending: Yup.boolean().oneOf([true], 'Please indicate if you are attending'),
-    over18: Yup.boolean().oneOf([true], 'You must be over 18'),
+    textPermission: Yup.boolean().required('Text permission is required'),
+    attending: Yup.boolean()
+      .oneOf([true], 'Please indicate if you are attending')
+      .required(),
+    over18: Yup.boolean()
+      .oneOf([true], 'You must be over 18')
+      .required(),
+    bringingFriend: Yup.boolean().required(),
     friendFirstName: Yup.string().when('bringingFriend', {
       is: true,
       then: Yup.string().required("Friend's first name is required"),
+      otherwise: Yup.string().notRequired(),
     }),
     friendLastName: Yup.string().when('bringingFriend', {
       is: true,
       then: Yup.string().required("Friend's last name is required"),
+      otherwise: Yup.string().notRequired(),
     }),
     friendDob: Yup.date().when('bringingFriend', {
       is: true,
       then: Yup.date().required("Friend's date of birth is required"),
+      otherwise: Yup.date().notRequired(),
     }),
     friendPhoneNumber: Yup.string().when('bringingFriend', {
       is: true,
       then: Yup.string()
-        .matches(/^\d{3}-\d{3}-\d{4}$/, 'Invalid phone number format')
+        .matches(phoneNumberRegex, 'Invalid phone number format')
         .required("Friend's phone number is required"),
+      otherwise: Yup.string().notRequired(),
     }),
     friendEmail: Yup.string().when('bringingFriend', {
       is: true,
-      then: Yup.string().email('Invalid email format').required("Friend's email is required"),
+      then: Yup.string()
+        .email('Invalid email format')
+        .required("Friend's email is required"),
+      otherwise: Yup.string().notRequired(),
     }),
     payment: Yup.string().required('Payment type is required'),
     memberName: Yup.string().when('payment', {
       is: 'member',
       then: Yup.string().required('Member name is required when payment is "member"'),
+      otherwise: Yup.string().notRequired(),
     }),
     firstAttendeeName: Yup.string().when('payment', {
       is: 'member',
       then: Yup.string().required('First attendee name is required when payment is "member"'),
+      otherwise: Yup.string().notRequired(),
     }),
     secondAttendeeName: Yup.string().when('payment', {
       is: 'member',
       then: Yup.string().required('Second attendee name is required when payment is "member"'),
+      otherwise: Yup.string().notRequired(),
     }),
   });
   
@@ -247,24 +267,29 @@ const ResilienceRoundtableForm = () => {
                           }} />
                       </Grid>
                       <Grid item xs={6}>
-                        <TextField
-                          fullWidth
-                          label="Date of Birth"
-                          name="dob"
-                          type="date"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.dob}
-                          error={touched.dob && Boolean(errors.dob)}
-                          helperText={touched.dob && errors.dob}
-                          InputLabelProps={{
-                            shrink: true, // Ensures the label is always displayed in a shrunk state
-                            sx: {
-                              backgroundColor: 'white', // Prevent overlap visually
-                              padding: '0 4px', // Adds space for clarity
-                              transform: 'translate(14px, -6px)', // Adjusts the label position above the field
-                            },
-                          }} />
+                      <TextField
+  fullWidth
+  label="Date of Birth"
+  name="dob"
+  type="date"
+  onChange={handleChange}
+  onBlur={handleBlur}
+  value={values.dob}
+  error={touched.dob && Boolean(errors.dob)}
+  helperText={touched.dob && errors.dob}
+  InputLabelProps={{
+    shrink: true, // Ensures the label is always displayed in a shrunk state
+    sx: {
+      backgroundColor: 'white', // Prevent overlap visually
+      padding: '0 4px', // Adds space for clarity
+      transform: 'translate(14px, -6px)', // Adjusts the label position above the field
+    },
+  }}
+  inputProps={{
+    max: new Date().toISOString().split('T')[0], // Disable future dates
+  }}
+/>
+
                       </Grid>
                       <Grid item xs={6} sm={6}></Grid>
 

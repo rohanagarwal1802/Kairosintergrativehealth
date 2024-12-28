@@ -1,6 +1,7 @@
 import Patients from "../../../lib/models/PatientDetails";
 import getTokenFromCookie from "../utils/access";
 import jwt from "jsonwebtoken";
+import hashSecretKey from "../utils/hashedSecretKey";
 
 export default async function handler(req, res) {
   // Restrict to GET requests only
@@ -14,9 +15,9 @@ export default async function handler(req, res) {
     if (!token) {
       return res.status(401).json({ error: "Authentication required" }); // 401 for unauthenticated
     }
-
+const hashKey=hashSecretKey(process.env.secretKey)
     // Verify token
-    const decodedToken = jwt.verify(token, process.env.secretKey);
+    const decodedToken = jwt.verify(token,hashKey );
     if (
       !decodedToken ||
       (decodedToken.email !== process.env.EMAIL_USER && decodedToken?.role !== "admin")

@@ -9,7 +9,7 @@ import {
   Button,
   IconButton,
   Grid,
-  Select, MenuItem, InputLabel, FormControl 
+  Select, MenuItem, InputLabel, FormControl ,FormControlLabel,Checkbox
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
@@ -43,6 +43,7 @@ const ReviewForm = ({getReviews}) => {
       services_availed: '',
       designation:'',
       email: '',
+      public:false,
       review: '',
       captchaVerification: '',
     },
@@ -227,6 +228,16 @@ const ReviewForm = ({getReviews}) => {
               <Typography color="error">{formik.errors.review}</Typography>
             )}
           </Grid>
+          <Grid item xs={12}>
+                                      <FormControlLabel
+                                        control={<Checkbox
+                                          name="public"
+                                          checked={formik.values.public}
+                                          />}
+                                        label="Do you want it to publish it to website ?"
+                                        sx={{ color: 'black' }} />
+                                    </Grid>
+          
          
 
 

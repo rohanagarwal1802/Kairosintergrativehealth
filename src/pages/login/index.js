@@ -21,6 +21,7 @@ import {
   styled,
   InputAdornment,
   useMediaQuery,
+  CircularProgress
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -52,11 +53,18 @@ const LoginPage = () => {
   const [values, setValues] = useState({ password: "", showPassword: false });
   const [mfa, setMfa] = useState(false);
   const [otpTimer, setOtpTimer] = useState(10);
-  const { expanded, setExpanded } = useUserStore();
+  const { expanded, setExpanded,setPageDisplay,toResetPassword,setResetPassword } = useUserStore();
+  const [loading,setLoading]=useState(false)
+
+
 
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(()=>{
+    setPageDisplay("login")
+  },[])
 
   useEffect(() => {
     let timerInterval;
@@ -76,7 +84,13 @@ const LoginPage = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email: Yup.string()
+    .email("Invalid email format") // Validates the general email format
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Invalid email address"
+    ) // Ensures stricter matching for email addresses
+    .required("Email is required"), // Ensures it's not left empty
     password: Yup.string().required("Password is required"),
   });
 
@@ -84,17 +98,31 @@ const LoginPage = () => {
     initialValues: { email: "", password: "" },
     validationSchema,
     onSubmit: async (values) => {
+      setLoading(true)
       try {
+      
         const response = await axios.post("/api/login", values);
         const { status } = response;
         if (status === 200) {
           localStorage.setItem("login", "true");
-          router.reload();
+         
+         await router.reload();
+        //  setLogin(true)
+         
         } else if (status === 201) {
           setMfa(true);
         }
       } catch (error) {
+        if(error.status===403)
+        {
+          console.log(error)
+          alert(error.response.data.message)
+        }
+        setLoading(false)
         // Handle errors (e.g., 401 or 404)
+      }
+      finally{
+        
       }
     },
   });
@@ -106,6 +134,39 @@ const LoginPage = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const handleForgotPassword=async ()=>{
+    if(formik.values.email==="")
+      {
+        alert("Please enter email")
+        return
+      }
+      await formik.setFieldTouched("email", true); // Mark the field as touched
+    if (formik.errors.email) {
+      alert("Email is invalid!");
+      return
+    } 
+    try{
+      const patient_detail=await axios.post('/api/getPatientDetailsByEmail',{email:formik.values.email})
+      // console.log("Patient Details ",patient_detail)
+if(patient_detail.data.status===true)
+{
+let token=patient_detail.data.patient.whitelist
+   await setResetPassword(true)
+   router.push(`/?verify=${token}`)
+
+    }
+    else
+    {
+      alert("Patient does not exist with this email")
+      return
+    }
+  }
+  catch(error)
+  {
+    console.log(error)
+  }
+  }
 
   return (
     <Box
@@ -213,30 +274,35 @@ const LoginPage = () => {
                           }}
                         />
                       </Grid>
-                      {/* <Grid item xs={12}>
+                      <Grid item xs={12}>
                         <Box
                           display="flex"
                           alignItems="center"
                           justifyContent="space-between"
                         >
                           <Box display="flex" alignItems="center">
-                            <Checkbox />
-                            <Typography>Remember Me</Typography>
+                            {/* <Checkbox />
+                            <Typography>Remember Me</Typography> */}
                           </Box>
-                          <Link href="/">
-                            <LinkStyled>Forgot Password?</LinkStyled>
-                          </Link>
+                          <LinkStyled sx={{ cursor: 'pointer' }} onClick={handleForgotPassword}>
+      Forgot Password?
+    </LinkStyled>
                         </Box>
-                      </Grid> */}
+                      </Grid>
                       <Grid item xs={12}>
                         <Button
                           fullWidth
                           size="large"
                           variant="contained"
                           color="primary"
+                          disabled={loading}
                           type="submit"
                         >
-                          Login
+                        {loading ? (
+                                        <CircularProgress size={24} sx={{ color: 'white' }} />
+                                      ) : (
+                                        'Login'
+                                      )}
                         </Button>
                       </Grid>
                     </Grid>

@@ -4,19 +4,22 @@ import { Facebook, Instagram, LinkedIn, Phone, Email } from "@mui/icons-material
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ResourcesOptions from "./resourcesDropdown";
 import ServicesOptions from "./servicesDropdown";
-import XIcon from '@mui/icons-material/X';
+// import LinkedInIcon from '@mui/icons-material/X';
 import FaxIcon from '@mui/icons-material/Fax';
+import { useRouter } from "next/router";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Footer = () => {
   const servicesOptions = ServicesOptions();
   const resourcesOptions = ResourcesOptions();
+  const router=useRouter()
 
   return (
     <Box>
       {/* Wide Box Above Footer */}
       <Box
         sx={{
-          backgroundColor: "rgba(29,39,56, 1)",
+          backgroundColor: "#2A3923",
           color: "#FFFFFF",
           padding: "20px 0",
         }}
@@ -36,7 +39,8 @@ const Footer = () => {
               <img
                 src="/logo.png"
                 alt="Kairos Integrative Health Logo"
-                style={{ width: "80px", height: "auto" }}
+                onClick={()=>router.push("/")}
+                style={{ width: "80px", height: "auto",cursor:"pointer" }}
               />
               <Box
                 sx={{
@@ -53,7 +57,7 @@ const Footer = () => {
                   color="inherit"
                   sx={{ fontSize: "small" }}
                 >
-                  <XIcon fontSize="small" />
+                  <LinkedInIcon fontSize="small" />
                 </IconButton>
                 <IconButton
                   component="a"
@@ -122,6 +126,12 @@ const Footer = () => {
                   <Link href="tel:256-980-0620" color="inherit" sx={{ fontSize: "16px" }}>
                     256-980-0620
                   </Link>
+                  <br/>
+                 &nbsp; &nbsp;  &nbsp;  {/* <FaxIcon sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} /> */}
+                  Fax :{" "}
+                  <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
+                    919-918-0622
+                  </Link>
                   <br />
                  
                 </Typography>
@@ -132,13 +142,13 @@ const Footer = () => {
                     info@kairosintegrativehealth.com
                   </Link>
                 </Typography>
-                <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
+                {/* <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
                   <FaxIcon sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
                   Fax :{" "}
                   <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
                     919-918-0622
                   </Link>
-                </Typography>
+                </Typography> */}
                 <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
                 The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216
                 </Typography>
@@ -151,7 +161,7 @@ const Footer = () => {
        {/* Copyright Section */}
        <Box
         sx={{
-          backgroundColor: "rgba(29,39,56, 1)",
+          backgroundColor: "#2A3923",
           color: "white",
           padding: "10px 0", // Space above and below the line
           textAlign: "center",

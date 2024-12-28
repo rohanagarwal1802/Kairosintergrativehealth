@@ -1,11 +1,13 @@
 import { isValidPatient } from "../../../lib/models/PatientDetails";
 import jwt from "jsonwebtoken";
+import hashSecretKey from "../utils/hashedSecretKey";
 
 
 
 function isTokenValid(token) {
   try {
-    const decoded = jwt.verify(token, process.env.secretKey);
+    const hashKey=hashSecretKey( process.env.secretKey)
+   const decoded = jwt.verify(token, hashKey, { algorithms: ['HS256'] });
     return !!decoded;
   } catch (error) {
     return false;

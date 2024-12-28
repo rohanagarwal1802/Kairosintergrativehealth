@@ -10,7 +10,7 @@ function ImageGallery() {
   ];
 
   return (
-    <Box sx={{ width: "100%", padding: "16px" }}>
+    <Box sx={{ width: "100%", padding: "4px" }}>
       <Grid container spacing={3}>
         {images.map((image, index) => (
           <Grid

@@ -9,7 +9,11 @@ const useUserStore = create((set) => ({
   pageDisplay: "",
   setPageDisplay: (value) => set({ pageDisplay: value }),
 
+  login: false,
+  setLogin: (value) => set({ login: value }),
 
+  toResetPassword: false,
+  setResetPassword: (value) => set({ toResetPassword: value }),
 
 }));
 

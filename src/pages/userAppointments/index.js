@@ -5,73 +5,49 @@ import axios from "axios";
 import Loader from "@/components/Loader";
 import CustomPaginationGrid from "@/components/customPagination";
 import TextContainer from "@/components/textContainer";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
+// import AutorenewIcon from "@mui/icons-material/Autorenew";
 import formatDateStringDDMMYYYY from "@/components/formatDateStringMMDDYYYY";
 import { Box, Button, Switch, Tooltip, IconButton } from "@mui/material";
-// import useCustomSnackbarStore from "@/styles/store/useCustomSnackbarStore";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import EditOffIcon from "@mui/icons-material/EditOff";
+// // import useCustomSnackbarStore from "@/styles/store/useCustomSnackbarStore";
+// import DeleteIcon from "@mui/icons-material/Delete";
+// import EditIcon from "@mui/icons-material/Edit";
+// import EditOffIcon from "@mui/icons-material/EditOff";
 // import useUserStore from "@/styles/store/UserStore";
 import { useRouter } from "next/router";
+import * as XLSX from 'xlsx';
 import AppointmentFormModal from "@/components/Appointment/userAppointmentForm";
 // import GenerateAPIKeysModal from "../models/generateAPIKeyModal";
 
-import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 
 
-// Function to check if the expiration date is before today
-const isExpired = (expirationDate) => {
-  const today = new Date();
-  const expDate = new Date(expirationDate);
-  return expDate < today;
-};
 
-// Create the rows with data and apply the expiration check
-function createData(index, item) {
-  return {
-    sno: index,
-    id: item.id,
-    api_key: item.key,
-    version: item.version,
-    validity: item.validity,
-    associated_partner_id: item?.partnerUser?.id, // Corrected to access item.partnerUser.id
-    associated_partner:
-      item?.partnerUser?.username +
-      (item?.partnerUser?.lastname ? ` ${item?.partnerUser?.lastname}` : ""), // Fixed string concatenation
-    creation_date: formatDateStringDDMMYYYY(item.created_at),
-    updation_date: formatDateStringDDMMYYYY(item.updated_at),
-    expiration_date: formatDateStringDDMMYYYY(item.expiration_date),
-    status: item.status,
-    isExpired: isExpired(item.expiration_date),
-  };
-}
-export default function APIKeysForPartnerPortal({
-  PartnerSuperAdminData,
-  setPartnerSuperAdminData,
+
+
+export default function AppointMentForPartners({
+  userDetails
 }) {
+  console.log("patient Id",userDetails.patientId)
+
+  
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [ APIKeysForPartnerPortal,
-    setAPIKeysForPartnerPortal]=useState(null)
-    const [ 
-    isAPIKeysUpdated,
-    setAPIKeysUpdated,
-     ] = useState(false);
+
   const [appointmentBookModalOpen, setAppointmentBookModalOpen] = useState(false);
 
   const [selectedIds, setSelectedIds] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [rows, setRows] = useState([]);
-  const [initialRows, setInitialRows] = useState([]);
-  const [multipleEditable, setMultipleEditable] = useState(false);
-  const [disableMultipleDeleteButton, setDisabledMultipleDeleteButton] =
-    useState(false);
-  const [disableMultipleExpireButton, setDisabledMultipleExpireButton] =
-    useState(false);
+
+  const [appointmentData,setAppointMentData]=useState([])
+
 
 //   const { setSnackbar } = useCustomSnackbarStore();
   const router = useRouter(); // Hook to get the current router
+
+  if(userDetails===null && userDetails.patientId===null && userDetails.password===null)
+  {
+    router.push("/")
+    return
+  }
 
   useEffect(() => {
     // Find the "Select All" checkbox in the header
@@ -86,65 +62,34 @@ export default function APIKeysForPartnerPortal({
     }
   }, []);
 
-  const fetchAPIKeys = useCallback(async () => {
-    setLoading(true);
+  const getAppointMentData = async () => {
     try {
-      const response = await axios.get("/api/getApiKeysForPartners"); // Replace with actual API call if needed
-      setAPIKeysForPartnerPortal(response.data);
-      setAPIKeysUpdated(false);
+      setLoading(true);
+      let patientId=userDetails?.patientId
+      const appointments = await axios.get(`/api/getAppointMentsByPatientID?patientId=${patientId}`);
+      console.log(appointments.data)
+      setAppointMentData(appointments.data.data);
     } catch (error) {
+      setAppointMentData([])
       console.log(error);
-      setAPIKeysForPartnerPortal([]);
+
     } finally {
       setLoading(false);
     }
-  }, [page]);
+  };
 
   useEffect(() => {
-    if (isAPIKeysUpdated) {
-      fetchAPIKeys();
-    }
-  }, [page, fetchAPIKeys, isAPIKeysUpdated]);
+    
+    getAppointMentData();
+  }, []);
 
-  useEffect(() => {
-    if (Array.isArray(APIKeysForPartnerPortal)) {
-      const newRows = APIKeysForPartnerPortal.map((item, index) =>
-        createData(index + 1, item)
-      );
-      setRows(newRows);
-      setInitialRows(newRows);
-    }
-  }, [APIKeysForPartnerPortal]);
-
-
-
-
-  const handleSelectionChange = useCallback(
-    (selectedRowIds) => {
-      // Convert selectedRowIds to an array of selected IDs
-      const selectedIds = selectedRowIds;
-
-      // Map selected IDs to their corresponding row data
-      const selectedRowsData = rows.filter((row) =>
-        selectedIds.includes(row.id)
-      );
-
-      // Check conditions to set button states
-      const hasStatusTrue = selectedRowsData.some((row) => row.status === true);
-      const hasExpiredTrue = selectedRowsData.some(
-        (row) => row.isExpired === true
-      );
-
-      setSelectedIds(selectedIds);
-      console.log("Selected Rows Data:", selectedRowsData);
-
-      // Set button states based on conditions
-      setDisabledMultipleDeleteButton(hasStatusTrue);
-      setDisabledMultipleExpireButton(hasExpiredTrue);
-    },
-    [rows]
-  );
-
+  if(loading)
+  {
+    return <Loader/>
+  }
+if(!Array.isArray(appointmentData))
+  return
+  
  
 
   const columns = [
@@ -215,6 +160,31 @@ export default function APIKeysForPartnerPortal({
    
   ];
 
+  const rows = appointmentData.map((user,index) => ({
+    id: user?.id,
+    sno: index + 1, // Add serial number starting from 1
+    service: user?.service,
+    location: user?.location,
+    date: new Date(user?.appointmentDate
+    ).toLocaleString(),  }));
+
+    const handleDownloadExcel = () => {
+        const worksheet = XLSX.utils.json_to_sheet(rows);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Patients');
+    
+        // Set column widths for better readability
+        const wscols = [
+          { wch: 15 }, // SNO
+          { wch: 15 }, // Service
+          { wch: 20 }, //AppointMent
+          { wch: 25 }, // Date
+        ];
+        worksheet['!cols'] = wscols;
+    
+        XLSX.writeFile(workbook, 'appointment-data.xlsx'); // Save the Excel file
+      };
+
   return (
     <>
       {loading ? (
@@ -233,6 +203,10 @@ export default function APIKeysForPartnerPortal({
               gap: { xs: 2, sm: 2 },
             }}
           >
+
+             <Button variant="contained" color="primary" onClick={handleDownloadExcel}>
+                      Download as Excel
+                    </Button>
 
             <Button
               variant="contained"
@@ -291,10 +265,10 @@ export default function APIKeysForPartnerPortal({
               }}
               disableColumnResize
               disableSelectionOnClick
-              checkboxSelection={multipleEditable} // Enable checkboxes for row selection
-              onRowSelectionModelChange={(newSelection) =>
-                handleSelectionChange(newSelection)
-              }
+              checkboxSelection={false} // Enable checkboxes for row selection
+              // onRowSelectionModelChange={(newSelection) =>
+              //   handleSelectionChange(newSelection)
+              // }
               components={{
                 Pagination: CustomPaginationGrid,
                 Toolbar: GridToolbar,
@@ -311,6 +285,8 @@ export default function APIKeysForPartnerPortal({
         <AppointmentFormModal
           open={appointmentBookModalOpen}
           onClose={() => setAppointmentBookModalOpen(false)}
+          patientId={userDetails.patientId}
+          getAppointMentData={getAppointMentData}
         //   PartnerSuperAdminData={PartnerSuperAdminData}
         />
       )}

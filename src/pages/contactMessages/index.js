@@ -41,6 +41,7 @@ if(!Array.isArray(messages))
     return
 }
   const columns = [
+    { field: 'sno', headerName: 'S.NO', width: 75 },
     { field: 'full_name', headerName: 'Full Name', width: 150 },
     { field: 'email', headerName: 'Email', width: 300 },
     { field: 'subject', headerName: 'Subject', width: 200 },
@@ -48,8 +49,9 @@ if(!Array.isArray(messages))
     { field: 'created_at', headerName: 'Posted At', width: 200 },
   ];
 
-  const rows = messages.map((user) => ({
+  const rows = messages.map((user,index) => ({
     id: user?.id,
+    sno: index + 1, // Add serial number starting from 1
     full_name: user?.full_name,
     email: user?.email,
     mobile: user?.mobile,
@@ -65,6 +67,7 @@ if(!Array.isArray(messages))
 
     // Set column widths for better readability
     const wscols = [
+      { wch: 15 }, 
       { wch: 15 }, // First Name
       { wch: 30 }, // Email
       { wch: 15 }, // Mobile

@@ -12,6 +12,7 @@ import {
   styled,
   InputAdornment,
   useMediaQuery,
+  CircularProgress
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -29,6 +30,9 @@ export default function MakePassword({token}) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {pageDisplay, setPageDisplay} = useUserStore()
   const router=useRouter()
+  const {setLogin,}=useUserStore()
+  const {setResetPassword,toResetPassword}=useUserStore()
+  const [loading,setLoading]=useState(false)
 
 
   
@@ -56,7 +60,9 @@ const handleLogout = async () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (password === confirmPassword) {
+      setLoading(true)
         let data={
             "password":password,
             "verifiedToken":token
@@ -65,7 +71,10 @@ const handleLogout = async () => {
         if(update)
         {
            await handleLogout()
+       
       alert("Passwords set Successfully");
+      await setResetPassword(false)
+      setLoading(false)
     //   router.push("/login")
         }
     } else {
@@ -118,7 +127,7 @@ const handleLogout = async () => {
 
       {/* Title */}
       <Typography variant="h5" gutterBottom sx={{color:"black",fontWeight:"bold"}}>
-        Create Your Password
+        {toResetPassword?"Reset":"Create"} Your Password
       </Typography>
 
       {/* Form */}
@@ -181,9 +190,14 @@ const handleLogout = async () => {
           variant="contained"
           color="primary"
           fullWidth
+          disabled={loading}
           sx={{ marginTop: 2 }}
         >
-          Submit
+            {loading ? (
+                                        <CircularProgress size={24} sx={{ color: 'white' }} />
+                                      ) : (
+                                        'Submit'
+                                      )}
         </Button>
       </Box>
     </Box>

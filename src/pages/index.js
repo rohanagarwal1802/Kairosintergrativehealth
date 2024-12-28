@@ -10,9 +10,11 @@ import Loader from "@/components/Loader";
 import useUserStore from "@/components/useUserStore";
 import ComplimentaryCallBox from "@/components/Home/complemetaryPhone";
 import ImageGallery from "@/components/Home/reviewImages";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const { loadLoader, setLoadLoader } = useUserStore();
+  const router=useRouter()
 
   const handlePhoneCallClick = () => {
     // Add logic to trigger the phone call box/modal

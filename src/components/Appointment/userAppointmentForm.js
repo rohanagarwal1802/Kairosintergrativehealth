@@ -14,14 +14,14 @@ import {
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import SaveIcon from "@mui/icons-material/Save";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "react-datepicker/dist/react-datepicker.css";
 
-function AppointmentFormModal({ open, onClose }) {
+function AppointmentFormModal({ open, onClose,patientId,getAppointMentData }) {
   const [loading, setLoading] = useState(false);
 
   // Validation Schema using Yup
@@ -39,19 +39,22 @@ function AppointmentFormModal({ open, onClose }) {
 
     try {
       const data = {
-        employee_id: values.service,
+        service: values.service,
         location: values.location,
         appointmentDate: values.appointmentDate,
+        patientId:patientId
       };
-// console.log("data ===>",data)
-      // Simulated API call
+
       const res = await axios.post("/api/bookAppointmentOnTebra", data);
-      if(res.status==='success')
-      {
-        alert("Appointment created successfully")
+      // console.log(res.data)
+      if (res.data.status === "success") {
+        const appointmentResp=await axios.post('/api/createNewAppointMent',data)
+        console.log("appresp",appointmentResp.data)
+        alert("Appointment created successfully");
       }
       console.log("API response: ", res.data);
       setLoading(false);
+     await getAppointMentData()
       onClose();
     } catch (error) {
       console.error("Error booking appointment: ", error);
@@ -60,33 +63,35 @@ function AppointmentFormModal({ open, onClose }) {
     setSubmitting(false);
   };
 
-  const ExampleCustomInput = React.forwardRef(({ value, onClick, onClear }, ref) => (
-    <TextField
-      onClick={onClick}
-      value={value || ""}
-      label="Appointment Date"
-      autoComplete="off"
-      InputProps={{
-        endAdornment: (
-          <IconButton
-            edge="end"
-            size="small"
-            onClick={onClick}
-            sx={{
-              cursor: "pointer",
-              "&:hover": { backgroundColor: "transparent" },
-            }}
-          >
-            <ArrowDropDownIcon />
-          </IconButton>
-        ),
-      }}
-      fullWidth
-      ref={ref}
-      error={!value}
-      helperText={!value ? "This field is required" : ""}
-    />
-  ));
+  const ExampleCustomInput = React.forwardRef(
+    ({ value, onClick, onClear, error, helperText }, ref) => (
+      <TextField
+        onClick={onClick}
+        value={value || ""}
+        label="Appointment Date"
+        autoComplete="off"
+        InputProps={{
+          endAdornment: (
+            <IconButton
+              edge="end"
+              size="small"
+              onClick={onClick}
+              sx={{
+                cursor: "pointer",
+                "&:hover": { backgroundColor: "transparent" },
+              }}
+            >
+              <ArrowDropDownIcon />
+            </IconButton>
+          ),
+        }}
+        fullWidth
+        ref={ref}
+        error={Boolean(error)} // Only show error if there is an error
+        helperText={error ? helperText : ""}
+      />
+    )
+  );
 
   return (
     <Modal open={open} onClose={onClose} disableScrollLock>
@@ -181,24 +186,21 @@ function AppointmentFormModal({ open, onClose }) {
               <FormControl
                 fullWidth
                 margin="normal"
-                error={Boolean(touched.appointmentDate && errors.appointmentDate)}
               >
                 <DatePicker
                   selected={values.appointmentDate}
                   onChange={(date) => setFieldValue("appointmentDate", date)}
                   placeholderText="Select appointment date"
                   dateFormat="dd-MM-yyyy"
+                  minDate={new Date()} // Disable past dates
                   customInput={
                     <ExampleCustomInput
                       onClear={() => setFieldValue("appointmentDate", null)}
+                      error={touched.appointmentDate && errors.appointmentDate}
+                      helperText={errors.appointmentDate}
                     />
                   }
                 />
-                {touched.appointmentDate && errors.appointmentDate && (
-                  <Typography color="error" variant="caption">
-                    {errors.appointmentDate}
-                  </Typography>
-                )}
               </FormControl>
 
               {/* Action Buttons */}

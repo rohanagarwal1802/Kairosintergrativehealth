@@ -22,13 +22,22 @@ import { useTheme,useMediaQuery } from "@mui/material"; // To handle media queri
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import axios from "axios";
+import AdminOptions from "./adminDropdown";
+import useUserStore from "./useUserStore";
+import LogOutDialog from "./logoutDialog";
 
 const Header = ({userDetails}) => {
+  console.log("userDetails ==>",userDetails)
   const router = useRouter();
   const options = Options();
   const resourcesOptions = ResourcesOptions();
   const servicesOptions=ServicesOptions()
   const aboutOptions=AboutOptions()
+  const adminOptions=AdminOptions()
+  const {setLogin}=useUserStore()
+  const [openLogout,setOpenLogout]=useState(false)
+
+  const currentPath=router.pathname
 
   // State for controlling the dropdown menu for "RESOURCES"
   const [anchorEl, setAnchorEl] = useState(null);
@@ -62,6 +71,7 @@ const [anchorE4, setAnchorE4] = useState(null);
       await axios.get('/api/logout').then(()=>{
     localStorage.removeItem("login"); // Example: Clear login token
     router.push("/"); // Redirect to login page
+    setLogin(false)
     handleMenuClose1();
     router.reload()
     })
@@ -126,6 +136,7 @@ const handleMenuClose = () => {
   };
 
   return (
+    <>
     <AppBar position="fixed" elevation={1} sx={{ background: "#f8f9fa", color: "black", borderBottom: "1px solid #dee2e6" ,}}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={()=>router.push("/")}>
@@ -150,18 +161,90 @@ const handleMenuClose = () => {
   <>
   
     {userDetails?.role==='admin' && (
+
+<Box
+onMouseEnter={(e) => handleMenuOpen(e, "Admin Details")}
+onMouseLeave={handleMenuClose}
+sx={{
+  position: "relative",
+  display: "flex",
+  alignItems: "center", // Align with other menu items
+  cursor: "pointer",
+}}
+>
+
+<Box
+  sx={{
+    padding: "6px 12px",
+    borderBottom: userDetails?.role==='admin' && currentPath==="Admin"
+      ? "2px solid green"
+      : "none",
+    color: userDetails?.role==='admin' && currentPath==="Admin" ? "green" : "inherit",
+    "&:hover": { backgroundColor: "lightgray" },
+    fontSize: "0.75rem",
+  }}
+>
+ADMIN DETAILS
+</Box>
+
+<Menu
+  anchorEl={menuAnchor}
+  open={currentMenu === "Admin Details"}
+  onClose={handleMenuClose}
+  anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+  PaperProps={{
+    sx: {
+      backgroundColor: "black",
+      color: "white",
+      boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+    },
+  }}
+>
+  {(
+    adminOptions
+  ).map((subOption, idx) => (
+    <MenuItem
+      key={idx}
+      onClick={() => handleMenuItemClick(subOption.path)}
+      sx={{
+        "&:hover": { color: "lightblue" },
+        fontSize: "0.75rem",
+      }}
+    >
+      <ChevronRightIcon sx={{ marginRight: 0.5 }} />
+      {subOption.title}
+    </MenuItem>
+  ))}
+</Menu>
+</Box>
+      // <Button
+      //   color="inherit"
+      //   onClick={() => router.push('/admin')}
+      //   sx={{
+      //     padding: "6px 12px",
+      //     borderBottom: "2px solid green",
+      //     color: "green",
+      //     "&:hover": { backgroundColor: "lightgray" },
+      //     fontSize: "0.75rem",
+      //   }}
+      // >
+      //   Admin Panel
+      // </Button>
+    )}
+
+{userDetails && userDetails.password!=null && userDetails.patientId!=null && (
       <Button
         color="inherit"
-        onClick={() => router.push('/admin')}
+        onClick={() => router.push('/userAppointments')}
         sx={{
           padding: "6px 12px",
-          borderBottom: "2px solid green",
-          color: "green",
+          borderBottom: currentPath==="/userAppointments" && "2px solid green",
+          color: currentPath==="/userAppointments" && "green",
           "&:hover": { backgroundColor: "lightgray" },
           fontSize: "0.75rem",
         }}
       >
-        Admin Panel
+        Appointments
       </Button>
     )}
 
@@ -261,7 +344,7 @@ const handleMenuClose = () => {
 {!isMobile && !userDetails &&
 <Button
         color="inherit"
-        // onClick={() => }
+        onClick={() =>router.push("/login") }
         sx={{
           padding: "6px 12px",
           // borderBottom: isSelected(option.path) ? "2px solid green" : "none",
@@ -318,7 +401,7 @@ const handleMenuClose = () => {
         onClick={handleMenuOpen1}
       >
         <Typography variant="body2" sx={{ fontSize: "0.75rem" }}>
-          {userDetails?.role==='admin'?'Admin':'Rohan Agarwal'}
+          {userDetails?.role==='admin'?'Admin':userDetails?.firstname+" "+userDetails?.lastname}
         </Typography>
         <ArrowDropDownIcon sx={{ marginLeft: "8px", fontSize: "1rem" }} />
       </Box>
@@ -336,7 +419,7 @@ const handleMenuClose = () => {
           horizontal: "right",
         }}
       >
-      <MenuItem onClick={handleLogout}>
+      <MenuItem onClick={()=>setOpenLogout(true)}>
   <LogoutIcon sx={{ width: 24, height: 24, marginRight: 1, color: "red" }} />
   Logout
 </MenuItem>
@@ -365,6 +448,98 @@ const handleMenuClose = () => {
         gap: "8px",
       }}
     >
+ {userDetails?.role==='admin' && (
+<Box
+        onMouseEnter={(e) => handleMenuOpen(e, "Admin Details")} // Show the menu on hover
+        onMouseLeave={handleMenuClose} // Close the menu when mouse leaves
+        sx={{
+          position: "relative",
+          display: "flex",
+          justifyContent:"center",
+          alignItems: "center", // Ensure it's aligned like the other items
+          cursor: "pointer",
+          fontWeight:"bold"
+        }}
+      >
+        <Box
+          sx={{
+            padding: "6px 12px",
+            borderBottom: userDetails?.role==='admin' && currentPath==="Admin"
+      ? "2px solid green"
+      : "none",
+    color: userDetails?.role==='admin' && currentPath==="Admin" ? "green" : "inherit",
+            "&:hover": { backgroundColor: "lightgray" },
+            fontSize: "0.75rem",
+            display: "flex",
+            alignItems: "center", // Ensure alignment is consistent
+          }}
+        >
+         Admin Details
+        </Box>
+
+        {/* // Mobile Menu Dropdown */}
+        <Menu
+  anchorEl={menuAnchor}
+  open={currentMenu === "Admin Details"}
+  onClose={handleMenuClose}
+  anchorOrigin={{ vertical: "bottom", horizontal: "center" }} // Center the dropdown on mobile
+  transformOrigin={{ vertical: "top", horizontal: "center" }} // Align from the center
+  PaperProps={{
+    sx: {
+      backgroundColor: "black",
+      color: "white",
+      boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+      width: "auto", // Ensure it's not too wide for mobile
+      maxWidth: "90%", // Limit width on small screens
+      marginTop: "5px", // Add some spacing between menu and button
+      left: "50%", // Center the dropdown horizontally
+      transform: "translateX(-50%)", // Center the dropdown horizontally by shifting it
+    },
+  }}
+>
+  {adminOptions.map((subOption, idx) => (
+    <MenuItem
+      key={idx}
+      onClick={() => { router.push(subOption.path); handleMenuClose(); toggleMobileMenu(); }}
+      sx={{ "&:hover": { color: "lightblue" }, fontSize: "0.75rem" }}
+    >
+      <ChevronRightIcon sx={{ marginRight: 0.5 }} />
+      {subOption.title}
+    </MenuItem>
+  ))}
+</Menu>
+
+
+      </Box>
+)}
+       {userDetails && userDetails.password!=null && userDetails.patientId!=null &&
+       <Button
+  // key={index}
+  color="inherit"
+  onClick={() => {
+    try {
+      router.push('/userAppointments');
+      toggleMobileMenu();
+    } catch (error) {
+      console.error("Navigation failed:", error);
+    }
+  }}
+  sx={{
+    padding: "6px 12px",
+    borderBottom: currentPath==="/userAppointments" ? "2px solid green" : "none",
+    color: currentPath==="/userAppointments" ? "green" : "inherit",
+    "&:hover": { backgroundColor: "lightgray" },
+    fontSize: "0.75rem",
+    display: "flex",
+    alignItems: "center",
+  }}
+  aria-label="Navigate to appointments"
+  title="Appointments"
+>
+  Appointments
+</Button>
+}
+
 {options.map((option, index) => {
   // If option is RESOURCES or SERVICES, render a dropdown
   if (option.title === "RESOURCES" || option.title === "SERVICES" || option.title === "ABOUT") {
@@ -453,10 +628,10 @@ const handleMenuClose = () => {
     </Button>
   );
 })}
-
+{!userDetails &&
 <Button
       color="inherit"
-      onClick={() => console.log("login")} // Navigate directly for normal options
+      onClick={() => router.push("/login")} // Navigate directly for normal options
       sx={{
         padding: "6px 12px",
         color: "green",
@@ -468,10 +643,11 @@ const handleMenuClose = () => {
     >
       Patient Portal
     </Button>
-
+}
+{userDetails &&
     <Button
       color="inherit"
-      onClick={() => handleLogout()} // Navigate directly for normal options
+      onClick={()=>setOpenLogout(true)}//Navigate directly for normal options
       sx={{
         padding: "6px 12px",
         color: "red",
@@ -484,7 +660,7 @@ const handleMenuClose = () => {
         <LogoutIcon sx={{ width: 24, height: 24, marginRight: 1 }} />
      Log Out
     </Button>
-
+}
     </Box>
   )}
 </Box>
@@ -493,6 +669,8 @@ const handleMenuClose = () => {
         
       </Toolbar>
     </AppBar>
+    {openLogout && <LogOutDialog setOpen={setOpenLogout} open={openLogout} handleLogout={handleLogout}/>}
+    </>
   );
 };
 
