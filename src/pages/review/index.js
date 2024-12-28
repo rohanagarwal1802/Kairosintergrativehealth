@@ -12,7 +12,7 @@ const Review = () => {
 
   const getReviews = async () => {
     try {
-      const response = await axios.get('/api/getPublicReviews');
+      const response = await axios.get('/api/getReviewsc');
       setReviews(response.data.reviews);
     } catch (error) {
       console.error('Error in getting reviews', error);

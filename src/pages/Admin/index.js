@@ -64,7 +64,7 @@ if(!Array.isArray(userData))
     email: user?.email,
     mobile: user?.mobile,
     insurance: user?.insurance,
-    isRegistered: user?.isRegistered ,
+    isRegistered: user?.isRegistered || false,
     created_at: new Date(user?.created_at).toLocaleString(),
     updated_at: new Date(user?.updated_at).toLocaleString(),
   }));
