@@ -26,7 +26,6 @@ import AppointmentFormModal from "@/components/Appointment/userAppointmentForm";
 export default function AppointMentForPartners({
   userDetails
 }) {
-  console.log("patient Id",userDetails.patientId)
 
   
   const [page, setPage] = useState(0);
@@ -43,7 +42,7 @@ export default function AppointMentForPartners({
 //   const { setSnackbar } = useCustomSnackbarStore();
   const router = useRouter(); // Hook to get the current router
 
-  if(userDetails===null && userDetails.patientId===null && userDetails.password===null)
+  if(userDetails===null || userDetails?.patientId===null || userDetails?.password===null)
   {
     router.push("/")
     return
@@ -161,8 +160,8 @@ if(!Array.isArray(appointmentData))
   ];
 
   const rows = appointmentData.map((user,index) => ({
-    id: user?.id,
-    sno: index + 1, // Add serial number starting from 1
+   sno: index + 1,
+    id: user?.id, // Add serial number starting from 1
     service: user?.service,
     location: user?.location,
     date: new Date(user?.appointmentDate
@@ -191,6 +190,9 @@ if(!Array.isArray(appointmentData))
         <Loader />
       ) : (
         <>
+        <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
+            <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Appointment Details</h1>
+          </Box>
           <Box
             sx={{
               display: "flex",

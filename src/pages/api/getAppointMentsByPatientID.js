@@ -1,4 +1,5 @@
 import { getAppointmentByPatientId } from "../../../lib/models/appointmentOperations";
+import getTokenFromCookie from "../utils/access";
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -6,7 +7,12 @@ export default async function handler(req, res) {
 
 
 
+  const token = await getTokenFromCookie(req);
 
+  if (!token) {
+    return res.status(401).json({ error: "Authentication required" }); // 401 for unauthenticated
+  }
+  
     
 
   if (!getAppointmentByPatientId) {

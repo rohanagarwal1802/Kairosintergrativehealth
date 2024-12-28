@@ -101,75 +101,85 @@ const ResilienceRoundtableForm = () => {
       .required(),
     bringingFriend: Yup.boolean().required(),
     friendFirstName: Yup.string().when('bringingFriend', {
-      is: true,
+      is:(value) => value === true, // Ensure that 'is' is a boolean or a function returning a boolean
       then: Yup.string().required("Friend's first name is required"),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
     friendLastName: Yup.string().when('bringingFriend', {
-      is: true,
+      is:(value) => value === true, // Ensure the condition is evaluated correctly
       then: Yup.string().required("Friend's last name is required"),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
     friendDob: Yup.date().when('bringingFriend', {
-      is: true,
+      is:(value) => value === true, // Check if bringingFriend is true
       then: Yup.date().required("Friend's date of birth is required"),
-      otherwise: Yup.date().notRequired(),
+      otherwise: Yup.date(),
     }),
     friendPhoneNumber: Yup.string().when('bringingFriend', {
-      is: true,
+      is:(value) => value === true, 
       then: Yup.string()
         .matches(phoneNumberRegex, 'Invalid phone number format')
         .required("Friend's phone number is required"),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
     friendEmail: Yup.string().when('bringingFriend', {
-      is: true,
+      is:(value) => value === true,
       then: Yup.string()
         .email('Invalid email format')
         .required("Friend's email is required"),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
     payment: Yup.string().required('Payment type is required'),
     memberName: Yup.string().when('payment', {
-      is: 'member',
+      is:(value) => value === 'member', // Here, ensure the condition is the exact value you're expecting
       then: Yup.string().required('Member name is required when payment is "member"'),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
     firstAttendeeName: Yup.string().when('payment', {
-      is: 'member',
+      is: (value) => value ==='member',
       then: Yup.string().required('First attendee name is required when payment is "member"'),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
     secondAttendeeName: Yup.string().when('payment', {
-      is: 'member',
+      is:(value) => value === 'member',
       then: Yup.string().required('Second attendee name is required when payment is "member"'),
-      otherwise: Yup.string().notRequired(),
+      otherwise: Yup.string(),
     }),
   });
   
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       console.log(values);
       setLoading(true);
-      if(values.payment==='guest')
-      {
-        setScanner('/guestScanner.jpeg')
+  
+      // Set the scanner image based on payment type
+      if (values.payment === 'guest') {
+        setScanner('/guestScanner.jpeg');
+      } else {
+        setScanner('/memberScanner.jpeg');
       }
-      else
-      {
-        setScanner('/memberScanner.jpeg')
-      }
-      const resp=await axios.post('/api/bookRoundTable',values)
-      setType(values.payment)
-      console.log(resp)
-      setOpen(true)
+  
+      // Submit form data using axios
+      const resp = await axios.post('/api/bookRoundTable', values);
+  
+      // Set the payment type and reset form
+      setType(values.payment);
+  
+      // Reset the form values and set submitting state to false
+      resetForm(); // This is the correct method to reset the form
+  
+      console.log(resp);
+      setOpen(true); // Open the confirmation modal or message
     } catch (error) {
       console.error('Submission failed', error);
     } finally {
       setLoading(false);
+      setSubmitting(false); // Ensure the form submission is complete
     }
   };
+  
+  
 
   return (
     <>
@@ -558,6 +568,9 @@ const ResilienceRoundtableForm = () => {
                   >
                     {loading ? 'Submitting...' : 'Submit'}
                   </Button>
+
+                  
+
                 </Box>
               </Form>
             )}

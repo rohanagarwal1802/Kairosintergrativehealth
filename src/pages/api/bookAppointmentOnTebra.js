@@ -1,7 +1,13 @@
 import * as soap from 'soap';
-import { parse, isValid } from 'date-fns';
+import getTokenFromCookie from '../utils/access';
 
 export default async function handler(req, res) {
+  const token = await getTokenFromCookie(req);
+
+  if (!token) {
+    return res.status(401).json({ error: "Authentication required" }); // 401 for unauthenticated
+  }
+  
   const WSDL_URL = "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?singleWsdl";
 
   // Validate environment variables

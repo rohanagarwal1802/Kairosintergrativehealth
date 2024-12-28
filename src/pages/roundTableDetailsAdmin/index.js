@@ -8,9 +8,10 @@ import TextContainer from '@/components/textContainer';
 import { useRouter } from 'next/router';
 import CustomPaginationGrid from '@/components/customPagination';
 
-const UserTable = ({ userDetails }) => {
+const RoundTable = ({ userDetails }) => {
   const [pageSize, setPageSize] = useState(10);
   const router = useRouter();
+
   if (!userDetails || userDetails?.role !== 'admin') {
     router.push('/');
     return;
@@ -23,9 +24,9 @@ const UserTable = ({ userDetails }) => {
     const getPatientData = async () => {
       try {
         setLoading(true);
-        const patient = await axios.get('/api/getPatient');
-        console.log(patient.data)
-        setUserData(patient.data);
+        const patient = await axios.get('/api/getRoundTableDetails');
+        console.log(patient.data.data)
+        setUserData(patient.data.data);
       } catch (error) {
         setUserData([])
         console.log(error);
@@ -49,24 +50,61 @@ if(!Array.isArray(userData))
     { field: 'dob', headerName: 'Date of Birth', width: 180 },
     { field: 'email', headerName: 'Email', width: 250 },
     { field: 'mobile', headerName: 'Mobile', width: 150 },
-    { field: 'insurance', headerName: 'Insurance', width: 120 },
-    { field: 'isRegistered', headerName: 'Is Active', width: 120 },
+    { field: 'textPermission', headerName: 'Permission to Text', width: 200 },
+    { field: 'attending', headerName: 'Attending', width: 120 },
+    { field: 'over18', headerName: 'over18', width: 120 },
+   
+    { field: 'type', headerName: 'Type', width: 250 },
+    { field: 'friendFirstName', headerName: 'Friend First Name', width: 200 },
+    { field: 'friendLastName', headerName: 'Friend Last Name', width: 200 },
+    { field: 'friendDob', headerName: 'Friend Dob', width: 200 },
+    { field: 'friendPhoneNumber', headerName: 'Friend Phone Number', width: 200 },
+    { field: 'friendTextPermission', headerName: 'Friend Text Permission', width: 200 },
+    { field: 'memberName', headerName: 'Person Fillig out Form', width: 230 },
+    { field: 'firstAttendeeName', headerName: 'First Ateendee Name', width: 200 },
+    { field: 'secondAttendeeName', headerName: 'Second Ateendee Name', width: 200 },
+
+
+    // "memberName": "Rahul",
+    // "firstAttendeeName": "Rahul",
+    // "secondAttendeeName": "Rahul", 
+
+    // "friendFirstName": "aaa",
+    //         "friendLastName": "aaa",
+    //         "friendDob": "2024-12-01",
+    //         "friendPhoneNumber": "896-874-2203",
+    //         "friendTextPermission": true,
+    // { field: 'attending', headerName: 'Attending', width: 120 },
+    // { field: 'attending', headerName: 'Attending', width: 120 },
+    
     { field: 'created_at', headerName: 'Created At', width: 200 },
-    { field: 'updated_at', headerName: 'Updated At', width: 200 },
   ];
 
   const rows = userData.map((user,index) => ({
-   sno: index + 1,
-    id: user?.id, // Add serial number starting from 1
-    firstname: user?.firstname,
-    lastname: user?.lastname,
+    sno: index + 1,
+    id: user?.id,
+ // Add serial number starting from 1
+    firstname: user?.firstName,
+    lastname: user?.lastName,
     dob: user?.dob,
     email: user?.email,
-    mobile: user?.mobile,
-    insurance: user?.insurance,
-    isRegistered: user?.isRegistered ,
-    created_at: new Date(user?.created_at).toLocaleString(),
-    updated_at: new Date(user?.updated_at).toLocaleString(),
+    mobile: user?.phoneNumber,
+    textPermission: user?.textPermission || false,
+    attending: user?.attending || false ,
+    over18: user?.over18 || false ,
+    friendTextPermission: user?.friendTextPermission || false,
+    type:user?.payment==="guest"?"Guest Access":"Member Discounted Plan",
+    friendFirstName: user?.friendFirstName || 'N/A',
+    friendLastName: user?.friendLastName || 'N/A',
+    friendDob: user?.friendDob || 'N/A',
+    friendPhoneNumber: user?.friendPhoneNumber || 'N/A',
+
+    memberName: user?.memberName || 'N/A',
+    firstAttendeeName: user?.firstAttendeeName || 'N/A',
+    secondAttendeeName: user?.secondAttendeeName || 'N/A',
+    // attending: user?.attending || false ,
+    // attending: user?.attending || false ,
+    created_at: user?.created_at.split("T")[0],
   }));
 
   const handleDownloadExcel = () => {
@@ -86,10 +124,20 @@ if(!Array.isArray(userData))
       { wch: 10 }, // Is Active
       { wch: 25 }, // Created At
       { wch: 25 }, // Updated At
+      { wch: 15 },
+      { wch: 15 }, // First Name
+      { wch: 15 }, // Last Name
+      { wch: 20 }, // DOB
+      { wch: 30 }, // Email
+      { wch: 15 }, // Mobile
+      { wch: 10 }, // Insurance
+      { wch: 10 }, // Is Active
+      { wch: 25 }, // Created At
+      { wch: 25 }, // Updated At
     ];
     worksheet['!cols'] = wscols;
 
-    XLSX.writeFile(workbook, 'patient-data.xlsx'); // Save the Excel file
+    XLSX.writeFile(workbook, 'ResilienceRoundTable-data.xlsx'); // Save the Excel file
   };
 
   return loading ? (
@@ -98,7 +146,7 @@ if(!Array.isArray(userData))
     <Box>
 
 <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
-    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Patient Details</h1>
+    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Resilience Roundtable Details</h1>
   </Box>
       <Box
         sx={{
@@ -181,4 +229,4 @@ if(!Array.isArray(userData))
   );
 };
 
-export default UserTable;
+export default RoundTable;

@@ -1,11 +1,17 @@
 
 import { addAppointments } from "../../../lib/models/appointmentOperations";
+import getTokenFromCookie from "../utils/access";
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  const token = await getTokenFromCookie(req);
 
+  if (!token) {
+    return res.status(401).json({ error: "Authentication required" }); // 401 for unauthenticated
+  }
+  
 
 
     

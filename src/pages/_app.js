@@ -25,12 +25,9 @@ const url=router.asPath;
 //   }
 // }, []);
 useEffect(()=>{
-  if(login===false)
+  if(login===true)
   {
-    router.push('/')
-  }
-  else
-  {
+    
     router.push(pageDisplay)
   }
 },[login])
@@ -90,6 +87,7 @@ setLoading(false); // Stop loading
           localStorage.setItem("login", "false");
           setLogin(false)
           }
+          router.push(router.pathname)
         }
       } catch (error) {
         setPageDisplay("app"); // On error, show login page

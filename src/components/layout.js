@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Box, ThemeProvider, Fab } from "@mui/material";
 import Header from "./header";
-import { Box, ThemeProvider } from "@mui/material";
 import Footer from "./footer";
 import GoToTopIcon from "./goToTop"; // Import GoToTopIcon component
 import theme from "./ThemeProvider";
 import useUserStore from "./useUserStore";
 import Loader from "./Loader"; // Make sure to import the loader component
+import MessageIcon from "@mui/icons-material/Message"; // Import the message icon
+import Link from "next/link";
 
-const Layout = ({ children,userDetails }) => {
+const Layout = ({ children, userDetails }) => {
   const [showGoToTop, setShowGoToTop] = useState(false);
   const { loadLoader, setLoadLoader } = useUserStore();
 
-  console.log("children ==>",userDetails)
+  console.log("children ==>", userDetails);
 
   // Debugging: Check the initial value of loadLoader
   useEffect(() => {
@@ -46,7 +48,7 @@ const Layout = ({ children,userDetails }) => {
 
   return (
     <>
-      <Header sx={{ mb: 1 }} userDetails={userDetails}/>
+      <Header sx={{ mb: 1 }} userDetails={userDetails} />
       <Box
         sx={{
           display: "flex",
@@ -62,7 +64,16 @@ const Layout = ({ children,userDetails }) => {
         </ThemeProvider>
         <Footer sx={{ mt: 1 }} />
       </Box>
+      
+      {/* Go To Top Button */}
       {showGoToTop && <GoToTopIcon />}
+      
+      {/* Floating message icon at the bottom-left corner */}
+      <Link href="/contact" style={{ position: "fixed", bottom: 20, left: 20 }}>
+        <Fab color="primary" aria-label="message">
+          <MessageIcon />
+        </Fab>
+      </Link>
     </>
   );
 };

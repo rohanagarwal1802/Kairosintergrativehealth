@@ -23,9 +23,9 @@ const UserTable = ({ userDetails }) => {
     const getPatientData = async () => {
       try {
         setLoading(true);
-        const patient = await axios.get('/api/getPatient');
-        console.log(patient.data)
-        setUserData(patient.data);
+        const patient = await axios.get('/api/getPublicReviews');
+        console.log(patient.data.reviews)
+        setUserData(patient.data.reviews);
       } catch (error) {
         setUserData([])
         console.log(error);
@@ -44,29 +44,28 @@ if(!Array.isArray(userData))
   return
   const columns = [
     { field: 'sno', headerName: 'S.No', width: 150 },
-    { field: 'firstname', headerName: 'First Name', width: 150 },
-    { field: 'lastname', headerName: 'Last Name', width: 150 },
-    { field: 'dob', headerName: 'Date of Birth', width: 180 },
+    { field: 'full_name', headerName: 'Full Name', width: 150 },
+    { field: 'publishing_name', headerName: 'Publishing Name', width: 180 },
+   
     { field: 'email', headerName: 'Email', width: 250 },
-    { field: 'mobile', headerName: 'Mobile', width: 150 },
-    { field: 'insurance', headerName: 'Insurance', width: 120 },
-    { field: 'isRegistered', headerName: 'Is Active', width: 120 },
+    { field: 'designation', headerName: 'Designation', width: 150 },
+    { field: 'services_availed', headerName: 'Service Availed', width: 150 },
+    { field: 'review', headerName: 'Review', width: 500 },
+    { field: 'public', headerName: 'allow publishing', width: 200 },
     { field: 'created_at', headerName: 'Created At', width: 200 },
-    { field: 'updated_at', headerName: 'Updated At', width: 200 },
   ];
 
   const rows = userData.map((user,index) => ({
    sno: index + 1,
     id: user?.id, // Add serial number starting from 1
-    firstname: user?.firstname,
-    lastname: user?.lastname,
-    dob: user?.dob,
+    full_name: user?.full_name,
+    publishing_name: user?.publishing_name,
+    designation: user?.designation,
     email: user?.email,
-    mobile: user?.mobile,
-    insurance: user?.insurance,
-    isRegistered: user?.isRegistered ,
+    services_availed: user?.services_availed,
+    review: user?.review,
+    public: user?.public ,
     created_at: new Date(user?.created_at).toLocaleString(),
-    updated_at: new Date(user?.updated_at).toLocaleString(),
   }));
 
   const handleDownloadExcel = () => {
@@ -80,16 +79,16 @@ if(!Array.isArray(userData))
       { wch: 15 }, // First Name
       { wch: 15 }, // Last Name
       { wch: 20 }, // DOB
+      { wch: 20 }, // DOB
       { wch: 30 }, // Email
       { wch: 15 }, // Mobile
-      { wch: 10 }, // Insurance
+      { wch: 20 }, // Insurance
       { wch: 10 }, // Is Active
       { wch: 25 }, // Created At
-      { wch: 25 }, // Updated At
     ];
     worksheet['!cols'] = wscols;
 
-    XLSX.writeFile(workbook, 'patient-data.xlsx'); // Save the Excel file
+    XLSX.writeFile(workbook, 'review-data.xlsx'); // Save the Excel file
   };
 
   return loading ? (
@@ -98,7 +97,7 @@ if(!Array.isArray(userData))
     <Box>
 
 <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
-    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Patient Details</h1>
+    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Reviews</h1>
   </Box>
       <Box
         sx={{
@@ -171,7 +170,7 @@ if(!Array.isArray(userData))
                       Pagination: CustomPaginationGrid,
                       Toolbar: GridToolbar,
                     }}
-                    localeText={{ noRowsLabel: "No Patients Available" }}
+                    localeText={{ noRowsLabel: "No Reviews Available" }}
                     getRowClassName={(params) =>
                       params.row.isExpired ? "expired-row" : ""
                     }

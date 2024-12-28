@@ -41,8 +41,9 @@ const handleLogout = async () => {
     try{
       await axios.get('/api/logout').then(()=>{
     localStorage.removeItem("login"); // Example: Clear login token
-    setPageDisplay('login')
+    // setPageDisplay('login')
     router.push("/login"); // Redirect to login page
+    setPageDisplay('login')
     // router.reload()
     })
     }

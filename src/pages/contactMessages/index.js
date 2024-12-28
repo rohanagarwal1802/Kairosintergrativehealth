@@ -12,10 +12,10 @@ const ContactMessages = ({ userDetails }) => {
   const [pageSize, setPageSize] = useState(10);
   const router = useRouter();
 console.log(userDetails)
-//   if (userDetails?.role !== 'admin') {
-//     router.push('/');
-//     return;
-//   }
+if (userDetails && userDetails?.role !== 'admin') {
+  router.push('/');
+  return;
+}
 
   const [messages, setMessages] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -50,8 +50,8 @@ if(!Array.isArray(messages))
   ];
 
   const rows = messages.map((user,index) => ({
-    id: user?.id,
-    sno: index + 1, // Add serial number starting from 1
+   sno: index + 1,
+    id: user?.id, // Add serial number starting from 1
     full_name: user?.full_name,
     email: user?.email,
     mobile: user?.mobile,

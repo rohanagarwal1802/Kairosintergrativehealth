@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { Box, Card, Typography, Rating, IconButton, useMediaQuery } from '@mui/material';
+import { Box, Card, Typography, IconButton, useMediaQuery } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ReviewForm from '@/components/Review/ReviewForm';
-
 import axios from 'axios';
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
   const isSmallScreen = useMediaQuery('(max-width:600px)'); // Detects if the screen width is below 600px
+
   const getReviews = async () => {
     try {
-      const response = await axios.get('/api/getReviews');
+      const response = await axios.get('/api/getPublicReviews');
       setReviews(response.data.reviews);
     } catch (error) {
       console.error('Error in getting reviews', error);
     }
   };
+
   useEffect(() => {
-    
     getReviews();
   }, []);
 
@@ -32,7 +32,7 @@ const Review = () => {
         right: -10,
         transform: 'translateY(-50%)',
         zIndex: 1,
-        color: 'black',
+        color: 'white',
       }}
     >
       <ChevronRightIcon />
@@ -48,7 +48,7 @@ const Review = () => {
         left: -10,
         transform: 'translateY(-50%)',
         zIndex: 1,
-        color: 'black',
+        color: 'white',
       }}
     >
       <ChevronLeftIcon />
@@ -56,51 +56,45 @@ const Review = () => {
   );
 
   const settings = {
-    dots: true,                  // Show dots navigation
-    infinite: true,              // Allow infinite scrolling
-    speed: 500,                  // Transition speed (500ms)
-    slidesToShow: isSmallScreen ? 1 : 3, // 1 slide on small screens, 3 slides on large screens
-    slidesToScroll: 1,           // Number of slides to scroll at a time
-    autoplay: true,              // Enable autoplay
-    autoplaySpeed: 3000,         // Delay between slide transitions
-    arrows: !isSmallScreen,      // Show arrows only on larger screens
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: isSmallScreen ? 1 : 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: !isSmallScreen,
     nextArrow: !isSmallScreen ? <NextArrow /> : null,
     prevArrow: !isSmallScreen ? <PrevArrow /> : null,
-    pauseOnHover: true,          // Pause autoplay when hovering
-    pauseOnDotsHover: true,      // Pause autoplay when hovering over dots
+    pauseOnHover: true,
+    pauseOnDotsHover: true,
   };
-  
-  
 
   return (
-    <><Box
-      sx={{
-        width: '100%',
-        padding: { xs: 1, sm: 2, md: 3 },
-        paddingLeft: { xs: 1, md: 4 },
-        paddingRight: { xs: 1, md: 4 },
-       
-      }}
-    >
+    <Box sx={{ width: '100%', padding: { xs: 1, sm: 2, md: 3 }, paddingLeft: { xs: 1, md: 4 }, paddingRight: { xs: 1, md: 4 } ,mt:4}}>
       {reviews.length > 0 ? (
         <Slider {...settings}>
           {reviews.map((review, index) => (
             <Card
               key={index}
               sx={{
-                maxWidth: { xs: '95%', md: 345 },
+                maxWidth: { xs: '95%', sm: 300, md: 345 },
                 margin: '0 auto',
                 p: 2,
                 position: 'relative',
                 mx: { xs: 1, md: 2 },
                 backgroundColor: '#1A4B66',
                 color: 'white',
-                align: "center",
-                height:'auto'
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                height: 'auto',
+                borderRadius: '8px',
+                boxShadow: 3,
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-                <Typography variant="body1" sx={{ color: '#CFD8DC' }}>
+                <Typography variant="body2" sx={{ color: '#CFD8DC', fontSize: { xs: '0.8rem', sm: '1rem' } }}>
                   {new Date(review.created_at).toLocaleDateString()}
                 </Typography>
               </Box>
@@ -108,9 +102,11 @@ const Review = () => {
               <Typography variant="body1" sx={{ paddingY: 1, color: '#CFD8DC' }}>
                 {review.review || 'No description available'}
               </Typography>
-              <Typography variant="h6" sx={{ paddingY: 1, color: '#CFD8DC' }}>
+
+              <Typography variant="h6" sx={{ paddingY: 1, color: '#CFD8DC', fontWeight: 'bold' }}>
                 {review.publishing_name}
               </Typography>
+
               <Typography variant="body2" sx={{ paddingY: 1, color: '#CFD8DC', fontWeight: 'bold' }}>
                 {review.designation}
               </Typography>
@@ -122,7 +118,9 @@ const Review = () => {
           No reviews available.
         </Typography>
       )}
-    </Box><ReviewForm getReviews={getReviews}/></>
+      
+      <ReviewForm getReviews={getReviews} />
+    </Box>
   );
 };
 

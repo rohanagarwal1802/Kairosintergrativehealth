@@ -428,5 +428,29 @@
     "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYXAxQGdtYWlsLmNvbSIsImlhdCI6MTczNTM4NTQ3NCwiZXhwIjoxNzM1NDcxODc0fQ.yCOkh7eEQy6Q5honrAf6URf_HRP-68qjBIR7TfatWUY",
     "password": "69138f306bdc8aec6b6930fcdb474b0e:a3bd26d79ed3e4e052fa",
     "verifiedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYXAxQGdtYWlsLmNvbSIsImlhdCI6MTczNTM4NTQ3NCwiZXhwIjoxNzM1NDcxODc0fQ.yCOkh7eEQy6Q5honrAf6URf_HRP-68qjBIR7TfatWUY"
+  },
+  {
+    "id": 15,
+    "firstname": "rohan",
+    "lastname": "Agarwal",
+    "dob": "2024-12-03",
+    "email": "aaa123@gmail.com",
+    "mobile": "7865412300",
+    "insurance": "insurance",
+    "questions": [
+      "yes",
+      "yes",
+      "yes",
+      "yes",
+      "yes"
+    ],
+    "captchaVerification": "20m9v9",
+    "patientId": 98,
+    "isRegistered": true,
+    "created_at": "2024-12-28T21:44:34.212Z",
+    "updated_at": "2024-12-28T21:49:33.664Z",
+    "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3MzU0MjIyNzQsImV4cCI6MTczNTUwODY3NH0.GN3uVTdFtbq2YcyuwEHiCqxnwcQ9t9Lblh6lW8SqCPE",
+    "password": "f8bfcac7e85a64fe4d99480e6d2e0738:f37940",
+    "verifiedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3MzU0MjIyNzQsImV4cCI6MTczNTUwODY3NH0.GN3uVTdFtbq2YcyuwEHiCqxnwcQ9t9Lblh6lW8SqCPE"
   }
 ]

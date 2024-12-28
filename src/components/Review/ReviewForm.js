@@ -9,7 +9,8 @@ import {
   Button,
   IconButton,
   Grid,
-  Select, MenuItem, InputLabel, FormControl ,FormControlLabel,Checkbox
+  Select, MenuItem, InputLabel, FormControl ,FormControlLabel,Checkbox,
+  CircularProgress
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
@@ -27,6 +28,7 @@ const validationSchema = Yup.object({
 
 const ReviewForm = ({getReviews}) => {
   const [captchaValue, setCaptchaValue] = React.useState('');
+  const [loading,setLoading]=useState(false)
 
   const generateCaptcha = () => {
     return Math.random().toString(36).substring(2, 8); 
@@ -51,7 +53,9 @@ const ReviewForm = ({getReviews}) => {
     onSubmit: async (values) => {
       console.log('Form Data', values);
       try {
+        setLoading(true)
         const resp = await axios.post('/api/addReview', values);
+        if(formik.values.public===true)
         getReviews();
 
           // Reset the form after submission
@@ -64,6 +68,9 @@ const ReviewForm = ({getReviews}) => {
         console.log('Response:', resp);
       } catch (error) {
         console.error('Error submitting review:', error);
+      }
+      finally{
+        setLoading(false)
       }
     },
     onReset: () => {
@@ -233,6 +240,7 @@ const ReviewForm = ({getReviews}) => {
                                         control={<Checkbox
                                           name="public"
                                           checked={formik.values.public}
+                                          onChange={formik.handleChange}
                                           />}
                                         label="Do you want it to publish it to website ?"
                                         sx={{ color: 'black' }} />
@@ -266,8 +274,12 @@ const ReviewForm = ({getReviews}) => {
             <Button variant="outlined" color="secondary" type="reset">
               Reset
             </Button>
-            <Button variant="warning" color="warning" type="submit">
-              Submit Form
+            <Button variant="warning" color="warning" type="submit" disabled={loading}>
+              {loading ? (
+                             <CircularProgress size={24} sx={{ color: 'white' }} />
+                           ) : (
+                             'Submit Form'
+                           )}
             </Button>
           </Box>
         </form>

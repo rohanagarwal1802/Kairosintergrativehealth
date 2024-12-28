@@ -8,7 +8,7 @@ const AdminOptions = () => {
       },
       {
         title: "Resillience RoundTable Details",
-        path: "/Admin",
+        path: "/roundTableDetailsAdmin",
         // description: "Explore various mutual fund options to grow your wealth.",
         image: "/images/faq.jpg",
       },
@@ -21,7 +21,7 @@ const AdminOptions = () => {
    
       {
         title: "Reviews",
-        path: "/Admin",
+        path: "/reviewsPageAdmin",
         // description: "Let us manage your investment portfolio for optimal returns.",
         image: "/images/client.jpg",
       },
