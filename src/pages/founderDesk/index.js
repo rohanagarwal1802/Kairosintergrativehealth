@@ -1,5 +1,37 @@
 import React from "react";
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack,Grid } from "@mui/material";
+
+const data = [
+  {
+    title: "Mood Disorders",
+    items: ["Major Depressive Disorder", "Patient Advocacy", "Process and Policy Improvement", "Staff Education"]
+  },
+  {
+    title: "Anxiety Disorders",
+    items: ["Generalized Anxiety Disorder", "Panic Disorder", "Social Anxiety Disorder","Agoraphobia"]
+  },
+  {
+    title: "Obsessive-Compulsive and Related Disorders",
+    items: ["Obsessive Compulsive Disorder", "Trichotillomania","Excoriation"]
+  },
+  {
+    title: "Trauma-Stress Related Disorders",
+    items: ["PTSD", "Adjustment Disorders"]
+  },
+  {
+    title: "Neurodevelopmental Disorders",
+    items: ["ADHD"]
+  },
+  {
+    title: "Substance Use Disorders",
+    items: ["AUD", "OUD","Cannabis Use Disorder","Smoking Cessation"]
+  },
+
+  {
+    title: "Psychotic Disorders",
+    items: ["Schizophrenia", "Schizoaffective"]
+  }
+];
 
 const FounderDesk = () => {
   return (
@@ -17,7 +49,7 @@ const FounderDesk = () => {
           ml: { xs: 0, md: -4 }, // Shifts the image to the left on medium and larger screens
         }}
       >
-        {/* #66BB6A Decorative Boxes Behind Image */}
+        {/* #6F7863 Decorative Boxes Behind Image */}
         <Box
           sx={{
             position: "absolute",
@@ -25,7 +57,7 @@ const FounderDesk = () => {
             left: "-15%",
             width: "80%",
             height: "35%",
-            backgroundColor: "#66BB6A",
+            backgroundColor: "#6F7863",
             zIndex: 0,
             borderRadius: 2,
           }} />
@@ -35,7 +67,7 @@ const FounderDesk = () => {
           sx={{
             position: "absolute",
             top: "15%", // Aligned vertically with some padding
-            left: "-5%", // Positioned on the left of the #66BB6A box
+            left: "-5%", // Positioned on the left of the #6F7863 box
             width: "10%", // Narrower width for the dotted box
             height: "20%", // Taller height for the dotted box
             backgroundImage: "radial-gradient(white 10%, transparent 10%)",
@@ -54,7 +86,7 @@ const FounderDesk = () => {
             right: "5%",
             width: "60%",
             height: "50%",
-            backgroundColor: "#66BB6A",
+            backgroundColor: "#6F7863",
             zIndex: 0,
             borderRadius: 2,
           }} />
@@ -122,13 +154,10 @@ MSN, MBA, PMHNP-BC
           based settings to provide 7.a diverse understanding to each individual’s unique presentation, 8.enhancing the well-being of his community.
         </Typography>
       </Stack>
-    </Box>
+   
     <Box
   sx={{
-    backgroundImage: `url('/fdBackground.jpg')`,
-    backgroundSize: 'cover', // Ensures the image covers the entire box
-    backgroundPosition: 'top', // Focuses on the upper part of the image
-    backgroundRepeat: 'no-repeat',
+   
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -161,22 +190,43 @@ MSN, MBA, PMHNP-BC
   </Typography>
   <div
   style={{
+    display: 'flex', // Enables Flexbox
+    flexWrap: 'wrap', // Allows wrapping to the next line
+    gap: '10px', // Space between items
+    justifyContent: 'flex-start', // Align items to the left
     backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
-    maxWidth: '400px', // Restrict width to avoid stretching
+    width: '100%', // Make the box take up full width of its parent container
+    boxSizing: 'border-box', // Includes padding in width calculations
     marginLeft: '0', // Aligns the box to the left
-    marginBottom:10
+    marginBottom: 10,
   }}
 >
-  <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8, margin: 0 }}>
-    <li>Emergency Departments</li>
-    <li>Inpatient Psychiatry</li>
-    <li>Outpatient Psychiatry</li>
-    <li>Substance Abuse Centers</li>
-  </ul>
+  {[ 
+    'Emergency Departments', 
+    'Inpatient Psychiatry', 
+    'Outpatient Psychiatry', 
+    'Substance Abuse Centers' 
+  ].map((item, index) => (
+    <div
+      key={index}
+      style={{
+        flex: '1 1 45%', // Flex-grow, shrink, and basis (roughly 45% of parent width)
+        minWidth: '150px', // Minimum width to ensure proper wrapping
+        textAlign: 'left', // Center-align text
+        color: 'black',
+        lineHeight: 1.5,
+      }}
+    >
+        <li key={index} style={{ marginBottom: '10px' }}>
+      {item}
+      </li>
+    </div>
+  ))}
 </div>
+
 
 
 
@@ -199,23 +249,118 @@ MSN, MBA, PMHNP-BC
     <b>St. Vincent’s East:</b> 
     &nbsp;Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
   </Typography>
-  <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+
+  <div
+  style={{
+    display: 'flex', // Enables Flexbox
+    flexWrap: 'wrap', // Allows wrapping to the next line
+    gap: '10px', // Space between items
+    justifyContent: 'flex-start', // Align items to the left
+    backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
-    maxWidth: '400px', // Restrict width to avoid stretching
+    width: '100%', // Make the box take up full width of its parent container
+    boxSizing: 'border-box', // Includes padding in width calculations
     marginLeft: '0', // Aligns the box to the left
-}}>
-  <ul style={{ paddingLeft: '20px', color: 'black', lineHeight: 1.8 }}>
-   
-    <li>Patient Care</li>
-    <li>Patient Advocacy</li>
-    <li>Process and Policy Improvement</li>
-    <li>Staff Education</li>
-  </ul>
-</Box>
+    marginBottom: 10,
+  }}
+>
+  {[ 
+    'Patient Care', 
+    'Patient Advocacy', 
+    'Process and Policy Improvement', 
+    'Staff Education' 
+  ].map((item, index) => (
+    <div
+      key={index}
+      style={{
+        flex: '1 1 45%', // Flex-grow, shrink, and basis (roughly 45% of parent width)
+        minWidth: '150px', // Minimum width to ensure proper wrapping
+        textAlign: 'left', // Center-align text
+        color: 'black',
+        lineHeight: 1.5,
+      }}
+    >
+        <li key={index} style={{ marginBottom: '10px' }}>
+      {item}
+      </li>
+    </div>
+  ))}
+  </div>
+
+
+
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
   Advancing in his career, Mark began his career as a Psychiatric Mental Health Nurse Practitioner in NC where he worked alongside Duke and Yale trained psychiatrist and addictionologist in general psychiatry and addiction specialties.
+  </Typography>
+
+  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
+    Mark is passionate about guiding the next generation of healthcare professionals. He has served as a clinical instructor, focusing on psychiatric and addiction nursing, while inspiring students through education and mentorship.
+  </Typography>
+
+  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
+  Mark provides comprehensive assessments, diagnoses, and
+personalized treatment plans that foster resilience and aim to improve an
+individual’s <b><i>well-being.</i></b> Mark treats various mental health challenges,
+including, but not limited to:
+  </Typography>
+
+  <Grid container spacing={3}>
+      {data.map((box, index) => (
+        <Grid item xs={12} sm={6} md={6} key={index}>
+           <Box
+        sx={{
+          backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+          borderRadius: '10px', // Rounded corners
+          padding: '20px', // Padding inside the box
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
+          maxWidth: '100%', // Ensure it stays within the grid
+          height: '250px', // Fixed height for all boxes
+          overflow: 'hidden', // Prevents content from spilling
+          textOverflow: 'ellipsis', // For long text
+          mb:2
+        }}
+      >
+            <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            textAlign: 'center',
+            fontWeight: 'bold',
+            marginBottom: '10px',
+            color: 'black',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap', // Ensures single-line titles
+            textOverflow: 'ellipsis',
+          }}
+        >
+              {box.title}
+            </Typography>
+            <ul
+          style={{
+            paddingLeft: '20px',
+            color: 'black',
+            lineHeight: 1.8,
+            maxHeight: 'calc(100% - 40px)', // Adjust for the title
+            overflowY: 'auto', // Scrollable if too many items
+            wordWrap: 'break-word', // Break long text
+          }}
+        >
+              {box.items.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+
+<Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
+As an <b>Educator &amp; Mentor</b>, Mark is passionate about
+guiding the next generation of healthcare professionals. He has served as a
+clinical instructor, focusing on psychiatric and addiction nursing, while
+inspiring students through education and mentorship.
   </Typography>
   {/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
     borderRadius: '10px', // Rounded corners
@@ -228,9 +373,7 @@ MSN, MBA, PMHNP-BC
     Educator & Mentor
   </Typography>
   </Box> */}
-  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    Mark is passionate about guiding the next generation of healthcare professionals. He has served as a clinical instructor, focusing on psychiatric and addiction nursing, while inspiring students through education and mentorship.
-  </Typography>
+
   {/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
@@ -259,7 +402,7 @@ MSN, MBA, PMHNP-BC
   </Typography> */}
 </Box>
 </Box>
-       
+</Box> 
        </>
   );
 };
