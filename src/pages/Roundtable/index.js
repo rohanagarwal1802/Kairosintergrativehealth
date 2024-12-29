@@ -1,13 +1,15 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import ResilienceRoundtableForm from "@/components/roundTable/ResilienceRoundtableForm";
+import MonthlySchedulePage from "@/components/roundTable/monthlySchedule";
 
 const RoundTable = () => {
   return (
     <>
+ 
       <Box
         sx={{
-          backgroundImage: `url('/depressionBackground.jpg')`,
+          backgroundColor: `#Ece7E2`,
           backgroundSize: 'cover', // Ensures the image covers the entire box
           backgroundPosition: 'top', // Focuses on the upper part of the image
           backgroundRepeat: 'no-repeat',
@@ -21,6 +23,18 @@ const RoundTable = () => {
           width: '100%', // Ensures it spans the full width
         }}
       >
+
+<h1
+  style={{
+    textAlign: 'center', // Centers the text horizontally
+    margin: '0', // Removes any default margins
+    padding: '10px 0', // Optional padding for spacing
+    color:"black"
+  }}
+>
+  Resilience Roundtable
+</h1>
+
         {/* First Section */}
         <Box
           sx={{
@@ -68,8 +82,8 @@ const RoundTable = () => {
               height: { xs: 'auto', md: 450 }
             }}
           >
-            <Typography variant="h4" sx={{ mb: 2, fontWeight: 600, color: "black" }}>
-              Resilience Roundtable
+            <Typography variant="h4" sx={{ mb: 2, fontWeight: 400, color: "black" }}>
+            Promoting Education
             </Typography>
             <Typography variant="body1" sx={{ fontSize: 25 }}>
               At our clinic, we offer <strong>Resilience Roundtable</strong>, a once-per-month
@@ -127,8 +141,8 @@ const RoundTable = () => {
               height: { xs: 'auto', md: 500 }
             }}
           >
-            <Typography variant="h4" sx={{ mb: 2, fontWeight: 600, color: "black" }}>
-              Fostering Conversations
+            <Typography variant="h4" sx={{ mb: 2, fontWeight: 400, color: "black" }}>
+              Fostering Conversation
             </Typography>
             <Typography variant="body1" sx={{ fontSize: 25 }}>
               As a dedicated mental health professional, Mark saw firsthand how a lack of
@@ -162,10 +176,11 @@ const RoundTable = () => {
         mb: 1,
         mt: 1,
         fontSize: 25,
-        textAlign: { xs: "center", md: "left" }, // Center on small screens
+        color:"black",
+        textAlign: { xs: "center", md: "center" }, // Center on small screens
       }}
     >
-      Interested in joining The Resilience Roundtable?<br />
+      Interested in joining larger?<br />
     </Typography>
     <Box
       sx={{
@@ -187,7 +202,9 @@ const RoundTable = () => {
             <li>A session link sent to your email once payment is received (allow 24 hours).</li>
           </ul>
         </li>
-        <li>Sign up for the monthly Resilience Roundtable by completing the form below.</li>
+        <li>Sign up for the monthly <i>Resilience
+Roundtable</i> by completing the form below each month, 48 hours before event,
+that you plan to attend.</li>
         <li>Access Options:
           <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
             <li>Member Discounted Plan: $21 per session + 1 Free Friend/Family Member.</li>
@@ -205,7 +222,9 @@ const RoundTable = () => {
         <li>Payment Method: QuickBooks payment option available.</li>
       </ul>
     </Box>
+
   </Box>
+  <MonthlySchedulePage/>
         <ResilienceRoundtableForm />
       </Box>
 

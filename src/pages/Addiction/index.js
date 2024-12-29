@@ -16,6 +16,7 @@ const AddictionPage = () => {
             flexDirection: { xs: "column", sm: "row" }, // Stack on small screens, row on larger screens
             justifyContent: "space-between",
             alignItems: "center",
+            backgroundColor:"#Ece7E2",
             p: 4,
             gap: 2, // Space between elements
           }}
@@ -28,6 +29,7 @@ const AddictionPage = () => {
               width: { xs: "100%", sm: 300, md: 400 }, // Full width for small screens, fixed size for large screens
               display: "flex",
               justifyContent: "center",
+             
               alignItems: "center",
               order: { xs: 1, sm: 0 }, // Image on top on small screens, left on larger screens
               mb: { xs: 3, sm: 0 }, // Margin for small screens to space from other elements
@@ -41,8 +43,8 @@ const AddictionPage = () => {
                 left: "-15%",
                 width: "80%",
                 height: "35%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+              zIndex: 2,
                 borderRadius: 2,
               }}
             />
@@ -55,7 +57,7 @@ const AddictionPage = () => {
                 height: "20%",
                 backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                 backgroundSize: "10px 10px",
-                zIndex: -1,
+              zIndex: 4,
                 borderRadius: 1,
               }}
             />
@@ -66,8 +68,8 @@ const AddictionPage = () => {
                 right: "5%",
                 width: "60%",
                 height: "50%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+              zIndex: 2,
                 borderRadius: 2,
               }}
             />
@@ -82,7 +84,7 @@ const AddictionPage = () => {
                 objectFit: "cover",
                 borderRadius: 2,
                 boxShadow: 3,
-                zIndex: 1,
+                zIndex: 4,
               }}
             />
           </Box>
@@ -96,6 +98,7 @@ const AddictionPage = () => {
               p: 3,
               borderRadius: 2,
               boxShadow: 3,
+              zIndex:4,
               order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
             }}
           >
@@ -110,7 +113,7 @@ const AddictionPage = () => {
       <Box>
         <Box sx={{ ml: "5%", mt: "1%" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-          Substance Use Medication-Assisted Treatment :
+          Substance Use and Medication-Assisted Treatment (MAT)
           </Typography>
         </Box>
 
@@ -121,17 +124,16 @@ const AddictionPage = () => {
           <List>
             {[
               `Addiction is a complex, chronic condition that affects both the mind
-and body, often leading to destructive behaviors and strained
+and body, that can lead to destructive behaviors and strained
 relationships. Whether it involves substances like alcohol,
 prescription medications, or illicit drugs, addiction can feel
 overwhelming, but recovery is possible. At KIH we are committed to
 providing compassionate, evidence-based care tailored to each
-individual&#39;s needs. We work together to develop a personalized
+individual's needs. We work together to develop a personalized
 treatment plan that addresses the underlying causes of addiction
 and promotes long-term recovery.`,
-              `If you are struggling with substance use, we offer medication-assisted
-treatment (MAT) to help you regain control of your life.`,
-              `Please note we do not currently off treatment with Suboxone or other
+              `If you are struggling with substance use, select MAT to help you regain control of your life.`,
+              `Please note we do not currently offer treatment with Suboxone or other
 medications containing buprenorphine as it is a controlled substance.`,
             ].map((therapy, index) => (
               <ListItem
@@ -181,8 +183,8 @@ medications containing buprenorphine as it is a controlled substance.`,
                 left: "-15%",
                 width: "80%",
                 height: "35%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+              zIndex: 2,
                 borderRadius: 2,
               }}
             />
@@ -195,7 +197,7 @@ medications containing buprenorphine as it is a controlled substance.`,
                 height: "20%",
                 backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                 backgroundSize: "10px 10px",
-                zIndex: -1,
+              zIndex: 4,
                 borderRadius: 1,
               }}
             />
@@ -206,8 +208,8 @@ medications containing buprenorphine as it is a controlled substance.`,
                 right: "5%",
                 width: "60%",
                 height: "50%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+              zIndex: 2,
                 borderRadius: 2,
               }}
             />
@@ -222,7 +224,7 @@ medications containing buprenorphine as it is a controlled substance.`,
                 objectFit: "cover",
                 borderRadius: 2,
                 boxShadow: 3,
-                zIndex: 1,
+                zIndex: 4,
               }}
             />
           </Box>

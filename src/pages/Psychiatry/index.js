@@ -11,9 +11,10 @@ const PTSDPage = () => {
 
   return (
     <>
+    
       <Box
         sx={{
-          backgroundImage: `url('/depressionBackground.jpg')`,
+          backgroundColor: `#Ece7E2`,
           backgroundSize: 'cover',
           backgroundPosition: 'top',
           backgroundRepeat: 'no-repeat',
@@ -30,6 +31,17 @@ const PTSDPage = () => {
           },
         }}
       >
+          <Box sx={{ ml: "5%", mt: "1%" }}>
+          <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
+            What is Integrative Psychiatry?
+          </Typography>
+        </Box>
+
+        <Box sx={{ mt: "1%",mb:"1%" }}>
+          <Typography variant="body2" sx={{ color: "black" }}>
+            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
+          </Typography>
+        </Box>
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, '@media (max-width: 768px)': { flexDirection: 'column' } }}>
           <Box sx={{ maxWidth: '500px', width: '100%' }}>
             <Image
@@ -51,14 +63,103 @@ const PTSDPage = () => {
           </Box>
         </Box>
       </Box>
-
+      <Box
+        sx={{
+          backgroundColor: `#Ece7E2`,
+          mb:-3.5
+          // backgroundSize: 'cover',
+          // backgroundPosition: 'top',
+          // backgroundRepeat: 'no-repeat',
+          // height: 'auto',
+        }}
+      >
       <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: 'inline-block', ml: "5%" }}>
         <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
-          Psychiatry
+        How our process works
         </Typography>
       </Box>
 
       <Box>
+
+      <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          Interest form
+          </Typography>
+        </Box>
+
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              Complete the interest form by clicking on the
+“Request Appointment” button (located on top right hand corner of
+this page). This allows for you to be able to schedule your
+complimentary phone call.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          After filling out the interest form
+          </Typography>
+        </Box>
+
+        
+
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              You will receive an
+email from (whatever email it will come from) to create a (portal
+account/password – whatever is correct) with Kairos Integrative
+Health.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          After creating your password,
+          </Typography>
+        </Box>    
+
+         <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              You will receive an
+email from (whatever email it will come from) to create a (portal
+account/password – whatever is correct) with Kairos Integrative
+Health.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+       
+        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          Our team will confirm the complimentary phone
+          call appointment
+          </Typography>
+        </Box>  
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              (keep an eye out on your email for
+confirmation) and we will connect with you at the scheduled time
+for a 10-minute phone call. This call will allow you to discuss with
+our provider to see if KIH is a good fit for you.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
         <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
             Complementary Phone Call
@@ -69,11 +170,12 @@ const PTSDPage = () => {
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                Once we receive your interest form, we will have a provider review it and reach out to you for a 15-minute phone call. This phone call is to allow you to ask questions and get a better understanding of our mission at Kairos Integrative Health, as well as allow you and our provider to determine if we are the best team to help you meet your goals.
+             This phone call is to allow you to ask questions and get a better understanding of our mission at Kairos Integrative Health, as well as allow you and our provider to determine if we are the best team to help you meet your goals.
               </Typography>
             </ListItem>
           </List>
         </Box>
+
 
         <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
@@ -85,12 +187,12 @@ const PTSDPage = () => {
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 60-120 minutes and in some cases may involve two separate visits. Initial visits are scheduled in-person, at 400 Vestavia Parkway suite 406, Vestavia Hills, AL.
+                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 1-2 sessions and in some cases may involve two separate visits. Initial visits are scheduled in-person, at 400 Vestavia Parkway suite 406, Vestavia Hills, AL.
               </Typography>
             </ListItem>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                Please note that the initial consultation does not guarantee specific medications, treatments, or documentation. Certain paperwork, such as disability.
+                Please note that the initial consultation does not guarantee specific medications, treatments, or documentation. 
               </Typography>
             </ListItem>
           </List>
@@ -106,28 +208,18 @@ const PTSDPage = () => {
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                If discovered through the initial evaluation that medication is needed, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Typically, appointments will be stretched out to every 1-3 months as appropriate. Typical follow-ups will last 20-40 minutes as appropriate.
+                If discovered through the initial evaluation that medication is needed, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Typically, appointments will be stretched out to every 1-3 months as appropriate. Typical follow-ups will last 10-15 minutes as appropriate.
               </Typography>
             </ListItem>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                *At this time, Kairos Integrative Health does not prescribe controlled substances. Familiar types of medications this includes are benzodiazepines (clonazepam, alprazolam, lorazepam, etc.), stimulants (amphetamines, methylphenidates, etc.), and hypnotics (zolpidem, eszopiclone, etc.), and other medications like gabapentin and pregabalin.
+                At this time, Kairos Integrative Health does not prescribe controlled substances. Familiar types of medications this includes are benzodiazepines (clonazepam, alprazolam, lorazepam, etc.), stimulants (amphetamines, methylphenidates, etc.), and hypnotics (zolpidem, eszopiclone, etc.), and other medications like gabapentin and pregabalin.
               </Typography>
             </ListItem>
           </List>
         </Box>
 
-        <Box sx={{ ml: "5%", mt: "1%" }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
-            What is Integrative Psychiatry?
-          </Typography>
-        </Box>
-
-        <Box sx={{ ml: "5%", mt: "1%" }}>
-          <Typography variant="body2" sx={{ color: "black" }}>
-            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
-          </Typography>
-        </Box>
+      
 
         <Box
           sx={{
@@ -158,7 +250,7 @@ const PTSDPage = () => {
                   }
                   secondary={
                     <>
-                      <Typography variant="body2" sx={{ color: 'gray' }}>
+                      <Typography variant="body2" sx={{ color: 'black' }}>
                         {cause.description}
                       </Typography>
                       {cause.Options && (
@@ -195,6 +287,7 @@ const PTSDPage = () => {
           </List>
         </Box>
      
+      </Box>
       </Box>
     </>
   );

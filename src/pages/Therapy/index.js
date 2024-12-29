@@ -22,6 +22,8 @@ const TherapyPage = () => {
             flexDirection: { xs: "column", sm: "row" }, // Stack on small screens, row on larger screens
             justifyContent: "space-between",
             alignItems: "center",
+            backgroundColor:"#Ece7E2",
+            Zindex:-1,
             p: 4,
             gap: 2, // Space between elements
           }}
@@ -47,8 +49,8 @@ const TherapyPage = () => {
                 left: "-15%",
                 width: "80%",
                 height: "35%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+                 zIndex: 1,
                 borderRadius: 2,
               }}
             />
@@ -61,7 +63,7 @@ const TherapyPage = () => {
                 height: "20%",
                 backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                 backgroundSize: "10px 10px",
-                zIndex: -1,
+                zIndex: -4,
                 borderRadius: 1,
               }}
             />
@@ -72,8 +74,8 @@ const TherapyPage = () => {
                 right: "5%",
                 width: "60%",
                 height: "50%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+                zIndex: 1,
                 borderRadius: 2,
               }}
             />
@@ -100,6 +102,7 @@ const TherapyPage = () => {
               textAlign: "left",
               backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
               p: 3,
+              zIndex:2,
               borderRadius: 2,
               boxShadow: 3,
               order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
@@ -116,13 +119,13 @@ const TherapyPage = () => {
       <Box>
         <Box sx={{ ml: "5%", mt: "1%" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-            Therapy Services :
+            Therapy Services 
           </Typography>
         </Box>
 
         <Box sx={{ ml: "5%" }}>
           <Typography variant="body2" sx={{ color: "black" }}>
-            At Kairos Integrative Health, we do utilize psychotherapies when appropriate. In many cases, best outcomes result from a combination of psychotherapy with medication management. Psychotherapies utilized by our providers can include but are not limited to:
+            At Kairos Integrative Health, we utilize psychotherapies when appropriate. In many cases, best outcomes result from a combination of psychotherapy with medication management. Psychotherapies utilized by our providers can include but are not limited to:
           </Typography>
         </Box>
 
@@ -159,13 +162,13 @@ const TherapyPage = () => {
         {/* Note Section */}
         <Box
           sx={{
-            width: "90%",
+            // width: "90%",
             margin: "auto",
-            mt: 4,
+            // mt: 4,
             p: 3,
             borderRadius: 2,
-            boxShadow: 3,
-            bgcolor: "#f5f5f5",
+            // boxShadow: 3,
+            // bgcolor: "#f5f5f5",
             mb: 4,
             color: "black",
           }}
@@ -196,8 +199,8 @@ const TherapyPage = () => {
                 left: "-15%",
                 width: "80%",
                 height: "35%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+                 zIndex: 1,
                 borderRadius: 2,
               }}
             />
@@ -210,7 +213,7 @@ const TherapyPage = () => {
                 height: "20%",
                 backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                 backgroundSize: "10px 10px",
-                zIndex: -1,
+                 zIndex: 1,
                 borderRadius: 1,
               }}
             />
@@ -221,8 +224,8 @@ const TherapyPage = () => {
                 right: "5%",
                 width: "60%",
                 height: "50%",
-                backgroundColor: "#66BB6A",
-                zIndex: -1,
+                backgroundColor: "#6F7863",
+                 zIndex: 1,
                 borderRadius: 2,
               }}
             />
