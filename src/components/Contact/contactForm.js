@@ -18,6 +18,7 @@ import axios from 'axios';
 const validationSchema = Yup.object({
   full_name: Yup.string().required('Full Name is required'),
   email: Yup.string().email('Invalid email format').required('Email is required'),
+  phoneNumber: Yup.string().email('Invalid phoneNumber format').required('Mobile is required'),
   subject: Yup.string().required('Subject is required'),
   message: Yup.string().required('Message is required'),
   captchaVerification: Yup.string().required('Please verify the captcha'),
@@ -41,6 +42,7 @@ const ContactForm = ({ getReviews }) => {
       email: '',
       subject: '',
       message: '',
+      phoneNumber:'',
       captchaVerification: '',
       terms: false,
     },
@@ -123,6 +125,19 @@ const ContactForm = ({ getReviews }) => {
             />
             {formik.touched.email && formik.errors.email && (
               <Typography color="error">{formik.errors.email}</Typography>
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label={<RequiredLabel label="Mobile Number" />}
+              name="phoneNumber"
+              value={formik.values.phoneNumber}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+            />
+            {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+              <Typography color="error">{formik.errors.phoneNumber}</Typography>
             )}
           </Grid>
 

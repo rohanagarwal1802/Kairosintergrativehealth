@@ -12,8 +12,9 @@ const Review = () => {
 
   const getReviews = async () => {
     try {
-      const response = await axios.get('/api/getReviewsc');
-      setReviews(response.data.reviews);
+      const response = await axios.get('/api/getReviews');
+      console.log(response.data)
+      setReviews(response.data);
     } catch (error) {
       console.error('Error in getting reviews', error);
     }
@@ -71,7 +72,7 @@ const Review = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', padding: { xs: 1, sm: 2, md: 3 }, paddingLeft: { xs: 1, md: 4 }, paddingRight: { xs: 1, md: 4 } ,mt:4}}>
+    <Box sx={{ width: '100%',backgroundColor:"#C8AF8F", padding: { xs: 1, sm: 2, md: 3 }, paddingLeft: { xs: 1, md: 4 }, paddingRight: { xs: 1, md: 4 } ,mt:4}}>
       {reviews.length > 0 ? (
         <Slider {...settings}>
           {reviews.map((review, index) => (

@@ -62,10 +62,10 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           color: "#fff",
           "&:hover": {
-            backgroundColor: "lightgreen", // Lighter hover color
+            backgroundColor: "light#535945", // Lighter hover color
           },
         },
       },

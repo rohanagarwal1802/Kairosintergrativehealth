@@ -28,7 +28,7 @@ const validationSchema = Yup.object({
 
 const ReviewForm = ({getReviews}) => {
   const [captchaValue, setCaptchaValue] = React.useState('');
-  const [loading,setLoading]=useState(false)
+  const [loading,setLoading]=React.useState(false)
 
   const generateCaptcha = () => {
     return Math.random().toString(36).substring(2, 8); 
@@ -221,7 +221,7 @@ const ReviewForm = ({getReviews}) => {
   
 <Grid item xs={12} sm={6}>
             <TextField
-              label={<RequiredLabel label="Review" />}
+              label={<RequiredLabel label="Leave A Review" />}
               name="review"
               value={formik.values.review}
               onChange={formik.handleChange}
@@ -242,7 +242,8 @@ const ReviewForm = ({getReviews}) => {
                                           checked={formik.values.public}
                                           onChange={formik.handleChange}
                                           />}
-                                        label="Do you want it to publish it to website ?"
+                                        label="Is it okay to post your review to Kairos Integrative Health’s
+                                        website"
                                         sx={{ color: 'black' }} />
                                     </Grid>
           

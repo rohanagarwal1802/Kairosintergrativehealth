@@ -32,7 +32,7 @@ const AccordionQuestion = ({ question, answer }) => {
         sx={{
           boxShadow: "none",
           "&:before": { display: "none" },
-          backgroundColor: "lightgreen",
+          backgroundColor: "#535945",
           p: 1,
         }}
       >

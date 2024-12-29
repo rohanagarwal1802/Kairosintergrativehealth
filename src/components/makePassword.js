@@ -92,7 +92,7 @@ const handleLogout = async () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "lightgreen", // Light green background
+      backgroundColor: "light#535945", // Light #535945 background
       padding: isMobile ? 2 : 4,
       width: "100vw",
     }}

@@ -2,25 +2,17 @@ import { Box, Typography,List,ListItem,ListItemText,Link  } from '@mui/material'
 
 const MonthlySchedulePage=()=>{
     const MonthData = [
-        { monthName: 'February',description: `Welcome to Kairos Integrative Health / Depression (Seasonal Affective
-Disorder) - (Discussion on risk factors, symptoms, treatments, and how to
-discuss concerns with others).` },
-        { monthName: 'March', description: `Welcome to Kairos Integrative Health / Anxiety (Generalized Anxiety
-Disorder, Social Phobia, etc.) - (risk factors, symptoms, treatment, and
-how to discuss concerns with others).` },
+        { monthName: 'February',description: `Welcome to Kairos Integrative Health / Depression (Seasonal Affective Disorder) - (Discussion on risk factors, symptoms, treatments, and how to discuss concerns with others).` },
+        { monthName: 'March', description: `Welcome to Kairos Integrative Health / Anxiety (Generalized Anxiety Disorder, Social Phobia, etc.) - (risk factors, symptoms, treatment, and how to discuss concerns with others).` },
         { monthName: 'April', description: `Mental Health in the family: Genetics and cross generational experiences.` },
-        { monthName: 'May', description: `Obsessive Compulsive Disorder (risk factors, symptoms, treatment, and
-how to discuss concerns with others)` },
-        { monthName: 'June', description: `You asked for it! (In June we will discuss a topic requested by
-participants.)` },
+        { monthName: 'May', description: `Obsessive Compulsive Disorder (risk factors, symptoms, treatment, and how to discuss concerns with others)` },
+        { monthName: 'June', description: `You asked for it! (In June we will discuss a topic requested by participants.)` },
         { monthName: 'July', description: `Nutritional Workshop (Stay tuned for details!)` },
         { monthName: 'August', description: 'Stress and Time Management (All ages welcome!)' },
         { monthName: 'September', description: 'Neurotransmitters: and what can I expect from my medication?' },
-        { monthName: 'October', description: `Bipolar Disorder - (risk factors, symptoms, treatment, and how to discuss
-concerns with others)` },
+        { monthName: 'October', description: `Bipolar Disorder - (risk factors, symptoms, treatment, and how to discuss concerns with others)` },
         { monthName: 'November', description: 'Fitness Workshop (Stay tuned for details!)' },
-        { monthName: 'December', description: `You asked for it! (In December we will discuss a topic requested by
-participants.)` },
+        { monthName: 'December', description: `You asked for it! (In December we will discuss a topic requested by participants.)` },
       ];
 return (
     <>
@@ -29,7 +21,7 @@ return (
 
 
 
-      <Box >
+      <Box sx={{mt:2,mb:2}}>
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
         Resilience Roundtables are held on the first Thursday of each month.
         </Typography>
@@ -48,7 +40,7 @@ return (
       }}
     >
        <Box >
-        <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" ,alignItems:"center",textAlign:"center"}}>
         2025 Calendar
         </Typography>
       </Box>

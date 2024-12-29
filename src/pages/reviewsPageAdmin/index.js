@@ -119,7 +119,7 @@ if(!Array.isArray(userData))
                     height: "90vh",
                     width: "100%",
                     "& .super-app-theme--header": {
-                      backgroundColor: "green",
+                      backgroundColor: "#535945",
                       color: "white",
                     },
                     "& .MuiDataGrid-columnHeaderTitleContainer": {
@@ -135,18 +135,18 @@ if(!Array.isArray(userData))
                       color: "white",
                     },
                     "& .MuiDataGrid-columnHeader": {
-                      backgroundColor: "green", // Match header color
+                      backgroundColor: "#535945", // Match header color
                       color: "white",
                       // borderRadius: "4px", // Consistent border radius
                     },
                     // CSS to target the header checkbox
                     "& .MuiDataGrid-columnHeader .MuiCheckbox-root": {
                       color: "grey !important", // Grey color for disabled state
-                      backgroundColor: "green !important", // Blue background
+                      backgroundColor: "#535945 !important", // Blue background
                     },
                     "& .MuiDataGrid-columnHeader .MuiCheckbox-root.Mui-disabled": {
                       color: "#e0e0e0 !important", // Grey color for disabled state
-                      backgroundColor: "green !important", // Blue background
+                      backgroundColor: "#535945 !important", // Blue background
                       cursor: "not-allowed", // Cursor to indicate disabled state
                     },
                   }}

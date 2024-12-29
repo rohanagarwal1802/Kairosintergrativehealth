@@ -12,7 +12,7 @@ const ServicesBox = () => {
         display: "flex",
         justifyContent: "space-evenly",
         alignItems: "center",
-        backgroundColor: "#ECE7E2", // Light green background
+        backgroundColor: "#ECE7E2", // Light #535945 background
         padding: "20px",
         borderRadius: "8px",
         overflowX: "auto", // Enable horizontal scrolling if items overflow

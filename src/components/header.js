@@ -177,9 +177,9 @@ sx={{
   sx={{
     padding: "6px 12px",
     borderBottom: userDetails?.role==='admin' && currentPath==="Admin"
-      ? "2px solid green"
+      ? "2px solid #535945"
       : "none",
-    color: userDetails?.role==='admin' && currentPath==="Admin" ? "green" : "inherit",
+    color: userDetails?.role==='admin' && currentPath==="Admin" ? "#535945" : "inherit",
     "&:hover": { backgroundColor: "lightgray" },
     fontSize: "0.75rem",
   }}
@@ -222,8 +222,8 @@ ADMIN DETAILS
       //   onClick={() => router.push('/admin')}
       //   sx={{
       //     padding: "6px 12px",
-      //     borderBottom: "2px solid green",
-      //     color: "green",
+      //     borderBottom: "2px solid #535945",
+      //     color: "#535945",
       //     "&:hover": { backgroundColor: "lightgray" },
       //     fontSize: "0.75rem",
       //   }}
@@ -238,8 +238,8 @@ ADMIN DETAILS
         onClick={() => router.push('/userAppointments')}
         sx={{
           padding: "6px 12px",
-          borderBottom: currentPath==="/userAppointments" && "2px solid green",
-          color: currentPath==="/userAppointments" && "green",
+          borderBottom: currentPath==="/userAppointments" && "2px solid #535945",
+          color: currentPath==="/userAppointments" && "#535945",
           "&:hover": { backgroundColor: "lightgray" },
           fontSize: "0.75rem",
         }}
@@ -272,9 +272,9 @@ ADMIN DETAILS
               sx={{
                 padding: "6px 12px",
                 borderBottom: isSelected(option.path)
-                  ? "2px solid green"
+                  ? "2px solid #535945"
                   : "none",
-                color: isSelected(option.path) ? "green" : "inherit",
+                color: isSelected(option.path) ? "#535945" : "inherit",
                 "&:hover": { backgroundColor: "lightgray" },
                 fontSize: "0.75rem",
               }}
@@ -327,9 +327,9 @@ ADMIN DETAILS
           sx={{
             padding: "6px 12px",
             borderBottom: isSelected(option.path)
-              ? "2px solid green"
+              ? "2px solid #535945"
               : "none",
-            color: isSelected(option.path) ? "green" : "inherit",
+            color: isSelected(option.path) ? "#535945" : "inherit",
             "&:hover": { backgroundColor: "lightgray" },
             fontSize: "0.75rem",
           }}
@@ -347,10 +347,10 @@ ADMIN DETAILS
         onClick={() =>router.push("/login") }
         sx={{
           padding: "6px 12px",
-          // borderBottom: isSelected(option.path) ? "2px solid green" : "none",
-          // color: isSelected(option.path) ? "green" : "inherit",
+          // borderBottom: isSelected(option.path) ? "2px solid #535945" : "none",
+          // color: isSelected(option.path) ? "#535945" : "inherit",
           "&:hover": { backgroundColor: "lightgray" },
-          color:"green",
+          color:"#535945",
           fontSize: "0.75rem",
         }}
       >
@@ -363,13 +363,13 @@ ADMIN DETAILS
     sx={{
       display: "flex",
       alignItems: "center",
-      backgroundColor: "green",
+      backgroundColor: "#535945",
       color: "white",
       border: "none",
       borderRadius: "4px",
       padding: "6px 12px",
       cursor: "pointer",
-      "&:hover": { backgroundColor: "green" },
+      "&:hover": { backgroundColor: "#535945" },
       fontSize: "0.75rem",
     }}
     onClick={() => {
@@ -388,13 +388,13 @@ ADMIN DETAILS
         sx={{
           display: "flex",
           alignItems: "center",
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           color: "white",
           border: "none",
           borderRadius: "4px",
           padding: "6px 12px",
           cursor: "pointer",
-          "&:hover": { backgroundColor: "green" },
+          "&:hover": { backgroundColor: "#535945" },
           fontSize: "0.75rem",
         
         }}
@@ -465,9 +465,9 @@ ADMIN DETAILS
           sx={{
             padding: "6px 12px",
             borderBottom: userDetails?.role==='admin' && currentPath==="Admin"
-      ? "2px solid green"
+      ? "2px solid #535945"
       : "none",
-    color: userDetails?.role==='admin' && currentPath==="Admin" ? "green" : "inherit",
+    color: userDetails?.role==='admin' && currentPath==="Admin" ? "#535945" : "inherit",
             "&:hover": { backgroundColor: "lightgray" },
             fontSize: "0.75rem",
             display: "flex",
@@ -526,8 +526,8 @@ ADMIN DETAILS
   }}
   sx={{
     padding: "6px 12px",
-    borderBottom: currentPath==="/userAppointments" ? "2px solid green" : "none",
-    color: currentPath==="/userAppointments" ? "green" : "inherit",
+    borderBottom: currentPath==="/userAppointments" ? "2px solid #535945" : "none",
+    color: currentPath==="/userAppointments" ? "#535945" : "inherit",
     "&:hover": { backgroundColor: "lightgray" },
     fontSize: "0.75rem",
     display: "flex",
@@ -560,8 +560,8 @@ ADMIN DETAILS
         <Box
           sx={{
             padding: "6px 12px",
-            borderBottom: isSelected(option.path) ? "2px solid green" : "none",
-            color: isSelected(option.path) ? "green" : "inherit",
+            borderBottom: isSelected(option.path) ? "2px solid #535945" : "none",
+            color: isSelected(option.path) ? "#535945" : "inherit",
             "&:hover": { backgroundColor: "lightgray" },
             fontSize: "0.75rem",
             display: "flex",
@@ -616,8 +616,8 @@ ADMIN DETAILS
       onClick={() => {(option.path && router.push(option.path));toggleMobileMenu()}} // Navigate directly for normal options
       sx={{
         padding: "6px 12px",
-        borderBottom: isSelected(option.path) ? "2px solid green" : "none",
-        color: isSelected(option.path) ? "green" : "inherit",
+        borderBottom: isSelected(option.path) ? "2px solid #535945" : "none",
+        color: isSelected(option.path) ? "#535945" : "inherit",
         "&:hover": { backgroundColor: "lightgray" },
         fontSize: "0.75rem",
         display: "flex", // Ensure consistent display with the other items
@@ -634,7 +634,7 @@ ADMIN DETAILS
       onClick={() => router.push("/login")} // Navigate directly for normal options
       sx={{
         padding: "6px 12px",
-        color: "green",
+        color: "#535945",
         "&:hover": { backgroundColor: "lightgray" },
         fontSize: "0.75rem",
         display: "flex", // Ensure consistent display with the other items

@@ -13,7 +13,8 @@ const Careers = () => {
     <>
       <Box
         sx={{
-          backgroundImage: `url('/careerBackground.jpg')`,
+          // backgroundImage: `url('/careerBackground.jpg')`,
+          backgroundColor:"#C8AF8F",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -69,11 +70,12 @@ const Careers = () => {
             {/* Title Section */}
             <Box
               sx={{
-                backgroundColor: "lightgreen",
+                backgroundColor: "#535945",
                 color: "white",
                 padding: "8px 16px",
                 borderRadius: "8px",
                 boxShadow: 2,
+                zIndex:2,
                 mb: 3,
               }}
             >
@@ -100,7 +102,7 @@ const Careers = () => {
                   overflowWrap: "break-word",
                 }}
               >
-                We are always looking to expand our team with dedicated professionals who are passionate about providing holistic, patient-centered care. We accept applications on a rolling basis from MDs, DOs, NPs, PAs, MSWs, and Psychologists. If you think you have a talent or skill (administrative skills, advertising background, etc.) that can help expand our ability to serve the Birmingham community, feel free to reach out—we would love to hear from you as well!
+                We are always looking to expand our team with dedicated professionals who are passionate about providing holistic, patient-centered care. We accept applications on a rolling basis from MDs, DOs, NPs, PAs, MSWs, and msws. If you think you have a talent or skill (administrative skills, advertising background, etc.) that can help expand our ability to serve the Birmingham community, feel free to reach out—we would love to hear from you as well!
               </Typography>
             </Box>
           </Box>
@@ -116,6 +118,7 @@ const Careers = () => {
             borderRadius: "8px",
             boxShadow: 2,
             textAlign: "center",
+            mt:2,
             mb: 4,
           }}
         >

@@ -5,9 +5,9 @@ import ContactForm from "@/components/Contact/contactForm";
 const HelpLinesPage=()=>{
     const causes = [
         { title: 'The National Suicide Prevention Lifeline (Now 988)', website:'https://988lifeline.org',description: 'By dialing 988, individuals in crisis can access immediate support for suicide prevention and mental health emergencies.\n The lifeline connects individuals with trained counselors who can provide assistance and direct them to local resources.' },
-        { title: 'National Alliance on Mental Illness (NAMI) Alabama', website:'https://www.namialabama.orgNAMI', description: 'Alabama provides advocacy, education, and support for individuals living with mental health conditions and their families.\n It also offers local chapters across the state for peer support and resources.' },
-        { title: 'Alabama Crisis Center', website:'https://www.alabamacrisiscenter.org', description: 'Are you facing difficult times and don’t know where to turn?\n Are you looking for help with everyday needs?\n Are you wanting to volunteer?\n Dialing 2-1-1 is your first step.\n 2-1-1 is a free, easy to remember number to dial for information about health and human service organizations in your community.\n By dialing 2-1-1, information is much easier to find.' },
-        { title: 'Alabama 2-1-1 (United Way of Central Alabama)', website:'https://www.al211.org', description: 'A free, confidential service that connects individuals with health and human services, including mental health resources, across the state.\n 2-1-1 provides information and referrals for a wide range of community services.' },
+        { title: 'National Alliance on Mental Illness (NAMI) Alabama', website:'https://namialabama.org', description: 'Alabama provides advocacy, education, and support for individuals living with mental health conditions and their families.\n It also offers local chapters across the state for peer support and resources.' },
+        { title: 'Alabama Crisis Center', website:'https://mh.alabama.gov/crisis-centers/', description: '' },
+        { title: 'Alabama 2-1-1 (United Way of Central Alabama)', website:'https://www.uwca.org/need-help/211-call-center/', description: 'A free, confidential service that connects individuals with health and human services, including mental health resources, across the state.\n 2-1-1 provides information and referrals for a wide range of community services.' },
         { title: 'DHR Alabama – Division of Behavioral Health',website:'https://www.dhr.alabama.gov', description: 'The Alabama Department of Human Resources provides mental health and behavioral health services, focusing on children, families, and individuals in need of psychological and psychiatric support.' },
         { title: 'The Alzheimer’s Association',website:'https://www.alz.org', description: 'For individuals and families affected by Alzheimer’s disease or other dementia-related conditions, the Alzheimer’s Association offers support groups, education, and resources for mental health and caregiving.' },
         { title: 'Birmingham AIDS Outreach (BAO) – Behavioral Health Services',website:'https://www.birminghamaidsoutreach.org', description: 'BAO offers behavioral health services with a focus on individuals living with HIV, providing counseling, therapy, and mental health support for marginalized populations in Alabama.' },
@@ -22,7 +22,7 @@ return (
     
     <Box
   sx={{
-    backgroundImage: `url('/depressionBackground.jpg')`,
+    backgroundColor: `#C8AF8F`,
     backgroundSize: 'cover', // Ensures the image covers the entire box
     backgroundPosition: 'top', // Focuses on the upper part of the image
     backgroundRepeat: 'no-repeat',
@@ -53,9 +53,9 @@ return (
 </Box>
 
 
-      <Box sx={{ ml: "5%", mt: "1%" }}>
+      <Box >
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
-        Some Importamt Headlines
+        Important Headlines
         </Typography>
       </Box>
       
@@ -63,7 +63,7 @@ return (
      
       <Box
       sx={{
-        width: '90%',
+        width: '100%',
         margin: 'auto',
         mt: 4,
         p: 3,

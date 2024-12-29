@@ -21,9 +21,9 @@ import FullScreenDialog from './FullScreenDialog';
 import axios from 'axios';
 
 
-const greenTheme = createTheme({
+const #535945Theme = createTheme({
   palette: {
-    primary: { main: '#4caf50' },
+    primary: { main: '#6F7863' },
     secondary: { main: '#81c784' },
   },
   components: {
@@ -183,7 +183,7 @@ const ResilienceRoundtableForm = () => {
 
   return (
     <>
-    <ThemeProvider theme={greenTheme}>
+    <ThemeProvider theme={#535945Theme}>
       <StyledBox sx={{  mx: 'auto', mt: 4 }}>
         <Typography variant="h4" gutterBottom sx={{ color: 'black' }}>
           Resilience Roundtable Registration

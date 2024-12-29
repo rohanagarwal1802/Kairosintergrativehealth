@@ -44,6 +44,7 @@ if(!Array.isArray(messages))
     { field: 'sno', headerName: 'S.NO', width: 75 },
     { field: 'full_name', headerName: 'Full Name', width: 150 },
     { field: 'email', headerName: 'Email', width: 300 },
+    { field: 'phoneNumber', headerName: 'Mobile Number', width: 300 },
     { field: 'subject', headerName: 'Subject', width: 200 },
     { field: 'message', headerName: 'Message', width: 500},
     { field: 'created_at', headerName: 'Posted At', width: 200 },
@@ -54,7 +55,7 @@ if(!Array.isArray(messages))
     id: user?.id, // Add serial number starting from 1
     full_name: user?.full_name,
     email: user?.email,
-    mobile: user?.mobile,
+    phoneNumber: user?.phoneNumber,
     subject: user?.subject,
     message: user?.message ,
     created_at: new Date(user?.created_at).toLocaleString(),
@@ -70,6 +71,7 @@ if(!Array.isArray(messages))
       { wch: 15 }, 
       { wch: 15 }, // First Name
       { wch: 30 }, // Email
+      { wch: 15 }, // Mobile
       { wch: 15 }, // Mobile
       { wch: 10 }, // Subject
       { wch: 50 }, // message
@@ -108,7 +110,7 @@ if(!Array.isArray(messages))
                     height: "90vh",
                     width: "100%",
                     "& .super-app-theme--header": {
-                      backgroundColor: "green",
+                      backgroundColor: "#535945",
                       color: "white",
                     },
                     "& .MuiDataGrid-columnHeaderTitleContainer": {
@@ -124,18 +126,18 @@ if(!Array.isArray(messages))
                       color: "white",
                     },
                     "& .MuiDataGrid-columnHeader": {
-                      backgroundColor: "green", // Match header color
+                      backgroundColor: "#535945", // Match header color
                       color: "white",
                       // borderRadius: "4px", // Consistent border radius
                     },
                     // CSS to target the header checkbox
                     "& .MuiDataGrid-columnHeader .MuiCheckbox-root": {
                       color: "grey !important", // Grey color for disabled state
-                      backgroundColor: "green !important", // Blue background
+                      backgroundColor: "#535945 !important", // Blue background
                     },
                     "& .MuiDataGrid-columnHeader .MuiCheckbox-root.Mui-disabled": {
                       color: "#e0e0e0 !important", // Grey color for disabled state
-                      backgroundColor: "green !important", // Blue background
+                      backgroundColor: "#535945 !important", // Blue background
                       cursor: "not-allowed", // Cursor to indicate disabled state
                     },
                   }}

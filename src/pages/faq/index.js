@@ -17,7 +17,7 @@ const Faq = () => {
   };
 
   return (
-    <Box sx={{ padding: { xs: "10px", sm: "20px" }, maxWidth: "90%", margin: "auto" }}>
+    <Box sx={{ padding: { xs: "10px", sm: "20px" } ,backgroundColor:"#C8AF8F"}}>
       <Typography
         variant="h4"
         className="heading"
@@ -51,7 +51,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px",
           boxShadow: "none",
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           border: "0.1px solid #ddd", // Reduced border width
           p:1,
           "&:hover": {
@@ -91,7 +91,7 @@ const Faq = () => {
           />
  <AccordionQuestion
             question="Do you see college students ?"
-            answer="We offer a range of services to support your mental health and wellness, including psychiatric evaluations, psychotherapy, medication management, addiction treatment, 
+            answer="Yes, we offer a range of services to support your mental health and wellness, including psychiatric evaluations, psychotherapy, medication management, addiction treatment, 
             and educational sessions designed to empower and inform."
           />
 
@@ -107,7 +107,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px",
           boxShadow: "none",
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           p:1,
           border: "0.5px solid #ddd", // Reduced border width
         }}
@@ -171,7 +171,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px",
           boxShadow: "none",
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           p:1,
           border: "0.5px solid #ddd", // Reduced border width
         }}
@@ -216,7 +216,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px",
           boxShadow: "none",
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           p:1,
           borderBottom: "0.5px solid #ddd", // Reduced border width
         }}
@@ -260,7 +260,7 @@ const Faq = () => {
         sx={{
           marginBottom: "8px",
           boxShadow: "none",
-          backgroundColor: "green",
+          backgroundColor: "#535945",
           p:1,
           borderBottom: "0.5px solid #ddd", // Reduced border width
         }}

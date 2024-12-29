@@ -12,6 +12,7 @@ const CommunityOutreach = () => {
     flexDirection: { xs: "column", sm: "row" }, // Stack on small screens, row on larger screens
     justifyContent: "space-between",
     alignItems: "center",
+    backgroundColor:"#C8AF8F",
     p: 4,
     gap: 2, // Space between elements
   }}
@@ -37,8 +38,8 @@ const CommunityOutreach = () => {
         left: "-15%",
         width: "80%",
         height: "35%",
-        backgroundColor: "#66BB6A",
-        zIndex: -1,
+        backgroundColor: "#535945",
+        zIndex: 1,
         borderRadius: 2,
       }}
     />
@@ -51,7 +52,7 @@ const CommunityOutreach = () => {
         height: "20%",
         backgroundImage: "radial-gradient(white 10%, transparent 10%)",
         backgroundSize: "10px 10px",
-        zIndex: -1,
+        zIndex: 1,
         borderRadius: 1,
       }}
     />
@@ -62,8 +63,8 @@ const CommunityOutreach = () => {
         right: "5%",
         width: "60%",
         height: "50%",
-        backgroundColor: "#66BB6A",
-        zIndex: -1,
+        backgroundColor: "#535945",
+        zIndex: 1,
         borderRadius: 2,
       }}
     />
@@ -96,12 +97,12 @@ const CommunityOutreach = () => {
     }}
   >
     <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 }}>
-      Community Outreach
+      Community PartnerShips
     </Typography>
     <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16 }}>
       After working in North Carolina with Duke and Yale trained Psychiatrists/Addictionologists,
-      Mark returned to Birmingham to open his own clinic, Kairos Integrative Health. Two key areas
-      of focus for the clinic are to return knowledge/experiences he acquired as well as help build
+      Mark returned to Birmingham to open his own practice, Kairos Integrative Health. Two key areas
+      of focus for the practice are to return knowledge and experience he acquired as well as help build
       resilience in others to reach the ultimate goal of improving our communities' quality of life now
       and in the future.
     </Typography>
@@ -128,8 +129,8 @@ const CommunityOutreach = () => {
         left: "-15%",
         width: "80%",
         height: "35%",
-        backgroundColor: "#66BB6A",
-        zIndex: -1,
+        backgroundColor: "#535945",
+        zIndex: 1,
         borderRadius: 2,
       }}
     />
@@ -142,7 +143,7 @@ const CommunityOutreach = () => {
         height: "20%",
         backgroundImage: "radial-gradient(white 10%, transparent 10%)",
         backgroundSize: "10px 10px",
-        zIndex: -1,
+        zIndex: 1,
         borderRadius: 1,
       }}
     />
@@ -153,8 +154,8 @@ const CommunityOutreach = () => {
         right: "5%",
         width: "60%",
         height: "50%",
-        backgroundColor: "#66BB6A",
-        zIndex: -1,
+        backgroundColor: "#535945",
+        zIndex: 1,
         borderRadius: 2,
       }}
     />
@@ -179,7 +180,7 @@ const CommunityOutreach = () => {
       {/* Community Outreach Content */}
       <Box
         sx={{
-          backgroundImage: `url('/fdBackground.jpg')`,
+          backgroundColor:"#C8AF8F",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -191,14 +192,12 @@ const CommunityOutreach = () => {
           borderRadius: 2,
           mt: -2,
           minHeight: 'auto',
-          '&:hover': {
-            backgroundColor: 'lightgreen',
-          },
+         
         }}
       >
         <Box
           sx={{
-            width: { xs: '95%', md: '70%' },
+            // width: { xs: '95%', md: '70%' },
             margin: 'auto',
             p: { xs: 3, md: 4 },
             borderRadius: 3,
@@ -241,7 +240,7 @@ const CommunityOutreach = () => {
 
         <Box
           sx={{
-            width: { xs: '95%', md: '70%' },
+            // width: { xs: '95%', md: '70%' },
             margin: 'auto',
             mt: 1,
             p: { xs: 3, md: 4 },

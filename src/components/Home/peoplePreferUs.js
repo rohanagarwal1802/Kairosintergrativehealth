@@ -87,7 +87,7 @@ function PeoplePreferUs() {
               <Box
                 sx={{
                   marginBottom: "15px",
-                  backgroundColor: "green",
+                  backgroundColor: "#535945",
                   borderRadius: "50%",
                   padding: "10px",
                   display: "inline-flex",
@@ -124,7 +124,7 @@ function PeoplePreferUs() {
               <Box
                 sx={{
                   marginBottom: "15px",
-                  backgroundColor: "green",
+                  backgroundColor: "#535945",
                   borderRadius: "50%",
                   padding: "10px",
                   display: "inline-flex",
@@ -163,7 +163,7 @@ function PeoplePreferUs() {
               <Box
                 sx={{
                   marginBottom: "15px",
-                  backgroundColor: "green",
+                  backgroundColor: "#535945",
                   borderRadius: "50%",
                   padding: "10px",
                   display: "inline-flex",

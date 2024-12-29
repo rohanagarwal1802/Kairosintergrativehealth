@@ -19,7 +19,7 @@ const GoogleMap = () => {
         width: mapWidth,
         height: mapHeight,
         margin: '0 auto', // Center the map on the page
-        border:'10px solid green',
+        border:'10px solid #535945',
         borderRadius: '16px'
       }}
     >

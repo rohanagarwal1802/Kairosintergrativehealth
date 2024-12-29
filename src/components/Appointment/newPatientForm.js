@@ -16,6 +16,8 @@ import {
   IconButton,
   Button,
   CircularProgress,
+  List,
+  ListItem
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
@@ -25,7 +27,7 @@ import { useRouter } from 'next/router';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const greenTheme = createTheme({
   palette: {
-    primary: { main: '#4caf50' },
+    primary: { main: '#6F7863' },
     secondary: { main: '#81c784' },
   },
 });
@@ -161,199 +163,297 @@ if(patient_detail.data.status===true)
   );
 
   return (
-    <ThemeProvider theme={greenTheme}>
-      <Box
-        sx={{
-          width: '100%',
-          mx: 'auto',
-          my: 4,
-          p: 3,
-          borderRadius: 2,
-          boxShadow: 3,
-          bgcolor: '#f5f5f5',
-        }}
-      >
-        <Typography variant="h4" align="center" gutterBottom sx={{ color: 'navy' }}>
-          Patient Portal
+    <>
+    <Box
+          sx={{
+            width: '100%',
+            mx: 'auto',
+            my: 4,
+            p: 3,
+            borderRadius: 2,
+            boxShadow: 3,
+            textAlign:"left",
+            bgcolor: '#f5f5f5',
+          }}
+        >
+      <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: 'inline-block', textAlign:"center",alignSelf:"center"}}>
+        <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
+          How our process works
         </Typography>
-        <hr style={{ width: '80%', margin: 'auto', borderColor: 'black' }} />
+      </Box>
 
-        <form onSubmit={(e) => { 
-          e.preventDefault();  // Prevent the default form submission
-          formik.handleSubmit(e); // Manually trigger the form submission
-        }} onReset={formik.handleReset}>
-          {/* Text Fields */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, gap: 2 }}>
-            <TextField
-              label={<RequiredLabel label="Patient's First Name" />}
-              name="firstname"
-              value={formik.values.firstname}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-            />
-            {formik.touched.firstname && formik.errors.firstname && (
-              <Typography color="error">{formik.errors.firstname}</Typography>
-            )}
+      <Box>
 
-            <TextField
-              label="Patient's Last Name"
-              name="lastname"
-              value={formik.values.lastname}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-            />
-            {formik.touched.lastname && formik.errors.lastname && (
-              <Typography color="error">{formik.errors.lastname}</Typography>
-            )}
+        <Box sx={{  mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            Interest form
+          </Typography>
+        </Box>
 
-            <TextField
-              label={<RequiredLabel label="Patient's Date of Birth" />}
-              name="dob"
-              type="date"
-              InputLabelProps={{ shrink: true }}
-              inputProps={{ max: new Date().toISOString().split('T')[0] }}
-              value={formik.values.dob || ''}  // Ensure controlled input
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-              inputRef={inputRef}
-              onClick={handleClick}
-              sx={{
-                '& .MuiInputLabel-root': { color: 'black' },
-                '& .Mui-focused .MuiInputLabel-root': { color: 'black' },
-                '& .MuiInputBase-input': { color: 'black' },
-              }}
-            />
-            {formik.touched.dob && formik.errors.dob && (
-              <Typography color="error">{formik.errors.dob}</Typography>
-            )}
-
-            <TextField
-              label={<RequiredLabel label="Patient's Email" />}
-              name="email"
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-            />
-            {formik.touched.email && formik.errors.email && (
-              <Typography color="error">{formik.errors.email}</Typography>
-            )}
-
-            <TextField
-              label={<RequiredLabel label="Patient's Mobile" />}
-              name="mobile"
-              type="tel"
-              value={formik.values.mobile}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-            />
-            {formik.touched.mobile && formik.errors.mobile && (
-              <Typography color="error">{formik.errors.mobile}</Typography>
-            )}
-          </Box>
-
-          {/* Radio Questions */}
-          {[
-            "Do we have permissions to text you?",
-            "Are you scheduling an appointment for yourself?",
-            "Are you over the age of 18?",
-            "Have you been hospitalized or visited the ER for psychiatric reasons within the last 4 weeks?",
-            "Are you making this appointment to discuss disability paperwork or seeking care for a work-related injury?",
-          ].map((question, index) => (
-            <Box key={index} sx={{ mt: 2 }}>
-              <Typography>
-                <RequiredLabel label={question} />
+        <Box sx={{ ml: "5%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                Complete the interest form by clicking on the
+                “Request Appointment” button (located on top right hand corner of
+                this page). This allows for you to be able to schedule your
+                complimentary phone call.
               </Typography>
-              <RadioGroup
-                row
-                name={`questions[${index}]`}
-                value={formik.values.questions[index]}
+            </ListItem>
+          </List>
+        </Box>
+
+        <Box sx={{  mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            After filling out the interest form
+          </Typography>
+        </Box>
+
+
+
+        <Box sx={{ ml: "5%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                You will receive an
+                email from (whatever email it will come from) to create a (portal
+                account/password – whatever is correct) with Kairos Integrative
+                Health.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+        <Box sx={{  mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            After creating your password,
+          </Typography>
+        </Box>
+
+        <Box sx={{ ml: "5%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                You will receive an
+                email from (whatever email it will come from) to create a (portal
+                account/password – whatever is correct) with Kairos Integrative
+                Health.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+
+        <Box sx={{  mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            Our team will confirm the complimentary phone
+            call appointment
+          </Typography>
+        </Box>
+        <Box sx={{ ml: "5%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                (keep an eye out on your email for
+                confirmation) and we will connect with you at the scheduled time
+                for a 10-minute phone call. This call will allow you to discuss with
+                our provider to see if KIH is a good fit for you.
+              </Typography>
+            </ListItem>
+          </List>
+          
+        </Box>
+        <Box sx={{  mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{  color: "black" }}>
+          If you are a new patient looking to establish care with one of our providers, please start by answering the following questions.
+          </Typography>
+        </Box>
+       
+
+
+
+
+      </Box>
+      
+    <ThemeProvider theme={greenTheme}>
+   
+
+          <Typography variant="h4" align="center" gutterBottom sx={{ color: 'navy' }}>
+            Patient Portal
+          </Typography>
+          <hr style={{ width: '80%', margin: 'auto', borderColor: 'black' }} />
+
+          <form onSubmit={(e) => {
+            e.preventDefault(); // Prevent the default form submission
+            formik.handleSubmit(e); // Manually trigger the form submission
+          } } onReset={formik.handleReset}>
+            {/* Text Fields */}
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, gap: 2 }}>
+              <TextField
+                label={<RequiredLabel label="Patient's First Name" />}
+                name="firstname"
+                value={formik.values.firstname}
                 onChange={formik.handleChange}
-              >
-                <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                <FormControlLabel value="no" control={<Radio />} label="No" />
-              </RadioGroup>
-              {formik.touched.questions?.[index] && formik.errors.questions?.[index] && (
-                <Typography color="error">{formik.errors.questions[index]}</Typography>
+                onBlur={formik.handleBlur}
+                fullWidth />
+              {formik.touched.firstname && formik.errors.firstname && (
+                <Typography color="error">{formik.errors.firstname}</Typography>
+              )}
+
+              <TextField
+                label="Patient's Last Name"
+                name="lastname"
+                value={formik.values.lastname}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                fullWidth />
+              {formik.touched.lastname && formik.errors.lastname && (
+                <Typography color="error">{formik.errors.lastname}</Typography>
+              )}
+
+              <TextField
+                label={<RequiredLabel label="Patient's Date of Birth" />}
+                name="dob"
+                type="date"
+                InputLabelProps={{ shrink: true }}
+                inputProps={{ max: new Date().toISOString().split('T')[0] }}
+                value={formik.values.dob || ''} // Ensure controlled input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                fullWidth
+                inputRef={inputRef}
+                onClick={handleClick}
+                sx={{
+                  '& .MuiInputLabel-root': { color: 'black' },
+                  '& .Mui-focused .MuiInputLabel-root': { color: 'black' },
+                  '& .MuiInputBase-input': { color: 'black' },
+                }} />
+              {formik.touched.dob && formik.errors.dob && (
+                <Typography color="error">{formik.errors.dob}</Typography>
+              )}
+
+              <TextField
+                label={<RequiredLabel label="Patient's Email" />}
+                name="email"
+                type="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                fullWidth />
+              {formik.touched.email && formik.errors.email && (
+                <Typography color="error">{formik.errors.email}</Typography>
+              )}
+
+              <TextField
+                label={<RequiredLabel label="Patient's Mobile" />}
+                name="mobile"
+                type="tel"
+                value={formik.values.mobile}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                fullWidth />
+              {formik.touched.mobile && formik.errors.mobile && (
+                <Typography color="error">{formik.errors.mobile}</Typography>
               )}
             </Box>
-          ))}
 
-          <TextField
-            label={<RequiredLabel label="Please list your insurance below" />}
-            name="insurance"
-            value={formik.values.insurance}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            fullWidth
-            sx={{ mt: 2 }}
-          />
-          {formik.touched.insurance && formik.errors.insurance && (
-            <Typography color="error">{formik.errors.insurance}</Typography>
-          )}
+            {/* Radio Questions */}
+            {[
+              "Do we have permissions to text you?",
+              "Are you scheduling an appointment for yourself?",
+              "Are you over the age of 18?",
+              "Have you been hospitalized or visited the ER for psychiatric reasons within the last 4 weeks?",
+              "Are you making this appointment to discuss disability paperwork or seeking care for a work-related injury?",
+            ].map((question, index) => (
+              <Box key={index} sx={{ mt: 2 }}>
+                <Typography>
+                  <RequiredLabel label={question} />
+                </Typography>
+                <RadioGroup
+                  row
+                  name={`questions[${index}]`}
+                  value={formik.values.questions[index]}
+                  onChange={formik.handleChange}
+                >
+                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  <FormControlLabel value="no" control={<Radio />} label="No" />
+                </RadioGroup>
+                {formik.touched.questions?.[index] && formik.errors.questions?.[index] && (
+                  <Typography color="error">{formik.errors.questions[index]}</Typography>
+                )}
+              </Box>
+            ))}
 
-          {/* Additional Question */}
-          {/* <Box sx={{ mt: 2 }}>
-            <Typography>How can we help?</Typography>
-            <RadioGroup
-              row
-              name="service"
-              value={formik.values.service}
-              onChange={formik.handleChange}
-            >
-              <FormControlLabel value="Psychiatry" control={<Radio />} label="Psychiatry" />
-              <FormControlLabel value="Psychology" control={<Radio />} label="Psychology" />
-              <FormControlLabel value="Other" control={<Radio />} label="Other" />
-            </RadioGroup>
-            {formik.touched.service && formik.errors.service && (
-              <Typography color="error">{formik.errors.service}</Typography>
-            )}
-          </Box> */}
-
-          {/* Captcha */}
-          <Box sx={{ mt: 2 }}>
-            <Typography>Captcha: {captchaValue}</Typography>
             <TextField
-              label="Enter Captcha"
-              name="captchaVerification"
-              value={formik.values.captchaVerification}
+              label={<RequiredLabel label="Please list your insurance below" />}
+              name="insurance"
+              value={formik.values.insurance}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               fullWidth
-              sx={{ mt: 1 }}
-            />
-            {formik.touched.captchaVerification && formik.errors.captchaVerification && (
-              <Typography color="error">{formik.errors.captchaVerification}</Typography>
+              sx={{ mt: 2 }} />
+            {formik.touched.insurance && formik.errors.insurance && (
+              <Typography color="error">{formik.errors.insurance}</Typography>
             )}
-            <IconButton onClick={refreshCaptcha} sx={{ mt: 1 }}>
-              <RefreshIcon />
-            </IconButton>
-          </Box>
 
-          {/* Submit Button */}
-          <Box sx={{ mt: 3 }}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              disabled={loading}
-            >
-              {loading ? (
-                <CircularProgress size={24} sx={{ color: 'white' }} />
-              ) : (
-                'Submit'
+            {/* Additional Question */}
+            {/* <Box sx={{ mt: 2 }}>
+      <Typography>How can we help?</Typography>
+      <RadioGroup
+        row
+        name="service"
+        value={formik.values.service}
+        onChange={formik.handleChange}
+      >
+        <FormControlLabel value="Psychiatry" control={<Radio />} label="Psychiatry" />
+        <FormControlLabel value="Psychology" control={<Radio />} label="Psychology" />
+        <FormControlLabel value="Other" control={<Radio />} label="Other" />
+      </RadioGroup>
+      {formik.touched.service && formik.errors.service && (
+        <Typography color="error">{formik.errors.service}</Typography>
+      )}
+    </Box> */}
+
+            {/* Captcha */}
+            <Box sx={{ mt: 2 }}>
+              <Typography>Captcha: {captchaValue}</Typography>
+              <TextField
+                label="Enter Captcha"
+                name="captchaVerification"
+                value={formik.values.captchaVerification}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                fullWidth
+                sx={{ mt: 1 }} />
+              {formik.touched.captchaVerification && formik.errors.captchaVerification && (
+                <Typography color="error">{formik.errors.captchaVerification}</Typography>
               )}
-            </Button>
-          </Box>
-        </form>
+              <IconButton onClick={refreshCaptcha} sx={{ mt: 1 }}>
+                <RefreshIcon />
+              </IconButton>
+            </Box>
+
+            {/* Submit Button */}
+            <Box sx={{ mt: 3 }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                disabled={loading}
+              >
+                {loading ? (
+                  <CircularProgress size={24} sx={{ color: 'white' }} />
+                ) : (
+                  'Submit'
+                )}
+              </Button>
+            </Box>
+          </form>
+          
+      </ThemeProvider>
       </Box>
-    </ThemeProvider>
+      </>
   );
 };
 

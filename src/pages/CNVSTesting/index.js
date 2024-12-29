@@ -16,6 +16,7 @@ const CNSVSTESTINGPAGE = () => {
               justifyContent: "space-between",
               alignItems: "center",
               p: 4,
+              backgroundColor:"#Ece7E2",
               gap: 2, // Space between elements
             }}
           >
@@ -40,8 +41,8 @@ const CNSVSTESTINGPAGE = () => {
                   left: "-15%",
                   width: "80%",
                   height: "35%",
-                  backgroundColor: "#66BB6A",
-                  zIndex: -1,
+                  backgroundColor: "#6F7863",
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
@@ -54,7 +55,7 @@ const CNSVSTESTINGPAGE = () => {
                   height: "20%",
                   backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                   backgroundSize: "10px 10px",
-                  zIndex: -1,
+                  zIndex:1,
                   borderRadius: 1,
                 }}
               />
@@ -65,15 +66,15 @@ const CNSVSTESTINGPAGE = () => {
                   right: "5%",
                   width: "60%",
                   height: "50%",
-                  backgroundColor: "#66BB6A",
-                  zIndex: -1,
+                  backgroundColor: "#6F7863",
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
               {/* Image */}
               <Box
                 component="img"
-                src="/cnvs.jpeg"
+                src="/RRImage2.jpg"
                 alt="Founder"
                 sx={{
                   height: "70%",
@@ -90,7 +91,7 @@ const CNSVSTESTINGPAGE = () => {
             <Box
               sx={{
                 maxWidth: "500px",
-                textAlign: "left",
+                textAlign: "center",
                 backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
                 p: 3,
                 borderRadius: 2,
@@ -110,7 +111,7 @@ const CNSVSTESTINGPAGE = () => {
          
   
           <Box sx={{ ml: "5%" ,mt:"5%"}}>
-          <Typography variant="body2" sx={{ color: "black" }}>
+          <Typography variant="body2" sx={{ color: "black",textAlign:"left" }}>
           Central Nervous System (CNS) Vital Signs testing is a comprehensive assessment that evaluates cognitive functioning, neurological health, and overall brain performance. This testing measures various domains, including attention, memory, language, and processing speed, providing a detailed overview of cognitive abilities. By tracking changes in CNS function over time, healthcare providers can develop tailored treatment plans and monitor progress effectively.
           </Typography>
         </Box>
@@ -141,8 +142,8 @@ const CNSVSTESTINGPAGE = () => {
                   left: "-15%",
                   width: "80%",
                   height: "35%",
-                  backgroundColor: "#66BB6A",
-                  zIndex: -1,
+                  backgroundColor: "#6F7863",
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
@@ -155,7 +156,7 @@ const CNSVSTESTINGPAGE = () => {
                   height: "20%",
                   backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                   backgroundSize: "10px 10px",
-                  zIndex: -1,
+                  zIndex:1,
                   borderRadius: 1,
                 }}
               />
@@ -166,15 +167,15 @@ const CNSVSTESTINGPAGE = () => {
                   right: "5%",
                   width: "60%",
                   height: "50%",
-                  backgroundColor: "#66BB6A",
-                  zIndex: -1,
+                  backgroundColor: "#6F7863",
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
               {/* Image */}
               <Box
                 component="img"
-                src="/cnvs2.jpeg"
+                src="/RRImage1.jpg"
                 alt="Founder"
                 sx={{
                   height: "70%",

@@ -67,7 +67,7 @@ const AboutSection = () => {
               left: "-8px",
               width: "calc(100% + 16px)",
               height: "calc(100% + 16px)",
-              background: "linear-gradient(45deg, #98BF64, #028A0F, green, #32612D)",
+              background: "linear-gradient(45deg, #98BF64, #028A0F, #535945, #32612D)",
               borderRadius: "70%",
               animation: "morphBorder 4s infinite linear",
               zIndex: -1,

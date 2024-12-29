@@ -171,7 +171,7 @@ const RoundTable = () => {
     <Typography
       variant="subtitle1"
       sx={{
-        color: "green",
+        color: "#535945",
         fontWeight: "bold",
         mb: 1,
         mt: 1,
