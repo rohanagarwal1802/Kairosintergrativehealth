@@ -22,6 +22,7 @@ import {
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import useCustomSnackbarStore from '@/pages/utils/useCustomSnackbarStore';
 
 // Custom Green Theme
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -54,6 +55,7 @@ const PatientForm = () => {
   const [loading, setLoading] = useState(false); // Loading state for the submit button
   const inputRef = useRef(null);
   const router=useRouter()
+  const {setSnackbar}=useCustomSnackbarStore()
 
   useEffect(() => {
     setCaptchaValue(generateCaptcha());
@@ -99,7 +101,8 @@ const PatientForm = () => {
         // console.log("Patient Details ",patient_detail)
 if(patient_detail.data.status===true)
 {
-  alert("Patient Already exists with email.")
+  setSnackbar('warning','Patient Already exists with email.')
+  // alert("Patient Already exists with email.")
   return
 }
         console.log("val ==>",val)
@@ -119,7 +122,8 @@ if(patient_detail.data.status===true)
             console.log("dsjhdj",responseNewPatient)
             if (responseNewPatient.data.data.passed===true) {
               // formik.handleReset()
-              alert('Patient added successfully. Please create your password to login.');
+              setSnackbar("success",'Patient added successfully. Please create your password to login.')
+              // alert('Patient added successfully. Please create your password to login.');
               router.push(`/?verify=${responseNewPatient.data.data.result.whitelist}`)
               
             }
@@ -135,9 +139,11 @@ if(patient_detail.data.status===true)
         console.error('Error in registering patient: ', error);
         setLoading(false); // Stop loading on error
         if (error.response && error.response.status === 400) {
-          alert('Duplicate Email or Mobile.');
+          setSnackbar("warning","Duplicate Email or Mobile.")
+          // alert('Duplicate Email or Mobile.');
         } else {
-          alert('An error occurred while submitting the form.');
+          setSnackbar("error","An error occurred while submitting the form.")
+          // alert('An error occurred while submitting the form.');
         }
       }
       finally{

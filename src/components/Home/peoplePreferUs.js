@@ -87,7 +87,7 @@ function PeoplePreferUs() {
               <Box
                 sx={{
                   marginBottom: "15px",
-                  backgroundColor: "#535945",
+                  backgroundColor: "#2A3923",
                   borderRadius: "50%",
                   padding: "10px",
                   display: "inline-flex",
@@ -95,7 +95,7 @@ function PeoplePreferUs() {
                   justifyContent: "center",
                 }}
               >
-                <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
+                <HealthAndSafetyIcon sx={{ color: "white" }} />
               </Box>
               <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
                 Culture
@@ -124,7 +124,7 @@ function PeoplePreferUs() {
               <Box
                 sx={{
                   marginBottom: "15px",
-                  backgroundColor: "#535945",
+                  backgroundColor: "#2A3923",
                   borderRadius: "50%",
                   padding: "10px",
                   display: "inline-flex",
@@ -132,7 +132,7 @@ function PeoplePreferUs() {
                   justifyContent: "center",
                 }}
               >
-                <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
+                <HealthAndSafetyIcon sx={{ color: "white" }} />
               </Box>
               <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
                 Convenience
@@ -163,7 +163,7 @@ function PeoplePreferUs() {
               <Box
                 sx={{
                   marginBottom: "15px",
-                  backgroundColor: "#535945",
+                  backgroundColor: "#2A3923",
                   borderRadius: "50%",
                   padding: "10px",
                   display: "inline-flex",
@@ -171,7 +171,7 @@ function PeoplePreferUs() {
                   justifyContent: "center",
                 }}
               >
-                <HealthAndSafetyIcon sx={{ color: "#0a0a0a" }} />
+                <HealthAndSafetyIcon sx={{ color: "white" }} />
               </Box>
               <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0a0a0a" }}>
                 Integrative Psychiatry

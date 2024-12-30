@@ -70,7 +70,7 @@ const Layout = ({ children, userDetails }) => {
       
       {/* Floating message icon at the bottom-left corner */}
       <Link href="/contact" style={{ position: "fixed", bottom: 20, left: 20 }}>
-        <Fab color="primary" aria-label="message">
+        <Fab color="primary" aria-label="message" sx={{backgroundColor:"#2A3923"}}>
           <MessageIcon />
         </Fab>
       </Link>

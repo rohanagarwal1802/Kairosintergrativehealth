@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
+import useCustomSnackbarStore from '@/pages/utils/useCustomSnackbarStore';
 
 const validationSchema = Yup.object({
   full_name: Yup.string().required('Full Name is required'),
@@ -29,6 +30,7 @@ const validationSchema = Yup.object({
 const ReviewForm = ({getReviews}) => {
   const [captchaValue, setCaptchaValue] = React.useState('');
   const [loading,setLoading]=React.useState(false)
+  const {setSnackbar}=useCustomSnackbarStore()
 
   const generateCaptcha = () => {
     return Math.random().toString(36).substring(2, 8); 
@@ -63,8 +65,8 @@ const ReviewForm = ({getReviews}) => {
     
     // Reset the captcha value
     setCaptchaValue(generateCaptcha());
-
-        alert('Review submitted successfully');
+        setSnackbar("success","Review submitted successfully")
+        // alert('Review submitted successfully');
         console.log('Response:', resp);
       } catch (error) {
         console.error('Error submitting review:', error);

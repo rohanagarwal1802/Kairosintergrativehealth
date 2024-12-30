@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Layout from "@/components/layout";
+import CustomSnackbar from "./utils/customSnackbar";
+import useCustomSnackbarStore from "./utils/useCustomSnackbarStore";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoginPage from "./login";
@@ -17,6 +19,8 @@ export default function App({ Component, pageProps }) {
   const [userDetails, setUserDetails] = useState(null); // Stores user data
   const [loading,setLoading]=useState(true)
 const url=router.asPath;
+const { snackbarOpen, alertType, alertMessage, closeSnackbar } =
+useCustomSnackbarStore();
 
 // useEffect(() => {
 //   // Check if 'login' exists in localStorage and is "true"
@@ -127,5 +131,12 @@ setLoading(false); // Stop loading
     return getLayout(<Component {...pageProps} userDetails={userDetails} />); // Show main app
   };
 
-  return <>{getComponent()}</>;
+  return <>{getComponent()}
+  <CustomSnackbar
+                  open={snackbarOpen}
+                  onClose={closeSnackbar}
+                  alertType={alertType}
+                  message={alertMessage}
+                />
+  </>;
 }

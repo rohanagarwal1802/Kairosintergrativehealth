@@ -20,6 +20,7 @@ import { Router } from "next/router";
 import { useRouter } from "next/router";
 import useUserStore from "@/components/useUserStore";
 
+
 export default function CreatePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -53,7 +54,7 @@ export default function CreatePassword() {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "light#535945", // Light #535945 background
+      backgroundColor: "#535945", // Light #535945 background
       padding: isMobile ? 2 : 4,
       width: "100vw",
     }}

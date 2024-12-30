@@ -65,7 +65,7 @@ const theme = createTheme({
           backgroundColor: "#535945",
           color: "#fff",
           "&:hover": {
-            backgroundColor: "light#535945", // Lighter hover color
+            backgroundColor: "#535945", // Lighter hover color
           },
         },
       },

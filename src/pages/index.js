@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Box, Typography, Button } from "@mui/material";
 
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
-import FeedbackClients from "@/components/Home/feedback";
+// import FeedbackClients from "@/components/Home/feedback";
 import ServicesBox from "@/components/Home/services";
 import Loader from "@/components/Loader";
 import useUserStore from "@/components/useUserStore";
@@ -63,7 +63,7 @@ export default function Home() {
         />
       </Box>
 
-      <ComplimentaryCallBox />
+      {/* <ComplimentaryCallBox /> */}
       <ServicesBox />
       <PeoplePreferUs />
       <ImageGallery />

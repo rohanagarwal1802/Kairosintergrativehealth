@@ -20,9 +20,11 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "react-datepicker/dist/react-datepicker.css";
+import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 
 function AppointmentFormModal({ open, onClose,patientId,getAppointMentData }) {
   const [loading, setLoading] = useState(false);
+  const {setSnackbar}=useCustomSnackbarStore()
 
   // Validation Schema using Yup
   const validationSchema = Yup.object().shape({
@@ -50,7 +52,8 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData }) {
       if (res.data.status === "success") {
         const appointmentResp=await axios.post('/api/createNewAppointMent',data)
         console.log("appresp",appointmentResp.data)
-        alert("Appointment created successfully");
+        setSnackbar("success","Appointment created successfully")
+        // alert("Appointment created successfully");
       }
       console.log("API response: ", res.data);
       setLoading(false);

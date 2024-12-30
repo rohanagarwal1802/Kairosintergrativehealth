@@ -25,6 +25,7 @@ import axios from "axios";
 import AdminOptions from "./adminDropdown";
 import useUserStore from "./useUserStore";
 import LogOutDialog from "./logoutDialog";
+import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 
 const Header = ({userDetails}) => {
   console.log("userDetails ==>",userDetails)
@@ -47,6 +48,8 @@ const Header = ({userDetails}) => {
   const isResourcesMenuOpen = Boolean(anchorE2);
   const isServicesMenuOpen=Boolean(anchorEl)
   const isAboutMenuOpen=Boolean(anchorE3)
+  const {setSnackbar}=useCustomSnackbarStore()
+
   const isMobile = useMediaQuery("(max-width:900px)"); // Media query for responsiveness
 console.log(options)
 
@@ -68,11 +71,12 @@ const [anchorE4, setAnchorE4] = useState(null);
   const handleLogout = async () => {
     // Define logout functionality
     try{
-      await axios.get('/api/logout').then(()=>{
+      await axios.get('/api/logout').then(async ()=>{
     localStorage.removeItem("login"); // Example: Clear login token
     router.push("/"); // Redirect to login page
     setLogin(false)
     handleMenuClose1();
+    await setSnackbar("success","Logged out successfully")
     router.reload()
     })
     }

@@ -20,6 +20,7 @@ import BlankLayout from "./blankLayout";
 import { useRouter } from "next/router";
 import useUserStore from "./useUserStore";
 import axios from "axios";
+import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 
 
 
@@ -33,17 +34,19 @@ export default function MakePassword({token}) {
   const {setLogin,}=useUserStore()
   const {setResetPassword,toResetPassword}=useUserStore()
   const [loading,setLoading]=useState(false)
+  const {setSnackbar}=useCustomSnackbarStore()
 
 
   
 const handleLogout = async () => {
     // Define logout functionality
     try{
-      await axios.get('/api/logout').then(()=>{
+      await axios.get('/api/logout').then(async ()=>{
     localStorage.removeItem("login"); // Example: Clear login token
     // setPageDisplay('login')
     router.push("/login"); // Redirect to login page
     setPageDisplay('login')
+    await setSnackbar("success","Logged out successfully")
     // router.reload()
     })
     }
@@ -72,14 +75,15 @@ const handleLogout = async () => {
         if(update)
         {
            await handleLogout()
-       
-      alert("Passwords set Successfully");
+       setSnackbar("success","Password set Successfully !!")
+      // alert("Passwords set Successfully");
       await setResetPassword(false)
       setLoading(false)
     //   router.push("/login")
         }
     } else {
-      alert("Passwords do not match. Please try again.");
+      setSnackbar("error","Passwords do not match. Please try again.")
+      // alert("Passwords do not match. Please try again.");
     }
   };
 
@@ -92,7 +96,7 @@ const handleLogout = async () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "light#535945", // Light #535945 background
+      backgroundColor: "#535945", // Light #535945 background
       padding: isMobile ? 2 : 4,
       width: "100vw",
     }}

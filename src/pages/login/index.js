@@ -6,6 +6,7 @@ import BlankLayout from "@/components/blankLayout";
 // ** Next Imports
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useCustomSnackbarStore from "../utils/useCustomSnackbarStore";
 
 // ** MUI Components
 import {
@@ -55,6 +56,7 @@ const LoginPage = () => {
   const [otpTimer, setOtpTimer] = useState(10);
   const { expanded, setExpanded,setPageDisplay,toResetPassword,setResetPassword } = useUserStore();
   const [loading,setLoading]=useState(false)
+  const {setSnackbar}=useCustomSnackbarStore()
 
 
 
@@ -107,6 +109,7 @@ const LoginPage = () => {
           localStorage.setItem("login", "true");
          
          await router.reload();
+         setSnackbar('success','Logged in Successfully')
         //  setLogin(true)
          
         } else if (status === 201) {
@@ -116,7 +119,8 @@ const LoginPage = () => {
         if(error.status===403)
         {
           console.log(error)
-          alert(error.response.data.message)
+          setSnackbar("error",error.response.data.message)
+          // alert(error.response.data.message)
         }
         setLoading(false)
         // Handle errors (e.g., 401 or 404)
@@ -138,12 +142,14 @@ const LoginPage = () => {
   const handleForgotPassword=async ()=>{
     if(formik.values.email==="")
       {
-        alert("Please enter email")
+        setSnackbar("warning","Please enter email")
+        // alert("Please enter email")
         return
       }
       await formik.setFieldTouched("email", true); // Mark the field as touched
     if (formik.errors.email) {
-      alert("Email is invalid!");
+      setSnackbar("warning","Email is invalid")
+      // alert("Email is invalid!");
       return
     } 
     try{
@@ -158,7 +164,8 @@ let token=patient_detail.data.patient.whitelist
     }
     else
     {
-      alert("Patient does not exist with this email")
+      setSnackbar("error","Patient does not exist with this email")
+      // alert("Patient does not exist with this email")
       return
     }
   }
@@ -177,7 +184,7 @@ let token=patient_detail.data.patient.whitelist
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "light#535945", // Light #535945 background
+        backgroundColor: "#535945", // Light #535945 background
         padding: isMobile ? 2 : 4,
         width: "100vw",
       }}
