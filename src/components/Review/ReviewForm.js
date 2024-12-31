@@ -49,6 +49,7 @@ const ReviewForm = ({getReviews}) => {
       email: '',
       public:false,
       review: '',
+      approval_status:'pending',
       captchaVerification: '',
     },
     validationSchema,

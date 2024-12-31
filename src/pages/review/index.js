@@ -14,7 +14,7 @@ const Review = () => {
     try {
       const response = await axios.get('/api/getReviews');
       console.log(response.data)
-      setReviews(response.data);
+      setReviews(response.data.data);
     } catch (error) {
       console.error('Error in getting reviews', error);
     }

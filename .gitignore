@@ -40,3 +40,4 @@ yarn-error.log*
 next-env.d.ts
 lib/query/emailKeys.json
 lib/json/token.json
+lib/json/credentials.json

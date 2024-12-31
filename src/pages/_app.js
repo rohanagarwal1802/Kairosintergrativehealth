@@ -91,7 +91,8 @@ setLoading(false); // Stop loading
           localStorage.setItem("login", "false");
           setLogin(false)
           }
-          router.push(router.pathname)
+          let pathname=router.pathname
+          router.push(pathname)
         }
       } catch (error) {
         setPageDisplay("app"); // On error, show login page
