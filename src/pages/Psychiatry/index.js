@@ -29,7 +29,7 @@ const PTSDPage = () => {
           '@media (max-width: 768px)': {
             padding: 2,
           },
-          mt:"1%"
+          mt:"1%["
         }}
       >
          
