@@ -75,7 +75,7 @@ const CommunityOutreach = () => {
       alt="Founder"
       sx={{
         height: "70%",
-        width: "70%",
+        width: "100%",
         objectFit: "cover",
         borderRadius: 2,
         boxShadow: 3,
@@ -93,6 +93,7 @@ const CommunityOutreach = () => {
       p: 3,
       borderRadius: 2,
       boxShadow: 3,
+      zIndex:2,
       order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
     }}
   >
@@ -164,14 +165,14 @@ const CommunityOutreach = () => {
       component="img"
       src="/RRImage1.jpg"
       alt="Founder"
-      sx={{
-        height: "70%",
-        width: "70%",
-        objectFit: "cover",
-        borderRadius: 2,
-        boxShadow: 3,
-        zIndex: 1,
-      }}
+                sx={{
+                  height: "70%",
+                  width: "100%",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: 3,
+                  zIndex: 1,
+                }}
     />
   </Box>
 </Box>
@@ -254,14 +255,14 @@ const CommunityOutreach = () => {
             Resilience Roundtable
           </Typography>
 
-          <Typography sx={{ fontSize: 18, pl: 2, mb: 2 }}>
+          <Typography sx={{ fontSize: 18, pl: 2, mb: 2,color:"black"}}>
             At our practice, we offer <strong>Resilience Roundtable</strong>, a once-per-month virtual
             educational session designed to address a wide variety of mental health topics in a safe and
             anonymous space. This idea came from <strong>Mark’s recognition of the significant gap in mental
             health education within the community</strong>.
           </Typography>
 
-          <Typography sx={{ fontSize: 18, pl: 2, mb: 2 }}>
+          <Typography sx={{ fontSize: 18, pl: 2, mb: 2 ,color:"black"}}>
             As a dedicated mental health professional, Mark saw firsthand how a lack of accessible,
             evidence-based information often leads to misunderstanding and stigma surrounding mental health
             issues. Driven by a passion to bridge this gap, the Resilience Roundtable was created to offer
@@ -269,13 +270,13 @@ const CommunityOutreach = () => {
             mental health” to “Mental Health in the family: Genetics and cross-generational language.”
           </Typography>
 
-          <Typography sx={{ fontSize: 18, pl: 2, mb: 2 }}>
+          <Typography sx={{ fontSize: 18, pl: 2, mb: 2 ,color:"black"}}>
             These sessions provide individuals with valuable insights and tools to enhance their mental well-being,
             all while maintaining privacy and anonymity. We believe that by fostering open, informed conversations,
             we can empower people to take control of their mental health and build resilience for the challenges ahead.
           </Typography>
 
-          <Typography sx={{ fontSize: 18, pl: 2 }}>
+          <Typography sx={{ fontSize: 18, pl: 2,color:"black" }}>
             Interested in joining The Resilience Roundtable?{" "}
             <Link href="/Roundtable" passHref>
               <Typography

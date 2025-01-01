@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Appointment Notification</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; margin: 0; padding: 0;">
+    <div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #dddddd; border-radius: 8px;">
+        <div style="text-align: center; padding: 15px;">
+            <img src="https://yourwebsite.com/logo.png" alt="Clinic Logo" style="display: block; margin: 0 auto 20px; max-width: 150px;">
+        </div>
+        <div style="background-color: #6F7863; color: white; padding: 15px; text-align: center; font-size: 22px; border-radius: 8px 8px 0 0;">
+            New Appointment Booked
+        </div>
+        <div style="padding: 20px;">
+            <p>Hello <strong>Admin</strong>,</p>
+            <p>A new appointment has been successfully booked. Here are the details:</p>
+
+            <p><strong>Appointment Information:</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Patient Name</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${patient_name}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Email</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${email}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Phone</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${phone}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Appointment Date</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${appointment_date}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Service</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${service}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Doctor</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${doctor}</td>
+                </tr>
+                <tr>
+                    <th style="padding: 12px; background-color: #f2f2f2; text-align: left;">Location</th>
+                    <td style="padding: 12px; border: 1px solid #dddddd;">${address}</td>
+                </tr>
+            </table>
+
+
+
+            <p>If you have any questions, please contact support or reply to this email.</p>
+        </div>
+
+        <div style="text-align: center; font-size: 14px; color: #777777; margin-top: 30px;">
+            © 2025 Kairos Integrative Health. All rights reserved.  
+        </div>
+    </div>
+</body>
+</html>

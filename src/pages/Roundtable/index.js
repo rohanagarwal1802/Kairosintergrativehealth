@@ -58,7 +58,7 @@ const RoundTable = () => {
           >
             <Box
               component="img"
-              src="/rr2.jpg"
+              src="/rr2.jpeg"
               alt="Mental Health Education"
               sx={{
                 height: "100%",
@@ -85,7 +85,7 @@ const RoundTable = () => {
             <Typography variant="h4" sx={{ mb: 2, fontWeight: 400, color: "black" }}>
             Promoting Education
             </Typography>
-            <Typography variant="body1" sx={{ fontSize: 25 }}>
+            <Typography variant="body1" sx={{ fontSize: 25,color:"black" }}>
               At our clinic, we offer <strong>Resilience Roundtable</strong>, a once-per-month
               virtual educational session designed to address a wide variety of mental health
               topics in a safe and anonymous space. The idea for this program came from{" "}
@@ -117,7 +117,7 @@ const RoundTable = () => {
           >
             <Box
               component="img"
-              src="/rr1.jpg"
+              src="/rr1.jpeg"
               alt="Mental Health Support"
               sx={{
                 height: "100%",
@@ -144,7 +144,7 @@ const RoundTable = () => {
             <Typography variant="h4" sx={{ mb: 2, fontWeight: 400, color: "black" }}>
               Fostering Conversation
             </Typography>
-            <Typography variant="body1" sx={{ fontSize: 25 }}>
+            <Typography variant="body1" sx={{ fontSize: 25,color:"black"  }}>
               As a dedicated mental health professional, Mark saw firsthand how a lack of
               accessible, evidence-based information often leads to misunderstanding and
               stigma surrounding mental health issues. <strong>Resilience Roundtable</strong> was

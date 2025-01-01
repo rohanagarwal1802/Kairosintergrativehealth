@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Resilience Roundtable Booking Confirmation</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; margin: 0; padding: 0;">
+    <div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #dddddd; border-radius: 8px;">
+        <div style="text-align: center; padding: 15px;">
+            <img src="http://localhost:3000/_next/image?url=%2Flogo.png&w=128&q=75" alt="Clinic Logo" style="display: block; margin: 0 auto 20px; max-width: 150px;">
+        </div>
+        <div style="background-color: #6F7863; color: white; padding: 15px; text-align: center; font-size: 22px; border-radius: 8px 8px 0 0;">
+            New Resilience Roundtable Booking Confirmation
+        </div>
+        <div style="padding: 20px;">
+            <p>Hello <strong style="font-weight: bold;">Admin</strong>,</p>
+            <p style="font-size: 16px; color: #333;">A new patient has successfully booked their spot for the <strong style="font-weight: bold;">Resilience Roundtable</strong>. Below are the details of the booking:</p>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr>
+                <th style="padding: 12px; border: 1px solid #dddddd; background-color: #f2f2f2; text-align: left;">Name</th>
+                <td style="padding: 12px; border: 1px solid #dddddd;">${patient_another_name}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Email</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${email}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Phone Number</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${phoneNumber}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Date of Birth</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${dob}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Attending Roundtable?</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${attending}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Over 18?</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${over18}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Bringing a Friend?</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${bringingFriend}</td>
+            </tr>
+
+            <!-- If bringing a friend, include these details -->
+            <!-- Friend's Details (if applicable) -->
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Friend's First Name</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${friendFirstName}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Friend's Last Name</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${friendLastName}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Friend's Date of Birth</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${friendDob}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Friend's Phone Number</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${friendPhoneNumber}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Friend's Email</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${friendEmail}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Permission to Text Friend?</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${friendTextPermission}</td>
+            </tr>
+
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Payment Option</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${paymentOption}</td>
+            </tr>
+
+            <!-- Payment Details for Members -->
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Name of Person Filling Out Form</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${memberName}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Name of First Attendee</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${firstAttendeeName}</td>
+            </tr>
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2; text-align: left;">Name of Second Attendee</th>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${secondAttendeeName}</td>
+            </tr>
+        </table>
+
+        <p>If you have any questions, feel free to contact us at <strong>256-980-0620</strong> or reply to this email.</p>
+            
+        <p>Thank you for managing the Resilience Roundtable bookings!</p>
+
+        <div style="text-align: center; font-size: 14px; color: #777777; margin-top: 30px;">
+            © <script>document.write(new Date().getFullYear())</script> Kairos Integrative Health. All rights reserved.  
+        </div>
+    </div>
+</body>
+</html>

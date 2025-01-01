@@ -96,10 +96,9 @@ const About = () => {
 
   {/* Grid for 4 Boxes */}
   <Grid container spacing={2} justifyContent="center">
-    
 
-    {/* Transparent White Boxes */}
-{featureArray.map((feature, index) => (
+{/* First Row (3 items) */}
+{featureArray.slice(0, 3).map((feature, index) => (
   <Grid item xs={12} sm={6} md={4} key={index}>
     <Box
       sx={{
@@ -134,37 +133,115 @@ const About = () => {
   </Grid>
 ))}
 
+{/* Second Row (2 items) */}
+<Grid container spacing={2} justifyContent="center" alignItems="center">
+
+  {/* Second Row (2 items) */}
+  {featureArray.slice(3, 5).map((feature, index) => (
+    <Grid item xs={12} sm={4} md={4} key={index}>
+      <Box
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          color: "#333",
+          padding: 2,
+          mt: "5%",
+          width: "100%", // Ensures full width on all screens
+          height: 300, // Fixed height
+          textAlign: "center",
+          borderRadius: 2,
+          boxShadow: 3,
+          fontWeight: "bold",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center", // Centers text inside the box
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          "&:hover": {
+            transform: "translateY(-10px)",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+          },
+        }}
+      >
+        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#6F7863" }}>
+          {feature.feature}
+        </Typography>
+        <Typography sx={{ color: "black", fontSize: "0.9rem" }}>
+          {feature.content}
+        </Typography>
+      </Box>
+    </Grid>
+  ))}
+
+</Grid>
+
+<Grid item xs={12} sm={4} md={4}></Grid>
+{/* Third Row (1 item) */}
+<Grid container spacing={2} justifyContent="center" alignItems="center">
+{featureArray.slice(5, 6).map((feature, index) => (
+  <Grid item xs={12} sm={6} md={6} key={index}>
+    <Box
+      sx={{
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        color: "#333",
+        padding: 2,
+        mt: "5%",
+        width: "100%", // Ensures full width on all screens
+        height: 300, // Fixed height
+        textAlign: "center",
+        borderRadius: 2,
+        boxShadow: 3,
+        fontWeight: "bold",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center", // Centers text inside the box
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        "&:hover": {
+          transform: "translateY(-10px)",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+        },
+      }}
+    >
+      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#6F7863" }}>
+        {feature.feature}
+      </Typography>
+      <Typography sx={{ color: "black", fontSize: "0.9rem" }}>
+        {feature.content}
+      </Typography>
+    </Box>
+  </Grid>
+))}
+</Grid>
+
 {/* First Box (#535945) */}
-<Grid item xs={12} sm={6} md={4}>
-  <Box
-    sx={{
-      backgroundColor: "#2A3923",
-      color: "#ECE7E2",
-      padding: 2,
-      mt: "5%",
-      width: "100%", // Ensures full width on all screens
-      height: 300, // Fixed height
-      textAlign: "center",
-      borderRadius: 2,
-      boxShadow: 3,
-      fontWeight: "bold",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center", // Centers text inside the box
-      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-      "&:hover": {
-        transform: "translateY(-10px)",
-        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-      },
-    }}
-  >
-       <Typography sx={{ color: "#ECE7E2", fontSize: "0.9rem",mb:"5%" }}>
+<Grid item xs={12} sm={6} md={3}>
+<Box
+      sx={{
+        backgroundColor: "#2A3923",
+        color: "#ECE7E2",
+        padding: 2,
+        mt: "5%",
+        width: "100%", // Ensures full width on all screens
+        height: 300, // Fixed height
+        textAlign: "center",
+        borderRadius: 2,
+        boxShadow: 3,
+        fontWeight: "bold",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center", // Centers text inside the box
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        "&:hover": {
+          transform: "translateY(-10px)",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+        },
+      }}
+    >
+    <Typography sx={{ color: "#ECE7E2", fontSize: "0.9rem", mb: "5%" }}>
       “When it’s time, we’re here.”
-      {/* <br />
-      “Taking action to craft a better you, for you.” */}
     </Typography>
-    
+
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Button
         variant="contained"
@@ -175,9 +252,9 @@ const About = () => {
           paddingRight: 2,
           borderRadius: "50px",
           textTransform: "capitalize",
-          backgroundColor:"#2A3923"
+          backgroundColor: "#2A3923",
         }}
-        onClick={()=>router.push('/bookanappointment')}
+        onClick={() => router.push('/bookanappointment')}
         endIcon={<ArrowForwardIosIcon />}
       >
         Schedule Now
@@ -186,7 +263,10 @@ const About = () => {
   </Box>
 </Grid>
 
-  </Grid>
+</Grid>
+
+
+
 
 </Box>
 

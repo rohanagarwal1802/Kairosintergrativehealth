@@ -36,7 +36,7 @@ const PTSDPage = () => {
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, '@media (max-width: 768px)': { flexDirection: 'column' } }}>
           <Box sx={{ maxWidth: '500px', width: '100%' }}>
             <Image
-              src="/psychiatry.jpg"
+              src="/psychiatry.jpeg"
               alt="Mental Well-being"
               width={500} // Adjust as needed
               height={300}
@@ -62,7 +62,7 @@ const PTSDPage = () => {
 
         <Box sx={{ mt: "1%",mb:"1%" }}>
           <Typography variant="body2" sx={{ color: "black" }}>
-            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
+            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person, body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
           </Typography>
         </Box>
 
@@ -117,8 +117,7 @@ complimentary phone call.
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
               You will receive an
-email from (whatever email it will come from) to create a (portal
-account/password – whatever is correct) with Kairos Integrative
+email from Kairos Integrative Health to create a password with Kairos Integrative
 Health.
               </Typography>
             </ListItem>
@@ -135,10 +134,7 @@ Health.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-              You will receive an
-email from (whatever email it will come from) to create a (portal
-account/password – whatever is correct) with Kairos Integrative
-Health.
+              You can login into Kairos Integrative Health with your registered email and created password.
               </Typography>
             </ListItem>
           </List>

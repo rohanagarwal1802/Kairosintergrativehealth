@@ -38,7 +38,7 @@ import useUserStore from "@/components/useUserStore";
 const LinkStyled = styled("Typography")({
   fontSize: "0.875rem",
   textDecoration: "none",
-  color: "#007BFF",
+  color: "#2A3923",
   "&:hover": {
     textDecoration: "underline",
   },
@@ -157,9 +157,27 @@ const LoginPage = () => {
       // console.log("Patient Details ",patient_detail)
 if(patient_detail.data.status===true)
 {
-let token=patient_detail.data.patient.whitelist
-   await setResetPassword(true)
-   router.push(`/?verify=${token}`)
+  let emailValues = { ...patient_detail.data.patient };
+    
+              // First Email (Create Password)
+              try {
+                emailValues.template = 'resetPasswordTemplate';
+                console.log("Sending first email...");
+                let mailResp = await axios.post('/api/sendMailAPI', emailValues);
+                console.log("Mail response (Password Email):", mailResp);
+    
+                if (mailResp.status !== 200) {
+                  console.warn("First email may have failed. Continuing to second email...");
+                }
+              } catch (error) {
+                console.error("Error sending password email:", error);
+                setSnackbar('error', 'Failed to send password creation email.');
+              }
+    
+              // Second Email (Confirmation)
+           
+    
+              setSnackbar('success', 'Emails will be sent shortly for resetting the password.');
 
     }
     else
@@ -220,7 +238,7 @@ let token=patient_detail.data.patient.whitelist
                   align="center"
                   sx={{
                     fontWeight: "bold",
-                    color: "#007BFF",
+                    color: "#2A3923",
                   }}
                 >
                   Kairos Integrative Health
@@ -304,6 +322,7 @@ let token=patient_detail.data.patient.whitelist
                           color="primary"
                           disabled={loading}
                           type="submit"
+                          sx={{backgroundColor:"#2A3923"}}
                         >
                         {loading ? (
                                         <CircularProgress size={24} sx={{ color: 'white' }} />

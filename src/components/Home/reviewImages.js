@@ -3,10 +3,10 @@ import { Box, Grid, Typography } from "@mui/material";
 
 function ImageGallery() {
   const images = [
-    { src: "/testimonial1.jpeg", alt: "Image 1", title: "Image 1" },
-    { src: "/testimonial2.jpeg", alt: "Image 2", title: "Image 2" },
-    { src: "/testimonial3.jpeg", alt: "Image 3", title: "Image 3" },
-    { src: "/testimonial4.jpeg", alt: "Image 4", title: "Image 4" },
+    { src: "/testimonial1.jpg", alt: "Image 1", title: "Image 1" },
+    { src: "/testimonial2.jpg", alt: "Image 2", title: "Image 2" },
+    { src: "/testimonial3.jpg", alt: "Image 3", title: "Image 3" },
+    { src: "/testimonial4.jpg", alt: "Image 4", title: "Image 4" },
   ];
 
   return (

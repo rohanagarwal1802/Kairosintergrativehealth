@@ -1,5 +1,4 @@
-import * as soap from 'soap';
-
+import soap from "soap";
 import { format } from "date-fns";
 
 export default async function handler(req, res) {
@@ -39,43 +38,10 @@ export default async function handler(req, res) {
       },
     };
 
-    console.log("Environment:", process.env.NODE_ENV);
+    console.log("Initializing SOAP client...");
+    const client = await soap.createClientAsync(WSDL_URL, options);
+    console.log("SOAP Client Created:", JSON.stringify(client.describe(), null, 2));
 
-    let client;
-
-    // Check for `createClientAsync` and use appropriate client creation method
-    if (process.env.NODE_ENV === "production") {
-      console.log("Using callback-based createClient in production.");
-      soap.createClient(WSDL_URL, options, async (err, soapClient) => {
-        if (err) {
-          console.error("Error creating SOAP client:", err);
-          return res.status(500).json({
-            status: "error",
-            message: "SOAP client creation failed.",
-          });
-        }
-        client = soapClient;
-        await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance);
-      });
-    } else {
-      console.log("Using createClientAsync in development");
-      client = await soap.createClientAsync(WSDL_URL, options);
-      await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance);
-    }
-  } catch (error) {
-    console.error("Error during SOAP operation:", {
-      message: error.message,
-      stack: error.stack,
-    });
-    res.status(500).json({
-      status: "error",
-      message: error.message || "An unexpected error occurred.",
-    });
-  }
-}
-
-async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance) {
-  try {
     // Construct Request Arguments
     const requestArgs = {
       request: {
@@ -87,7 +53,7 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
         Patient: {
           FirstName: firstname,
           LastName: lastname,
-          DOB: formattedDob,
+          DOB: dob,
           EmailAddress: email,
           MobilePhone: mobile,
           Alert: {
@@ -122,9 +88,10 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
 
     // Call the CreatePatient method
     const [result] = await client.CreatePatientAsync(requestArgs);
+
     console.log("SOAP Response:", JSON.stringify(result, null, 2));
 
-    const patientId = result || "unknown";
+    const patientId = result|| "unknown";
 
     res.status(200).json({
       status: "success",
@@ -132,7 +99,7 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
       message: "Patient created successfully!",
     });
   } catch (error) {
-    console.error("Error during SOAP request processing:", {
+    console.error("Error during SOAP operation:", {
       message: error.message,
       stack: error.stack,
       response: error.response,

@@ -1,7 +1,4 @@
-import GoogleMap from "../../components/Contact/googleMap";
 import { Box, Typography, List, ListItem, Grid } from "@mui/material";
-import Image from "next/image";
-import ContactForm from "@/components/Contact/contactForm";
 
 const TherapyPage = () => {
   const causes = [
@@ -82,7 +79,7 @@ const TherapyPage = () => {
             {/* Image */}
             <Box
               component="img"
-              src="/therapy.jpg"
+              src="/therapy.jpeg"
               alt="Founder"
               sx={{
                 height: "70%",

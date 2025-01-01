@@ -197,7 +197,7 @@ const Careers = () => {
   <Typography>
     Due to our applications being on a rolling basis, we do not request reference letters until we are reviewing for specific positions.
     <br />
-    All documents can be emailed to
+    All documents can be emailed to&nbsp;
     <strong
       style={{
         display: "inline-block",

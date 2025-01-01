@@ -4,7 +4,7 @@ import { Box, Typography, Stack,Grid } from "@mui/material";
 const data = [
   {
     title: "Mood Disorders",
-    items: ["Major Depressive Disorder", "Patient Advocacy", "Process and Policy Improvement", "Staff Education"]
+    items: ["Major Depressive Disorder", "Dysthymia", "Bipolar Disorder"]
   },
   {
     title: "Anxiety Disorders",
@@ -151,7 +151,7 @@ MSN, MBA, PMHNP-BC
           and <b>practicing</b> in Birmingham, Alabama, with a passion for enhancing the well-being of in his
           community. With an extensive educational background, including a Master of Science in Nursing specializing and psychiatric – mental health nursing, a Master of Business Administration, and a Bachelor of
           Science in Public Health, Mark utilizes his training and experience in population and individual
-          based settings to provide 7.a diverse understanding to each individual’s unique presentation, 8.enhancing the well-being of his community.
+          based settings to provide a diverse understanding to each individual’s unique presentation and enhance the well-being of his community.
         </Typography>
       </Stack>
    
@@ -194,7 +194,8 @@ MSN, MBA, PMHNP-BC
     flexWrap: 'wrap', // Allows wrapping to the next line
     gap: '10px', // Space between items
     justifyContent: 'flex-start', // Align items to the left
-    backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    backgroundColor: '#6F7863',
+color:"white", // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -216,7 +217,7 @@ MSN, MBA, PMHNP-BC
         flex: '1 1 45%', // Flex-grow, shrink, and basis (roughly 45% of parent width)
         minWidth: '150px', // Minimum width to ensure proper wrapping
         textAlign: 'left', // Center-align text
-        color: 'black',
+        color: 'white',
         lineHeight: 1.5,
       }}
     >
@@ -234,7 +235,8 @@ MSN, MBA, PMHNP-BC
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
   His diverse background gives him a unique perspective of our healthcare system and a passion for preventing individuals from "falling through the cracks."
   </Typography>
-{/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+{/* <Box sx={{backgroundColor: '#6F7863',
+color:"white", // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -256,7 +258,8 @@ MSN, MBA, PMHNP-BC
     flexWrap: 'wrap', // Allows wrapping to the next line
     gap: '10px', // Space between items
     justifyContent: 'flex-start', // Align items to the left
-    backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+    backgroundColor: '#6F7863',
+color:"white", // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -278,7 +281,7 @@ MSN, MBA, PMHNP-BC
         flex: '1 1 45%', // Flex-grow, shrink, and basis (roughly 45% of parent width)
         minWidth: '150px', // Minimum width to ensure proper wrapping
         textAlign: 'left', // Center-align text
-        color: 'black',
+        color: 'white',
         lineHeight: 1.5,
       }}
     >
@@ -311,7 +314,8 @@ including, but not limited to:
         <Grid item xs={12} sm={6} md={6} key={index}>
            <Box
         sx={{
-          backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+          backgroundColor: '#6F7863',
+color:"white", // Light blue with transparency
           borderRadius: '10px', // Rounded corners
           padding: '20px', // Padding inside the box
           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -329,7 +333,7 @@ including, but not limited to:
             textAlign: 'center',
             fontWeight: 'bold',
             marginBottom: '10px',
-            color: 'black',
+            color: 'white',
             overflow: 'hidden',
             whiteSpace: 'nowrap', // Ensures single-line titles
             textOverflow: 'ellipsis',
@@ -340,7 +344,7 @@ including, but not limited to:
             <ul
           style={{
             paddingLeft: '20px',
-            color: 'black',
+            color: 'white',
             lineHeight: 1.8,
             maxHeight: 'calc(100% - 40px)', // Adjust for the title
             overflowY: 'auto', // Scrollable if too many items
@@ -362,7 +366,8 @@ guiding the next generation of healthcare professionals. He has served as a
 clinical instructor, focusing on psychiatric and addiction nursing, while
 inspiring students through education and mentorship.
   </Typography>
-  {/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+  {/* <Box sx={{backgroundColor: '#6F7863',
+color:"white", // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
@@ -374,7 +379,8 @@ inspiring students through education and mentorship.
   </Typography>
   </Box> */}
 
-  {/* <Box sx={{backgroundColor: 'rgba(173, 216, 230, 0.8)', // Light blue with transparency
+  {/* <Box sx={{backgroundColor: '#6F7863',
+color:"white", // Light blue with transparency
     borderRadius: '10px', // Rounded corners
     padding: '20px', // Padding inside the box
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility

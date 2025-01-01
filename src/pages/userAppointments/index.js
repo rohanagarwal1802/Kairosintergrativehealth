@@ -289,6 +289,7 @@ if(!Array.isArray(appointmentData))
           onClose={() => setAppointmentBookModalOpen(false)}
           patientId={userDetails.patientId}
           getAppointMentData={getAppointMentData}
+          userDetails={userDetails}
         //   PartnerSuperAdminData={PartnerSuperAdminData}
         />
       )}

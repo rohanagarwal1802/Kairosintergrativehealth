@@ -162,6 +162,40 @@ const ResilienceRoundtableForm = () => {
   
       // Submit form data using axios
       const resp = await axios.post('/api/bookRoundTable', values);
+      let emailValues = { ...values };
+
+      // First Email (Create Password)
+      try {
+        emailValues.template = 'roundTableBookTemplate';
+        console.log("Sending first email...");
+        let mailResp = await axios.post('/api/sendMailAPI', emailValues);
+        console.log("Mail response (Password Email):", mailResp);
+
+        if (mailResp.status !== 200) {
+          console.warn("First email may have failed. Continuing to second email...");
+        }
+      } catch (error) {
+        console.error("Error sending password email:", error);
+        setSnackbar('error', 'Failed to send password creation email.');
+      }
+
+      // Second Email (Confirmation)
+      try {
+        emailValues.template = 'roundTableConfirmation';
+        console.log("Sending second email...");
+        let mailResp1 = await axios.post('/api/sendMailAPI', emailValues);
+        console.log("Mail response (Confirmation Email):", mailResp1);
+
+        if (mailResp1.status === 200) {
+          console.log("Second email sent successfully.");
+        } else {
+          console.warn("Second email may not have been successful. Status:", mailResp1.status);
+        }
+      } catch (error) {
+        console.error("Error sending confirmation email:", error);
+        setSnackbar('error', 'Failed to send confirmation email.');
+      }
+
   
       // Set the payment type and reset form
       setType(values.payment);
@@ -179,7 +213,19 @@ const ResilienceRoundtableForm = () => {
     }
   };
   
+  const currentDate = new Date();
+
+  // Calculate 75 years ago
+  const minDate = new Date();
+  minDate.setFullYear(currentDate.getFullYear() - 75);
   
+  // Calculate 18 years ago
+  const maxDate = new Date();
+  maxDate.setFullYear(currentDate.getFullYear() - 18);
+  
+  // Format the dates to "YYYY-MM-DD" for input
+  const minDateFormatted = minDate.toISOString().split('T')[0];
+  const maxDateFormatted = maxDate.toISOString().split('T')[0];
 
   return (
     <>
@@ -296,7 +342,8 @@ const ResilienceRoundtableForm = () => {
     },
   }}
   inputProps={{
-    max: new Date().toISOString().split('T')[0], // Disable future dates
+    min: minDateFormatted,  // Set min date to 75 years ago
+    max: maxDateFormatted,  // Set max date to 18 years ago
   }}
 />
 
@@ -404,7 +451,12 @@ const ResilienceRoundtableForm = () => {
                                   transform: 'translate(14px, -6px)', // Position label slightly upwards
                                 },
                                 shrink: true, // Ensure the label is always visible
-                              }} />
+                              }}
+                              inputProps={{
+                                min: minDateFormatted,  // Set min date to 75 years ago
+                                max: maxDateFormatted,  // Set max date to 18 years ago
+                              }}
+                              />
                           </Grid>
                           <Grid item xs={6}>
                             <TextField

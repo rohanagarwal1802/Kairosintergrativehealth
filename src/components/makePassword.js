@@ -196,7 +196,7 @@ const handleLogout = async () => {
           color="primary"
           fullWidth
           disabled={loading}
-          sx={{ marginTop: 2 }}
+          sx={{ marginTop: 2,backgroundColor:"#2A3923" }}
         >
             {loading ? (
                                         <CircularProgress size={24} sx={{ color: 'white' }} />

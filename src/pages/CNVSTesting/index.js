@@ -74,7 +74,7 @@ const CNSVSTESTINGPAGE = () => {
               {/* Image */}
               <Box
                 component="img"
-                src="/RRImage2.jpg"
+                src="/cnvImage.jpeg"
                 alt="Founder"
                 sx={{
                   height: "70%",
@@ -96,6 +96,7 @@ const CNSVSTESTINGPAGE = () => {
                 p: 3,
                 borderRadius: 2,
                 boxShadow: 3,
+                zIndex:2,
                 order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
               }}
             >
@@ -175,7 +176,7 @@ const CNSVSTESTINGPAGE = () => {
               {/* Image */}
               <Box
                 component="img"
-                src="/RRImage1.jpg"
+                src="/cnvImage2.jpeg"
                 alt="Founder"
                 sx={{
                   height: "70%",

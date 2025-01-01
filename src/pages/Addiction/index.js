@@ -76,7 +76,7 @@ const AddictionPage = () => {
             {/* Image */}
             <Box
               component="img"
-              src="/Addiction.jpg"
+              src="/addict.jpeg"
               alt="Founder"
               sx={{
                 height: "70%",
@@ -132,7 +132,7 @@ providing compassionate, evidence-based care tailored to each
 individual's needs. We work together to develop a personalized
 treatment plan that addresses the underlying causes of addiction
 and promotes long-term recovery.`,
-              `If you are struggling with substance use, select MAT to help you regain control of your life.`,
+            
               `Please note we do not currently offer treatment with Suboxone or other
 medications containing buprenorphine as it is a controlled substance.`,
             ].map((therapy, index) => (

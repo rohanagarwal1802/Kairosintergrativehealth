@@ -22,7 +22,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "react-datepicker/dist/react-datepicker.css";
 import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 
-function AppointmentFormModal({ open, onClose,patientId,getAppointMentData }) {
+function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userDetails }) {
   const [loading, setLoading] = useState(false);
   const {setSnackbar}=useCustomSnackbarStore()
 
@@ -48,9 +48,47 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData }) {
       };
 
       const res = await axios.post("/api/bookAppointmentOnTebra", data);
+      
       // console.log(res.data)
       if (res.data.status === "success") {
         const appointmentResp=await axios.post('/api/createNewAppointMent',data)
+        let username=userDetails?.firstname+" "+userDetails?.lastname
+        let email=userDetails?.email
+        let phone=userDetails?.mobile
+        let emailValues = { ...data,username:username,email:email,phone:phone };
+
+        // First Email (Create Password)
+        try {
+          emailValues.template = 'bookAppointmentTemplate';
+          console.log("Sending first email...");
+          let mailResp = await axios.post('/api/sendMailAPI', emailValues);
+          console.log("Mail response (Password Email):", mailResp);
+
+          if (mailResp.status !== 200) {
+            console.warn("First email may have failed. Continuing to second email...");
+          }
+        } catch (error) {
+          console.error("Error sending password email:", error);
+          setSnackbar('error', 'Failed to send password creation email.');
+        }
+
+        // Second Email (Confirmation)
+        try {
+          emailValues.template = 'bookAppointmentConfirmation';
+          console.log("Sending second email...");
+          let mailResp1 = await axios.post('/api/sendMailAPI', emailValues);
+          console.log("Mail response (Confirmation Email):", mailResp1);
+
+          if (mailResp1.status === 200) {
+            console.log("Second email sent successfully.");
+          } else {
+            console.warn("Second email may not have been successful. Status:", mailResp1.status);
+          }
+        } catch (error) {
+          console.error("Error sending confirmation email:", error);
+          setSnackbar('error', 'Failed to send confirmation email.');
+        }
+
         console.log("appresp",appointmentResp.data)
         setSnackbar("success","Appointment created successfully")
         // alert("Appointment created successfully");

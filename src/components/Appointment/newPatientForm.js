@@ -83,73 +83,104 @@ const PatientForm = () => {
     },
     validationSchema,
     onSubmit: async (values) => {
-      console.log("Form Submitted", values); // Add this to check if onSubmit is triggered
+      console.log("Form Submitted", values);
       setLoading(true); // Start loading when submit is triggered
+    
       try {
         const questions = values.questions;
-        let val={}
-
-        const {firstname,lastname,mobile,email,dob,insurance}=values
-        val.firstname=firstname
-        val.lastname=lastname
-        val.mobile=mobile
-        val.email=email
-        val.dob=dob
-        val.insurance=insurance
-
-        const patient_detail=await axios.post('/api/getPatientDetailsByEmail',{email:email})
-        // console.log("Patient Details ",patient_detail)
-if(patient_detail.data.status===true)
-{
-  setSnackbar('warning','Patient Already exists with email.')
-  // alert("Patient Already exists with email.")
-  return
-}
-        console.log("val ==>",val)
-        
-        console.log('Data being sent to server: ', questions); // Log the data
-        const response = await axios.post('/api/createPatient', val); // Use 'values' instead of 'data'
-
-        console.log("response",response)
-    const patientID=response.data.patientId.CreatePatientResult.PatientID
+        let val = {};
+    
+        const { firstname, lastname, mobile, email, dob, insurance } = values;
+        val.firstname = firstname;
+        val.lastname = lastname;
+        val.mobile = mobile;
+        val.email = email;
+        val.dob = dob;
+        val.insurance = insurance;
+    
+        // Check if patient already exists
+        const patient_detail = await axios.post('/api/getPatientDetailsByEmail', { email: email });
+        if (patient_detail.data.status === true) {
+          setSnackbar('warning', 'Patient already exists with this email.');
+          return;
+        }
+    
+        console.log("Data being sent to server: ", val);
+    
+        // Create a new patient
+        const response = await axios.post('/api/createPatient', val);
+        const patientID = response.data.patientId.CreatePatientResult.PatientID;
+        console.log("patient Id",patientID)
+    
         if (response.status === 200) {
-          try{
-            const responseNewPatient = await axios.post('/api/addNewPatient', {
-              ...values, 
-              patientId:patientID // Assuming response.data contains the data you want to send
-            });
-
-            console.log("dsjhdj",responseNewPatient)
-            if (responseNewPatient.data.data.passed===true) {
-              // formik.handleReset()
-              setSnackbar("success",'Patient added successfully. Please create your password to login.')
-              // alert('Patient added successfully. Please create your password to login.');
-              router.push(`/?verify=${responseNewPatient.data.data.result.whitelist}`)
-              
+          try {
+            // Add new patient
+            // let patientData={
+            //   ...values,
+            //   patientId: patientID
+            // }
+            let PatientValues={ ...values };
+            PatientValues.patientId=patientID
+            const responseNewPatient = await axios.post('/api/addNewPatient', PatientValues);
+    
+            if (responseNewPatient.data.data.passed === true) {
+              // Clone values for emails to avoid mutations
+              let emailValues = { ...values };
+              emailValues.whitelist = responseNewPatient.data.data.result.whitelist;
+    
+              // First Email (Create Password)
+              try {
+                emailValues.template = 'createPasswordTemplate';
+                console.log("Sending first email...");
+                let mailResp = await axios.post('/api/sendMailAPI', emailValues);
+                console.log("Mail response (Password Email):", mailResp);
+    
+                if (mailResp.status !== 200) {
+                  console.warn("First email may have failed. Continuing to second email...");
+                }
+              } catch (error) {
+                console.error("Error sending password email:", error);
+                setSnackbar('error', 'Failed to send password creation email.');
+              }
+    
+              // Second Email (Confirmation)
+              try {
+                emailValues.template = 'patientRegisterationConfirmation';
+                console.log("Sending second email...");
+                let mailResp1 = await axios.post('/api/sendMailAPI', emailValues);
+                console.log("Mail response (Confirmation Email):", mailResp1);
+    
+                if (mailResp1.status === 200) {
+                  console.log("Second email sent successfully.");
+                } else {
+                  console.warn("Second email may not have been successful. Status:", mailResp1.status);
+                }
+              } catch (error) {
+                console.error("Error sending confirmation email:", error);
+                setSnackbar('error', 'Failed to send confirmation email.');
+              }
+    
+              setSnackbar('success', 'Patient added successfully. Emails will be sent shortly.');
+              router.push(`/login`);
             }
+          } catch (error) {
+            console.error('Error in registering patient:', error);
+            setSnackbar('error', 'Error registering patient.');
           }
-          catch(error)
-          {
-            console.error('Error in registering patient: ', error);
-          }
-         
         }
-        setLoading(false); // Stop loading after submit
       } catch (error) {
-        console.error('Error in registering patient: ', error);
-        setLoading(false); // Stop loading on error
+        console.error('Error in submitting form:', error);
         if (error.response && error.response.status === 400) {
-          setSnackbar("warning","Duplicate Email or Mobile.")
-          // alert('Duplicate Email or Mobile.');
+          setSnackbar('warning', 'Duplicate Email or Mobile.');
         } else {
-          setSnackbar("error","An error occurred while submitting the form.")
-          // alert('An error occurred while submitting the form.');
+          setSnackbar('error', 'An error occurred while submitting the form.');
         }
-      }
-      finally{
-        setLoading(false)
+      } finally {
+        setLoading(false); // Always stop loading after operation
       }
     },
+    
+    
     
     onReset: () => {
       setCaptchaValue(generateCaptcha());
@@ -167,6 +198,20 @@ if(patient_detail.data.status===true)
       <Typography component="span" color="error" sx={{ ml: 0.5 }}>*</Typography>
     </Typography>
   );
+
+  const currentDate = new Date();
+
+// Calculate 75 years ago
+const minDate = new Date();
+minDate.setFullYear(currentDate.getFullYear() - 75);
+
+// Calculate 18 years ago
+const maxDate = new Date();
+maxDate.setFullYear(currentDate.getFullYear() - 18);
+
+// Format the dates to "YYYY-MM-DD" for input
+const minDateFormatted = minDate.toISOString().split('T')[0];
+const maxDateFormatted = maxDate.toISOString().split('T')[0];
 
   return (
     <>
@@ -317,26 +362,30 @@ if(patient_detail.data.status===true)
                 <Typography color="error">{formik.errors.lastname}</Typography>
               )}
 
-              <TextField
-                label={<RequiredLabel label="Patient's Date of Birth" />}
-                name="dob"
-                type="date"
-                InputLabelProps={{ shrink: true }}
-                inputProps={{ max: new Date().toISOString().split('T')[0] }}
-                value={formik.values.dob || ''} // Ensure controlled input
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-                inputRef={inputRef}
-                onClick={handleClick}
-                sx={{
-                  '& .MuiInputLabel-root': { color: 'black' },
-                  '& .Mui-focused .MuiInputLabel-root': { color: 'black' },
-                  '& .MuiInputBase-input': { color: 'black' },
-                }} />
-              {formik.touched.dob && formik.errors.dob && (
-                <Typography color="error">{formik.errors.dob}</Typography>
-              )}
+<TextField
+  label={<RequiredLabel label="Patient's Date of Birth" />}
+  name="dob"
+  type="date"
+  InputLabelProps={{ shrink: true }}
+  inputProps={{
+    min: minDateFormatted,  // Set min date to 75 years ago
+    max: maxDateFormatted,  // Set max date to 18 years ago
+  }}
+  value={formik.values.dob || ''} // Ensure controlled input
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+  fullWidth
+  inputRef={inputRef}
+  onClick={handleClick}
+  sx={{
+    '& .MuiInputLabel-root': { color: 'black' },
+    '& .Mui-focused .MuiInputLabel-root': { color: 'black' },
+    '& .MuiInputBase-input': { color: 'black' },
+  }}
+/>
+{formik.touched.dob && formik.errors.dob && (
+  <Typography color="error">{formik.errors.dob}</Typography>
+)}
 
               <TextField
                 label={<RequiredLabel label="Patient's Email" />}

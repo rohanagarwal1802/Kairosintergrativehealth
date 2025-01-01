@@ -62,7 +62,7 @@ setLoading(false); // Stop loading
   useEffect(() => {
     const checkServerStatus = async () => {
       setLoading(true); // Start loading
-      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // Helper function for delay
+   
     
       try {
         const res = await axios.get("/api/cookie", { withCredentials: true });
@@ -102,7 +102,6 @@ setLoading(false); // Stop loading
           setLogin(false)
           }
       } finally {
-        await delay(1000); // Ensure a 5-second delay
         setIsAuthChecked(true); // Mark auth check as complete
         setLoading(false); // Stop loading
        
