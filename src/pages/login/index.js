@@ -11,7 +11,6 @@ import useCustomSnackbarStore from "../utils/useCustomSnackbarStore";
 // ** MUI Components
 import {
   IconButton,
-  Typography,
   TextField,
   Button,
   Grid,
@@ -24,6 +23,8 @@ import {
   useMediaQuery,
   CircularProgress
 } from "@mui/material";
+import Typography from '@mui/material/Typography';
+
 import { useTheme } from "@mui/material/styles";
 
 // ** Form Validation
@@ -64,9 +65,9 @@ const LoginPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  useEffect(()=>{
-    setPageDisplay("login")
-  },[])
+  // useEffect(()=>{
+  //   setPageDisplay("login")
+  // },[])
 
   useEffect(() => {
     let timerInterval;
@@ -106,10 +107,11 @@ const LoginPage = () => {
         const response = await axios.post("/api/login", values);
         const { status } = response;
         if (status === 200) {
-          localStorage.setItem("login", "true");
+          // localStorage.setItem("login", "true");
          
-         await router.reload();
+         
          setSnackbar('success','Logged in Successfully')
+         setResetPassword(!toResetPassword)
         //  setLogin(true)
          
         } else if (status === 201) {
@@ -126,7 +128,8 @@ const LoginPage = () => {
         // Handle errors (e.g., 401 or 404)
       }
       finally{
-        
+       
+        // await router.reload();
       }
     },
   });

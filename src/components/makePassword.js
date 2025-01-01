@@ -44,10 +44,11 @@ const handleLogout = async () => {
       await axios.get('/api/logout').then(async ()=>{
     localStorage.removeItem("login"); // Example: Clear login token
     // setPageDisplay('login')
+    setLogin(false)
     router.push("/login"); // Redirect to login page
     setPageDisplay('login')
     await setSnackbar("success","Logged out successfully")
-    // router.reload()
+    router.reload()
     })
     }
     catch(error)

@@ -18,7 +18,7 @@ const theme = createTheme({
       secondary: "#5e3d29", // Slightly lighter brown for secondary text
     },
   },
-  typography: {
+  Typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontWeight: 700,

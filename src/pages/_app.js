@@ -14,7 +14,7 @@ import MakePassword from "@/components/makePassword";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const {pageDisplay, setPageDisplay,login,setLogin} = useUserStore(); // Tracks page state
+  const {pageDisplay, setPageDisplay,login,setLogin,toResetPassword} = useUserStore(); // Tracks page state
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Tracks auth status
   const [userDetails, setUserDetails] = useState(null); // Stores user data
   const [loading,setLoading]=useState(true)
@@ -28,13 +28,13 @@ useCustomSnackbarStore();
 //     setLogin(true);
 //   }
 // }, []);
-useEffect(()=>{
-  if(login===true)
-  {
+// useEffect(()=>{
+//   if(login===true)
+//   {
     
-    router.push(pageDisplay)
-  }
-},[login])
+//     router.push(pageDisplay)
+//   }
+// },[login])
 
   const checkPageDisplay=async ()=>{
     try{
@@ -66,24 +66,36 @@ setLoading(false); // Stop loading
     
       try {
         const res = await axios.get("/api/cookie", { withCredentials: true });
-        console.log("res.data", res.data);
+        console.log("res.data", res);
     
-        if (res.data) {
+        if (res.data && res.status==200) {
           setUserDetails(res.data); // Set user details
           localStorage.setItem("login", "true");
           // setLogin(true);
           console.log("pageDisplay ==>",pageDisplay)
-          if(pageDisplay===""){
+          
          // Show the app layout
+         if(login==false)
+          {
+            console.log("sdsjdn")
           if (res.data?.role === "admin") {
             setPageDisplay("Admin"); 
-          // await  router.push("/Admin"); // Redirect to admin panel
+            console.log(login)
+            
+                router.push("/Admin")
+              
+          //await  router.push("/Admin"); // Redirect to admin panel
           } else {
             setPageDisplay("userAppointments"); 
+           
+                router.push("/userAppointments")
+              
           // await  router.push("/userAppointments");
           }
+         
           setLogin(true);
         }
+        
         } else {
           setPageDisplay("app"); // Show login page
           if(login===true)
@@ -116,7 +128,7 @@ setLoading(false); // Stop loading
       {
     checkServerStatus();
        } // Run the check on page load
-  }, [router.pathname]); // Dependency ensures no redundant checks
+  }, [router.pathname,toResetPassword]); // Dependency ensures no redundant checks
 
   // Default layout if not defined in the component
   const getLayout =
