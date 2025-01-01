@@ -23,9 +23,14 @@ export default async function handler(req, res) {
       });
     }
 
-    const formattedDob = format(new Date(dob), "yyyy-MM-dd");
-    console.log("Formatted DOB:", formattedDob);
-
+    const date = new Date(dob);
+      
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');  // Month is zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+  
+    const date_of_birth= `${year}-${month}-${day}`;
+  
     // SOAP Client Options
     const options = {
       wsdl_headers: {
@@ -38,10 +43,31 @@ export default async function handler(req, res) {
       },
     };
 
+
+
     console.log("Initializing SOAP client...");
     const client = await soap.createClientAsync(WSDL_URL, options);
     console.log("SOAP Client Created:", JSON.stringify(client.describe(), null, 2));
 
+    const getPatientRequestArgs = {
+      request: {
+        RequestHeader: {
+          ClientVersion: 1.0,
+          CustomerKey: process.env.KAREO_CUSTOMER_KEY,
+          Password: process.env.KAREO_PASSWORD,
+          User: process.env.KAREO_USERNAME,
+        },
+        Fields:{},
+        Filter: {
+          // PatientID: 1,
+        },
+      },
+    };
+
+    // Call the GetPatient method
+    const [PatientResult] = await client.GetAllPatientsAsync(getPatientRequestArgs);
+    console.log("SOAP Response of Patient Details:", JSON.stringify(PatientResult, null, 2));
+// return PatientResult
     // Construct Request Arguments
     const requestArgs = {
       request: {
@@ -53,7 +79,7 @@ export default async function handler(req, res) {
         Patient: {
           FirstName: firstname,
           LastName: lastname,
-          DOB: dob,
+          DateofBirth: date_of_birth,
           EmailAddress: email,
           MobilePhone: mobile,
           Alert: {
@@ -78,7 +104,7 @@ export default async function handler(req, res) {
               }
             : undefined,
           Practice: {
-            PracticeID: 3,
+            PracticeID: 1,
           },
         },
       },
@@ -95,7 +121,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({
       status: "success",
-      patientId,
+      result,
       message: "Patient created successfully!",
     });
   } catch (error) {
