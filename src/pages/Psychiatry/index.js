@@ -29,19 +29,10 @@ const PTSDPage = () => {
           '@media (max-width: 768px)': {
             padding: 2,
           },
+          mt:"1%"
         }}
       >
-          <Box sx={{ ml: "5%", mt: "1%" }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
-            What is Integrative Psychiatry?
-          </Typography>
-        </Box>
-
-        <Box sx={{ mt: "1%",mb:"1%" }}>
-          <Typography variant="body2" sx={{ color: "black" }}>
-            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
-          </Typography>
-        </Box>
+         
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, '@media (max-width: 768px)': { flexDirection: 'column' } }}>
           <Box sx={{ maxWidth: '500px', width: '100%' }}>
             <Image
@@ -61,7 +52,20 @@ const PTSDPage = () => {
               you meet your goals.
             </Typography>
           </Box>
+          
         </Box>
+        <Box sx={{ ml: "5%", mt: "1%" }}>
+          <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
+            What is Integrative Psychiatry?
+          </Typography>
+        </Box>
+
+        <Box sx={{ mt: "1%",mb:"1%" }}>
+          <Typography variant="body2" sx={{ color: "black" }}>
+            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
+          </Typography>
+        </Box>
+
       </Box>
       <Box
         sx={{

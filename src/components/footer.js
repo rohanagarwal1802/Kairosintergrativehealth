@@ -40,12 +40,13 @@ const Footer = () => {
                 src="/logo.png"
                 alt="Kairos Integrative Health Logo"
                 onClick={()=>router.push("/")}
-                style={{ width: "80px", height: "auto",cursor:"pointer" }}
+                style={{ width: "200px", height: "200px",cursor:"pointer" }}
               />
               <Box
                 sx={{
                   display: "flex",
                   gap: "12px",
+                  mr:"5px",
                   marginTop: "8px",
                   justifyContent: "center",  // Center the social icons on small screens
                 }}
