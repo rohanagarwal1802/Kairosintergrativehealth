@@ -51,13 +51,13 @@ const ResourcesOptions = () => {
     // },
     {
       title: "Terms of use",
-      path: "/",
+      path: "/TermsAndConditions",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/terms.jpg",
     },
     {
       title: "Privacy Policy",
-      path: "/",
+      path: "/PrivacyPolicy",
       // description: "Achieve financial independence with our expert guidance.",
       image: "/images/privacy.jpg",
     },

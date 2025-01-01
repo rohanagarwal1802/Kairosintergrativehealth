@@ -31,6 +31,7 @@ const GoogleMap = () => {
           background: 'none!important',
         }}
       >
+        
         <iframe
           title="Google Map"
           frameBorder="0"

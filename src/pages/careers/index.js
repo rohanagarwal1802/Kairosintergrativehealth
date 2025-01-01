@@ -102,84 +102,73 @@ const Careers = () => {
                   overflowWrap: "break-word",
                 }}
               >
-                We are always looking to expand our team with dedicated professionals who are passionate about providing holistic, patient-centered care. We accept applications on a rolling basis from MDs, DOs, NPs, PAs, MSWs, and msws. If you think you have a talent or skill (administrative skills, advertising background, etc.) that can help expand our ability to serve the Birmingham community, feel free to reach out—we would love to hear from you as well!
+                We are always looking to expand our team with dedicated professionals who are passionate about providing holistic, patient-centered care. We accept applications on a rolling basis from MDs, DOs, NPs, PAs, MSWs. If you think you have a talent or skill (administrative skills, advertising background, etc.) that can help expand our ability to serve the Birmingham community, feel free to reach out—we would love to hear from you as well!
               </Typography>
             </Box>
           </Box>
         </Box>
 
-        {/* Request List Section */}
-        <Box
-          sx={{
-            width: "90%",
-            backgroundColor: "white",
-            color: "black",
-            padding: "8px 16px",
-            borderRadius: "8px",
-            boxShadow: 2,
-            textAlign: "center",
-            mt:2,
-            mb: 4,
-          }}
-        >
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            If you're interested in joining our team, please submit the following:
-          </Typography>
-        </Box>
+       
 
         {/* List Section */}
-        <Box
-          sx={{
-            width: "90%",
-            bgcolor: "#f5f5f5",
-            p: 3,
-            borderRadius: 2,
-            boxShadow: 3,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            mb: 4,
-          }}
-        >
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
-              flexWrap: "wrap",
-              gap: 2,
-              padding: 0,
-            }}
-          >
-            {causes.map((cause, index) => (
-              <ListItem
-                key={index}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  p: 0,
-                }}
-              >
-                <ListItemIcon sx={{ minWidth: "24px" }}>
-                  <RadioButtonCheckedIcon sx={{ color: "black" }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        color: "black",
-                        wordWrap: "break-word",
-                      }}
-                    >
-                      {cause}
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+<Box
+  sx={{
+    width: "90%",
+    bgcolor: "#f5f5f5",
+    p: 3,
+    borderRadius: 2,
+    boxShadow: 3,
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+    mb: 4,
+    mt: 4,
+  }}
+>
+  <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+    If you're interested in joining our team, please submit the following:
+  </Typography>
+  <List
+    sx={{
+      display: "flex",
+      flexDirection: "row", // Ensure it is in a single row by default
+      flexWrap: "wrap", // Allow it to wrap when needed
+      gap: 2,
+      padding: 0,
+    }}
+  >
+    {causes.map((cause, index) => (
+      <ListItem
+        key={index}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          p: 0,
+          minWidth: "200px", // Ensure there's a minimum width for each item
+        }}
+      >
+        <ListItemIcon sx={{ minWidth: "24px" }}>
+          <RadioButtonCheckedIcon sx={{ color: "black" }} />
+        </ListItemIcon>
+        <ListItemText
+          primary={
+            <Typography
+              variant="subtitle1"
+              sx={{
+                color: "black",
+                wordWrap: "break-word", // Wrap long text to next line if necessary
+              }}
+            >
+              {cause}
+            </Typography>
+          }
+        />
+      </ListItem>
+    ))}
+  </List>
+</Box>
+
 
         {/* Contact Section */}
         <Box

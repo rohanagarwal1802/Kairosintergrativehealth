@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       message: "Required environment variables are missing!",
     });
   }
-
+console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNAME,process.env.KAREO_PASSWORD)
   const { firstname, lastname, dob, email, mobile, insurance } = req.body;
 
   try {

@@ -2,6 +2,7 @@ import GoogleMap from "../../components/Contact/googleMap";
 import { Box, Typography,useMediaQuery  } from '@mui/material';
 import Image from "next/image";
 import ContactForm from "@/components/Contact/contactForm";
+import OfficeImageGallery from "@/components/Contact/officeImages";
 const Contact=()=>{
   const isSmallScreen = useMediaQuery("(max-width: 768px)"); // Adjust the breakpoint as needed
 return (
@@ -79,7 +80,7 @@ return (
 </Box>
 
 
-
+<OfficeImageGallery/>
 
 <Box
       sx={{
