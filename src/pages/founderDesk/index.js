@@ -148,10 +148,10 @@ MSN, MBA, PMHNP-BC
         </Typography>
         <Typography variant="body1" sx={{ color: "black", fontSize: 16 }}>
           Mark Merritt is a dedicated Psychiatric Mental Health Nurse Practitioner (PMHNP) <b>born</b>, <b>raised</b>,
-          and <b>practicing</b> in Birmingham, Alabama, with a passion for enhancing the well-being of in his
+          and <b>practicing</b> in Birmingham, Alabama, with a passion for enhancing the well-being of his
           community. With an extensive educational background, including a Master of Science in Nursing specializing and psychiatric – mental health nursing, a Master of Business Administration, and a Bachelor of
           Science in Public Health, Mark utilizes his training and experience in population and individual
-          based settings to provide a diverse understanding to each individual’s unique presentation and enhance the well-being of his community.
+          based settings to provide a diverse understanding to each individual’s unique presentation as well as enhance the well-being of his community.
         </Typography>
       </Stack>
    
@@ -248,8 +248,9 @@ color:"white", // Light blue with transparency
   </Typography>
   </Box> */}
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    <b>St. Vincent’s East:</b> 
-    &nbsp;Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
+    {/* <b>St. Vincent’s East:</b>  */}
+    {/* &nbsp; */}
+    Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
   </Typography>
 
   <div

@@ -79,7 +79,7 @@ const ResilienceRoundtableForm = () => {
     secondAttendeeName: '',
   };
   
-  const phoneNumberRegex = /^\d{3}-\d{3}-\d{4}$/;
+  const phoneNumberRegex = /^\d{9}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
   const validationSchema = Yup.object({
@@ -313,6 +313,9 @@ const ResilienceRoundtableForm = () => {
                           value={values.phoneNumber}
                           error={touched.phoneNumber && Boolean(errors.phoneNumber)}
                           helperText={touched.phoneNumber && errors.phoneNumber}
+                          inputProps={{
+                            maxLength: 10
+                          }}
                           InputLabelProps={{
                             sx: {
                               backgroundColor: 'white', // Prevent overlap by setting background

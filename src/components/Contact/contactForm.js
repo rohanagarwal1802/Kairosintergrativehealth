@@ -16,19 +16,29 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
 import useCustomSnackbarStore from '@/pages/utils/useCustomSnackbarStore';
 
+
+
+const ContactForm = ({ getReviews }) => {
+  const [captchaValue, setCaptchaValue] = React.useState('');
+  const {setSnackbar}=useCustomSnackbarStore()
+
+
+  const phoneNumberRegex = /^\d{9}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const validationSchema = Yup.object({
   full_name: Yup.string().required('Full Name is required'),
-  email: Yup.string().email('Invalid email format').required('Email is required'),
-  phoneNumber: Yup.string().email('Invalid phoneNumber format').required('Mobile is required'),
+ email: Yup.string()
+       .matches(emailRegex, 'Invalid email format')
+       .required('Email is required'),
+     phoneNumber: Yup.string()
+       .matches(phoneNumberRegex, 'Invalid phone number format')
+       .required('Mobile number is required'),
   subject: Yup.string().required('Subject is required'),
   message: Yup.string().required('Message is required'),
   captchaVerification: Yup.string().required('Please verify the captcha'),
   terms: Yup.boolean().oneOf([true], 'You must accept the Terms & Conditions and Privacy Policies'),
 });
-
-const ContactForm = ({ getReviews }) => {
-  const [captchaValue, setCaptchaValue] = React.useState('');
-  const {setSnackbar}=useCustomSnackbarStore()
 
   const generateCaptcha = () => {
     return Math.random().toString(36).substring(2, 8);
@@ -132,14 +142,18 @@ const ContactForm = ({ getReviews }) => {
             )}
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              label={<RequiredLabel label="Mobile Number" />}
-              name="phoneNumber"
-              value={formik.values.phoneNumber}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-            />
+          <TextField
+  label={<RequiredLabel label="Mobile Number" />}
+  name="phoneNumber"
+  value={formik.values.phoneNumber}
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+  fullWidth
+  inputProps={{
+    maxLength: 10
+  }}
+/>
+
             {formik.touched.phoneNumber && formik.errors.phoneNumber && (
               <Typography color="error">{formik.errors.phoneNumber}</Typography>
             )}
@@ -207,7 +221,7 @@ const ContactForm = ({ getReviews }) => {
                 />
               }
               label={
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{color:"black"}}>
                   By checking this box, you consent to receive text messages and emails at the
                   phone/email address provided. Standard messaging and data rates may apply. By
                   clicking below, you agree to our{' '}

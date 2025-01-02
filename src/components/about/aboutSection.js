@@ -122,12 +122,12 @@ const AboutSection = () => {
                   fontSize: "80%",
                   color: "white",
                   marginTop: 2,
-                  textAlign:"left"
+                  textAlign:"center"
                 }}
               >
                  
 
-                 As the healthcare industry continues to adopt a more streamlined model, Kairos Integrative Health takes a different approach. Our approach prioritizes the needs of both our patients and our providers. KIH offers our community access to high-quality, timely, and evidence-based care while also striving to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of streamlined practices. 
+                 As the healthcare industry continues to adopt a more streamlined model, Kairos Integrative Health takes a different approach. Our approach prioritizes the needs of both our patients and our providers. KIH offers our community access to high-quality, timely, and evidence-based care while also striving to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of streamlined models. 
                  Our belief is simple by placing patient care at the forefront and supporting our providers, we create a sustainable, healing environment that benefits everyone.
               </Typography>
 
@@ -159,7 +159,16 @@ const AboutSection = () => {
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1,fontSize:"100%" }}>
         Mission Statement
         </Typography>
-        <Typography variant="text" sx={{ color: "white", marginTop: 1 ,fontSize:"80%"}}>
+       
+        <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "80%",
+                  color: "white",
+                  marginTop: 2,
+                  textAlign:"center"
+                }}
+              >
   Our mission is to deliver{" "}
  comprehensive and{" "}
 integrativemental health services that empower individuals and strengthen the resilience of our{" "}
@@ -188,7 +197,16 @@ integrativemental health services that empower individuals and strengthen the re
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "white", marginTop: 1,fontSize:"100%" }}>
         Vision
         </Typography>
-        <Typography variant="text" sx={{ color: "white", marginTop: 1 ,fontSize:"80%"}}>
+       
+        <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "80%",
+                  color: "white",
+                  marginTop: 2,
+                  textAlign:"center"
+                }}
+              >
         Our{" "} vision is to be a recognized and{" "} 
        
        trusted leader in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy,and in alignment with their patients' best interests.

@@ -10,7 +10,7 @@ const featureArray = [
   {
     feature: "Compassionate ",
     icon: <DiamondIcon />,
-    content: "We meet you where you are…",
+    content: "We meet you where you are, with the understanding that life is difficult at times and work together to develop a path for you to reach your goals.",
   },
   {
     feature: "Competent",
@@ -25,7 +25,7 @@ const featureArray = [
   {
     feature: "Clear",
     icon: <InsertChartIcon />,
-    content: "We prioritize clarity and transparency with each individual we work with, providing an and approachable atmosphere tthat fosters community and trust in our mental health services.",
+    content: "We prioritize clarity and transparency with each individual we work with, providing an approachable atmosphere that fosters community and trust in our mental health services.",
   },
   {
     feature: "Climbing",
@@ -76,7 +76,7 @@ const About = () => {
       textAlign: { xs: "center", md: "center" }, // Center on small screens
     }}
   >
-        About KIH <br />
+        About Kairos Integrative Health (K.I.H) <br />
     </Typography>
     <Typography
     variant="subtitle1"
@@ -84,7 +84,7 @@ const About = () => {
       color: "black",
       mb: 4,
       mt: 1,
-      textAlign: { xs: "center", md: "left" }, // Center on small screens
+      textAlign: { xs: "center", md: "center" }, // Center on small screens
     }}
   >
       
@@ -218,7 +218,7 @@ const About = () => {
 <Box
       sx={{
         backgroundColor: "#2A3923",
-        color: "#ECE7E2",
+        color: "#535945",
         padding: 2,
         mt: "5%",
         width: "100%", // Ensures full width on all screens
@@ -238,7 +238,7 @@ const About = () => {
         },
       }}
     >
-    <Typography sx={{ color: "#ECE7E2", fontSize: "0.9rem", mb: "5%" }}>
+    <Typography sx={{ color: "#535945", fontSize: "0.9rem", mb: "5%" }}>
       “When it’s time, we’re here.”
     </Typography>
 
@@ -252,7 +252,7 @@ const About = () => {
           paddingRight: 2,
           borderRadius: "50px",
           textTransform: "capitalize",
-          backgroundColor: "#2A3923",
+          backgroundColor: "#C8AF8F",
         }}
         onClick={() => router.push('/bookanappointment')}
         endIcon={<ArrowForwardIosIcon />}

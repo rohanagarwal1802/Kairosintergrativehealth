@@ -227,8 +227,8 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
             bgcolor: '#f5f5f5',
           }}
         >
-      <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: 'inline-block', textAlign:"center",alignSelf:"center"}}>
-        <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
+      <Box sx={{ p: 1, backgroundColor: "#535945", display: 'inline-block', textAlign:"center",alignSelf:"center"}}>
+        <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
           How our process works
         </Typography>
       </Box>
@@ -406,7 +406,11 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
                 value={formik.values.mobile}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                fullWidth />
+                fullWidth
+                inputProps={{
+                  maxLength: 10
+                }}
+                 />
               {formik.touched.mobile && formik.errors.mobile && (
                 <Typography color="error">{formik.errors.mobile}</Typography>
               )}

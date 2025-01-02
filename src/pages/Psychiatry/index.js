@@ -47,14 +47,14 @@ const PTSDPage = () => {
           <Box sx={{ textAlign: "center", maxWidth: "1000px" }}>
             <Typography variant="h6" sx={{ color: "black", '@media (max-width: 768px)': { fontSize: '1rem' } }}>
               At Kairos Integrative Health, we are dedicated to supporting your goals through a
-              comprehensive and integrative approach. Our clinic offers a range of services
+              comprehensive and integrative approach. Our practice offers a range of services
               designed to meet your individual needs, ensuring that you receive care that helps
               you meet your goals.
             </Typography>
           </Box>
           
         </Box>
-        <Box sx={{ ml: "5%", mt: "1%" }}>
+        <Box sx={{ ml: "5%", mt: "5%" }}>
           <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
             What is Integrative Psychiatry?
           </Typography>
@@ -62,11 +62,77 @@ const PTSDPage = () => {
 
         <Box sx={{ mt: "1%",mb:"1%" }}>
           <Typography variant="body2" sx={{ color: "black" }}>
-            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person—body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
+            Integrative psychiatry is an approach to mental health care that combines traditional psychiatric practices with alternative, complementary, and holistic therapies to treat the whole person, body, mind, and spirit. It aims to address not only the symptoms of mental health conditions but also the root causes, considering the interplay between psychological, biological, emotional, and environmental factors.
           </Typography>
         </Box>
-
+        <Box
+          sx={{
+            width: '100%',
+            margin: 'auto',
+            mt: 4,
+            p: 3,
+            borderRadius: 2,
+            boxShadow: 3,
+            bgcolor: '#f5f5f5',
+            mb: 4,
+            '@media (max-width: 768px)': { width: '100%', padding: 2 }
+          }}
+        >
+          <Box sx={{ mt: "1%", display: "flex", alignItems: "center" }}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+              Key Features of Integrative Psychiatry:
+            </Typography>
+          </Box>
+          <List>
+            {causes.map((cause, index) => (
+              <ListItem key={index} sx={{ mb: 2 }}>
+                <ListItemText
+                  primary={
+                    <Typography variant="subtitle1" fontWeight="bold" sx={{ color: 'black' }}>
+                      {index + 1}. {cause.title}
+                    </Typography>
+                  }
+                  secondary={
+                    <>
+                      <Typography variant="body2" sx={{ color: 'black' }}>
+                        {cause.description}
+                      </Typography>
+                      {cause.Options && (
+                        <Box sx={{ ml: "10%" }}>
+                          <List>
+                            {cause.Options.map((value, index) => (
+                              <ListItem
+                                key={index}
+                                sx={{
+                                  display: 'list-item',
+                                  p: 0,
+                                  '&::before': {
+                                    content: '"•"',
+                                    color: 'black',
+                                    fontSize: '1.5rem',
+                                    position: 'absolute',
+                                    left: '-1.5rem',
+                                  },
+                                }}
+                              >
+                                <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                                  {value}
+                                </Typography>
+                              </ListItem>
+                            ))}
+                          </List>
+                        </Box>
+                      )}
+                    </>
+                  }
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Box>
+
+      
       <Box
         sx={{
           backgroundColor: `#Ece7E2`,
@@ -77,8 +143,8 @@ const PTSDPage = () => {
           // height: 'auto',
         }}
       >
-      <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: 'inline-block', ml: "5%" }}>
-        <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
+      <Box sx={{ p: 1, backgroundColor: "#535945", display: 'inline-block', ml: "5%" }}>
+        <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
         How our process works
         </Typography>
       </Box>
@@ -221,71 +287,7 @@ our provider to see if KIH is a good fit for you.
 
       
 
-        <Box
-          sx={{
-            width: '90%',
-            margin: 'auto',
-            mt: 4,
-            p: 3,
-            borderRadius: 2,
-            boxShadow: 3,
-            bgcolor: '#f5f5f5',
-            mb: 4,
-            '@media (max-width: 768px)': { width: '100%', padding: 2 }
-          }}
-        >
-          <Box sx={{ mt: "1%", display: "flex", alignItems: "center" }}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-              Key Features of Integrative Psychiatry:
-            </Typography>
-          </Box>
-          <List>
-            {causes.map((cause, index) => (
-              <ListItem key={index} sx={{ mb: 2 }}>
-                <ListItemText
-                  primary={
-                    <Typography variant="subtitle1" fontWeight="bold" sx={{ color: 'black' }}>
-                      {index + 1}. {cause.title}
-                    </Typography>
-                  }
-                  secondary={
-                    <>
-                      <Typography variant="body2" sx={{ color: 'black' }}>
-                        {cause.description}
-                      </Typography>
-                      {cause.Options && (
-                        <Box sx={{ ml: "10%" }}>
-                          <List>
-                            {cause.Options.map((value, index) => (
-                              <ListItem
-                                key={index}
-                                sx={{
-                                  display: 'list-item',
-                                  p: 0,
-                                  '&::before': {
-                                    content: '"•"',
-                                    color: 'black',
-                                    fontSize: '1.5rem',
-                                    position: 'absolute',
-                                    left: '-1.5rem',
-                                  },
-                                }}
-                              >
-                                <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                                  {value}
-                                </Typography>
-                              </ListItem>
-                            ))}
-                          </List>
-                        </Box>
-                      )}
-                    </>
-                  }
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+        
      
       </Box>
       </Box>

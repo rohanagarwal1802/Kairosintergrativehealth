@@ -103,8 +103,8 @@ const AddictionPage = () => {
             }}
           >
             {/* Highlight Section */}
-      <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: "inline-block", ml: "5%", mt: 3 }}>
-        <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
+      <Box sx={{ p: 1, backgroundColor: "#535945", display: "inline-block", ml: "5%", mt: 3 }}>
+        <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
         Addiction
         </Typography>
       </Box>

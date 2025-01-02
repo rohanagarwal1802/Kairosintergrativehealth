@@ -1,4 +1,5 @@
-import soap from "soap";
+import * as soap from 'soap';
+
 import { format } from "date-fns";
 
 export default async function handler(req, res) {
@@ -11,7 +12,7 @@ export default async function handler(req, res) {
       message: "Required environment variables are missing!",
     });
   }
-console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNAME,process.env.KAREO_PASSWORD)
+
   const { firstname, lastname, dob, email, mobile, insurance } = req.body;
 
   try {
@@ -23,14 +24,9 @@ console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNA
       });
     }
 
-    const date = new Date(dob);
-      
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');  // Month is zero-based
-    const day = String(date.getDate()).padStart(2, '0');
-  
-    const date_of_birth= `${year}-${month}-${day}`;
-  
+    const formattedDob = format(new Date(dob), "yyyy-MM-dd");
+    console.log("Formatted DOB:", formattedDob);
+
     // SOAP Client Options
     const options = {
       wsdl_headers: {
@@ -43,31 +39,43 @@ console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNA
       },
     };
 
+    console.log("Environment:", process.env.NODE_ENV);
 
+    let client;
 
-    console.log("Initializing SOAP client...");
-    const client = await soap.createClientAsync(WSDL_URL, options);
-    console.log("SOAP Client Created:", JSON.stringify(client.describe(), null, 2));
+    // Check for `createClientAsync` and use appropriate client creation method
+    if (process.env.NODE_ENV === "production") {
+      console.log("Using callback-based createClient in production.");
+      soap.createClient(WSDL_URL, options, async (err, soapClient) => {
+        if (err) {
+          console.error("Error creating SOAP client:", err);
+          return res.status(500).json({
+            status: "error",
+            message: "SOAP client creation failed.",
+          });
+        }
+        client = soapClient;
+        await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance);
+      });
+    } else {
+      console.log("Using createClientAsync in development");
+      client = await soap.createClientAsync(WSDL_URL, options);
+      await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance);
+    }
+  } catch (error) {
+    console.error("Error during SOAP operation:", {
+      message: error.message,
+      stack: error.stack,
+    });
+    res.status(500).json({
+      status: "error",
+      message: error.message || "An unexpected error occurred.",
+    });
+  }
+}
 
-    const getPatientRequestArgs = {
-      request: {
-        RequestHeader: {
-          ClientVersion: 1.0,
-          CustomerKey: process.env.KAREO_CUSTOMER_KEY,
-          Password: process.env.KAREO_PASSWORD,
-          User: process.env.KAREO_USERNAME,
-        },
-        Fields:{},
-        Filter: {
-          // PatientID: 1,
-        },
-      },
-    };
-
-    // Call the GetPatient method
-    const [PatientResult] = await client.GetAllPatientsAsync(getPatientRequestArgs);
-    console.log("SOAP Response of Patient Details:", JSON.stringify(PatientResult, null, 2));
-// return PatientResult
+async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance) {
+  try {
     // Construct Request Arguments
     const requestArgs = {
       request: {
@@ -79,7 +87,8 @@ console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNA
         Patient: {
           FirstName: firstname,
           LastName: lastname,
-          DateofBirth: date_of_birth,
+          DateOfBirth: formattedDob,
+          DOB: formattedDob,
           EmailAddress: email,
           MobilePhone: mobile,
           Alert: {
@@ -104,7 +113,7 @@ console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNA
               }
             : undefined,
           Practice: {
-            PracticeID: 1,
+            PracticeID: 3,
           },
         },
       },
@@ -114,18 +123,17 @@ console.log("env values",process.env.KAREO_CUSTOMER_KEY,process.env.KAREO_USERNA
 
     // Call the CreatePatient method
     const [result] = await client.CreatePatientAsync(requestArgs);
-
     console.log("SOAP Response:", JSON.stringify(result, null, 2));
 
-    const patientId = result|| "unknown";
+    const patientId = result || "unknown";
 
     res.status(200).json({
       status: "success",
-      result,
+      patientId,
       message: "Patient created successfully!",
     });
   } catch (error) {
-    console.error("Error during SOAP operation:", {
+    console.error("Error during SOAP request processing:", {
       message: error.message,
       stack: error.stack,
       response: error.response,

@@ -101,8 +101,8 @@ const GeneticTestingPage = () => {
               }}
             >
               {/* Highlight Section */}
-        <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: "inline-block", ml: "5%", mt: 3,textAlign:"center" }}>
-          <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold",alignItems:"center" }}>
+        <Box sx={{ p: 1, backgroundColor: "#535945", display: "inline-block", ml: "5%", mt: 3,textAlign:"center" }}>
+          <Typography variant="body1" sx={{ color: "white", fontWeight: "bold",alignItems:"center" }}>
           Genetic Testing
           </Typography>
         </Box>

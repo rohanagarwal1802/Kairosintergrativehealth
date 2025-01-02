@@ -66,7 +66,7 @@ return (
       <Typography
         variant="body1"
         sx={{
-          fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" ,textAlign:"left"}, // Adjust font size for readability
+          fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" ,textAlign:"left",color:"black"}, // Adjust font size for readability
         }}
       >
         Have questions or need support?

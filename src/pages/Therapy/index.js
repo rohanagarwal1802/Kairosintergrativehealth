@@ -106,8 +106,8 @@ const TherapyPage = () => {
             }}
           >
             {/* Highlight Section */}
-      <Box sx={{ p: 1, backgroundColor: "#DCEFEF", display: "inline-block", ml: "5%", mt: 3 }}>
-        <Typography variant="body1" sx={{ color: "#043149", fontWeight: "bold" }}>
+      <Box sx={{ p: 1, backgroundColor: "#535945", display: "inline-block", ml: "5%", mt: 3 }}>
+        <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
           Therapy
         </Typography>
       </Box>
@@ -148,7 +148,7 @@ const TherapyPage = () => {
                   },
                 }}
               >
-                <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                <Typography variant="body2" sx={{ color: "black" }}>
                   {therapy}
                 </Typography>
               </ListItem>
@@ -157,21 +157,9 @@ const TherapyPage = () => {
         </Box>
 
         {/* Note Section */}
-        <Box
-          sx={{
-            // width: "90%",
-            margin: "auto",
-            // mt: 4,
-            p: 3,
-            borderRadius: 2,
-            // boxShadow: 3,
-            // bgcolor: "#f5f5f5",
-            mb: 4,
-            color: "black",
-          }}
-        >
+        <Typography variant="body2" sx={{ color: "black" }}>
           In the setting where you would benefit from more consistent psychotherapy or a psychotherapeutic modality that is not available from our provider(s), we may refer you out to a colleague to obtain appropriate care.
-        </Box>
+        </Typography>
       </Box>
           </Box>
         

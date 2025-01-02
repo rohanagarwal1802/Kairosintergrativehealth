@@ -61,7 +61,7 @@ const AppointMent = () => {
                         <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: "black" }}>
                             Get Connected
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="body1" sx={{color:"black"}}> 
                             To embark on your wellness journey and begin your path towards optimal health and well-being, it is essential to start by completing our patient registration and sign-up process. This will ensure that we have all the necessary information about you and can provide you with tailored support and guidance throughout your wellness journey. To get started, please follow the steps below to register and sign up as a patient.
                         </Typography>
                     </Box>
