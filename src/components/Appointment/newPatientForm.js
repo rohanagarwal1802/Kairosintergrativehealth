@@ -245,10 +245,7 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                Complete the interest form by clicking on the
-                “Request Appointment” button (located on top right hand corner of
-                this page). This allows for you to be able to schedule your
-                complimentary phone call.
+               Fill out the interest form below.
               </Typography>
             </ListItem>
           </List>
@@ -267,9 +264,13 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
                 You will receive an
-                email from (whatever email it will come from) to create a (portal
-                account/password – whatever is correct) with Kairos Integrative
-                Health.
+                email from Kairos Integrative
+                Health to create a password.
+              </Typography>
+            </ListItem>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              Create a password with KIH  through Tebra (use link in email), where you will be able to schedule your complimentary phone call.
               </Typography>
             </ListItem>
           </List>
@@ -277,7 +278,7 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
 
         <Box sx={{  mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-            After creating your password,
+            After creating your password
           </Typography>
         </Box>
 
@@ -285,10 +286,7 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                You will receive an
-                email from (whatever email it will come from) to create a (portal
-                account/password – whatever is correct) with Kairos Integrative
-                Health.
+              You can login to Kairos Integrative Health with your email and password to schedule your complimentary phone call
               </Typography>
             </ListItem>
           </List>
@@ -305,8 +303,8 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                (keep an eye out on your email for
-                confirmation) and we will connect with you at the scheduled time
+                Keep an eye out on your email for
+                confirmation and we will connect with you at the scheduled time
                 for a 10-minute phone call. This call will allow you to discuss with
                 our provider to see if KIH is a good fit for you.
               </Typography>
@@ -330,7 +328,7 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
    
 
           <Typography variant="h4" align="center" gutterBottom sx={{ color: 'navy' }}>
-            Patient Portal
+            Request a complementary phone call
           </Typography>
           <hr style={{ width: '80%', margin: 'auto', borderColor: 'black' }} />
 

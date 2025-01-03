@@ -34,11 +34,7 @@ return (
 
 
 
-      <Box sx={{mt:2,mb:2}}>
-        <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
-        Resilience Roundtables are held on the first Thursday of each month.
-        </Typography>
-      </Box>
+     
       
   
      
@@ -55,6 +51,9 @@ return (
        <Box >
         <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" ,alignItems:"center",textAlign:"center"}}>
         2025 Calendar
+        </Typography>
+        <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" ,alignItems:"center",textAlign:"center"}}>
+        The Resilience Roundtables is held on the first Thursday of each month.
         </Typography>
       </Box>
       <List>

@@ -26,7 +26,7 @@ const Faq = () => {
           marginTop: "60px",
           marginBottom: "20px",
           fontWeight: "bold",
-          color: "#3b2311",
+          color: "black",
         }}
       >
         Got Questions?
@@ -36,7 +36,7 @@ const Faq = () => {
         variant="h6"
         sx={{
           textAlign: "left",
-          color: "#5a3d2f",
+          color: "black",
           marginBottom: "40px",
         }}
       >
@@ -68,7 +68,7 @@ const Faq = () => {
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
-              color: "#3b2311",
+              color: "black",
             },
             borderBottom: "1px solid #ddd", // Adding bottom border for better visual
           }}
@@ -121,7 +121,7 @@ const Faq = () => {
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
-              color: "#3b2311",
+              color: "black",
             },
           }}
         >
@@ -185,7 +185,7 @@ const Faq = () => {
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
-              color: "#3b2311",
+              color: "black",
             },
           }}
         >
@@ -230,7 +230,7 @@ const Faq = () => {
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
-              color: "#3b2311",
+              color: "black",
             },
           }}
         >
@@ -274,7 +274,7 @@ const Faq = () => {
             },
             "& .MuiTypography-root": {
               fontWeight: "bold",
-              color: "#3b2311",
+              color: "black",
             },
           }}
         >

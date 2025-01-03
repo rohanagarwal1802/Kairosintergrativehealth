@@ -44,14 +44,14 @@ const AccordionQuestion = ({ question, answer }) => {
             backgroundColor: "whiteSmoke",
             "& .MuiTypography-root": {
               fontWeight: "bold",
-              color: "#3b2311",
+              color: "black",
             },
           }}
         >
           <Typography variant="body1">{question}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ backgroundColor: "white", padding: "16px" }}>
-          <Typography sx={{ color: "#3b2311" }}>{answer}</Typography>
+          <Typography sx={{ color: "black" }}>{answer}</Typography>
         </AccordionDetails>
       </Accordion>
     </Box>

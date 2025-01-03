@@ -24,16 +24,11 @@ const RoundTable = () => {
         }}
       >
 
-<h1
-  style={{
-    textAlign: 'center', // Centers the text horizontally
-    margin: '0', // Removes any default margins
-    padding: '10px 0', // Optional padding for spacing
-    color:"black"
-  }}
->
-  Resilience Roundtable
-</h1>
+<Typography variant="h4" sx={{ mb: 2, fontWeight:'800', color: "black" }}>
+Resilience Roundtable
+            </Typography>
+  
+
 
         {/* First Section */}
         <Box
@@ -82,7 +77,7 @@ const RoundTable = () => {
               height: { xs: 'auto', md: 450 }
             }}
           >
-            <Typography variant="h4" sx={{ mb: 2, fontWeight: 400, color: "black" }}>
+            <Typography variant="h5" sx={{ mb: 2, fontWeight:'600', color: "black",textAlign:"center" }}>
             Promoting Education
             </Typography>
             <Typography variant="body1" sx={{ fontSize: 25,color:"black" }}>
@@ -141,7 +136,7 @@ const RoundTable = () => {
               height: { xs: 'auto', md: 500 }
             }}
           >
-            <Typography variant="h4" sx={{ mb: 2, fontWeight: 400, color: "black" }}>
+            <Typography variant="h5" sx={{ mb: 2, fontWeight:'600', color: "black" ,textAlign:"center"}}>
               Fostering Conversation
             </Typography>
             <Typography variant="body1" sx={{ fontSize: 25,color:"black"  }}>
@@ -173,14 +168,13 @@ const RoundTable = () => {
       sx={{
         color: "#535945",
         fontWeight: "bold",
-        mb: 1,
         mt: 1,
         fontSize: 25,
         color:"black",
         textAlign: { xs: "center", md: "center" }, // Center on small screens
       }}
     >
-      Interested in joining larger?<br />
+      Interested in joining ?<br />
     </Typography>
     <Box
       sx={{
@@ -195,17 +189,17 @@ const RoundTable = () => {
         To attend the Resilience Roundtable, please follow these steps:
       </Typography>
       <ul style={{ listStyleType: "disc", margin: 0, paddingLeft: "1.5em", fontWeight: "normal" }}>
-        <li>Fill out the form provided.</li>
-        <li>After submitting, you will receive:
+        <li>Fill out the form provided at the bottom of this page for each month to attend.</li>
+        <li>Select entry fee option:
           <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
-            <li>An invoice via email and/or text.</li>
-            <li>A session link sent to your email once payment is received (allow 24 hours).</li>
+          <li>Member Discounted Plan: $21 per session + 1 Free Friend/Family Member.</li>
+          <li>Guest Access: $30 per session.</li>
           </ul>
         </li>
-        <li>Sign up for the monthly <i>Resilience
-Roundtable</i> by completing the form below each month, 48 hours before event,
-that you plan to attend.</li>
-        <li>Access Options:
+        <li>After filling out the form and choosing the appropriate entry fee, you will be able to provide a payment (ACH, Credit, or Debit payments available)
+        </li>
+        <li>After submitting the form and entry fee, you will receive an invoice via email and/or text with a session link sent to (allow 24 hours).</li>
+        {/* <li>Access Options:
           <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
             <li>Member Discounted Plan: $21 per session + 1 Free Friend/Family Member.</li>
             <li>Guest Access: $30 per session.</li>
@@ -219,7 +213,7 @@ that you plan to attend.</li>
             <li>Email address to send the session link.</li>
           </ul>
         </li>
-        <li>Payment Method: QuickBooks payment option available.</li>
+        <li>Payment Method: QuickBooks payment option available.</li> */}
       </ul>
     </Box>
 

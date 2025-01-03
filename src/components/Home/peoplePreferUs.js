@@ -53,7 +53,7 @@ function PeoplePreferUs() {
             textAlign: "center",
             marginBottom: "20px",
             fontWeight: "bold",
-            color: "#3b2311",
+            color: "black",
             fontSize: { xs: "24px", sm: "28px", md: "32px" }, // Responsive font size
           }}
         >

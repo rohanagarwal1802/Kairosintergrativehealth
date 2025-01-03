@@ -50,7 +50,7 @@ import StarIcon from '@mui/icons-material/Star';
             marginTop: "60px",
             marginBottom: "20px",
             fontWeight: "bold",
-            color: "#3b2311",
+            color: "black",
           }}
         >
           Feedback from our patients

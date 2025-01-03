@@ -136,7 +136,7 @@ and promotes long-term recovery.`,
               `Please note we do not currently offer treatment with Suboxone or other
 medications containing buprenorphine as it is a controlled substance.`,
             ].map((therapy, index) => (
-              <ListItem
+              <><ListItem
                 key={index}
                 sx={{
                   display: "list-item",
@@ -153,7 +153,7 @@ medications containing buprenorphine as it is a controlled substance.`,
                 <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
                   {therapy}
                 </Typography>
-              </ListItem>
+              </ListItem><br /></>
             ))}
           </List>
         </Box>

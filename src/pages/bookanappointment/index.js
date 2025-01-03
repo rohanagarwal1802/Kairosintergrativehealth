@@ -58,18 +58,18 @@ const AppointMent = () => {
 
                     {/* Right Side: Text */}
                     <Box sx={{ flex: "2", textAlign: "left" }}>
-                        <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: "black" }}>
+                        <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: "black",textAlign:"center" }}>
                             Get Connected
                         </Typography>
                         <Typography variant="body1" sx={{color:"black"}}> 
-                            To embark on your wellness journey and begin your path towards optimal health and well-being, it is essential to start by completing our patient registration and sign-up process. This will ensure that we have all the necessary information about you and can provide you with tailored support and guidance throughout your wellness journey. To get started, please follow the steps below to register and sign up as a patient.
+                        Welcome to our "Get Connected" page! Please select whether you are a new patient (looking to schedule your complementary phone call) or existing patient (looking to schedule a follow up appointment or message your provider). Either way, we’re here to help you, craft a better you!
                         </Typography>
                     </Box>
                 </Box>
                 <Box display="flex" justifyContent="center" mt={3}>
                     <Box
                         sx={{
-                            width: "90%",
+                            width: "95%",
                            
                         }}
                     >
@@ -114,13 +114,13 @@ const AppointMent = () => {
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
-                                        backgroundColor: "#FFD700",
+                                        backgroundColor: "#2A3923",
                                         color: "white",
                                         border: "none",
                                         borderRadius: "4px",
                                         padding: "6px 12px",
                                         cursor: "pointer",
-                                        "&:hover": { backgroundColor: "#FFD700" },
+                                        "&:hover": { backgroundColor: "#2A3923" },
                                         fontSize: "0.75rem",
                                     }}
                                     onClick={() => {

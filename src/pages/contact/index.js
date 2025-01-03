@@ -69,10 +69,10 @@ return (
           fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" ,textAlign:"left",color:"black"}, // Adjust font size for readability
         }}
       >
-        Have questions or need support?
+        {/* Have questions or need support?
         <br />
         We're here to help! Reach out to us for personalized assistance on your journey to wellness.
-        <br />
+        <br /> */}
         Call us, email us, or fill out the form below, and we'll get back to you promptly. At Kairos Integrative Health, your well-being is our priority. Let’s connect and take the first step toward a healthier you!
       </Typography>
     </Box>

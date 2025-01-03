@@ -23,17 +23,17 @@ const theme = createTheme({
     h1: {
       fontWeight: 700,
       fontSize: "3rem",
-      color: "#3b2311",
+      color: "black",
     },
     h2: {
       fontWeight: 600,
       fontSize: "2.5rem",
-      color: "#3b2311",
+      color: "black",
     },
     h3: {
       fontWeight: 600,
       fontSize: "2rem",
-      color: "#3b2311",
+      color: "black",
     },
     h5: {
       fontWeight: "bold",

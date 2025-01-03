@@ -97,10 +97,10 @@ const CommunityOutreach = () => {
       order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
     }}
   >
-    <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 }}>
+    <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 ,textAlign:"center"}}>
       Community PartnerShips
     </Typography>
-    <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16 }}>
+    <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16,color:"black" }}>
       After working in North Carolina with Duke and Yale trained Psychiatrists/Addictionologists,
       Mark returned to Birmingham to open his own practice, Kairos Integrative Health. Two key areas
       of focus for the practice are to return knowledge and experience he acquired as well as help build
@@ -196,6 +196,7 @@ const CommunityOutreach = () => {
          
         }}
       >
+         
         <Box
           sx={{
             // width: { xs: '95%', md: '70%' },
@@ -207,35 +208,38 @@ const CommunityOutreach = () => {
             border: '1px solid #ddd',
           }}
         >
+          <Typography variant="h4" sx={{ mb: 0, fontWeight: 'bold', textAlign: 'center', color: 'black' }}>
+           Current Partnership
+          </Typography>
           <List sx={{ fontSize: 18, pl: 2 }}>
             <ListItem sx={{ color: 'black' }}>
-              <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
+              {/* <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
                 <FiberManualRecordIcon fontSize="small" />
-              </ListItemIcon>
+              </ListItemIcon> */}
               A core mission of KIH is to share knowledge with others, which is being achieved in our
               community through two main initiatives:
             </ListItem>
             <ListItem sx={{ color: 'black' }}>
-              <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
+              {/* <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
                 <FiberManualRecordIcon fontSize="small" />
-              </ListItemIcon>
-              The Resilience RoundTable – Virtual RoundTable adults can join (anonymously if they choose) to
+              </ListItemIcon> */}
+             1. The Resilience RoundTable – Virtual RoundTable adults can join (anonymously if they choose) to
               gain information on a variety of mental health topics.
             </ListItem>
             <ListItem sx={{ color: 'black' }}>
-              <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
+              {/* <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
                 <FiberManualRecordIcon fontSize="small" />
-              </ListItemIcon>
-              Community Outreach – KIH is currently working on partnerships with local nonprofits and high
+              </ListItemIcon> */}
+             2. Community Outreach – KIH is currently working on partnerships with local nonprofits and high
               schools to equip those in our community with education to help develop resilience.
             </ListItem>
-            <ListItem sx={{ color: 'black' }}>
+            {/* <ListItem sx={{ color: 'black' }}>
               <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
                 <FiberManualRecordIcon fontSize="small" />
               </ListItemIcon>
               Both of these initiatives allow for KIH to return knowledge and experiences to our community in
               hopes of building our communities' quality of life.
-            </ListItem>
+            </ListItem> */}
           </List>
         </Box>
 
