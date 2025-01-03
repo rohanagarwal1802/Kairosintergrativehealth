@@ -84,7 +84,7 @@ const Review = () => {
                 p: 2,
                 position: 'relative',
                 mx: { xs: 1, md: 2 },
-                backgroundColor: '#1A4B66',
+                backgroundColor: '#535945',
                 color: 'white',
                 display: 'flex',
                 flexDirection: 'column',

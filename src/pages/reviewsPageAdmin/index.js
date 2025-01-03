@@ -90,9 +90,9 @@ console.log("status",status)
     id: user?.id,
     full_name: user?.full_name,
     publishing_name: user?.publishing_name,
-    designation: user?.designation,
+    // designation: user?.designation,
     email: user?.email,
-    services_availed: user?.services_availed,
+    // services_availed: user?.services_availed,
     review: user?.review,
     public: user?.public,
     approval_status:user?.approval_status,
@@ -107,7 +107,7 @@ console.log("status",status)
 
     const wscols = [
       { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 20 }, { wch: 20 },
-      { wch: 30 }, { wch: 15 }, { wch: 20 }, { wch: 10 }, { wch: 25 }
+      { wch: 30 }, { wch: 15 }, { wch: 20 }, { wch: 10 }
     ];
     worksheet['!cols'] = wscols;
 
@@ -137,8 +137,8 @@ console.log("status",status)
     { field: 'full_name', headerName: 'Full Name', width: 150 },
     { field: 'publishing_name', headerName: 'Publishing Name', width: 180 },
     { field: 'email', headerName: 'Email', width: 250 },
-    { field: 'designation', headerName: 'Designation', width: 150 },
-    { field: 'services_availed', headerName: 'Service Availed', width: 150 },
+    // { field: 'designation', headerName: 'Designation', width: 150 },
+    // { field: 'services_availed', headerName: 'Service Availed', width: 150 },
     { field: 'review', headerName: 'Review', width: 500 },
     { field: 'public', headerName: 'Allow Publishing', width: 200,renderCell: (params) => (
       <Switch

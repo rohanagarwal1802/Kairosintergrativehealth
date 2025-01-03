@@ -102,7 +102,7 @@ const Careers = () => {
                   overflowWrap: "break-word",
                 }}
               >
-                We are always looking to expand our team with dedicated professionals who are passionate about providing holistic, patient-centered care. We accept applications on a rolling basis from MDs, DOs, NPs, PAs, MSWs. If you think you have a talent or skill (administrative skills, advertising background, etc.) that can help expand our ability to serve the Birmingham community, feel free to reach out—we would love to hear from you as well!
+                We are always looking to expand our team with dedicated professionals who are passionate about providing holistic, patient-centered care. We accept applications on a rolling basis from MDs, DOs, NPs, PAs, Psychologist and MSWs. If you think you have a talent or skill (administrative skills, advertising background, etc.) that can help expand our ability to serve the Birmingham community, feel free to reach out—we would love to hear from you as well!
               </Typography>
             </Box>
           </Box>
@@ -186,19 +186,24 @@ const Careers = () => {
   <Typography>
     Due to our applications being on a rolling basis, we do not request reference letters until we are reviewing for specific positions.
     <br />
-    All documents can be emailed to&nbsp;
-    <strong
-      style={{
-        display: "inline-block",
-        wordBreak: "break-word",
-        whiteSpace: "normal",
-        maxWidth: "100%", // Ensures it breaks into two lines if needed
-      }}
-    >
-      careers@kairosintegrativehealth.com
-    </strong>.
-    <br />
     We look forward to hearing from you and learning more about how you could contribute to improving the quality of life of our community.
+<br/>
+    All documents can be emailed to&nbsp;
+    <a
+  href="mailto:careers@kairosintegrativehealth.com"
+  style={{
+    display: "inline-block",
+    wordBreak: "break-word",
+    whiteSpace: "normal",
+    fontWeight:"bold",
+    maxWidth: "100%", // Ensures it breaks into two lines if needed
+    textDecoration: "none", // Optional: remove underline
+    color: "inherit", // Optional: inherit parent color
+  }}
+>
+  careers@kairosintegrativehealth.com
+</a>
+.
   </Typography>
 </Box>
 

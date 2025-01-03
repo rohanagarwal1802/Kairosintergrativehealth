@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "id": 1,
+    "firstName": "Rohan ",
+    "lastName": "Agarwal",
+    "email": "rohan.agarwal7568@gmail.com",
+    "phoneNumber": "985785496",
+    "dob": "2007-01-02",
+    "textPermission": true,
+    "attending": true,
+    "over18": true,
+    "bringingFriend": false,
+    "friendFirstName": "r",
+    "friendLastName": "a",
+    "friendDob": "2006-12-31",
+    "friendPhoneNumber": "",
+    "friendTextPermission": false,
+    "friendEmail": "",
+    "payment": "guest",
+    "memberName": "",
+    "firstAttendeeName": "",
+    "secondAttendeeName": "",
+    "created_at": "2025-01-03T12:59:26.768Z"
+  }
+]

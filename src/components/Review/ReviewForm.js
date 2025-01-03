@@ -19,8 +19,8 @@ import useCustomSnackbarStore from '@/pages/utils/useCustomSnackbarStore';
 const validationSchema = Yup.object({
   full_name: Yup.string().required('Full Name is required'),
   publishing_name: Yup.string().required('Publishing Name is required'),
-  services_availed: Yup.string().required('Services Availed is required'),
-  designation: Yup.string().required('Designation is required'),
+  // services_availed: Yup.string().required('Services Availed is required'),
+  // designation: Yup.string().required('Designation is required'),
   email: Yup.string().email('Invalid email format').required('Email is required'),
   review: Yup.string().required('Review is required'),
   captchaVerification: Yup.string().required('Please verify the captcha'),
@@ -44,8 +44,8 @@ const ReviewForm = ({getReviews}) => {
     initialValues: {
       full_name: '',
       publishing_name: '',
-      services_availed: '',
-      designation:'',
+      // services_availed: '',
+      // designation:'',
       email: '',
       public:false,
       review: '',
@@ -107,7 +107,7 @@ const ReviewForm = ({getReviews}) => {
       </Box>
       <Box sx={{ ml: "5%", mt: "1%" }}>
         <Typography variant="body2" sx={{ color: "black" }}>
-          Thank you for being part of our community! Your words can make a difference. Share how we've helped you.
+          Thank you for being part of our community! Your words can make a difference. Share your experience.
         </Typography>
       </Box>
 
@@ -120,7 +120,7 @@ const ReviewForm = ({getReviews}) => {
         <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           {/* Full Name and Publishing Name */}
           <Grid container spacing={2} alignItems="center" sx={{ mt: 2 }}>
-  <Grid item xs={12} sm={4}>
+  <Grid item xs={12} sm={6}>
     <TextField
       label={<RequiredLabel label="Full Name" />}
       name="full_name"
@@ -139,7 +139,7 @@ const ReviewForm = ({getReviews}) => {
 )}
   </Grid>
 
-  <Grid item xs={12} sm={4}>
+  <Grid item xs={12} sm={6}>
     <TextField
       label={<RequiredLabel label="Publishing Name" />}
       name="publishing_name"
@@ -158,7 +158,7 @@ const ReviewForm = ({getReviews}) => {
       )}
   </Grid>
 
-  <Grid item xs={12} sm={4}>
+  {/* <Grid item xs={12} sm={4}>
   <FormControl fullWidth variant="outlined" sx={{ marginTop: 2 }}>
     <InputLabel id="services-availed-label"><RequiredLabel label="Services Availed" /></InputLabel>
     <Select
@@ -203,7 +203,7 @@ const ReviewForm = ({getReviews}) => {
           Please enter your designation.
         </Typography>
       )}
-</Grid>
+</Grid> */}
 
 <Grid item xs={12} sm={8}>
             <TextField
@@ -246,7 +246,7 @@ const ReviewForm = ({getReviews}) => {
                                           onChange={formik.handleChange}
                                           />}
                                         label="Is it okay to post your review to Kairos Integrative Health’s
-                                        website"
+                                        website ?"
                                         sx={{ color: 'black' }} />
                                     </Grid>
           

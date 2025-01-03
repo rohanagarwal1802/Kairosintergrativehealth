@@ -41,7 +41,7 @@ return (
   {/* Image */}
   <Box>
     <Image
-      src="/helpline.png"
+      src="/helpline.jpg"
       alt="Mental Well-being"
       width={400} // Adjust as needed
       height={400}
@@ -55,7 +55,7 @@ return (
 
       <Box >
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
-        Important Headlines
+        Helplines
         </Typography>
       </Box>
       
