@@ -35,7 +35,7 @@ const Header = ({userDetails}) => {
   const servicesOptions=ServicesOptions()
   const aboutOptions=AboutOptions()
   const adminOptions=AdminOptions()
-  const {setLogin}=useUserStore()
+  const {setLogin,setResetPassword,toResetPassword}=useUserStore()
   const [openLogout,setOpenLogout]=useState(false)
 
   const currentPath=router.pathname
@@ -73,9 +73,10 @@ const [anchorE4, setAnchorE4] = useState(null);
     try{
       await axios.get('/api/logout').then(async ()=>{
     localStorage.removeItem("login"); // Example: Clear login token
-    router.push("/"); // Redirect to login page
+  // await  router.push("/"); // Redirect to login page
     setLogin(false)
     handleMenuClose1();
+    setResetPassword(!toResetPassword)
     await setSnackbar("success","Logged out successfully")
     router.reload()
     })

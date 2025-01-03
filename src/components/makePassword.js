@@ -45,10 +45,9 @@ const handleLogout = async () => {
     localStorage.removeItem("login"); // Example: Clear login token
     // setPageDisplay('login')
     setLogin(false)
-    router.push("/login"); // Redirect to login page
+  //  await router.push("/login"); // Redirect to login page
     setPageDisplay('login')
-    await setSnackbar("success","Logged out successfully")
-    router.reload()
+    setResetPassword(!toResetPassword)
     })
     }
     catch(error)
@@ -78,9 +77,9 @@ const handleLogout = async () => {
            await handleLogout()
        setSnackbar("success","Password set Successfully !!")
       // alert("Passwords set Successfully");
-      await setResetPassword(false)
+      // await setResetPassword(false)
       setLoading(false)
-    //   router.push("/login")
+      router.push("/login")
         }
     } else {
       setSnackbar("error","Passwords do not match. Please try again.")

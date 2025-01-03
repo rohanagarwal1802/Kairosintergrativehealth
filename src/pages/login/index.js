@@ -56,7 +56,7 @@ const LoginPage = () => {
   const [mfa, setMfa] = useState(false);
   const [otpTimer, setOtpTimer] = useState(10);
   const { expanded, setExpanded,setPageDisplay,toResetPassword,setResetPassword } = useUserStore();
-  const [loading,setLoading]=useState(false)
+  const { loginLoader, setLoginLoader } = useUserStore();
   const {setSnackbar}=useCustomSnackbarStore()
 
 
@@ -101,7 +101,7 @@ const LoginPage = () => {
     initialValues: { email: "", password: "" },
     validationSchema,
     onSubmit: async (values) => {
-      setLoading(true)
+      setLoginLoader(true)
       try {
       
         const response = await axios.post("/api/login", values);
@@ -110,7 +110,7 @@ const LoginPage = () => {
           // localStorage.setItem("login", "true");
          
          
-         setSnackbar('success','Logged in Successfully')
+         
          setResetPassword(!toResetPassword)
         //  setLogin(true)
          
@@ -124,7 +124,7 @@ const LoginPage = () => {
           setSnackbar("error",error.response.data.message)
           // alert(error.response.data.message)
         }
-        setLoading(false)
+        setLoginLoader(false)
         // Handle errors (e.g., 401 or 404)
       }
       finally{
@@ -323,11 +323,11 @@ if(patient_detail.data.status===true)
                           size="large"
                           variant="contained"
                           color="primary"
-                          disabled={loading}
+                          disabled={loginLoader}
                           type="submit"
                           sx={{backgroundColor:"#2A3923"}}
                         >
-                        {loading ? (
+                        {loginLoader ? (
                                         <CircularProgress size={24} sx={{ color: 'white' }} />
                                       ) : (
                                         'Login'
