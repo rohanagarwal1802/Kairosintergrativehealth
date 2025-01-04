@@ -83,12 +83,13 @@ export default async function handler(req, res) {
 
     const keyHash=hashSecretKey(secretKey)
         
-            const token = jwt.sign({ email: data.email }, keyHash, {
+            const token = jwt.sign({ email }, keyHash, {
               expiresIn: "24h",
             });
 
-            const jwtCookie = createJwtCookie(token, isLocalhost, 24 * 60 * 60); // 24 hours
-
+            const jwtCookie = createJwtCookie(token, isLocalhost, 24 * 60 * 60); // 24 
+            console.log("jwtCookie",jwtCookie)
+// return
 
     res.setHeader('Set-Cookie', jwtCookie);
     return res.status(200).json({ message: 'Patient login successful' });

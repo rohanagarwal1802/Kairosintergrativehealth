@@ -54,10 +54,11 @@ if( !template)
     console.log("Request Body:", req.body);
     const temp = await createBulkEmails([req.body], template);
     console.log("temp values",temp)
+    let result=null
     for (const item of temp) { // Loop directly over elements in temp array
       const { email, subject, body } = item; // Destructure each item
-      const result = await sendEmail(subject, body, email); // Await the asynchronous sendEmail function
-      console.log(result); // Optionally log the result if needed
+      result = await sendEmail(subject, body, email); // Await the asynchronous sendEmail function
+      // console.log(result); // Optionally log the result if needed
     }
     return res.status(200).json({
       message: "Email sent successfully",

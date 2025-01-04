@@ -90,24 +90,16 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
           User: process.env.KAREO_USERNAME,
         },
         Patient: {
-          Alert: {
-            Message: "Patient Created Successfully",
-            ShowWhenDisplayingPatientDetails: true,
-            ShowWhenEnteringEncounters: true,
-            ShowWhenPostingPayments: true,
-            ShowWhenPreparingPatientStatements: true,
-            ShowWhenSchedulingAppointments: true,
-            ShowWhenViewingClaimDetails: true,
-          },
+        
           Cases: insurance
           ? {
               PatientCaseCreateReq: {
                 Active: true,
-                Authorizations: {
-                  InsurancePolicyAuthorizationCreateReq: {
-                    InsurancePlanName: insurance,
-                  },
-                },
+                // Authorizations: {
+                //   InsurancePolicyAuthorizationCreateReq: {
+                //     InsurancePlanName: insurance,
+                //   },
+                // },
               },
             }
           : undefined,

@@ -233,7 +233,19 @@ color:"white", // Light blue with transparency
 
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  His diverse background gives him a unique perspective of our healthcare system and a passion for preventing individuals from "falling through the cracks."
+  Mark&#39;s diverse background provides him
+with a comprehensive view of the healthcare system, allowing him to
+understand the challenges patients face across different levels of care. His
+experience spans from the beginning stages of outpatient practice, through
+the fast paced and often critical environment of the emergency department, to
+the specialized care provided in inpatient settings and substance use centers.
+This broad exposure has ignited a deep passion in Mark to ensure that his
+patients do not &quot;fall through the cracks&quot; of the healthcare system. His
+commitment to continuity of care and preventing patients from being
+
+overlooked underscores his drive to improve patient outcomes and advocate
+for those who may otherwise struggle to navigate the complexities of
+healthcare.
   </Typography>
 {/* <Box sx={{backgroundColor: '#6F7863',
 color:"white", // Light blue with transparency
@@ -250,7 +262,7 @@ color:"white", // Light blue with transparency
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     {/* <b>St. Vincent’s East:</b>  */}
     {/* &nbsp; */}
-    Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
+    Mark began his career as a <strong>registered nurse</strong> in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
   </Typography>
 
   <div
@@ -296,12 +308,10 @@ color:"white", // Light blue with transparency
 
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Advancing in his career, Mark began his career as a Psychiatric Mental Health Nurse Practitioner in NC where he worked alongside Duke and Yale trained psychiatrist and addictionologist in general psychiatry and addiction specialties.
+  Advancing in his career, Mark began his career as a <strong>Psychiatric Mental Health Nurse Practitioner</strong> in NC where he worked alongside Duke and Yale trained psychiatrist and addictionologist in general psychiatry and addiction specialties.
   </Typography>
 
-  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-    Mark is passionate about guiding the next generation of healthcare professionals. He has served as a clinical instructor, focusing on psychiatric and addiction nursing, while inspiring students through education and mentorship.
-  </Typography>
+ 
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
   Mark provides comprehensive assessments, diagnoses, and
@@ -365,7 +375,7 @@ color:"white", // Light blue with transparency
 As an <b>Educator &amp; Mentor</b>, Mark is passionate about
 guiding the next generation of healthcare professionals. He has served as a
 clinical instructor, focusing on psychiatric and addiction nursing, while
-inspiring students through education and mentorship.
+inspiring students through <strong>education</strong> and <strong>mentorship</strong>.
   </Typography>
   {/* <Box sx={{backgroundColor: '#6F7863',
 color:"white", // Light blue with transparency

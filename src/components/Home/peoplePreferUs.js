@@ -101,7 +101,7 @@ function PeoplePreferUs() {
                 Culture
               </Typography>
               <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                We combine cutting-edge treatment with a warm, personal approach, offering evidence-based therapies while fostering long-lasting relationships with our patients.
+                We combine cutting-edge treatment with a warm, personal approach, offering evidence-based therapies while fostering genuine relationships with our patients.
               </Typography>
             </Box>
           </Grid>
@@ -138,7 +138,7 @@ function PeoplePreferUs() {
                 Convenience
               </Typography>
               <Typography variant="body2" sx={{ marginTop: "10px", color: "#0a0a0a" }}>
-                Our practice makes mental health care convenient with online scheduling, secure messaging, and Telehealth services, making mental health support more accessible, efficient, and tailored to your busy lifestyle.
+                We make mental health care convenient with online scheduling, secure messaging, and Telehealth services, making mental health support more accessible, efficient, and tailored to your busy lifestyle.
               </Typography>
             </Box>
           </Grid>

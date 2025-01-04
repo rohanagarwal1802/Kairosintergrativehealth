@@ -5,12 +5,11 @@ export default async function handler(req, res) {
   const token = await getTokenFromCookie(req);
 
   if (!token) {
-    return res.status(401).json({ error: "Authentication required" }); // 401 for unauthenticated
+    return res.status(401).json({ error: "Authentication required" });
   }
-  
+
   const WSDL_URL = "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?singleWsdl";
 
-  // Validate environment variables
   if (!process.env.KAREO_CUSTOMER_KEY || !process.env.KAREO_USERNAME || !process.env.KAREO_PASSWORD) {
     return res.status(500).json({
       status: "error",
@@ -18,54 +17,41 @@ export default async function handler(req, res) {
     });
   }
 
-  const { service,location,appointmentDate,patientId } = req.body;
+  const { service, location, appointmentDate, patientId } = req.body;
 
-  if(!service || !location || !appointmentDate || !patientId)
-  {
+  if (!service || !location || !appointmentDate || !patientId) {
     return res.status(403).json({
       status: "error",
       message: "Required credentials are missing!",
     });
   }
 
-let PSYCIATRY_ID=process.env.PSYCIATRY_ID
-let THERAPY_ID=process.env.THERAPY_ID
-let ADDICTION_ID=process.env.ADDICTION_ID
-let GENETICTESTING_ID=process.env.GENETICTESTING_ID
-let CNVS_ID=process.env.CNVS_ID
+  let PSYCIATRY_ID = process.env.PSYCIATRY_ID;
+  let THERAPY_ID = process.env.THERAPY_ID;
+  let ADDICTION_ID = process.env.ADDICTION_ID;
+  let GENETICTESTING_ID = process.env.GENETICTESTING_ID;
+  let CNVS_ID = process.env.CNVS_ID;
 
-let appointment_reasonId=0
+  let appointment_reasonId = 0;
 
+  if (service === "Phyciatry") {
+    appointment_reasonId = PSYCIATRY_ID;
+  } else if (service === "Therapy") {
+    appointment_reasonId = THERAPY_ID;
+  } else if (service === "Addiction") {
+    appointment_reasonId = ADDICTION_ID;
+  } else if (service === "Genetic Testing") {
+    appointment_reasonId = GENETICTESTING_ID;
+  } else if (service === "CNS-VS Testing") {
+    appointment_reasonId = CNVS_ID;
+  }
 
-if(service==="Phyciatry")
-{
-  appointment_reasonId=PSYCIATRY_ID
-}
-else if(service==="Therapy"){
-  appointment_reasonId=THERAPY_ID
-}
-else if(service==="Addiction"){
-  appointment_reasonId=ADDICTION_ID
-}
-else if(service==="Genetic Testing"){
-  appointment_reasonId=GENETICTESTING_ID
-}
-else if(service==="CNS-VS Testing"){
-  appointment_reasonId=CNVS_ID
-}
-
-
-// console.log("credentials",service,patientId,process.env.PSYCIATRY_ID,process.env.THERAPY_ID,process.env.ADDICTION_ID,process.env.GENETICTESTING_ID)
-
-
-  console.log("start date ==>",appointmentDate)
   let location_id = 1;
   if (location === "Tele Health") {
     location_id = 2;
   }
 
   try {
-    // SOAP Client Options
     const options = {
       wsdl_headers: {
         customerKey: process.env.KAREO_CUSTOMER_KEY,
@@ -77,7 +63,6 @@ else if(service==="CNS-VS Testing"){
       },
     };
 
-    console.log("Initializing SOAP client...");
     const client = await soap.createClientAsync(WSDL_URL, options);
 
     const getPatientRequestArgs = {
@@ -94,112 +79,26 @@ else if(service==="CNS-VS Testing"){
       },
     };
 
-    // Call the GetPatient method
     const [result] = await client.GetPatientAsync(getPatientRequestArgs);
-    console.log("SOAP Response:", JSON.stringify(result, null, 2));
 
     const result_res = result.GetPatientResult;
 
-    // Check if required fields exist
     if (!result_res || !result_res.SecurityResponse || !result_res.SecurityResponse.CustomerId) {
       throw new Error("Required patient data is missing in the SOAP response.");
     }
 
-    // Get current time in the US Eastern Time Zone
-    // const current_date = new Date();
-    const date_options = { timeZone: "America/New_York" };
-    const now = new Date();
-    const currentUSDate = new Intl.DateTimeFormat('en-US', { ...date_options }).format(now);
-    const currentDate = new Date(currentUSDate);
+    const formattedDOB = new Date(result_res.Patient.DOB).toISOString().replace(/\.\d{3}Z$/, '');
 
-    // Function to format DOB to ISO
-    function formatDOBToISO(dob) {
-      console.log("Input dob ==> ", dob);
+    const stDate = new Date(appointmentDate);
+    stDate.setHours(12, 0, 0, 0);
+    const startTimeISO = stDate.toISOString().replace(/\.\d{3}Z$/, '');
 
-      let dateObject;
+    const end_time = new Date(stDate.getTime() + 90 * 60 * 1000);
+    const endTimeISO = end_time.toISOString().replace(/\.\d{3}Z$/, '');
 
-      // Handle the case where the input is a string
-      if (typeof dob === "string") {
-        // Attempt to parse a string in different formats
-        dateObject = new Date(dob);
+    const current_date = new Date();
+    const createdAtISO = current_date.toISOString().replace(/\.\d{3}Z$/, '');
 
-        // If the date is invalid (NaN), try additional parsing strategies
-        if (isNaN(dateObject.getTime())) {
-          // Try to parse dates with different formats
-          let regexFormats = [
-            /^\d{1,2}\/\d{1,2}\/\d{4}$/, // MM/DD/YYYY
-            /^\d{4}-\d{2}-\d{2}$/, // YYYY-MM-DD
-            /^\d{4}\/\d{2}\/\d{2}$/, // YYYY/MM/DD
-            /^\d{2}\/\d{2}\/\d{2}$/, // DD/MM/YY
-            /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/, // ISO without milliseconds
-          ];
-
-          let validFormat = false;
-          for (let regex of regexFormats) {
-           
-            if (regex.test(dob)) {
-              dateObject = new Date(dob); // Try parsing with each format
-              validFormat = true;
-              if (regex == /^\d{1,2}\/\d{1,2}\/\d{4}$/) {
-                console.log("Matched MM/DD/YYYY format");
-
-                // Manually convert the date to YYYY-MM-DD format
-                let [month, day, year] = dob.split('/');
-                dateObject = new Date(`${year}-${month}-${day}`);
-                break; // Exit loop after handling the format
-            }
-              break;
-            }
-          }
-
-          if (!validFormat || isNaN(dateObject.getTime())) {
-            throw new Error("Invalid date format. Could not parse the provided date.");
-          }
-        }
-      }
-      // Handle the case where dob is already a Date object
-      else if (dob instanceof Date) {
-        dateObject = dob;
-      }
-      // If the input is not a valid type, throw an error
-      else {
-        throw new Error("Invalid input: expected a string or Date object");
-      }
-
-      // Convert the Date object to ISO string (remove milliseconds if necessary)
-      let isoDate = dateObject.toISOString(); // This includes milliseconds (e.g., 2024-12-21T09:30:00.000Z)
-      isoDate = isoDate.replace(/\.\d{3}Z$/, 'Z'); // Remove milliseconds if needed
-
-      return isoDate;
-    }
-
-    // Ensure `dob` is correctly parsed
-    const formattedDOB = formatDOBToISO(result_res.Patient.DOB);
-    console.log("Formatted DOB:", formattedDOB);
-
-    function getNext90MinutesTime(inputTime) {
-      const time = new Date(inputTime);
-      if (isNaN(time)) {
-        throw new Error("Invalid date. Please provide a valid date.");
-      }
-      time.setTime(time.getTime() + 90 * 60 * 1000);
-      return time;
-    }
-
-    const stDate=new Date(appointmentDate)
-    stDate.setHours(12, 0, 0, 0); 
-    const start_time = stDate.toLocaleString('en-US', { timeZone: "America/New_York" });
-    const end_time = getNext90MinutesTime(start_time);
-
-    const createdAtISO = formatDOBToISO(new Date());
-    const startTimeISO = formatDOBToISO(start_time);
-    const endTimeISO = formatDOBToISO(end_time);
-    const current_date = formatDOBToISO(currentDate);
-
-    console.log("Start Time:", start_time);
-    console.log("End Time (90 minutes later):", end_time);
-
-    // Construct Request Arguments for CreateAppointment
     const requestArgs = {
       request: {
         RequestHeader: {
@@ -224,7 +123,6 @@ else if(service==="CNS-VS Testing"){
           IsGroupAppointment: false,
           IsRecurring: false,
           Notes: "Patient needs follow-up appointment.",
-          
           PatientSummary: {
             DateofBirth: formattedDOB,
             Email: result_res.Patient.EmailAddress,
@@ -233,24 +131,20 @@ else if(service==="CNS-VS Testing"){
             MobilePhone: result_res.Patient.MobilePhone,
             PatientId: result_res.Patient.ID,
             PracticeId: result_res.Patient.PracticeId,
-            // Status: "PRESENT",
           },
           PracticeId: result_res.Patient.PracticeId,
           ProviderId: 1,
           ResourceId: location_id,
           ServiceLocationId: location_id,
           StartTime: startTimeISO,
-          UpdatedAt: current_date,
+          UpdatedAt: createdAtISO,
           UpdatedBy: 1,
           WasCreatedOnline: true,
         },
       },
     };
 
-    // Call CreateAppointment method
     const [appointmentResult] = await client.CreateAppointmentAsync(requestArgs);
-
-    console.log("SOAP Response of appointment:", JSON.stringify(appointmentResult, null, 2));
 
     res.status(200).json({
       status: "success",

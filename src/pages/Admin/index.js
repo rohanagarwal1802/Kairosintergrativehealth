@@ -26,6 +26,7 @@ import {
   DialogActions,
   DialogContentText,
 } from "@mui/material";
+import AppointmentOfPatientsForAdmin from "@/components/Appointment/allAppointMentsForAdmin";
 import { visuallyHidden } from "@mui/utils";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -36,6 +37,7 @@ import * as XLSX from "xlsx"; // Import xlsx for Excel generation
 import Loader from "@/components/Loader";
 import TextContainer from "@/components/textContainer";
 import { useRouter } from "next/router";
+import DeletePatientModal from "@/components/Appointment/deletePatientModal";
 
 // Constants for column headers
 const headCells = [
@@ -147,8 +149,10 @@ const columnWidths = {
   isRegistered: 100,
   created_at: 200,
   updated_at: 200,
-  Action: 80,
+  Action: 160,
 };
+
+
 
 function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
@@ -158,32 +162,39 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead sx={{ ml: 1 }}>
-      <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align="left"
-            padding={headCell.disablePadding ? "none" : "normal"}
-            sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ width: columnWidths[headCell.id], maxWidth: columnWidths[headCell.id] }} // Fixed width
+    <TableHead>
+    <TableRow>
+      {headCells.map((headCell, index) => (
+        <TableCell
+          key={headCell.id}
+          align="left"
+          padding={headCell.disablePadding ? "none" : "normal"}
+          sortDirection={orderBy === headCell.id ? order : false}
+          sx={{
+            width: columnWidths[headCell.id],
+            maxWidth: columnWidths[headCell.id],
+            whiteSpace: "nowrap", // Force text to stay on one line
+            borderRight: index < headCells.length - 1 ? "1px solid white" : "none", // Add vertical white line between headers
+          }}
+        >
+          <TableSortLabel
+            active={orderBy === headCell.id}
+            direction={orderBy === headCell.id ? order : "asc"}
+            onClick={createSortHandler(headCell.id)}
           >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
+            {headCell.label}
+            {orderBy === headCell.id ? (
+              <Box component="span" sx={visuallyHidden}>
+                {order === "desc" ? "sorted descending" : "sorted ascending"}
+              </Box>
+            ) : null}
+          </TableSortLabel>
+        </TableCell>
+      ))}
+    </TableRow>
+  </TableHead>
+  
+  
   );
 }
 
@@ -201,6 +212,8 @@ const PatientsTable = ({ userDetails }) => {
   const [openRowId, setOpenRowId] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [deletePatient,setDeletePatient]=useState(false)
+  const [deleteId,setDeleteId]=useState(null)
 
   if (!userDetails || userDetails?.role !== "admin") {
     router.push("/");
@@ -208,21 +221,22 @@ const PatientsTable = ({ userDetails }) => {
   }
 
   const [userData, setUserData] = useState(null);
+  const getPatientData = async () => {
+    try {
+      setLoading(true);
+      const patient = await axios.get("/api/getPatient");
+      console.log(patient)
+      setUserData(patient.data);
+    } catch (error) {
+      setUserData([]);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getPatientData = async () => {
-      try {
-        setLoading(true);
-        const patient = await axios.get("/api/getPatient");
-        console.log(patient)
-        setUserData(patient.data);
-      } catch (error) {
-        setUserData([]);
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    
     getPatientData();
   }, []);
 
@@ -247,6 +261,13 @@ const PatientsTable = ({ userDetails }) => {
     setOrderBy(property);
   };
 
+  const handleRowClick =(rowId)=>{
+    setOpenRowId(openRowId===rowId?null:rowId)
+  }
+  const handleRowDeleteClick =(rowId)=>{
+    setDeleteId(rowId)
+    setDeletePatient(true)
+  }
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.id);
@@ -333,6 +354,9 @@ const PatientsTable = ({ userDetails }) => {
     "& .MuiTableSortLabel-root": {
       color: "white",
     },
+    "& .MuiTableSortLabel-root:hover": {
+      color: "white",
+    },
     "& .MuiTableSortLabel-active": {
       color: "white !important", // For active column
     },
@@ -374,26 +398,22 @@ const PatientsTable = ({ userDetails }) => {
         <TableCell sx={{ width: columnWidths.created_at }}>{row.created_at}</TableCell>
         <TableCell sx={{ width: columnWidths.updated_at }}>{row.updated_at}</TableCell>
         <TableCell sx={{ width: columnWidths.Action }}>
-          <IconButton onClick={() => setOpenRowId(row.id)} sx={{ color: "black" }}>
-            {openRowId === row.id ? <KeyboardArrowUpIcon sx={{ color: "black" }} /> : <KeyboardArrowDownIcon sx={{ color: "black" }} />}
-          </IconButton>
-        </TableCell>
+  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <IconButton onClick={() => handleRowClick(row.id)} sx={{ color: 'black', marginRight: 1 }}>
+      {openRowId === row.id ? <KeyboardArrowUpIcon sx={{ color: 'black' }} /> : <KeyboardArrowDownIcon sx={{ color: 'black' }} />}
+    </IconButton>
+    <IconButton onClick={() => handleRowDeleteClick(row)} sx={{ color: 'black' }}>
+      <DeleteIcon sx={{ color: 'red' }} />
+    </IconButton>
+  </Box>
+</TableCell>
 
-      </TableRow><TableRow>
+
+      </TableRow>
+      <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={headCells.length}>
             <Collapse in={openRowId === row.id} timeout="auto" unmountOnExit>
-              <Dialog open={true}>
-                <DialogContent>
-                  <DialogContentText>
-                    {/* Render details for each patient */}
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={() => setOpenRowId(null)} color="primary">
-                    Close
-                  </Button>
-                </DialogActions>
-              </Dialog>
+             <AppointmentOfPatientsForAdmin appointmentData={row.appointMents} userDetails={row} getPatientData={getPatientData}/>
             </Collapse>
           </TableCell>
         </TableRow></>
@@ -415,6 +435,9 @@ const PatientsTable = ({ userDetails }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
+      {
+        deletePatient && <DeletePatientModal data={deleteId} onClose={()=>setDeletePatient(false)} getPatientData={getPatientData}/>
+      }
     </>
   );
 };

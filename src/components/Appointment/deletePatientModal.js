@@ -15,36 +15,40 @@ const DeletePatientModal = ({ data, onClose, getPatientData }) => {
   const [loading, setLoading] = useState(false);
   const { setSnackbar } = useCustomSnackbarStore();
 
+  console.log(data)
   const handleDelete = async () => {
     setLoading(true);
     try {
       // Use a config object to send the body with DELETE request
-      const response = await axios.post("/api/deleteAppointmentFromTebra", data);
-      console.log(response);
-    //   try{
-    //     const response = await axios.post("/api/deleteAppointment", data);
-    //     console.log(response);
-    //     try{
-    //         const response = await axios.post("/api/deletePatient", data);
-    //         console.log(response);
-    //       }
-    //       catch(error)
-    //       {
-    //         console.log(error)
-    //       }
-    //   }
-    //   catch(error)
-    //   {
-    //     console.log(error)
-    //   }
+      // const response = await axios.post("/api/deleteAppointmentFromTebra", data);
+      // console.log(response);
+      try{
+        const response = await axios.post("/api/deleteAppointment", {id:data.patientId});
+        console.log(response);
+        try{
+            const response = await axios.post("/api/deletePatient",  {id:data.id});
+            console.log(response);
+            setLoading(false);
+            getPatientData();
+            onClose();
+            setSnackbar(
+              "success",
+              `Successfully deleted Patient and appointments`
+            );
+          }
+          catch(error)
+          {
+            console.log(error)
+            setLoading(false)
+          }
+      }
+      catch(error)
+      {
+        console.log(error)
+        setLoading(false)
+      }
      
-      setLoading(false);
-      getPatientData();
-      onClose();
-      setSnackbar(
-        "success",
-        `Successfully deleted Patient and appointments`
-      );
+     
     } catch (error) {
       console.error(
         "Error deleting content:",

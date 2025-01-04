@@ -11,29 +11,64 @@ import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 
-const DeleteAppointmentsModal = ({ id, onClose, getPatientData }) => {
+const DeleteAppointmentsModal = ({ appointmentData, onClose, getPatientData ,userDetails}) => {
   const [loading, setLoading] = useState(false);
   const { setSnackbar } = useCustomSnackbarStore();
+
+  console.log(appointmentData)
 
   const handleDelete = async () => {
     setLoading(true);
     try {
-        let data={
-            ids:id
-        }
+       
       // Use a config object to send the body with DELETE request
-      const response = await axios.post("/api/deleteReview", data);
+      const response = await axios.post("/api/deleteAppointmentFromTebra", { appointmentId:appointmentData.appointmentId});
       console.log(response);
+     
+      try{
+        const response = await axios.post("/api/deleteAppointment", {id:appointmentData.id});
+        console.log(response);
+        const currentDateTime = new Date();
+
+        // Convert the DateTime string to a Date object
+        const givenDateTime = new Date(appointmentData.appointmentDate);
+
+        if (givenDateTime < currentDateTime) {
+        let username=userDetails?.firstname+" "+userDetails?.lastname
+        let email=userDetails?.email
+        let phone=userDetails?.mobile
+        let emailValues = { ...appointmentData,username:username,email:email,phone:phone };
+
+          // First Email (Create Password)
+          try {
+            emailValues.template = 'appointmentCancelled';
+            console.log("Sending first email...");
+            let mailResp = await axios.post('/api/sendMailAPI', emailValues);
+            console.log("Mail response (Password Email):", mailResp);
+
+           
+          } catch (error) {
+            console.error("Error sending password email:", error);
+            setSnackbar('error', 'Failed to send password creation email.');
+          }
+        }
+        
       setLoading(false);
       getPatientData();
       onClose();
       setSnackbar(
         "success",
-        `Successfully deleted ${
-          id.length === 1 ? "Review" : "Reviews"
-        } details.`
+        `Successfully deleted Appointment details.`
       );
-    } catch (error) {
+    
+  
+}
+catch(error)
+{
+   console.log(error)
+}
+    }
+     catch (error) {
       console.error(
         "Error deleting content:",
         error.response?.data || error.message
@@ -73,8 +108,8 @@ const DeleteAppointmentsModal = ({ id, onClose, getPatientData }) => {
           Confirm Deletion
         </Typography>
         <Typography sx={{ marginBottom: 4,color:"white" }}>
-          Are you sure you want to delete {id.length === 1 ? "this" : "these"}{" "}
-          {id.length === 1 ? "Review" : "Reviews"} ? This action cannot be
+          Are you sure you want to delete this
+          Appointment ? This action cannot be
           undone.
         </Typography>
         <Box

@@ -24,7 +24,7 @@ const RoundTable = () => {
         }}
       >
 
-<Typography variant="h4" sx={{ mb: 2, fontWeight:'800', color: "black" }}>
+<Typography variant="h4" sx={{ mb: 2, fontWeight:'800', color: "black" ,mt:2}}>
 Resilience Roundtable
             </Typography>
   

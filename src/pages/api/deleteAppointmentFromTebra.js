@@ -1,5 +1,6 @@
 import * as soap from 'soap';
 import getTokenFromCookie from '../utils/access';
+import jwt from "jsonwebtoken";
 import hashSecretKey from '../utils/hashedSecretKey';
 
 

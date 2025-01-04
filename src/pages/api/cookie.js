@@ -54,10 +54,10 @@ const hashedKey=hashSecretKey( process.env.secretKey)
 
       // If role is not 'admin', fetch the user data
       console.log("Fetching patient data...");
-      const response = await Patients.getPatientsByToken(token);
+      const response = await Patients.getPatientByEmail(decodedToken.email);
       console.log("Response from getPatientsByToken:", response);
 
-      if (!response) {
+      if (!response.status) {
         // User not found, clear cookies and return an error
         console.log("User not found, clearing cookies...");
         res.setHeader("Set-Cookie", [
@@ -69,7 +69,7 @@ const hashedKey=hashSecretKey( process.env.secretKey)
         });
       } else {
         console.log("User found, sending response...");
-        return res.status(200).send(response);
+        return res.status(200).send(response.patient);
       }
     } catch (error) {
       console.error("Error during token verification:", error); // Full error log

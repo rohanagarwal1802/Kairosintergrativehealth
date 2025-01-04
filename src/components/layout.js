@@ -8,6 +8,7 @@ import useUserStore from "./useUserStore";
 import Loader from "./Loader"; // Make sure to import the loader component
 import MessageIcon from "@mui/icons-material/Message"; // Import the message icon
 import Link from "next/link";
+import zIndex from "@mui/material/styles/zIndex";
 
 const Layout = ({ children, userDetails }) => {
   const [showGoToTop, setShowGoToTop] = useState(false);
@@ -66,12 +67,12 @@ const Layout = ({ children, userDetails }) => {
       </Box>
       
       {/* Go To Top Button */}
-      {showGoToTop && <GoToTopIcon />}
+      {showGoToTop && <GoToTopIcon sx={{zIndex:10}}/>}
       
       {/* Floating message icon at the bottom-left corner */}
       <Link href="/contact" style={{ position: "fixed", bottom: 20, left: 20 }}>
         <Fab color="primary" aria-label="message" sx={{backgroundColor:"#2A3923"}}>
-          <MessageIcon />
+          <MessageIcon sx={{zIndex:10}}/>
         </Fab>
       </Link>
     </>

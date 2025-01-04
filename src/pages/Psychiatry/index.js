@@ -136,7 +136,7 @@ const PTSDPage = () => {
       <Box
         sx={{
           backgroundColor: `#Ece7E2`,
-          mb:-3.5
+          // mb:-3.5
           // backgroundSize: 'cover',
           // backgroundPosition: 'top',
           // backgroundRepeat: 'no-repeat',
@@ -183,8 +183,8 @@ complimentary phone call.
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
               You will receive an
-email from Kairos Integrative Health to create a password with Kairos Integrative
-Health.
+email from Kairos Integrative Health to create a password with KIH through Tebra, where
+you will be able to schedule your complimentary phone call.
               </Typography>
             </ListItem>
           </List>
@@ -200,7 +200,7 @@ Health.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-              You can login into Kairos Integrative Health with your registered email and created password.
+              You can login into Kairos Integrative Health with your registered email and created password to schedule your complimentary phone call.
               </Typography>
             </ListItem>
           </List>
@@ -217,9 +217,9 @@ Health.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-              (keep an eye out on your email for
-confirmation) and we will connect with you at the scheduled time
-for a 10-minute phone call. This call will allow you to discuss with
+              Keep an eye out on your email for
+confirmation and we will connect with you at the scheduled time
+for a 10-minute phone call. This call will allow you to speak with
 our provider to see if KIH is a good fit for you.
               </Typography>
             </ListItem>
@@ -253,7 +253,7 @@ our provider to see if KIH is a good fit for you.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 1-2 sessions and in some cases may involve two separate visits. Initial visits are scheduled in-person, at 400 Vestavia Parkway suite 406, Vestavia Hills, AL.
+                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 1-2 sessions and in some cases may involve two separate visits. Initial visits are scheduled via telehealth or in-person at 400 Vestavia Parkway suite 406, Vestavia Hills, AL.
               </Typography>
             </ListItem>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
@@ -274,7 +274,7 @@ our provider to see if KIH is a good fit for you.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                If discovered through the initial evaluation that medication is needed, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Typically, appointments will be stretched out to every 1-3 months as appropriate. Typical follow-ups will last 10-15 minutes as appropriate.
+                If discovered through the initial evaluation that medication is appropriate, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Typically, appointments will be stretched out to every 1-3 months as appropriate. Typical follow-ups will last 15-30 minutes as appropriate.
               </Typography>
             </ListItem>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>

@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": 2,
+    "service": "Therapy",
+    "location": "Offline",
+    "appointmentDate": "2025-01-05T18:30:00.000Z",
+    "patientId": 132,
+    "created_at": "2025-01-04T16:02:02.579Z"
+  }
+]

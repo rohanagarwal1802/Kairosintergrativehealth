@@ -51,6 +51,10 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
       
       // console.log(res.data)
       if (res.data.status === "success") {
+        const appointment_id = res.data.appointmentResult.CreateAppointmentResult.Appointment.AppointmentId;
+
+        // Augment the data object with the new AppointmentId
+        data.appointmentId = appointment_id;
         const appointmentResp=await axios.post('/api/createNewAppointMent',data)
         let username=userDetails?.firstname+" "+userDetails?.lastname
         let email=userDetails?.email
