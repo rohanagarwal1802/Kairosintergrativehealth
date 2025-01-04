@@ -1,7 +1,25 @@
 import { deletePatient } from "../../../lib/models/PatientDetails";
+import getTokenFromCookie from "../utils/access";
+import jwt from "jsonwebtoken";
+import hashSecretKey from "../utils/hashedSecretKey";
 export default async function handler(req, res) {
     if (req.method === 'POST') {
       try {
+        const token = await getTokenFromCookie(req);
+
+  if (!token) {
+    return res.status(401).json({ error: "Authentication required" }); // 401 for unauthenticated
+  }
+  
+  const hashKey=hashSecretKey(process.env.secretKey)
+  // Verify token
+  const decodedToken = jwt.verify(token,hashKey );
+  if (
+    !decodedToken ||
+    (decodedToken.email !== process.env.EMAIL_USER && decodedToken?.role !== "admin")
+  ) {
+    return res.status(403).json({ error: "Access denied" }); // 403 for unauthorized
+  }
         // Expecting an array of id in the request body
         const { id } = req.body;
   console.log(id)

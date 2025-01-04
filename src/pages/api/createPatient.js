@@ -13,7 +13,9 @@ export default async function handler(req, res) {
     });
   }
 
-  const { firstname, lastname, dob, email, mobile, insurance } = req.body;
+  const { firstname, lastname, dob, email, mobile, insurance ,emergencyName,employmentStatus,phoneNumber,
+    maritalStatus,ssn
+  } = req.body;
 
   try {
     // Validate and format the Date of Birth
@@ -55,12 +57,14 @@ export default async function handler(req, res) {
           });
         }
         client = soapClient;
-        await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance);
+        await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance,emergencyName,employmentStatus,phoneNumber,
+          maritalStatus,ssn);
       });
     } else {
       console.log("Using createClientAsync in development");
       client = await soap.createClientAsync(WSDL_URL, options);
-      await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance);
+      await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance,emergencyName,employmentStatus,phoneNumber,
+        maritalStatus,ssn);
     }
   } catch (error) {
     console.error("Error during SOAP operation:", {
@@ -74,7 +78,8 @@ export default async function handler(req, res) {
   }
 }
 
-async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance) {
+async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance,emergencyName,employmentStatus,phoneNumber,
+  maritalStatus,ssn) {
   try {
     // Construct Request Arguments
     const requestArgs = {
@@ -85,12 +90,6 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
           User: process.env.KAREO_USERNAME,
         },
         Patient: {
-          FirstName: firstname,
-          LastName: lastname,
-          DateOfBirth: 2012-12-12,
-          DOB: 2012-12-12,
-          EmailAddress: email,
-          MobilePhone: mobile,
           Alert: {
             Message: "Patient Created Successfully",
             ShowWhenDisplayingPatientDetails: true,
@@ -101,20 +100,37 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
             ShowWhenViewingClaimDetails: true,
           },
           Cases: insurance
-            ? {
-                PatientCaseCreateReq: {
-                  Active: true,
-                  Authorizations: {
-                    InsurancePolicyAuthorizationCreateReq: {
-                      InsurancePlanName: insurance,
-                    },
+          ? {
+              PatientCaseCreateReq: {
+                Active: true,
+                Authorizations: {
+                  InsurancePolicyAuthorizationCreateReq: {
+                    InsurancePlanName: insurance,
                   },
                 },
-              }
-            : undefined,
+              },
+            }
+          : undefined,
+          DateofBirth: formattedDob,
+          EmailAddress: email,
+          EmergencyName:emergencyName,
+          Employer:{
+            EmploymentStatus:employmentStatus,
+          },
+          FirstName: firstname,
+          HomePhone:phoneNumber,
+          LastName: lastname,
+          MaritalStatus:maritalStatus,
+         
+          // DOB: 2012-12-12,
+         
+          MobilePhone: mobile,
+          
+        
           Practice: {
             PracticeID: 3,
           },
+          SocialSecurityNumber:ssn,
         },
       },
     };

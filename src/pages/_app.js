@@ -76,7 +76,7 @@ setLoading(false); // Stop loading
           console.log("pageDisplay ==>",pageDisplay)
           console.log("login",login,localStorage.getItem("login"))
          // Show the app layout
-         if(login==false && (localStorage.getItem("login")===null || localStorage.getItem("login")===undefined || localStorage.getItem("login")==="false" || localStorage.getItem("login")===""))
+         if(login==false || (localStorage.getItem("login")===null || localStorage.getItem("login")===undefined || localStorage.getItem("login")==="false" || localStorage.getItem("login")===""))
           {
             localStorage.setItem("login", "true");
           if (res.data?.role === "admin") {
