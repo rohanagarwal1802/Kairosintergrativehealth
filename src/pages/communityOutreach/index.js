@@ -98,7 +98,7 @@ const CommunityOutreach = () => {
     }}
   >
     <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 ,textAlign:"center"}}>
-      Community PartnerShips
+      Community Partnerships
     </Typography>
     <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16,color:"black" }}>
       After working in North Carolina with Duke and Yale trained Psychiatrists/Addictionologists,

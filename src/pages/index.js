@@ -53,7 +53,7 @@ export default function Home() {
         }}
       >
         <Image
-          src="/title.png"
+          src="/Title.jpg"
           alt="Kairos Integrative Health Background"
           layout="fill"
           objectFit="contain"

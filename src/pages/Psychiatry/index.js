@@ -163,7 +163,7 @@ const PTSDPage = () => {
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
               Complete the interest form by clicking on the
 “Request Appointment” button (located on top right hand corner of
-this page). This allows for you to be able to schedule your
+this page). This allows you to be able to schedule your
 complimentary phone call.
               </Typography>
             </ListItem>
@@ -274,7 +274,7 @@ our provider to see if KIH is a good fit for you.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                If discovered through the initial evaluation that medication is appropriate, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Typically, appointments will be stretched out to every 1-3 months as appropriate. Typical follow-ups will last 15-30 minutes as appropriate.
+                If discovered through the initial evaluation that medication is appropriate, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Often, appointments will be stretched out to every 1-3 months as appropriate. Usually follow-ups will last 15-30 minutes as appropriate.
               </Typography>
             </ListItem>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>

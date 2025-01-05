@@ -79,7 +79,7 @@ const TherapyPage = () => {
             {/* Image */}
             <Box
               component="img"
-              src="/therapy.jpeg"
+              src="/therapy.jpg"
               alt="Founder"
               sx={{
                 height: "70%",
@@ -158,7 +158,7 @@ const TherapyPage = () => {
 
         {/* Note Section */}
         <Typography variant="body2" sx={{ color: "black" }}>
-          In the setting where you would benefit from more consistent psychotherapy or a psychotherapeutic modality that is not available from our provider(s), we may refer you out to a colleague to obtain appropriate care.
+          In the setting where you would benefit from more consistent psychotherapy or a psychotherapeutic modality that is not available from our provider(s), we may refer you to a colleague to obtain appropriate care.
         </Typography>
       </Box>
           </Box>

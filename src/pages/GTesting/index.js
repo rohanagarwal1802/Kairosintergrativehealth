@@ -113,7 +113,7 @@ const GeneticTestingPage = () => {
   
           <Box sx={{ ml: "5%" ,mt:"5%"}}>
           <Typography variant="body2" sx={{ color: "black",textAlign:"left" }}>
-          In psychiatry, We utilize genetic testing to analyze specific
+          In psychiatry, we utilize genetic testing to analyze specific
             genes related to mental health medications. This tool can be helpful in
             determining treatment options for individuals. By assessing how a person's
             genetic makeup affects their response to various psychiatric medications, genetic
