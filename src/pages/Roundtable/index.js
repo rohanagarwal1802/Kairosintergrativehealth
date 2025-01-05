@@ -189,7 +189,7 @@ Resilience Roundtable
         To attend the Resilience Roundtable, please follow these steps:
       </Typography>
       <ul style={{ listStyleType: "disc", margin: 0, paddingLeft: "1.5em", fontWeight: "normal" }}>
-        <li>Fill out the form provided at the bottom of this page for each month to attend.</li>
+        <li>Fill out the form provided at the bottom of this page for each month you plan to attend.</li>
         <li>Select entry fee option:
           <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
           <li>Member Discounted Plan: $21 per session + 1 Free Friend/Family Member.</li>

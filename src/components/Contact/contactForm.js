@@ -23,7 +23,7 @@ const ContactForm = ({ getReviews }) => {
   const {setSnackbar}=useCustomSnackbarStore()
 
 
-  const phoneNumberRegex = /^\d{9}$/;
+  const phoneNumberRegex = /^\d{10}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const validationSchema = Yup.object({

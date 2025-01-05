@@ -171,7 +171,7 @@ const AboutSection = () => {
               >
   Our mission is to deliver{" "}
  comprehensive and{" "}
-integrativemental health services that empower individuals and strengthen the resilience of our{" "}
+integrative mental health services that empower individuals and strengthen the resilience of our{" "}
  community. By prioritizing holistic care and fostering enduring patient-provider relationships, we aim to become a trusted pillar of support in our community, improving quality of life and promoting mental wellness for all.
 
  </Typography>
@@ -209,7 +209,7 @@ integrativemental health services that empower individuals and strengthen the re
               >
         Our{" "} vision is to be a recognized and{" "} 
        
-       trusted leader in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy,and in alignment with their patients' best interests.
+       trusted leader in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care. We aspire to be the go-to resource for individuals seeking a comprehensive approach to mental well-being, while also empowering healthcare providers to practice with autonomy and in alignment with their patients' best interests.
 </Typography>
 
        

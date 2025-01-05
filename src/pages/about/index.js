@@ -238,7 +238,7 @@ const About = () => {
         },
       }}
     >
-    <Typography sx={{ color: "#535945", fontSize: "0.9rem", mb: "5%" }}>
+    <Typography sx={{ color: "white", fontSize: "0.9rem", mb: "5%" }}>
       “When it’s time, we’re here.”
     </Typography>
 

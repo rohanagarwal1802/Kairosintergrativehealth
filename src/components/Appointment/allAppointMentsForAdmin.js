@@ -163,7 +163,7 @@ if(!Array.isArray(appointmentData))
       flex: 1,
       renderCell: (params) => (
         <IconButton onClick={() => handleDelete(params.row)}>
-          <DeleteIcon sx={{ color:  "red" }} />
+          <DeleteIcon sx={{ color:  "red" }}/>
         </IconButton>
       ),
     },

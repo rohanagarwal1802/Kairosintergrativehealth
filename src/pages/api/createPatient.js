@@ -12,9 +12,20 @@ export default async function handler(req, res) {
       message: "Required environment variables are missing!",
     });
   }
-
-  const { firstname, lastname, dob, email, mobile, insurance ,emergencyName,employmentStatus,phoneNumber,
-    maritalStatus,ssn
+  // val.firstname = firstname;
+  // val.lastname = lastname;
+  // val.mobile = mobile;
+  // val.email = email;
+  // val.dob = dob;
+  // val.insurance = insurance;
+  // val.gender=gender;
+  // val.marital_status=marital_status;
+  // val.emergency_contact_name=emergency_contact_name;
+  // val.ssn=ssn;
+  // val.address=address;
+  // val.=
+  const { firstname, lastname, dob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
+    marital_status,ssn,emergency_contact_name,address,
   } = req.body;
 
   try {
@@ -57,14 +68,14 @@ export default async function handler(req, res) {
           });
         }
         client = soapClient;
-        await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance,emergencyName,employmentStatus,phoneNumber,
-          maritalStatus,ssn);
+        await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
+          marital_status,ssn,emergency_contact_name,address,);
       });
     } else {
       console.log("Using createClientAsync in development");
       client = await soap.createClientAsync(WSDL_URL, options);
-      await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance,emergencyName,employmentStatus,phoneNumber,
-        maritalStatus,ssn);
+      await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
+        marital_status,ssn,emergency_contact_name,address,);
     }
   } catch (error) {
     console.error("Error during SOAP operation:", {
@@ -78,8 +89,8 @@ export default async function handler(req, res) {
   }
 }
 
-async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance,emergencyName,employmentStatus,phoneNumber,
-  maritalStatus,ssn) {
+async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
+  marital_status,ssn,emergency_contact_name,address,) {
   try {
     // Construct Request Arguments
     const requestArgs = {
@@ -90,7 +101,7 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
           User: process.env.KAREO_USERNAME,
         },
         Patient: {
-        
+        AddressLine1:address,
           Cases: insurance
           ? {
               PatientCaseCreateReq: {
@@ -105,14 +116,14 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
           : undefined,
           DateofBirth: formattedDob,
           EmailAddress: email,
-          EmergencyName:emergencyName,
-          Employer:{
-            EmploymentStatus:employmentStatus,
-          },
+          EmergencyName:emergency_contact_name,
+          // Employer:{
+          //   EmploymentStatus:"Employeed",
+          // },
           FirstName: firstname,
-          HomePhone:phoneNumber,
+          Gender:gender,
           LastName: lastname,
-          MaritalStatus:maritalStatus,
+          MaritalStatus:marital_status,
          
           // DOB: 2012-12-12,
          
@@ -122,6 +133,7 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
           Practice: {
             PracticeID: 3,
           },
+          // PrimaryCarePhysician:,
           SocialSecurityNumber:ssn,
         },
       },

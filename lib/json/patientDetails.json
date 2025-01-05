@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": 1,
+    "firstname": "Rohan",
+    "lastname": "Aggarwal",
+    "dob": "2007-01-01",
+    "email": "rohan.agarwal7568@gmail.com",
+    "mobile": "7976721448",
+    "insurance": "insurance",
+    "questions": [
+      "yes",
+      "yes",
+      "yes",
+      "yes",
+      "yes"
+    ],
+    "gender": "Male",
+    "marital_status": "M",
+    "emergency_contact_name": "7976721448",
+    "ssn": "4555566",
+    "address": "A-3 , Sen colony",
+    "primary_care_physician": "abc",
+    "captchaVerification": "gwhkwr",
+    "patientId": 133,
+    "isRegistered": true,
+    "created_at": "2025-01-05T06:16:55.319Z",
+    "updated_at": "2025-01-05T06:21:41.093Z",
+    "whitelist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvaGFuLmFnYXJ3YWw3NTY4QGdtYWlsLmNvbSIsImlhdCI6MTczNjA1NzgxNSwiZXhwIjoxNzM2MTQ0MjE1fQ.IohomXW0ynBv3vPyleaNiz-uVKcMiZu3TBtjAP14nyE",
+    "password": "237faacd6eea40b852dfa263c80561f1:e384dad1815a9dc2c7a0",
+    "verifiedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvaGFuLmFnYXJ3YWw3NTY4QGdtYWlsLmNvbSIsImlhdCI6MTczNjA1NzgxNSwiZXhwIjoxNzM2MTQ0MjE1fQ.IohomXW0ynBv3vPyleaNiz-uVKcMiZu3TBtjAP14nyE"
+  }
+]

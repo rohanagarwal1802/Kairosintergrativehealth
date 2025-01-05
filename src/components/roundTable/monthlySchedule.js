@@ -8,8 +8,8 @@ o	Why You Should Join:  Join to gain knowledge on risk factors, preventative fac
 o	Why You Should Join: Caught in the endless “what if” scroll? Let’s hit pause and talk about risk factors, preventative factors, symptoms, warning signs, treatments, and how to discuss concerns with your provider. Great for yourself or for better understanding a loved one! Great for yourself or for better understanding your teen!` },
         { monthName: 'April',title:"Mental Health in the family. Different jeans, Same genes - Personal style vs. Family ties.", description: `Focus: Genetics in mental health disorders and cross generational experiences/lingo.
 •	Why You Should Join: It may be hereditary but it doesn’t determine your future. Join for a discussion around nature vs. nurture in specific mental health disorders and what you can do to pursue the highest quality of life for you and your loved ones. ` },
-        { monthName: 'May',title:"Obsessed with Perfection? Let’s Talk OCD - And No, You Don’t Have to Rearrange the Furniture", description: `Focus: All things Obsessive-Compulsive Disorder
-•	Why You Should Join: OCD isn’t just about “neat freaks” - let’s talk about how to deal with the constant need to double-check everything (without driving yourself mad)` },
+        { monthName: 'May',title:"Let’s Talk OCD - And No, You Don’t Have to Rearrange the Furniture", description: `Focus: All things Obsessive-Compulsive Disorder
+•	Why You Should Join: Join to gain knowledge on risk factors, preventative factors, symptoms, warning signs, treatments, and how to discuss concerns with your provider. Great for yourself or for better understanding a loved one!` },
         { monthName: 'June',title:"You Asked For It! - “We listen and we don’t judge.”", description: `Focus: Topic picked by previous Resillience Roundtable Attendees
 •	Why You Should Join: More to come!
 ` },

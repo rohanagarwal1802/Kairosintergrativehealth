@@ -33,7 +33,7 @@ const DeleteAppointmentsModal = ({ appointmentData, onClose, getPatientData ,use
         // Convert the DateTime string to a Date object
         const givenDateTime = new Date(appointmentData.appointmentDate);
 
-        if (givenDateTime < currentDateTime) {
+        if (givenDateTime > currentDateTime) {
         let username=userDetails?.firstname+" "+userDetails?.lastname
         let email=userDetails?.email
         let phone=userDetails?.mobile

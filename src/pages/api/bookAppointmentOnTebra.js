@@ -102,12 +102,10 @@ export default async function handler(req, res) {
     const requestArgs = {
       request: {
         RequestHeader: {
-          ClientVersion: 1.0,
           CustomerKey: process.env.KAREO_CUSTOMER_KEY,
           Password: process.env.KAREO_PASSWORD,
           User: process.env.KAREO_USERNAME,
-          targetNSAlias: 'q4',
-          targetNamespace: 'http://www.kareo.com/api/schemas/',
+         
         },
         Appointment: {
           AppointmentId: 1,
@@ -144,11 +142,20 @@ export default async function handler(req, res) {
       },
     };
 
-    const [appointmentResult] = await client.CreateAppointmentAsync(requestArgs);
+    const client1 = await soap.createClientAsync(WSDL_URL, options);
+    client1.addSoapHeader({ customerKey: process.env.KAREO_CUSTOMER_KEY });
+    client1.on('request', (xml) => {
+      console.log("SOAP Request XML:", xml);
+    });
+    client1.on('response', (xml) => {
+      console.log("SOAP Response XML:", xml);
+    });
 
+    // console.log("appointmentResult",client1)
+return
     res.status(200).json({
       status: "success",
-      appointmentResult,
+      client1,
       message: "Appointment Scheduled successfully!",
     });
   } catch (error) {
