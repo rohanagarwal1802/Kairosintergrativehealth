@@ -22,8 +22,11 @@ const DeleteAppointmentsModal = ({ appointmentData, onClose, getPatientData ,use
     try {
        
       // Use a config object to send the body with DELETE request
+      if(appointmentData.appointmentId)
+        {
       const response = await axios.post("/api/deleteAppointmentFromTebra", { appointmentId:appointmentData.appointmentId});
       console.log(response);
+        }
      
       try{
         const response = await axios.post("/api/deleteAppointment", {id:appointmentData.id});

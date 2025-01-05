@@ -33,14 +33,15 @@ const GoogleMap = () => {
       >
         
         <iframe
-          title="Google Map"
-          frameBorder="0"
-          scrolling="no"
-          marginHeight="0"
-          marginWidth="0"
-          src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=vestavia hills&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-          style={{ width: '100%', height: '100%' }}
-        ></iframe>
+  title="Google Map"
+  frameBorder="0"
+  scrolling="no"
+  marginHeight="0"
+  marginWidth="0"
+  src="https://maps.google.com/maps?q=400+Vestavia+Pkwy,+Vestavia+Hills,+AL+35216,+USA&amp;output=embed"
+  style={{ width: '100%', height: '100%' }}
+></iframe>
+
       </Box>
     </Box>
   );

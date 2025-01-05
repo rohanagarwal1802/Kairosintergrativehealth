@@ -6,5 +6,13 @@
     "appointmentDate": "2025-01-05T18:30:00.000Z",
     "patientId": 132,
     "created_at": "2025-01-04T16:02:02.579Z"
+  },
+  {
+    "id": 3,
+    "service": "Therapy",
+    "location": "Tele Health",
+    "appointmentDate": "2025-01-16T08:00:00.000Z",
+    "patientId": 133,
+    "created_at": "2025-01-05T07:26:49.486Z"
   }
 ]

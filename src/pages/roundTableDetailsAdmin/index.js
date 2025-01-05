@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx'; // Import xlsx for Excel generation
 import Loader from '@/components/Loader';
 import TextContainer from '@/components/textContainer';
 import { useRouter } from 'next/router';
-import CustomPaginationGrid from '@/components/customPagination';
+// import CustomPaginationGrid from '@/components/customPagination';
 
 const RoundTable = ({ userDetails }) => {
   const [pageSize, setPageSize] = useState(10);
@@ -216,7 +216,7 @@ if(!Array.isArray(userData))
                       handleSelectionChange(newSelection)
                     }
                     components={{
-                      Pagination: CustomPaginationGrid,
+                      // Pagination: CustomPaginationGrid,
                       Toolbar: GridToolbar,
                     }}
                     localeText={{ noRowsLabel: "No Patients Available" }}

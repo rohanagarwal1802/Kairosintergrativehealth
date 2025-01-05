@@ -68,7 +68,6 @@ export default async function handler(req, res) {
     const getPatientRequestArgs = {
       request: {
         RequestHeader: {
-          ClientVersion: 1.0,
           CustomerKey: process.env.KAREO_CUSTOMER_KEY,
           Password: process.env.KAREO_PASSWORD,
           User: process.env.KAREO_USERNAME,
@@ -82,7 +81,7 @@ export default async function handler(req, res) {
     const [result] = await client.GetPatientAsync(getPatientRequestArgs);
 
     const result_res = result.GetPatientResult;
-
+console.log("result_res",result_res)
     if (!result_res || !result_res.SecurityResponse || !result_res.SecurityResponse.CustomerId) {
       throw new Error("Required patient data is missing in the SOAP response.");
     }
@@ -99,16 +98,18 @@ export default async function handler(req, res) {
     const current_date = new Date();
     const createdAtISO = current_date.toISOString().replace(/\.\d{3}Z$/, '');
 
+    console.log(startTimeISO,endTimeISO,createdAtISO)
+
     const requestArgs = {
       request: {
         RequestHeader: {
           CustomerKey: process.env.KAREO_CUSTOMER_KEY,
           Password: process.env.KAREO_PASSWORD,
           User: process.env.KAREO_USERNAME,
-         
+      
         },
         Appointment: {
-          AppointmentId: 1,
+          // AppointmentId: 1,
           AppointmentName: "Consultation",
           AppointmentReasonId: appointment_reasonId,
           AppointmentStatus: "Tentative",
@@ -141,21 +142,12 @@ export default async function handler(req, res) {
         },
       },
     };
-
-    const client1 = await soap.createClientAsync(WSDL_URL, options);
-    client1.addSoapHeader({ customerKey: process.env.KAREO_CUSTOMER_KEY });
-    client1.on('request', (xml) => {
-      console.log("SOAP Request XML:", xml);
-    });
-    client1.on('response', (xml) => {
-      console.log("SOAP Response XML:", xml);
-    });
-
-    // console.log("appointmentResult",client1)
-return
+console.log("requestArgs",requestArgs)
+    const [appointmentResult] = await client.CreateAppointmentAsync(requestArgs);
+console.log("appointmentResult ==>",appointmentResult)
     res.status(200).json({
       status: "success",
-      client1,
+      appointmentResult,
       message: "Appointment Scheduled successfully!",
     });
   } catch (error) {

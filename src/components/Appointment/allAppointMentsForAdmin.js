@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Loader from "@/components/Loader";
-import CustomPaginationGrid from "@/components/customPagination";
+// import CustomPaginationGrid from "@/components/customPagination";
 import TextContainer from "@/components/textContainer";
 // import AutorenewIcon from "@mui/icons-material/Autorenew";
 import formatDateStringDDMMYYYY from "@/components/formatDateStringMMDDYYYY";
@@ -290,7 +290,7 @@ if(!Array.isArray(appointmentData))
                 handleSelectionChange(newSelection)
               }
               components={{
-                Pagination: CustomPaginationGrid,
+                // Pagination: CustomPaginationGrid,
                 Toolbar: GridToolbar,
               }}
               localeText={{ noRowsLabel: "No Appointments Available" }}

@@ -23,8 +23,11 @@ const DeletePatientModal = ({ data, onClose, getPatientData }) => {
       // const response = await axios.post("/api/deleteAppointmentFromTebra", data);
       // console.log(response);
       try{
+        if(data.patientId)
+        {
         const response = await axios.post("/api/deleteAppointment", {id:data.patientId});
         console.log(response);
+        }
         try{
             const response = await axios.post("/api/deletePatient",  {id:data.id});
             console.log(response);

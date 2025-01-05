@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import { useRouter } from 'next/router';
-import CustomPaginationGrid from '@/components/customPagination';
+// import CustomPaginationGrid from '@/components/customPagination';
 import EditIcon from "@mui/icons-material/Edit";
 import EditOffIcon from "@mui/icons-material/EditOff";
 import ReviewStatusChangeModal from '@/components/Review/reviewStatusChangeModal';
@@ -291,7 +291,9 @@ onPageSizeChange={(newPageSize) => {
                   handleSelectionChange(newSelection)
                 }
                
-  components={{ Pagination: CustomPaginationGrid, Toolbar: GridToolbar }}
+  components={{
+    //  Pagination: CustomPaginationGrid, 
+    Toolbar: GridToolbar }}
   localeText={{ noRowsLabel: "No Reviews Available" }}
 />
       </Box>
