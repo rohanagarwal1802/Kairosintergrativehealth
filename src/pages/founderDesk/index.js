@@ -337,21 +337,22 @@ color:"white", // Light blue with transparency
           mb:2
         }}
       >
-            <Typography
-          variant="h6"
-          component="div"
-          sx={{
-            textAlign: 'center',
-            fontWeight: 'bold',
-            marginBottom: '10px',
-            color: 'white',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap', // Ensures single-line titles
-            textOverflow: 'ellipsis',
-          }}
-        >
-              {box.title}
-            </Typography>
+           <Typography
+  variant="h6"
+  component="div"
+  sx={{
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    color: 'white',
+    overflow: 'hidden', // Allows the content to wrap but hides overflow outside container
+    whiteSpace: 'normal', // Allows the text to wrap
+    wordWrap: 'break-word', // Ensures long words are wrapped properly
+  }}
+>
+  {box.title}
+</Typography>
+
             <ul
           style={{
             paddingLeft: '20px',
