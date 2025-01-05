@@ -53,7 +53,7 @@ const Footer = () => {
               >
                 <IconButton
                   component="a"
-                  href="https://www.facebook.com/profile.php?id=61568307689433"
+                  href="https://www.linkedin.com/company/kairosintegrativehealth/"
                   target="_blank"
                   color="inherit"
                   sx={{ fontSize: "small" }}
@@ -62,7 +62,7 @@ const Footer = () => {
                 </IconButton>
                 <IconButton
                   component="a"
-                  href="https://www.instagram.com/kairosintegrativehealth/"
+                  href="https://www.instagram.com/kairosintegrativehealth?igsh=bmh4dzJ6NXZ1cjRo"
                   target="_blank"
                   color="inherit"
                   sx={{ fontSize: "small" }}

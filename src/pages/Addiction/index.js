@@ -76,7 +76,7 @@ const AddictionPage = () => {
             {/* Image */}
             <Box
               component="img"
-              src="/addict.jpeg"
+              src="/addict.jpg"
               alt="Founder"
               sx={{
                 height: "70%",

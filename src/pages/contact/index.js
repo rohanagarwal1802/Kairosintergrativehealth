@@ -31,24 +31,26 @@ return (
       alignItems: "center",
       gap: { xs: 2, md: 4 }, // Adjusts the gap between elements based on screen size
       textAlign: { xs: "center", md: "left" }, // Center text on small screens, left-aligned on larger screens
-      mb:{xs:0,md:-8}
+      mt:2
     }}
   >
    <Box sx={{ flex: "1", display: "flex", justifyContent: "center" }}>
   <Image
-    src="/Contact.png"
+    src="/Contact1.jpg"
     alt="Mental Well-being"
-    layout="responsive" // This ensures the image is responsive
-    width={500}  // Set a base width
-    height={500} // Set a base height to maintain aspect ratio
-    style={{
+    layout="responsive" // Ensures the image is responsive
+    width={200}  // Base width for layout calculations
+    height={500} // Base height to maintain aspect ratio
+    sx={{
       borderRadius: "8px", // Optional: Add rounded corners
-      objectFit: "cover",  // Ensures the image scales to cover the area proportionally
-      width: "100%", // Makes image responsive and fill the container width
-      height: "auto", // Ensures the height adjusts according to the width
+      objectFit: "cover",  // Ensures the image scales proportionally
+      width: "50%",       // Makes the image responsive and fills container width
+      height: "calc(100vh - 200px)", // Adjust height relative to viewport
+      maxHeight: "400px",  // Caps the maximum height to avoid oversized images
     }}
   />
 </Box>
+
 
 
     <Box sx={{ flex: "2" }}>

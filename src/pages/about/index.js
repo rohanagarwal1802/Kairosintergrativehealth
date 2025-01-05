@@ -15,7 +15,7 @@ const featureArray = [
   {
     feature: "Competent",
     icon: <InsertChartIcon />,
-    content: "We provide evidence-based treatment plans that supports your unique needs, helping you achieve your goals and improve your overall well-being.",
+    content: "We provide evidence-based treatment plans that support your unique needs, helping you achieve your goals and improve your overall well-being.",
   },
   {
     feature: "Centered",
