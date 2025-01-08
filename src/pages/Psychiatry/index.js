@@ -192,7 +192,7 @@ you will be able to schedule your complimentary phone call.
 
         <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-          After creating your password,
+          After creating your password
           </Typography>
         </Box>    
 

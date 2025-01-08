@@ -28,7 +28,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
 
   // Validation Schema using Yup
   const validationSchema = Yup.object().shape({
-    service: Yup.string().required("Please select a service"),
+    service: Yup.string().required("Please select a Appoitment Reason"),
     location: Yup.string().required("Please select a location"),
     appointmentDate: Yup.date()
       .required("Please select a date")
@@ -183,7 +183,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
                 margin="normal"
                 error={Boolean(touched.service && errors.service)}
               >
-                <InputLabel>Services</InputLabel>
+                <InputLabel>Appoitment Reason</InputLabel>
                 <Select
                   name="service"
                   value={values.service}
@@ -191,11 +191,11 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
                   onBlur={handleBlur}
                   label="Services"
                 >
-                  <MenuItem value="Phyciatry">Phyciatry</MenuItem>
-                  <MenuItem value="Therapy">Therapy</MenuItem>
-                  <MenuItem value="Addiction">Addiction</MenuItem>
-                  <MenuItem value="Genetic Testing">Genetic Testing</MenuItem>
-                  <MenuItem value="CNS-VS Testing">CNS-VS Testing</MenuItem>
+                  <MenuItem value="97">New Patient phone call</MenuItem>
+                  <MenuItem value="96">Initial Visit in office</MenuItem>
+                  <MenuItem value="95">Initial Visit telehealth</MenuItem>
+                  <MenuItem value="80">Follow Up in office</MenuItem>
+                  <MenuItem value="93">Follow Up telehealth</MenuItem>
                 </Select>
                 {touched.service && errors.service && (
                   <Typography color="error" variant="caption">

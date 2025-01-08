@@ -182,7 +182,7 @@ Resilience Roundtable
         p: 3,
         mb: 4,
         mt: 1,
-        textAlign: { xs: "center", md: "left" }, // Center on small screens
+        textAlign: { xs: "left", md: "left" }, // Center on small screens
       }}
     >
       <Typography variant="subtitle1" sx={{ color: "black", mb: 2 }}>

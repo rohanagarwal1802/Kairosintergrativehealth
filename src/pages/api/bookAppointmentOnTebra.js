@@ -26,25 +26,25 @@ export default async function handler(req, res) {
     });
   }
 
-  let PSYCIATRY_ID = process.env.PSYCIATRY_ID;
-  let THERAPY_ID = process.env.THERAPY_ID;
-  let ADDICTION_ID = process.env.ADDICTION_ID;
-  let GENETICTESTING_ID = process.env.GENETICTESTING_ID;
-  let CNVS_ID = process.env.CNVS_ID;
+  // let PSYCIATRY_ID = process.env.PSYCIATRY_ID;
+  // let THERAPY_ID = process.env.THERAPY_ID;
+  // let ADDICTION_ID = process.env.ADDICTION_ID;
+  // let GENETICTESTING_ID = process.env.GENETICTESTING_ID;
+  // let CNVS_ID = process.env.CNVS_ID;
 
-  let appointment_reasonId = 0;
+  // let appointment_reasonId = 0;
 
-  if (service === "Phyciatry") {
-    appointment_reasonId = PSYCIATRY_ID;
-  } else if (service === "Therapy") {
-    appointment_reasonId = THERAPY_ID;
-  } else if (service === "Addiction") {
-    appointment_reasonId = ADDICTION_ID;
-  } else if (service === "Genetic Testing") {
-    appointment_reasonId = GENETICTESTING_ID;
-  } else if (service === "CNS-VS Testing") {
-    appointment_reasonId = CNVS_ID;
-  }
+  // if (service === "Phyciatry") {
+  //   appointment_reasonId = PSYCIATRY_ID;
+  // } else if (service === "Therapy") {
+  //   appointment_reasonId = THERAPY_ID;
+  // } else if (service === "Addiction") {
+  //   appointment_reasonId = ADDICTION_ID;
+  // } else if (service === "Genetic Testing") {
+  //   appointment_reasonId = GENETICTESTING_ID;
+  // } else if (service === "CNS-VS Testing") {
+  //   appointment_reasonId = CNVS_ID;
+  // }
 
   let location_id = 1;
   if (location === "Tele Health") {
@@ -85,7 +85,7 @@ console.log("result_res",result_res)
     if (!result_res || !result_res.SecurityResponse || !result_res.SecurityResponse.CustomerId) {
       throw new Error("Required patient data is missing in the SOAP response.");
     }
-
+console.log(result_res)
     const formattedDOB = new Date(result_res.Patient.DOB).toISOString().replace(/\.\d{3}Z$/, '');
 
     const stDate = new Date(appointmentDate);
@@ -111,7 +111,7 @@ console.log("result_res",result_res)
         Appointment: {
           // AppointmentId: 1,
           AppointmentName: "Consultation",
-          AppointmentReasonId: appointment_reasonId,
+          AppointmentReasonId: parseInt(service),
           AppointmentStatus: "Tentative",
           AppointmentType: "P",
           CreatedAt: createdAtISO,

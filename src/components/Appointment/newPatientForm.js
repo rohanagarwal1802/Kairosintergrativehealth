@@ -51,8 +51,9 @@ const validationSchema = Yup.object({
   // employment_status: Yup.string().required('Employment Status is required'),
   marital_status: Yup.string().required('Marital Status is required'),
   emergency_contact_name: Yup.string().required('Emergency Contact Name is required'),
-  ssn: Yup.string().required('Social Security Number is required'),
+  // ssn: Yup.string(),
   address: Yup.string().required('Address is required'),
+  suggestion:Yup.string(),
   captchaVerification: Yup.string().required('Please verify the captcha'),
 });
 
@@ -88,8 +89,9 @@ const PatientForm = () => {
       // employment_status,
       marital_status:'',
       emergency_contact_name:'',
-      ssn:'',
+      // ssn:'',
       address:'',
+      suggestion:'',
       captchaVerification: '',
     },
     validationSchema,
@@ -109,7 +111,8 @@ const PatientForm = () => {
         // address:'',
         // :'',
         const { firstname, lastname, mobile, email, dob, insurance,gender,marital_status,emergency_contact_name,
-          ssn,address,
+          // ssn,
+          address,
          } = values;
         val.firstname = firstname;
         val.lastname = lastname;
@@ -120,7 +123,7 @@ const PatientForm = () => {
         val.gender=gender;
         val.marital_status=marital_status;
         val.emergency_contact_name=emergency_contact_name;
-        val.ssn=ssn;
+        // val.ssn=ssn;
         val.address=address;
         // Check if patient already exists
         const patient_detail = await axios.post('/api/getPatientDetailsByEmail', { email: email });
@@ -242,8 +245,8 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
     <Box
           sx={{
             width: '100%',
-            mx: 'auto',
-            my: 4,
+            // mx: 'auto',
+            // my: 4,
             p: 3,
             borderRadius: 2,
             boxShadow: 3,
@@ -292,11 +295,11 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
                 Health to create a password.
               </Typography>
             </ListItem>
-            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+            {/* <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
               Create a password with KIH  through Tebra (use link in email), where you will be able to schedule your complimentary phone call.
               </Typography>
-            </ListItem>
+            </ListItem> */}
           </List>
         </Box>
 
@@ -351,9 +354,18 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
     <ThemeProvider theme={greenTheme}>
    
 
-          <Typography variant="h4" align="center" gutterBottom sx={{ color: 'navy' }}>
-            Request a complementary phone call
-          </Typography>
+    <Typography 
+    variant="h6" 
+    align="center" 
+    gutterBottom 
+    sx={{ 
+      color: 'navy', 
+      wordWrap: 'break-word', 
+      fontSize: { xs: '1.2rem', sm: '2rem' },
+    }}
+  >
+    Request a complementary phone call
+  </Typography>
           <hr style={{ width: '80%', margin: 'auto', borderColor: 'black' }} />
 
           <form onSubmit={(e) => {
@@ -361,167 +373,140 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
             formik.handleSubmit(e); // Manually trigger the form submission
           } } onReset={formik.handleReset}>
             {/* Text Fields */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2, gap: 2 }}>
-  {/* First Name and Last Name */}
-  <Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-    <TextField
-      label={<RequiredLabel label="Patient's First Name" />}
-      name="firstname"
-      value={formik.values.firstname}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      fullWidth
-    />
-    {formik.touched.firstname && formik.errors.firstname && (
-      <Typography color="error">{formik.errors.firstname}</Typography>
-    )}
-    </Box>
+            <Grid container spacing={2} mt={2}>
+        {/* First Name */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+                label={<RequiredLabel label="Patient's First Name" />}
 
-<Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-    <TextField
-      label={<RequiredLabel label="Patient's Last Name" />}
-      name="lastname"
-      value={formik.values.lastname}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      fullWidth
-      error={Boolean(formik.touched.lastname && formik.errors.lastname)}
-    />
-    {formik.touched.lastname && formik.errors.lastname && (
-      <Typography color="error" variant="caption" sx={{ mt: 0.5 }}>
-        {formik.errors.lastname}
-      </Typography>
-    )}
-  </Box>
+            name="firstname"
+            value={formik.values.firstname}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+            error={Boolean(formik.touched.firstname && formik.errors.firstname)}
+            helperText={formik.touched.firstname && formik.errors.firstname}
+          />
+        </Grid>
 
- 
+        {/* Last Name */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+            label="Patient's Last Name"
+            name="lastname"
+            value={formik.values.lastname}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+          />
+        </Grid>
 
-  {/* Email and Mobile */}
-  <Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-    <TextField
-      label={<RequiredLabel label="Patient's Email" />}
-      name="email"
-      type="email"
-      value={formik.values.email}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      fullWidth
-    />
-    {formik.touched.email && formik.errors.email && (
-      <Typography color="error">{formik.errors.email}</Typography>
-    )}
-</Box>
-<Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-<TextField
-  label={<RequiredLabel label="Patient's Mobile" />}
-  name="mobile"
-  type="tel"
-  value={formik.values.mobile}
-  onChange={formik.handleChange}
-  onBlur={formik.handleBlur}
-  fullWidth
-  inputProps={{
-    maxLength: 10,
-  }}
-  onKeyPress={(e) => {
-    if (!/^[0-9]$/.test(e.key)) {
-      e.preventDefault(); // Prevent non-numeric characters
-    }
-  }}
-  error={Boolean(formik.touched.mobile && formik.errors.mobile)}
-/>
-{formik.touched.mobile && formik.errors.mobile && (
-  <Typography color="error">{formik.errors.mobile}</Typography>
-)}
+        {/* Email */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+           label={<RequiredLabel label="Patient's Email" />}
+            name="email"
+            type="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+            error={Boolean(formik.touched.email && formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+          />
+        </Grid>
 
-    {formik.touched.mobile && formik.errors.mobile && (
-      <Typography color="error">{formik.errors.mobile}</Typography>
-    )}
-  </Box>
-  <Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-  {/* Date of Birth */}
-  <TextField
-    label={<RequiredLabel label="Patient's Date of Birth" />}
-    name="dob"
-    type="date"
-    InputLabelProps={{ shrink: true }}
-    fullWidth
-    inputProps={{
-      min: minDateFormatted, // Set min date to 75 years ago
-      max: maxDateFormatted, // Set max date to 18 years ago
-    }}
-    value={formik.values.dob || ''} // Ensure controlled input
-    onChange={formik.handleChange}
-    onBlur={formik.handleBlur}
-    sx={{ flex: 1 }} // Ensures equal space sharing
-  />
-  {formik.touched.dob && formik.errors.dob && (
-    <Typography color="error" variant="caption">
-      {formik.errors.dob}
-    </Typography>
-  )}
-</Box>
-<Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-  {/* Gender */}
-  <FormControl
-    sx={{ flex: 1 }} // Ensures equal space sharing
-    error={Boolean(formik.touched.gender && formik.errors.gender)}
-    fullWidth
-  >
-    <InputLabel><RequiredLabel label="Gender"/></InputLabel>
+        {/* Mobile */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+            label={<RequiredLabel label="Patient's Mobile" />}
+            name="mobile"
+            type="tel"
+            value={formik.values.mobile}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+            inputProps={{ maxLength: 10 }}
+            onKeyPress={(e) => {
+              if (!/^[0-9]$/.test(e.key)) {
+                e.preventDefault(); // Prevent non-numeric characters
+              }
+            }}
+            error={Boolean(formik.touched.mobile && formik.errors.mobile)}
+            helperText={formik.touched.mobile && formik.errors.mobile}
+          />
+        </Grid>
+
+        {/* DOB */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+             label={<RequiredLabel label="Patient's Date of Birth" />}
+            name="dob"
+            type="date"
+            value={formik.values.dob}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            InputLabelProps={{ shrink: true }}
+            inputProps={{
+              min: minDateFormatted, // Set min date to 75 years ago
+              max: maxDateFormatted, // Set max date to 18 years ago
+            }}
+            fullWidth
+            error={Boolean(formik.touched.dob && formik.errors.dob)}
+            helperText={formik.touched.dob && formik.errors.dob}
+          />
+        </Grid>
+
+        {/* Gender */}
+        <Grid item xs={12} sm={6}>
+  <FormControl fullWidth error={Boolean(formik.touched.gender && formik.errors.gender)}>
+    <InputLabel id="gender-label">Gender</InputLabel>
     <Select
+      labelId="gender-label"
       name="gender"
       value={formik.values.gender}
       onChange={formik.handleChange}
-      onBlur={formik.handleBlur} // Ensures validation on blur
+      onBlur={formik.handleBlur}
       label={<RequiredLabel label="Gender"/>}
-      fullWidth
     >
       <MenuItem value="Male">Male</MenuItem>
       <MenuItem value="Female">Female</MenuItem>
       <MenuItem value="Unknown">Unknown</MenuItem>
     </Select>
     {formik.touched.gender && formik.errors.gender && (
-      <Typography color="error" variant="caption">
-        {formik.errors.gender}
-      </Typography>
+      <FormHelperText>{formik.errors.gender}</FormHelperText>
     )}
   </FormControl>
-</Box>
-<Box sx={{ mt: 2, width: '100%' }}>
-  <TextField
-    label={<RequiredLabel label="Patient's Address" />}
-    name="address"
-    value={formik.values.address}
-    onChange={formik.handleChange}
-    onBlur={formik.handleBlur}
-    fullWidth
-    multiline
-    rows={4} // Adjust number of rows as needed
-    error={Boolean(formik.touched.address && formik.errors.address)}
-  />
-  {formik.touched.address && formik.errors.address && (
-    <Typography color="error" variant="caption" sx={{ mt: 0.5 }}>
-      {formik.errors.address}
-    </Typography>
-  )}
-</Box>
-<Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-  {/* Gender */}
-  <FormControl
-    sx={{ flex: 1 }} // Ensures equal space sharing
-    error={Boolean(formik.touched.marital_status && formik.errors.marital_status)}
-    fullWidth
-  >
-    <InputLabel><RequiredLabel label="Marital Status"/></InputLabel>
-    <Select
-      name="marital_status"
-      value={formik.values.marital_status}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur} // Ensures validation on blur
-      label={<RequiredLabel label="Marital Status"/>}
+</Grid>
+
+        {/* Address */}
+        <Grid item xs={12}>
+          <TextField
+            label={<RequiredLabel label="Patient's Address" />}
+            name="address"
+            value={formik.values.address}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+            multiline
+            rows={4}
+            error={Boolean(formik.touched.address && formik.errors.address)}
+            helperText={formik.touched.address && formik.errors.address}
+          />
+        </Grid>
+
+        {/* Marital Status */}
+        <Grid item xs={12} sm={6}>
+          <FormControl fullWidth error={Boolean(formik.touched.marital_status && formik.errors.marital_status)}>
+            <InputLabel>Marital Status</InputLabel>
+            <Select
+              name="marital_status"
+              value={formik.values.marital_status}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              label={<RequiredLabel label="Marital Status"/>}
       fullWidth
-    >
+            >
       <MenuItem value="A">Annulled</MenuItem>
       <MenuItem value="D">Divorced</MenuItem>
       <MenuItem value="I">Interlocutoru</MenuItem>
@@ -540,118 +525,86 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
       </Typography>
     )}
   </FormControl>
-</Box>
-<Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-    <TextField
-      label={<RequiredLabel label="Emergency Contact Name" />}
-      name="emergency_contact_name"
-      value={formik.values.emergency_contact_name}
+  </Grid>
+
+{/* Emergency Contact Name */}
+<Grid item xs={12} sm={6}>
+  <TextField
+     label={<RequiredLabel label="Emergency Contact Name" />}
+    name="emergency_contact_name"
+    value={formik.values.emergency_contact_name}
+    onChange={formik.handleChange}
+    onBlur={formik.handleBlur}
+    fullWidth
+    error={Boolean(formik.touched.emergency_contact_name && formik.errors.emergency_contact_name)}
+    helperText={formik.touched.emergency_contact_name && formik.errors.emergency_contact_name}
+  />
+</Grid>
+
+{/* Insurance */}
+<Grid item xs={12}>
+  <TextField
+     label={<RequiredLabel label="Insurance" />}
+    name="insurance"
+    value={formik.values.insurance}
+    onChange={formik.handleChange}
+    onBlur={formik.handleBlur}
+    fullWidth
+    error={Boolean(formik.touched.insurance && formik.errors.insurance)}
+    helperText={formik.touched.insurance && formik.errors.insurance}
+  />
+</Grid>
+
+{/* Radio Questions */}
+{[
+  "Do we have permissions to text you?",
+  "Are you scheduling an appointment for yourself?",
+  "Are you over the age of 18?",
+  "Have you been hospitalized or visited the ER for psychiatric reasons within the last 4 weeks?",
+  "Are you making this appointment to discuss disability paperwork or seeking care for a work-related injury?",
+].map((question, index) => (
+  <Grid item xs={12} key={index}>
+   <Typography>
+                    <RequiredLabel label={question} />
+                  </Typography>
+    <RadioGroup
+      row
+      name={`questions[${index}]`}
+      value={formik.values.questions[index]}
       onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      fullWidth
-    />
-    {formik.touched.emergency_contact_name && formik.errors.emergency_contact_name && (
-      <Typography color="error">{formik.errors.emergency_contact_name}</Typography>
-    )}
-    </Box>
-    <Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-    <TextField
-      label={<RequiredLabel label="Social Security Number" />}
-      name="ssn"
-      value={formik.values.ssn}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      fullWidth
-    />
-    {formik.touched.ssn && formik.errors.ssn && (
-      <Typography color="error">{formik.errors.ssn}</Typography>
-    )}
-    </Box>
-    <Box sx={{ flex: 1, minWidth: 'calc(50% - 8px)' }}>
-    <TextField
-      label={<RequiredLabel label="Insurance" />}
-      name="insurance"
-      value={formik.values.insurance}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      fullWidth
-    />
-            {formik.touched.insurance && formik.errors.insurance && (
-              <Typography color="error">{formik.errors.insurance}</Typography>
-            )}
-  
-    </Box>
-</Box>
+    >
+      <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+      <FormControlLabel value="no" control={<Radio />} label="No" />
+    </RadioGroup>
+    <Typography variant="caption" color="error">
+      {formik.touched.questions?.[index] && formik.errors.questions?.[index]}
+    </Typography>
+  </Grid>
+))}
 
+{/* Captcha */}
+<Grid item xs={12} sm={6}>
+  <TextField
+    label={<RequiredLabel label="Enter Captcha" />}
+    name="captchaVerification"
+    value={formik.values.captchaVerification}
+    onChange={formik.handleChange}
+    onBlur={formik.handleBlur}
+    fullWidth
+    error={Boolean(formik.touched.captchaVerification && formik.errors.captchaVerification)}
+    helperText={formik.touched.captchaVerification && formik.errors.captchaVerification}
+  />
+</Grid>
+<Grid item xs={12} sm={6}>
+  <Typography>{captchaValue}</Typography>
+  <IconButton onClick={refreshCaptcha}>
+    <RefreshIcon />
+  </IconButton>
+</Grid>
+</Grid>
 
-            {/* Radio Questions */}
-            {[
-              "Do we have permissions to text you?",
-              "Are you scheduling an appointment for yourself?",
-              "Are you over the age of 18?",
-              "Have you been hospitalized or visited the ER for psychiatric reasons within the last 4 weeks?",
-              "Are you making this appointment to discuss disability paperwork or seeking care for a work-related injury?",
-            ].map((question, index) => (
-              <Box key={index} sx={{ mt: 2 }}>
-                <Typography>
-                  <RequiredLabel label={question} />
-                </Typography>
-                <RadioGroup
-                  row
-                  name={`questions[${index}]`}
-                  value={formik.values.questions[index]}
-                  onChange={formik.handleChange}
-                >
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                </RadioGroup>
-                {formik.touched.questions?.[index] && formik.errors.questions?.[index] && (
-                  <Typography color="error">{formik.errors.questions[index]}</Typography>
-                )}
-              </Box>
-            ))}
-
-           
-
-            {/* Additional Question */}
-            {/* <Box sx={{ mt: 2 }}>
-      <Typography>How can we help?</Typography>
-      <RadioGroup
-        row
-        name="service"
-        value={formik.values.service}
-        onChange={formik.handleChange}
-      >
-        <FormControlLabel value="Psychiatry" control={<Radio />} label="Psychiatry" />
-        <FormControlLabel value="Psychology" control={<Radio />} label="Psychology" />
-        <FormControlLabel value="Other" control={<Radio />} label="Other" />
-      </RadioGroup>
-      {formik.touched.service && formik.errors.service && (
-        <Typography color="error">{formik.errors.service}</Typography>
-      )}
-    </Box> */}
-
-            {/* Captcha */}
-            <Box sx={{ mt: 2 }}>
-              <Typography>Captcha: {captchaValue}</Typography>
-              <TextField
-                label="Enter Captcha"
-                name="captchaVerification"
-                value={formik.values.captchaVerification}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                fullWidth
-                sx={{ mt: 1 }} />
-              {formik.touched.captchaVerification && formik.errors.captchaVerification && (
-                <Typography color="error">{formik.errors.captchaVerification}</Typography>
-              )}
-              <IconButton onClick={refreshCaptcha} sx={{ mt: 1 }}>
-                <RefreshIcon />
-              </IconButton>
-            </Box>
-
-            {/* Submit Button */}
-            <Box sx={{ mt: 3 }}>
+  {/* Submit Button */}
+  <Box sx={{ mt: 3 }}>
               <Button
                 type="submit"
                 variant="contained"
@@ -666,7 +619,7 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
                 )}
               </Button>
             </Box>
-          </form>
+</form>
           
       </ThemeProvider>
       </Box>

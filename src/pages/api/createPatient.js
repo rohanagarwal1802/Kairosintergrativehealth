@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   // val.address=address;
   // val.=
   const { firstname, lastname, dob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-    marital_status,ssn,emergency_contact_name,address,
+    marital_status,emergency_contact_name,address,
   } = req.body;
 
   try {
@@ -69,13 +69,13 @@ export default async function handler(req, res) {
         }
         client = soapClient;
         await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-          marital_status,ssn,emergency_contact_name,address,);
+          marital_status,emergency_contact_name,address,);
       });
     } else {
       console.log("Using createClientAsync in development");
       client = await soap.createClientAsync(WSDL_URL, options);
       await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-        marital_status,ssn,emergency_contact_name,address,);
+        marital_status,emergency_contact_name,address,);
     }
   } catch (error) {
     console.error("Error during SOAP operation:", {
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
 }
 
 async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-  marital_status,ssn,emergency_contact_name,address,) {
+  marital_status,emergency_contact_name,address,) {
   try {
     // Construct Request Arguments
     const requestArgs = {
@@ -134,7 +134,7 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
             PracticeID: 3,
           },
           // PrimaryCarePhysician:,
-          SocialSecurityNumber:ssn,
+          // SocialSecurityNumber:ssn,
         },
       },
     };

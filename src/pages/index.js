@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 
 import PeoplePreferUs from "@/components/Home/peoplePreferUs";
 // import FeedbackClients from "@/components/Home/feedback";
@@ -14,11 +14,12 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const { loadLoader, setLoadLoader } = useUserStore();
-  const router=useRouter()
+  const router = useRouter();
+  const isLargeScreen = useMediaQuery("(min-width:600px)"); // Media query for large screens
 
   const handlePhoneCallClick = () => {
     // Add logic to trigger the phone call box/modal
-    router.push('/bookanappointment')
+    router.push('/bookanappointment');
   };
 
   return (
@@ -70,30 +71,32 @@ export default function Home() {
       {/* <FeedbackClients /> */}
 
       {/* Sticky Button */}
-      <Box
-        sx={{
-          position: "sticky",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          backgroundColor: "white",
-          textAlign: "center",
-          padding: "10px 0",
-          boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handlePhoneCallClick}
+      {isLargeScreen && ( // Render only on large screens
+        <Box
           sx={{
-            padding: "12px 24px",
-            fontSize: "16px",
+            position: "sticky",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            backgroundColor: "white",
+            textAlign: "center",
+            padding: "10px 0",
+            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
           }}
         >
-          Complimentary Phone Call
-        </Button>
-      </Box>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handlePhoneCallClick}
+            sx={{
+              padding: "12px 24px",
+              fontSize: "16px",
+            }}
+          >
+            Complimentary Phone Call
+          </Button>
+        </Box>
+      )}
     </>
   );
 }

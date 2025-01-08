@@ -76,7 +76,7 @@ const About = () => {
       textAlign: { xs: "center", md: "center" }, // Center on small screens
     }}
   >
-        About Kairos Integrative Health (K.I.H) <br />
+        About Kairos Integrative Health (KIH) <br />
     </Typography>
     <Typography
     variant="subtitle1"
@@ -134,7 +134,7 @@ const About = () => {
 ))}
 
 {/* Second Row (2 items) */}
-<Grid container spacing={2} justifyContent="center" alignItems="center">
+
 
   {/* Second Row (2 items) */}
   {featureArray.slice(3, 5).map((feature, index) => (
@@ -172,14 +172,13 @@ const About = () => {
     </Grid>
   ))}
 
-</Grid>
 
 <Grid item xs={12} sm={4} md={4}></Grid>
 {/* Third Row (1 item) */}
 <Grid container spacing={2} justifyContent="center" alignItems="center">
 {featureArray.slice(5, 6).map((feature, index) => (
   <Grid item xs={12} sm={6} md={6} key={index}>
-    <Box
+     <Box
       sx={{
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         color: "#333",
