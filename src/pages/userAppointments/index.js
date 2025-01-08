@@ -137,7 +137,7 @@ if(!Array.isArray(appointmentData))
       renderCell: (params) => (
         <TextContainer>
           {params.value !== null && params.value !== undefined
-            ? params.value
+            ? params.value.split(",")[0]
             : "NA"}
         </TextContainer>
       ),

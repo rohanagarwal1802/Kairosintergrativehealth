@@ -30,6 +30,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
   const validationSchema = Yup.object().shape({
     service: Yup.string().required("Please select a Appoitment Reason"),
     location: Yup.string().required("Please select a location"),
+    timeSlot: Yup.string().required("Please enter your timeslot"),
     appointmentDate: Yup.date()
       .required("Please select a date")
       .typeError("Invalid date"),
@@ -44,6 +45,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
         service: values.service,
         location: values.location,
         appointmentDate: values.appointmentDate,
+        timeSlot:values.timeSlot,
         patientId:patientId
       };
 
@@ -57,7 +59,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
         if(appointment_id)
         data.appointmentId = appointment_id;
         const appointmentResp=await axios.post('/api/createNewAppointMent',data)
-        let username=userDetails?.firstname+" "+userDetails?.lastname
+        let username=userDetails?.timeSlot+" "+userDetails?.lastname
         let email=userDetails?.email
         let phone=userDetails?.mobile
         let emailValues = { ...data,username:username,email:email,phone:phone };
@@ -147,7 +149,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
+          // width: 400,
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 4,
@@ -185,11 +187,11 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
               >
                 <InputLabel>Appoitment Reason</InputLabel>
                 <Select
-                  name="service"
+                  name="Appoitment Reason"
                   value={values.service}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  label="Services"
+                  label="Appoitment Reason"
                 >
                   <MenuItem value="97">New Patient phone call</MenuItem>
                   <MenuItem value="96">Initial Visit in office</MenuItem>
@@ -208,6 +210,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
               <FormControl
                 fullWidth
                 margin="normal"
+                
                 error={Boolean(touched.location && errors.location)}
               >
                 <InputLabel>Location</InputLabel>
@@ -219,7 +222,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
                   label="Location"
                 >
                   <MenuItem value="Tele Health">Tele Health</MenuItem>
-                  <MenuItem value="Offline">Offline</MenuItem>
+                  <MenuItem value="In office">In office</MenuItem>
                 </Select>
                 {touched.location && errors.location && (
                   <Typography color="error" variant="caption">
@@ -232,12 +235,14 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
               <FormControl
                 fullWidth
                 margin="normal"
+                sx={{mb:"5%"}}
               >
                 <DatePicker
                   selected={values.appointmentDate}
                   onChange={(date) => setFieldValue("appointmentDate", date)}
                   placeholderText="Select appointment date"
-                  dateFormat="dd-MM-yyyy"
+                  dateFormat="MM-dd-yyyy"
+                  sx={{mb:"1%"}}
                   minDate={new Date()} // Disable past dates
                   customInput={
                     <ExampleCustomInput
@@ -248,6 +253,18 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
                   }
                 />
               </FormControl>
+ <TextField
+                label={"Please list 3 timeframes for the date above you are available"}
+
+            name="timeSlot"
+            value={values.timeSlot}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            fullWidth
+            error={Boolean(touched.timeSlot && errors.timeSlot)}
+            helperText={touched.timeSlot && errors.timeSlot}
+          />
+              
 
               {/* Action Buttons */}
               <Box display="flex" justifyContent="flex-end" mt={3} gap={2}>

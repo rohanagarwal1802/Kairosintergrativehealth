@@ -1,6 +1,7 @@
 import * as soap from 'soap';
 
 import { format } from "date-fns";
+import { Emergency } from '@mui/icons-material';
 
 export default async function handler(req, res) {
   const WSDL_URL = "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?singleWsdl";
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
   // val.address=address;
   // val.=
   const { firstname, lastname, dob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-    marital_status,emergency_contact_name,address,
+    marital_status,emergency_contact_name,address,emergency_contact_number
   } = req.body;
 
   try {
@@ -69,13 +70,13 @@ export default async function handler(req, res) {
         }
         client = soapClient;
         await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-          marital_status,emergency_contact_name,address,);
+          marital_status,emergency_contact_name,address,emergency_contact_number);
       });
     } else {
       console.log("Using createClientAsync in development");
       client = await soap.createClientAsync(WSDL_URL, options);
       await processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-        marital_status,emergency_contact_name,address,);
+        marital_status,emergency_contact_name,address,emergency_contact_number);
     }
   } catch (error) {
     console.error("Error during SOAP operation:", {
@@ -90,7 +91,7 @@ export default async function handler(req, res) {
 }
 
 async function processRequest(client, req, res, firstname, lastname, formattedDob, email, mobile, insurance ,emergencyName,employmentStatus,gender,
-  marital_status,emergency_contact_name,address,) {
+  marital_status,emergency_contact_name,address,emergency_contact_number) {
   try {
     // Construct Request Arguments
     const requestArgs = {
@@ -117,6 +118,7 @@ async function processRequest(client, req, res, firstname, lastname, formattedDo
           DateofBirth: formattedDob,
           EmailAddress: email,
           EmergencyName:emergency_contact_name,
+          EmergencyPhone:emergency_contact_number,
           // Employer:{
           //   EmploymentStatus:"Employeed",
           // },

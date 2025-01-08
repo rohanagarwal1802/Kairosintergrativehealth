@@ -17,7 +17,8 @@ import {
   Button,
   CircularProgress,
   List,
-  ListItem
+  ListItem,
+  FormHelperText 
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
@@ -26,6 +27,9 @@ import useCustomSnackbarStore from '@/pages/utils/useCustomSnackbarStore';
 
 // Custom Green Theme
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import DatePicker from "react-datepicker";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import "react-datepicker/dist/react-datepicker.css";
 import { add } from 'date-fns';
 const greenTheme = createTheme({
   palette: {
@@ -33,6 +37,36 @@ const greenTheme = createTheme({
     secondary: { main: '#81c784' },
   },
 });
+
+const ExampleCustomInput = React.forwardRef(
+  ({ value, onClick, onClear, error, helperText }, ref) => (
+    <TextField
+      onClick={onClick}
+      value={value || ""}
+      label="Patient's Date of Birth"
+      autoComplete="off"
+      InputProps={{
+        endAdornment: (
+          <IconButton
+            edge="end"
+            size="small"
+            onClick={onClick}
+            sx={{
+              cursor: "pointer",
+              "&:hover": { backgroundColor: "transparent" },
+            }}
+          >
+            <ArrowDropDownIcon />
+          </IconButton>
+        ),
+      }}
+      fullWidth
+      ref={ref}
+      error={Boolean(error)} // Only show error if there is an error
+      helperText={error ? helperText : ""}
+    />
+  )
+);
 
 // Validation Schema
 const validationSchema = Yup.object({
@@ -51,6 +85,7 @@ const validationSchema = Yup.object({
   // employment_status: Yup.string().required('Employment Status is required'),
   marital_status: Yup.string().required('Marital Status is required'),
   emergency_contact_name: Yup.string().required('Emergency Contact Name is required'),
+  emergency_contact_number: Yup.string().required('Emergency Contact Number is required'),
   // ssn: Yup.string(),
   address: Yup.string().required('Address is required'),
   suggestion:Yup.string(),
@@ -89,6 +124,7 @@ const PatientForm = () => {
       // employment_status,
       marital_status:'',
       emergency_contact_name:'',
+      emergency_contact_number:'',
       // ssn:'',
       address:'',
       suggestion:'',
@@ -110,7 +146,7 @@ const PatientForm = () => {
         // ssn:'',
         // address:'',
         // :'',
-        const { firstname, lastname, mobile, email, dob, insurance,gender,marital_status,emergency_contact_name,
+        const { firstname, lastname, mobile, email, dob, insurance,gender,marital_status,emergency_contact_name,emergency_contact_number,
           // ssn,
           address,
          } = values;
@@ -123,6 +159,7 @@ const PatientForm = () => {
         val.gender=gender;
         val.marital_status=marital_status;
         val.emergency_contact_name=emergency_contact_name;
+        val.emergency_contact_number=emergency_contact_number;
         // val.ssn=ssn;
         val.address=address;
         // Check if patient already exists
@@ -239,6 +276,13 @@ maxDate.setFullYear(currentDate.getFullYear() - 18);
 // Format the dates to "YYYY-MM-DD" for input
 const minDateFormatted = minDate.toISOString().split('T')[0];
 const maxDateFormatted = maxDate.toISOString().split('T')[0];
+
+const parseDate = (dateString) => {
+  const [month, day, year] = dateString.split("-");
+  if (!month || !day || !year) return null;
+  const date = new Date(`${year}-${month}-${day}`);
+  return isNaN(date.getTime()) ? null : date.toISOString().split("T")[0];
+};
 
   return (
     <>
@@ -439,22 +483,46 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
 
         {/* DOB */}
         <Grid item xs={12} sm={6}>
-          <TextField
+          <FormControl
+                          fullWidth
+                          // margin="normal"
+                        >
+                          <DatePicker
+                            selected={formik.values.dob}
+                            onChange={(date) => formik.setFieldValue("dob", date)}
+                            placeholderText={<RequiredLabel label="Patient's Date of Birth" />}
+                            dateFormat="MM-dd-yyyy"
+                            minDate={minDateFormatted} // Disable past dates
+                            maxDate={maxDateFormatted}
+                            customInput={
+                              <ExampleCustomInput
+                                onClear={() => formik.setFieldValue("dob", null)}
+                                error={formik.touched.dob && formik.errors.dob}
+                                helperText={formik.errors.dob}
+                              />
+                            }
+                          />
+                        </FormControl>
+          {/* <TextField
              label={<RequiredLabel label="Patient's Date of Birth" />}
             name="dob"
             type="date"
             value={formik.values.dob}
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              const date = parseDate(e.target.value);
+              if (date) formik.setFieldValue("dob", date);
+            }}
             onBlur={formik.handleBlur}
             InputLabelProps={{ shrink: true }}
             inputProps={{
+              placeholder: "MM-dd-yyyy", // Placeholder for clarity
               min: minDateFormatted, // Set min date to 75 years ago
               max: maxDateFormatted, // Set max date to 18 years ago
             }}
             fullWidth
             error={Boolean(formik.touched.dob && formik.errors.dob)}
             helperText={formik.touched.dob && formik.errors.dob}
-          />
+          /> */}
         </Grid>
 
         {/* Gender */}
@@ -527,6 +595,20 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
   </FormControl>
   </Grid>
 
+  {/* Insurance */}
+<Grid item xs={12} sm={6}>
+  <TextField
+     label={<RequiredLabel label="Insurance" />}
+    name="insurance"
+    value={formik.values.insurance}
+    onChange={formik.handleChange}
+    onBlur={formik.handleBlur}
+    fullWidth
+    error={Boolean(formik.touched.insurance && formik.errors.insurance)}
+    helperText={formik.touched.insurance && formik.errors.insurance}
+  />
+</Grid>
+
 {/* Emergency Contact Name */}
 <Grid item xs={12} sm={6}>
   <TextField
@@ -541,19 +623,21 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
   />
 </Grid>
 
-{/* Insurance */}
-<Grid item xs={12}>
+{/* Emergency Contact Name */}
+<Grid item xs={12} sm={6}>
   <TextField
-     label={<RequiredLabel label="Insurance" />}
-    name="insurance"
-    value={formik.values.insurance}
+     label={<RequiredLabel label="Emergency Contact Number" />}
+    name="emergency_contact_number"
+    value={formik.values.emergency_contact_number}
     onChange={formik.handleChange}
     onBlur={formik.handleBlur}
     fullWidth
-    error={Boolean(formik.touched.insurance && formik.errors.insurance)}
-    helperText={formik.touched.insurance && formik.errors.insurance}
+    error={Boolean(formik.touched.emergency_contact_number && formik.errors.emergency_contact_number)}
+    helperText={formik.touched.emergency_contact_number && formik.errors.emergency_contact_number}
   />
 </Grid>
+
+
 
 {/* Radio Questions */}
 {[
@@ -601,6 +685,20 @@ const maxDateFormatted = maxDate.toISOString().split('T')[0];
     <RefreshIcon />
   </IconButton>
 </Grid>
+<Grid item xs={12}>
+          <TextField
+            label={"Is there anything else you would like us to know ?"}
+            name="suggestion"
+            value={formik.values.suggestion}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+            multiline
+            rows={4}
+            error={Boolean(formik.touched.suggestion && formik.errors.suggestion)}
+            helperText={formik.touched.suggestion && formik.errors.suggestion}
+          />
+        </Grid>
 </Grid>
 
   {/* Submit Button */}

@@ -96,6 +96,12 @@ const headCells = [
     label: "Is Active",
   },
   {
+    id: "suggestion",
+    numeric: true,
+    disablePadding: false,
+    label: "Suggestion",
+  },
+  {
     id: "created_at",
     numeric: true,
     disablePadding: false,
@@ -130,6 +136,7 @@ const handleDownloadExcel = (rows) => {
     { wch: 15 }, // Mobile
     { wch: 10 }, // Insurance
     { wch: 10 }, // Is Active
+    { wch: 50 }, // Is Active
     { wch: 25 }, // Created At
     { wch: 25 }, // Updated At
   ];
@@ -140,13 +147,14 @@ const handleDownloadExcel = (rows) => {
 
 const columnWidths = {
   sno: 60,
-  firstname: 1500,
+  firstname: 150,
   lastname: 150,
   dob: 150,
   email: 250,
   mobile: 150,
   insurance: 100,
   isRegistered: 100,
+  suggestion:250,
   created_at: 200,
   updated_at: 200,
   Action: 160,
@@ -395,6 +403,7 @@ const PatientsTable = ({ userDetails }) => {
         <TableCell sx={{ width: columnWidths.isRegistered }}>
           {row.isRegistered ? "Active" : "Inactive"}
         </TableCell>
+        <TableCell sx={{ width: columnWidths.suggestion }}>{row.suggestion}</TableCell>
         <TableCell sx={{ width: columnWidths.created_at }}>{row.created_at}</TableCell>
         <TableCell sx={{ width: columnWidths.updated_at }}>{row.updated_at}</TableCell>
         <TableCell sx={{ width: columnWidths.Action }}>

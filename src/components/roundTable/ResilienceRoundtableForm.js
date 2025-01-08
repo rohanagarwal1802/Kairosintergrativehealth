@@ -14,11 +14,15 @@ import {
   RadioGroup,
   FormControl,
   FormLabel,
-  FormHelperText 
+  FormHelperText ,
+  IconButton
 } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import FullScreenDialog from './FullScreenDialog';
 import axios from 'axios';
+import DatePicker from "react-datepicker";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const greenTheme = createTheme({
@@ -78,6 +82,67 @@ const ResilienceRoundtableForm = () => {
     firstAttendeeName: '',
     secondAttendeeName: '',
   };
+
+  const ExampleCustomInput = React.forwardRef(
+    ({ value, onClick, onClear, error, helperText }, ref) => (
+      <TextField
+        onClick={onClick}
+        value={value || ""}
+        label="Date of Birth"
+        autoComplete="off"
+        InputProps={{
+          endAdornment: (
+            <IconButton
+              edge="end"
+              size="small"
+              onClick={onClick}
+              sx={{
+                cursor: "pointer",
+                "&:hover": { backgroundColor: "transparent" },
+              }}
+            >
+              <ArrowDropDownIcon />
+            </IconButton>
+          ),
+        }}
+        fullWidth
+        ref={ref}
+        error={Boolean(error)} // Only show error if there is an error
+        helperText={error ? helperText : ""}
+      />
+    )
+  );
+
+  const ExampleCustomInput1 = React.forwardRef(
+    ({ value, onClick, onClear, error, helperText }, ref) => (
+      <TextField
+        onClick={onClick}
+        value={value || ""}
+        label="Friend's Date of Birth"
+        autoComplete="off"
+        InputProps={{
+          endAdornment: (
+            <IconButton
+              edge="end"
+              size="small"
+              onClick={onClick}
+              sx={{
+                cursor: "pointer",
+                "&:hover": { backgroundColor: "transparent" },
+              }}
+            >
+              <ArrowDropDownIcon />
+            </IconButton>
+          ),
+        }}
+        fullWidth
+        ref={ref}
+        error={Boolean(error)} // Only show error if there is an error
+        helperText={error ? helperText : ""}
+      />
+    )
+  );
+
   
   const phoneNumberRegex = /^\d{10}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -242,7 +307,7 @@ const ResilienceRoundtableForm = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
               >
-                {({ values, touched, errors, handleChange, handleBlur, isSubmitting }) => (
+                {({ values, touched, errors, handleChange, handleBlur, isSubmitting ,setFieldValue}) => (
                   <Form>
                     <Grid container spacing={2}>
                       <Grid item xs={6} sm={6}>
@@ -326,7 +391,31 @@ const ResilienceRoundtableForm = () => {
                           }} />
                       </Grid>
                       <Grid item xs={6}>
-                      <TextField
+                         <FormControl
+                                                  fullWidth
+                                                  // margin="normal"
+                                                >
+                                                  <DatePicker
+                                                    selected={values.dob}
+                                                    onChange={(date) => setFieldValue("dob", date)}
+                                                    placeholderText={"Date of Birth"}
+                                                    dateFormat="MM-dd-yyyy"
+                                                    minDate={minDateFormatted} // Disable past dates
+                                                    maxDate={maxDateFormatted}
+                                                    InputLabelProps={{
+                                                      shrink: true, // Ensures the label is always displayed in a shrunk state
+                                                     
+                                                    }}
+                                                    customInput={
+                                                      <ExampleCustomInput
+                                                        onClear={() => setFieldValue("dob", null)}
+                                                        error={touched.dob && errors.dob}
+                                                        helperText={errors.dob}
+                                                      />
+                                                    }
+                                                  />
+                                                </FormControl>
+                      {/* <TextField
   fullWidth
   label="Date of Birth"
   name="dob"
@@ -348,7 +437,7 @@ const ResilienceRoundtableForm = () => {
     min: minDateFormatted,  // Set min date to 75 years ago
     max: maxDateFormatted,  // Set max date to 18 years ago
   }}
-/>
+/> */}
 
                       </Grid>
                       <Grid item xs={6} sm={6}></Grid>
@@ -437,7 +526,31 @@ const ResilienceRoundtableForm = () => {
                               }} />
                           </Grid>
                           <Grid item xs={6}>
-                            <TextField
+                          <FormControl
+                                                  fullWidth
+                                                  // margin="normal"
+                                                >
+                                                  <DatePicker
+                                                    selected={values.friendDob}
+                                                    onChange={(date) => setFieldValue("friendDob", date)}
+                                                    placeholderText={"Friend's Date of Birth"}
+                                                    dateFormat="MM-dd-yyyy"
+                                                    minDate={minDateFormatted} // Disable past dates
+                                                    maxDate={maxDateFormatted}
+                                                    InputLabelProps={{
+                                                      shrink: true, // Ensures the label is always displayed in a shrunk state
+                                                     
+                                                    }}
+                                                    customInput={
+                                                      <ExampleCustomInput1
+                                                        onClear={() => setFieldValue("friendDob", null)}
+                                                        error={touched.friendDob && errors.friendDob}
+                                                        helperText={errors.friendDob}
+                                                      />
+                                                    }
+                                                  />
+                                                </FormControl>
+                            {/* <TextField
                               fullWidth
                               label="Friend's Date of Birth"
                               name="friendDob"
@@ -459,7 +572,7 @@ const ResilienceRoundtableForm = () => {
                                 min: minDateFormatted,  // Set min date to 75 years ago
                                 max: maxDateFormatted,  // Set max date to 18 years ago
                               }}
-                              />
+                              /> */}
                           </Grid>
                           <Grid item xs={6}>
                             <TextField
