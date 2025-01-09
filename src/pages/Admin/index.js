@@ -412,7 +412,7 @@ const PatientsTable = ({ userDetails }) => {
       {openRowId === row.id ? <KeyboardArrowUpIcon sx={{ color: 'black' }} /> : <KeyboardArrowDownIcon sx={{ color: 'black' }} />}
     </IconButton>
     <IconButton onClick={() => handleRowDeleteClick(row)} sx={{ color: 'black' }}>
-      <DeleteIcon sx={{ color: 'red' }}  disabled={params.row.appointMents.length===0}/>
+      <DeleteIcon sx={{ color: 'red' }}  disabled={row.appointMents.length===0}/>
     </IconButton>
   </Box>
 </TableCell>

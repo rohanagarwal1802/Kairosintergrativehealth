@@ -83,35 +83,66 @@ const ResilienceRoundtableForm = () => {
     secondAttendeeName: '',
   };
 
-  const ExampleCustomInput = React.forwardRef(
-    ({ value, onClick, onClear, error, helperText }, ref) => (
-      <TextField
-        onClick={onClick}
-        value={value || ""}
-        label="Date of Birth"
-        autoComplete="off"
-        InputProps={{
-          endAdornment: (
-            <IconButton
-              edge="end"
-              size="small"
-              onClick={onClick}
-              sx={{
-                cursor: "pointer",
-                "&:hover": { backgroundColor: "transparent" },
-              }}
-            >
-              <ArrowDropDownIcon />
-            </IconButton>
-          ),
-        }}
-        fullWidth
-        ref={ref}
-        error={Boolean(error)} // Only show error if there is an error
-        helperText={error ? helperText : ""}
-      />
-    )
-  );
+  
+const ExampleCustomInput = React.forwardRef(
+  ({ value, onClick, onClear, error, helperText }, ref) => (
+    <TextField
+      onClick={onClick}
+      value={value || ""}
+       label="Date of Birth"
+      autoComplete="off"
+      InputProps={{
+        endAdornment: (
+          <IconButton
+            edge="end"
+            size="small"
+            onClick={onClick}
+            sx={{
+              cursor: "pointer",
+              "&:hover": { backgroundColor: "transparent" },
+            }}
+          >
+            <ArrowDropDownIcon />
+          </IconButton>
+        ),
+      }}
+      fullWidth
+      ref={ref}
+      error={Boolean(error)} // Only show error if there is an error
+      helperText={error ? helperText : ""}
+    />
+  )
+);
+
+  // const ExampleCustomInput = React.forwardRef(
+  //   ({ value, onClick, onClear, error, helperText }, ref) => (
+  //     <TextField
+  //       onClick={onClick}
+  //       value={value || ""}
+  //       label="Date of Birth"
+  //       autoComplete="off"
+  //       InputProps={{
+  //         endAdornment: (
+  //           <IconButton
+  //             edge="end"
+  //             size="small"
+  //             onClick={onClick}
+  //             sx={{
+  //               cursor: "pointer",
+  //               "&:hover": { backgroundColor: "transparent" },
+  //             }}
+  //           >
+  //             <ArrowDropDownIcon />
+  //           </IconButton>
+  //         ),
+  //       }}
+  //       fullWidth
+  //       ref={ref}
+  //       error={Boolean(error)} // Only show error if there is an error
+  //       helperText={error ? helperText : ""}
+  //     />
+  //   )
+  // );
 
   const ExampleCustomInput1 = React.forwardRef(
     ({ value, onClick, onClear, error, helperText }, ref) => (
@@ -263,7 +294,7 @@ const ResilienceRoundtableForm = () => {
 
   
       // Set the payment type and reset form
-      setType(values.payment);
+      setType(values.payment.charAt(0).toUpperCase() + values.payment.slice(1));
   
       // Reset the form values and set submitting state to false
       resetForm(); // This is the correct method to reset the form
@@ -310,7 +341,7 @@ const ResilienceRoundtableForm = () => {
                 {({ values, touched, errors, handleChange, handleBlur, isSubmitting ,setFieldValue}) => (
                   <Form>
                     <Grid container spacing={2}>
-                      <Grid item xs={6} sm={6}>
+                      <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
                           label="First Name"
@@ -329,7 +360,7 @@ const ResilienceRoundtableForm = () => {
                             shrink: true, // Ensure the label is always visible
                           }} />
                       </Grid>
-                      <Grid item xs={6} sm={6}>
+                      <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
                           label="Last Name"
@@ -348,7 +379,7 @@ const ResilienceRoundtableForm = () => {
                             shrink: true, // Ensure the label is always visible
                           }} />
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
                           label="Email"
@@ -368,7 +399,7 @@ const ResilienceRoundtableForm = () => {
                             shrink: true, // Ensure the label is always visible
                           }} />
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
                           label="Phone Number"
@@ -390,31 +421,49 @@ const ResilienceRoundtableForm = () => {
                             shrink: true, // Ensure the label is always visible
                           }} />
                       </Grid>
-                      <Grid item xs={6}>
-                         <FormControl
+                      <Grid item xs={12} sm={6}>
+                        {/* <FormControl
                                                   fullWidth
                                                   // margin="normal"
                                                 >
                                                   <DatePicker
-                                                    selected={values.dob}
-                                                    onChange={(date) => setFieldValue("dob", date)}
-                                                    placeholderText={"Date of Birth"}
+                                                    selected={formik.values.dob}
+                                                    onChange={(date) => formik.setFieldValue("dob", date)}
+                                                    placeholderText={<RequiredLabel label="Patient's Date of Birth" />}
                                                     dateFormat="MM-dd-yyyy"
                                                     minDate={minDateFormatted} // Disable past dates
                                                     maxDate={maxDateFormatted}
-                                                    InputLabelProps={{
-                                                      shrink: true, // Ensures the label is always displayed in a shrunk state
-                                                     
-                                                    }}
                                                     customInput={
                                                       <ExampleCustomInput
-                                                        onClear={() => setFieldValue("dob", null)}
-                                                        error={touched.dob && errors.dob}
-                                                        helperText={errors.dob}
+                                                        onClear={() => formik.setFieldValue("dob", null)}
+                                                        error={formik.touched.dob && formik.errors.dob}
+                                                        helperText={formik.errors.dob}
                                                       />
                                                     }
                                                   />
-                                                </FormControl>
+                                                </FormControl> */}
+                     <FormControl fullWidth >
+  <DatePicker
+    selected={values.dob}
+    onChange={(date) => setFieldValue("dob", date)}
+    placeholderText="Date of Birth"
+    dateFormat="MM-dd-yyyy"
+    minDate={minDateFormatted} // Disable past dates
+    maxDate={maxDateFormatted}
+    // InputLabelProps={{
+    //   shrink: true, // Ensure the label stays shrunk
+    // }}
+    customInput={
+      <ExampleCustomInput
+        onClick={() => setFieldValue("dob", null)} // Clear date on click (optional)
+        error={touched.dob && errors.dob} // Error handling
+        helperText={errors.dob} // Display helper text for errors
+      />
+    }
+  />
+</FormControl>
+
+
                       {/* <TextField
   fullWidth
   label="Date of Birth"
@@ -440,9 +489,9 @@ const ResilienceRoundtableForm = () => {
 /> */}
 
                       </Grid>
-                      <Grid item xs={6} sm={6}></Grid>
+                      <Grid item xs={12} sm={6}></Grid>
 
-                      <Grid item xs={6}>
+                      <Grid item xs={12}>
                         <FormControlLabel
                           control={<Checkbox
                             name="textPermission"
@@ -451,7 +500,7 @@ const ResilienceRoundtableForm = () => {
                           label="Do we have permission to text you?"
                           sx={{ color: 'black' }} />
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={12}>
                         <FormControlLabel
                           control={<Checkbox
                             name="attending"
@@ -463,7 +512,7 @@ const ResilienceRoundtableForm = () => {
                           <Typography color="error">{errors.attending}</Typography>
                         )}
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={12}>
                         <FormControlLabel
                           control={<Checkbox
                             name="over18"
@@ -475,7 +524,7 @@ const ResilienceRoundtableForm = () => {
                           <Typography color="error">{errors.over18}</Typography>
                         )}
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={12}>
                         <FormControlLabel
                           control={<Checkbox
                             name="bringingFriend"
@@ -487,7 +536,7 @@ const ResilienceRoundtableForm = () => {
 
                       {values.bringingFriend && (
                         <>
-                          <Grid item xs={6} sm={6}>
+                          <Grid item xs={12} sm={6}>
                             <TextField
                               fullWidth
                               label="Friend's First Name"
@@ -506,7 +555,7 @@ const ResilienceRoundtableForm = () => {
                                 shrink: true, // Ensure the label is always visible
                               }} />
                           </Grid>
-                          <Grid item xs={6} sm={6}>
+                          <Grid item xs={12} sm={6}>
                             <TextField
                               fullWidth
                               label="Friend's Last Name"
@@ -525,7 +574,7 @@ const ResilienceRoundtableForm = () => {
                                 shrink: true, // Ensure the label is always visible
                               }} />
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={12} sm={6}>
                           <FormControl
                                                   fullWidth
                                                   // margin="normal"
@@ -574,7 +623,7 @@ const ResilienceRoundtableForm = () => {
                               }}
                               /> */}
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={12} sm={6}>
                             <TextField
                               fullWidth
                               label="Friend's Phone Number"
@@ -593,7 +642,7 @@ const ResilienceRoundtableForm = () => {
                                 shrink: true, // Ensure the label is always visible
                               }} />
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={12}  sm={6}>
                             <TextField
                               fullWidth
                               label="Friend's Email"
@@ -614,7 +663,7 @@ const ResilienceRoundtableForm = () => {
                               }} />
 
                           </Grid>
-                          <Grid item xs={12}>
+                          <Grid item xs={12} sm={6}>
                             <FormControlLabel
                               control={<Checkbox
                                 name="friendTextPermission"
@@ -628,7 +677,7 @@ const ResilienceRoundtableForm = () => {
                         </>
                       )}
 
-<Grid item xs={6}>
+<Grid item xs={6} sm={6}>
   <FormControl 
     component="fieldset" 
     error={touched.payment && Boolean(errors.payment)}
@@ -667,9 +716,9 @@ const ResilienceRoundtableForm = () => {
   </FormControl>
 </Grid>
 
-                      <Grid item xs={6}/>
+                      <Grid item xs={12}/>
                       {values.payment === 'member' && (
-                        <><Grid item xs={6}>
+                        <><Grid item xs={12}>
                             <TextField
                               fullWidth
                               label="Name of person filling out form"
@@ -687,7 +736,7 @@ const ResilienceRoundtableForm = () => {
                                   transform: 'translate(14px, -6px)', // Adjusts the label position above the field
                                 },
                               }}  />
-                          </Grid><Grid item xs={6}>
+                          </Grid><Grid item xs={12}>
                               <TextField
                                 fullWidth
                                 label="Name of first attendee"
@@ -705,7 +754,7 @@ const ResilienceRoundtableForm = () => {
                                     transform: 'translate(14px, -6px)', // Adjusts the label position above the field
                                   },
                                 }} />
-                            </Grid><Grid item xs={6}>
+                            </Grid><Grid item xs={12}>
                               <TextField
                                 fullWidth
                                 label="Name of second attendee"

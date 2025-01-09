@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Box, Button } from '@mui/material';
+import { Box, Button ,IconButton,Tooltip} from '@mui/material';
 import axios from 'axios';
 import * as XLSX from 'xlsx'; // Import xlsx for Excel generation
 import Loader from '@/components/Loader';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import EditOffIcon from "@mui/icons-material/EditOff";
 import TextContainer from '@/components/textContainer';
 import { useRouter } from 'next/router';
 // import CustomPaginationGrid from '@/components/customPagination';
+import DeleteContactModal from '@/components/Contact/contactDeleteModal';
 
 const ContactMessages = ({ userDetails }) => {
   const [pageSize, setPageSize] = useState(10);
@@ -20,20 +24,27 @@ if (userDetails && userDetails?.role !== 'admin') {
   const [messages, setMessages] = useState(null);
   const [loading, setLoading] = useState(false);
 
+      const [messageToEdit, setMessageToEdit] = useState(null);
+      const [selectedIds, setSelectedIds] = useState([]);
+        const [openDeleteModel, setOpenDeleteModel] = useState(false);
+         const [multipleEditable, setMultipleEditable] = useState(false);
+
+         const getMessages = async () => {
+          try {
+            setLoading(true);
+            const message = await axios.get('/api/getContactMessages');
+            console.log("Messages",message.data.data)
+            setMessages(message.data.data);
+          } catch (error) {
+            setMessages([])
+            console.log(error);
+          } finally {
+            setLoading(false);
+          }
+        };
+
   useEffect(() => {
-    const getMessages = async () => {
-      try {
-        setLoading(true);
-        const message = await axios.get('/api/getContactMessages');
-        console.log("Messages",message.data.data)
-        setMessages(message.data.data);
-      } catch (error) {
-        setMessages([])
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+   
     getMessages();
   }, []);
 if(!Array.isArray(messages))
@@ -48,6 +59,18 @@ if(!Array.isArray(messages))
     { field: 'subject', headerName: 'Subject', width: 200 },
     { field: 'message', headerName: 'Message', width: 500},
     { field: 'created_at', headerName: 'Posted At', width: 200 },
+    {
+      field: "delete",
+      headerName: "Delete",
+      minWidth: 70,
+      sortable: false,
+      flex: 1,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleDelete(params.row)}>
+          <DeleteIcon sx={{ color:  "red" }} />
+        </IconButton>
+      ),
+    },
   ];
 
   const rows = messages.map((user,index) => ({
@@ -81,10 +104,22 @@ if(!Array.isArray(messages))
 
     XLSX.writeFile(workbook, 'contact-messages.xlsx'); // Save the Excel file
   };
+  
+  const handleDelete = (row) => {
+    setMessageToEdit([row.id]);
+    setOpenDeleteModel(true);
+  };
+
+  const handleDeleteMultipleClick = () => {
+    setOpenDeleteModel(true);
+    setMessageToEdit(selectedIds);
+  };
+
 
   return loading ? (
     <Loader />
   ) : (
+    <>
     <Box>
 
 <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
@@ -101,6 +136,30 @@ if(!Array.isArray(messages))
           gap: { xs: 2, sm: 2 },
         }}
       >
+         <Tooltip
+          title={multipleEditable ? "Disallow Edit Multiple" : "Allow Edit Multiple"}
+          placement="top"
+        >
+          <IconButton onClick={() => setMultipleEditable(!multipleEditable)} sx={{ mr: "1%" }}>
+            {multipleEditable ? (
+              <EditOffIcon sx={{ color: "black" }} />
+            ) : (
+              <EditIcon sx={{ color: "black" }} />
+            )}
+          </IconButton>
+        </Tooltip>
+
+        {multipleEditable && (
+          <Tooltip title="Delete Multiple" placement="top">
+            <IconButton
+              onClick={() => handleDeleteMultipleClick()}
+              sx={{ mr: "1%" }}
+              disabled={selectedIds.length === 0}
+            >
+              <DeleteIcon sx={{ color: selectedIds.length === 0 ?"grey":"red"}} />
+            </IconButton>
+          </Tooltip>
+        )}
         <Button variant="contained" color="primary" onClick={handleDownloadExcel}>
           Download as Excel
         </Button>
@@ -154,6 +213,8 @@ if(!Array.isArray(messages))
                     }}
                     disableColumnResize
                     disableSelectionOnClick
+                    disableRowSelectionOnClick
+                    checkboxSelection={multipleEditable}
                     onRowSelectionModelChange={(newSelection) =>
                       handleSelectionChange(newSelection)
                     }
@@ -162,12 +223,22 @@ if(!Array.isArray(messages))
                       Toolbar: GridToolbar,
                     }}
                     localeText={{ noRowsLabel: "No Appointments Available" }}
-                    getRowClassName={(params) =>
-                      params.row.isExpired ? "expired-row" : ""
-                    }
+                    // getRowClassName={(params) =>
+                    //   params.row.isExpired ? "expired-row" : ""
+                    // }
                   />
                 </Box>
     </Box>
+    {openDeleteModel && (
+      <DeleteContactModal
+        id={messageToEdit}
+        onClose={() => setOpenDeleteModel(false)}
+        open={openDeleteModel}
+        getContactMessages={getMessages}
+      />
+      
+    )}
+    </>
   );
 };
 

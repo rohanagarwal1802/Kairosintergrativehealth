@@ -187,7 +187,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
               >
                 <InputLabel>Appoitment Reason</InputLabel>
                 <Select
-                  name="Appoitment Reason"
+                  name="service"
                   value={values.service}
                   onChange={handleChange}
                   onBlur={handleBlur}

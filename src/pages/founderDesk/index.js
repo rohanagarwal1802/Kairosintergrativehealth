@@ -138,7 +138,7 @@ const FounderDesk = () => {
           mt: { xs: 4, md: 0 },
           justifyContent: "center",
           maxWidth: "400px",
-          textAlign: { xs: "center", md: "left" },
+          textAlign: { xs: "left", md: "left" },
         }}
       >
         <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 }}>
@@ -162,7 +162,7 @@ MSN, MBA, PMHNP-BC
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 4, // Adds padding around the content
+    // padding: 4, // Adds padding around the content
     borderRadius: 2, // Optional: Adds rounded corners for a softer look
     height: 'auto', // Dynamically adjusts height to fit content
     width: '100%', // Ensures it spans the full width
@@ -170,7 +170,7 @@ MSN, MBA, PMHNP-BC
 >
     <Box
   sx={{
-    width: '90%',
+    width: '100%',
     margin: 'auto',
     mt: 4,
     p: 4,
