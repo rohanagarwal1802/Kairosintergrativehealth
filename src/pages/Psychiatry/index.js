@@ -44,7 +44,7 @@ const PTSDPage = () => {
             />
           </Box>
 
-          <Box sx={{ textAlign: "center", maxWidth: "1000px" }}>
+          <Box sx={{ textAlign: "left", maxWidth: "1000px" }}>
             <Typography variant="h6" sx={{ color: "black", '@media (max-width: 768px)': { fontSize: '1rem' } }}>
               At Kairos Integrative Health, we are dedicated to supporting your goals through a
               comprehensive and integrative approach. Our practice offers a range of services
@@ -54,7 +54,7 @@ const PTSDPage = () => {
           </Box>
           
         </Box>
-        <Box sx={{ ml: "5%", mt: "5%" }}>
+        <Box sx={{  mt: "5%" }}>
           <Typography variant="h4" sx={{ fontWeight: "bold", color: "black" }}>
             What is Integrative Psychiatry?
           </Typography>

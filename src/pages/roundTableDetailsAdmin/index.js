@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Box, Button } from '@mui/material';
+import { Box, Button,IconButton,Tooltip } from '@mui/material';
 import axios from 'axios';
 import * as XLSX from 'xlsx'; // Import xlsx for Excel generation
 import Loader from '@/components/Loader';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import EditOffIcon from "@mui/icons-material/EditOff";
+
+
 import TextContainer from '@/components/textContainer';
 import { useRouter } from 'next/router';
+
+import DeleteRoundtableModal from '@/components/roundTable/deleteRoundTableModal';
 // import CustomPaginationGrid from '@/components/customPagination';
 
 const RoundTable = ({ userDetails }) => {
@@ -20,22 +27,39 @@ const RoundTable = ({ userDetails }) => {
   const [userData, setUserData] = useState();null
   const [loading, setLoading] = useState(false);
 
+    const [roundtableToEdit, setRoundtableToEdit] = useState(null);
+    const [selectedIds, setSelectedIds] = useState([]);
+      const [openDeleteModel, setOpenDeleteModel] = useState(false);
+       const [multipleEditable, setMultipleEditable] = useState(false);
+
+      const getPatientData = async () => {
+        try {
+          setLoading(true);
+          const patient = await axios.get('/api/getRoundTableDetails');
+          console.log(patient.data.data)
+          setUserData(patient.data.data);
+          
+        } catch (error) {
+          setUserData([])
+          console.log(error);
+        } finally {
+          setLoading(false);
+          setMultipleEditable(false)
+        }
+      };
+
   useEffect(() => {
-    const getPatientData = async () => {
-      try {
-        setLoading(true);
-        const patient = await axios.get('/api/getRoundTableDetails');
-        console.log(patient.data.data)
-        setUserData(patient.data.data);
-      } catch (error) {
-        setUserData([])
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    
     getPatientData();
   }, []);
+
+  const handleSelectionChange = useCallback(
+    (selectedRowIds) => {
+      setSelectedIds(selectedRowIds); // Store only the IDs
+    },
+    [] // userData is no longer required as it's not used
+  );
+  
 
   if(loading)
   {
@@ -78,6 +102,18 @@ if(!Array.isArray(userData))
     // { field: 'attending', headerName: 'Attending', width: 120 },
     
     { field: 'created_at', headerName: 'Created At', width: 200 },
+    {
+      field: "delete",
+      headerName: "Delete",
+      minWidth: 70,
+      sortable: false,
+      flex: 1,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleDelete(params.row)}>
+          <DeleteIcon sx={{ color:  "red" }} />
+        </IconButton>
+      ),
+    },
   ];
 
   const rows = userData.map((user,index) => ({
@@ -140,9 +176,20 @@ if(!Array.isArray(userData))
     XLSX.writeFile(workbook, 'ResilienceRoundTable-data.xlsx'); // Save the Excel file
   };
 
+  const handleDelete = (row) => {
+    setRoundtableToEdit([row.id]);
+    setOpenDeleteModel(true);
+  };
+
+  const handleDeleteMultipleClick = () => {
+    setOpenDeleteModel(true);
+    setRoundtableToEdit(selectedIds);
+  };
+
   return loading ? (
     <Loader />
   ) : (
+    <>
     <Box>
 
 <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
@@ -159,6 +206,30 @@ if(!Array.isArray(userData))
           gap: { xs: 2, sm: 2 },
         }}
       >
+                <Tooltip
+          title={multipleEditable ? "Disallow Edit Multiple" : "Allow Edit Multiple"}
+          placement="top"
+        >
+          <IconButton onClick={() => setMultipleEditable(!multipleEditable)} sx={{ mr: "1%" }}>
+            {multipleEditable ? (
+              <EditOffIcon sx={{ color: "black" }} />
+            ) : (
+              <EditIcon sx={{ color: "black" }} />
+            )}
+          </IconButton>
+        </Tooltip>
+
+        {multipleEditable && (
+          <Tooltip title="Delete Multiple" placement="top">
+            <IconButton
+              onClick={() => handleDeleteMultipleClick()}
+              sx={{ mr: "1%" }}
+              disabled={selectedIds.length === 0}
+            >
+              <DeleteIcon sx={{ color: selectedIds.length === 0 ?"grey":"red"}} />
+            </IconButton>
+          </Tooltip>
+        )}
         <Button variant="contained" color="primary" onClick={handleDownloadExcel}>
           Download as Excel
         </Button>
@@ -200,32 +271,40 @@ if(!Array.isArray(userData))
                     },
                   }}
                 >
-                  <DataGrid
-                    rows={rows}
+                   <DataGrid
+                    rows={rows}  // Use rows instead of userData directly
                     columns={columns}
                     pageSize={pageSize}
                     rowsPerPageOptions={[10, 25, 50]}
-                    onPageChange={(newPage) => setPage(newPage)}
-                    onPageSizeChange={(newPageSize) => {
-                      handlePageSizeChange(newPageSize);
-                      setPage(0); // Reset page to 0 when page size changes
-                    }}
-                    disableColumnResize
-                    disableSelectionOnClick
-                    onRowSelectionModelChange={(newSelection) =>
-                      handleSelectionChange(newSelection)
-                    }
+                  onPageSizeChange={(newPageSize) => {
+                                    handlePageSizeChange(newPageSize);
+                                    setPage(0); // Reset page to 0 when page size changes
+                                  }}
+                                  disableColumnResize
+                                  disableSelectionOnClick
+                                  disableRowSelectionOnClick
+                                  checkboxSelection={multipleEditable} // Enable checkboxes for row selection
+                                  onRowSelectionModelChange={(newSelection) =>
+                                    handleSelectionChange(newSelection)
+                                  }
+                                 
                     components={{
-                      // Pagination: CustomPaginationGrid,
-                      Toolbar: GridToolbar,
-                    }}
-                    localeText={{ noRowsLabel: "No Patients Available" }}
-                    getRowClassName={(params) =>
-                      params.row.isExpired ? "expired-row" : ""
-                    }
+                      //  Pagination: CustomPaginationGrid, 
+                      Toolbar: GridToolbar }}
+                    localeText={{ noRowsLabel: "No RoundTable Details Available" }}
                   />
                 </Box>
     </Box>
+     {openDeleteModel && (
+      <DeleteRoundtableModal
+        id={roundtableToEdit}
+        onClose={() => setOpenDeleteModel(false)}
+        open={openDeleteModel}
+        getRoundTableDetails={getPatientData}
+      />
+      
+    )}
+    </>
   );
 };
 

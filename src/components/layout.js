@@ -67,14 +67,41 @@ const Layout = ({ children, userDetails }) => {
       </Box>
       
       {/* Go To Top Button */}
-      {showGoToTop && <GoToTopIcon sx={{zIndex:10}}/>}
-      
-      {/* Floating message icon at the bottom-left corner */}
-      <Link href="/contact" style={{ position: "fixed", bottom: 20, left: 20 }}>
-        <Fab color="primary" aria-label="message" sx={{backgroundColor:"#2A3923"}}>
-          <MessageIcon sx={{zIndex:10}}/>
-        </Fab>
-      </Link>
+{showGoToTop && (
+   <div
+   style={{
+     position: "fixed",
+     bottom: "80px",
+     right: "20px",
+     zIndex: 1200,
+   }}
+ >
+   <GoToTopIcon />
+ </div>
+)}
+
+{/* Floating message icon at the bottom-left corner */}
+<Link
+  href="/contact"
+  style={{
+    position: "fixed",
+    bottom: 20,
+    left: 20,
+    zIndex: 1200, // Ensure this is higher than GoToTopIcon
+  }}
+>
+  <Fab
+    color="primary"
+    aria-label="message"
+    sx={{
+      backgroundColor: "#2A3923",
+      zIndex: 1200, // Keep consistent with Link container
+    }}
+  >
+    <MessageIcon />
+  </Fab>
+</Link>
+
     </>
   );
 };

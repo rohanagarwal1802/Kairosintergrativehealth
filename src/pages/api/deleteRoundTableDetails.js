@@ -1,4 +1,4 @@
-import { deleteAppointment } from "../../../lib/models/appointmentOperations";
+import { deleteRoundTableDetail } from "../../../lib/models/roundTableOperations";
 import getTokenFromCookie from "../utils/access";
 import jwt from "jsonwebtoken";
 import hashSecretKey from "../utils/hashedSecretKey";
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         }
   
         // Call the deleteAppointment function
-        const result = await deleteAppointment(ids);
+        const result = await deleteRoundTableDetail(ids);
   
         // Respond with success
         return res.status(200).json(result);

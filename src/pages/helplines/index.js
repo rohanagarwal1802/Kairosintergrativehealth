@@ -37,20 +37,20 @@ return (
   }}
 >
     
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-  {/* Image */}
-  <Box>
+    {/* <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}> */}
+
+  <Box sx={{mt:"1%"}}>
     <Image
       src="/helpline.jpg"
       alt="Mental Well-being"
-      width={400} // Adjust as needed
+      width={300} // Adjust as needed
       height={400}
-      style={{ borderRadius: "8px" }} // Optional: Add rounded corners
+      style={{ borderRadius: "8px",mt:"1%" }} // Optional: Add rounded corners
     />  
   </Box>
 
  
-</Box>
+{/* </Box> */}
 
 
       <Box >
@@ -84,9 +84,22 @@ return (
                         </Typography>
                         
                         
-<Typography variant="subtitle2" fontWeight="bold" sx={{ color: 'black' }}>
-  Website: <Link href={cause.website} target="_blank" rel="noopener noreferrer">{cause.website}</Link>
+                        <Typography 
+  variant="subtitle2" 
+  fontWeight="bold" 
+  sx={{ color: 'black', wordBreak: 'break-word' }}
+>
+  Website:{" "}
+  <Link 
+    href={cause.website} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    sx={{ wordBreak: 'break-word' }}
+  >
+    {cause.website}
+  </Link>
 </Typography>
+
 
                             
                             </>

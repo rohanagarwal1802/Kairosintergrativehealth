@@ -22,7 +22,7 @@ const Faq = () => {
         variant="h4"
         className="heading"
         sx={{
-          textAlign: "center",
+          textAlign: {xs:"left",sm:"center"},
           marginTop: "60px",
           marginBottom: "20px",
           fontWeight: "bold",

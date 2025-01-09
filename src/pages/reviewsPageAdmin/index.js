@@ -63,6 +63,7 @@ console.log("status",status)
       setUserData([]);
     } finally {
       setLoading(false);
+      setMultipleEditable(false)
     }
   };
   useEffect(() => {
@@ -72,11 +73,11 @@ console.log("status",status)
 
   const handleSelectionChange = useCallback(
     (selectedRowIds) => {
-      const selectedRowsData = selectedRowIds.map(id => userData.find(row => row.id === id));
-      setSelectedIds(selectedRowsData);
+      setSelectedIds(selectedRowIds); // Store only the IDs
     },
-    [userData]
+    [] // userData is no longer required as it's not used
   );
+  
 
   const handleISActiveChange = (row) => {
     // Define your logic to handle the status change
