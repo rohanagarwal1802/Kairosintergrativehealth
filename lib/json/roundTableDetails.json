@@ -71,5 +71,30 @@
     "discount_code": "RRJAN2025",
     "organisation_name": "sqsq",
     "created_at": "2025-01-12T15:53:43.195Z"
+  },
+  {
+    "id": 6,
+    "firstName": "Rohan",
+    "lastName": "Agarwal",
+    "email": "rohan.agarwal7568@gmail.com",
+    "phoneNumber": "7725999770",
+    "dob": "2007-01-01T18:30:00.000Z",
+    "textPermission": true,
+    "attending": true,
+    "over18": true,
+    "bringingFriend": false,
+    "friendFirstName": "",
+    "friendLastName": "",
+    "friendDob": "",
+    "friendPhoneNumber": "",
+    "friendTextPermission": false,
+    "friendEmail": "",
+    "payment": "discount_code",
+    "memberName": "",
+    "firstAttendeeName": "",
+    "secondAttendeeName": "",
+    "discount_code": "RRJAN2025",
+    "organisation_name": "aaa",
+    "created_at": "2025-01-12T15:59:58.278Z"
   }
 ]
