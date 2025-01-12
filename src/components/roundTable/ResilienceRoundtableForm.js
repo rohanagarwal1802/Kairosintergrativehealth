@@ -23,6 +23,7 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "react-datepicker/dist/react-datepicker.css";
+import useCustomSnackbarStore from '@/pages/utils/useCustomSnackbarStore';
 
 
 const greenTheme = createTheme({
@@ -61,6 +62,7 @@ const ResilienceRoundtableForm = () => {
   const [open,setOpen]=useState(false)
   const [scanner,setScanner]=useState(null) 
   const [type,setType]=useState(null)
+  const {setSnackbar}=useCustomSnackbarStore()
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -322,7 +324,7 @@ default:console.log("Invalid Month")
 
         }
 
-if(code.slice(-4)==currentYear && code!==discount_code)
+if(code.slice(-4)==currentYear && code!==values.discount_code)
 {
  setSnackbar('warning','Please enter valid dicount code.')
   return;
@@ -342,6 +344,10 @@ if(code.slice(-4)==currentYear && code!==discount_code)
 
         if (mailResp.status !== 200) {
           console.warn("First email may have failed. Continuing to second email...");
+        }
+        else
+        {
+          setSnackbar('success','You will recieve an email shortly.')
         }
       } catch (error) {
         console.error("Error sending password email:", error);
@@ -367,13 +373,17 @@ if(code.slice(-4)==currentYear && code!==discount_code)
 
   
       // Set the payment type and reset form
+      if (values.payment === 'guest' || values.payment === 'member') {
       setType(values.payment.charAt(0).toUpperCase() + values.payment.slice(1));
+      }
   
       // Reset the form values and set submitting state to false
       resetForm(); // This is the correct method to reset the form
   
       console.log(resp);
+      if (values.payment === 'guest' || values.payment === 'member') {
       setOpen(true); // Open the confirmation modal or message
+      }
     } catch (error) {
       console.error('Submission failed', error);
     } finally {
