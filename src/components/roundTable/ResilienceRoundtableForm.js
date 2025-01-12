@@ -272,8 +272,61 @@ const ExampleCustomInput = React.forwardRef(
       // Set the scanner image based on payment type
       if (values.payment === 'guest') {
         setScanner('/guestScanner.jpeg');
-      } else {
+      } else if(values.payment==='member') {
         setScanner('/memberScanner.jpeg');
+      }
+      else{
+        let code;
+        const now = new Date();
+const currentMonthIndex = now.getMonth();
+const currentYear = now.getFullYear(); // Get current year
+        switch(currentMonthIndex)
+        {
+case 0:
+  code=process.env.NEXT_PUBLIC_JAN_CODE
+break;
+case 1:
+  code=process.env.NEXT_PUBLIC_FEB_CODE  
+break;
+case 2:
+  code=process.env.NEXT_PUBLIC_MAR_CODE
+break;
+case 3:
+  code=process.env.NEXT_PUBLIC_APR_CODE
+break;
+case 4:
+  code=process.env.NEXT_PUBLIC_MAY_CODE
+break;
+case 5:
+  code=process.env.NEXT_PUBLIC_JUN_CODE
+break;
+case 6:
+  code=process.env.NEXT_PUBLIC_JUL_CODE
+break;
+case 7:
+  code=process.env.NEXT_PUBLIC_AUG_CODE
+break;
+case 8:
+  code=process.env.NEXT_PUBLIC_SEP_CODE 
+break;
+case 9:
+  code=process.env.NEXT_PUBLIC_OCT_CODE 
+break;
+case 10:
+  code=process.env.NEXT_PUBLIC_NOV_CODE 
+break;
+case 11:
+  code=process.env.NEXT_PUBLIC_DEC_CODE 
+break;
+default:console.log("Invalid Month")
+
+        }
+
+if(code.slice(-4)==currentYear && code!==discount_code)
+{
+ setSnackbar('warning','Please enter valid dicount code.')
+  return;
+}
       }
   
       // Submit form data using axios
