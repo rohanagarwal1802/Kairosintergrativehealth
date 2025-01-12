@@ -53,7 +53,7 @@ return (
         2025 Calendar
         </Typography>
         <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" ,alignItems:"center",textAlign:"center"}}>
-        The Resilience Roundtables is held on the first Thursday of each month at 12 PM.
+        The Resilience Roundtables is held on the first Thursday of each month at 12 PM to 1 PM
         </Typography>
       </Box>
       <List>

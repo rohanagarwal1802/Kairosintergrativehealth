@@ -128,7 +128,7 @@ const AboutSection = () => {
                  
 
                  As the healthcare industry continues to adopt a more streamlined model, Kairos Integrative Health takes a different approach. Our approach prioritizes the needs of both our patients and our providers. KIH offers our community access to high-quality, timely, and evidence-based care while also striving to empower our providers to focus on what truly matters: delivering patient-centered care, free from the constraints of streamlined models. 
-                 Our belief is simple by placing patient care at the forefront and supporting our providers, we create a sustainable, healing environment that benefits everyone.
+                 Our belief is simple. By placing patient care at the forefront and supporting our providers, we create a sustainable, healing environment that benefits everyone.
               </Typography>
 
              
