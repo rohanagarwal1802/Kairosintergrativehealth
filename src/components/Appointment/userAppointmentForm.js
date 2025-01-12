@@ -118,6 +118,10 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
         value={value || ""}
         label="Appointment Date"
         autoComplete="off"
+        inputProps={{
+          readOnly: true, // Prevents the blinking cursor
+        }}
+        sx={{ cursor: "pointer" }} // Pointer cursor for the input
         InputProps={{
           endAdornment: (
             <IconButton
@@ -244,6 +248,8 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
                   dateFormat="MM-dd-yyyy"
                   sx={{mb:"1%"}}
                   minDate={new Date()} // Disable past dates
+                   showYearDropdown
+  dropdownMode="select"
                   customInput={
                     <ExampleCustomInput
                       onClear={() => setFieldValue("appointmentDate", null)}

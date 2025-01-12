@@ -81,6 +81,8 @@ const ResilienceRoundtableForm = () => {
     memberName: '',
     firstAttendeeName: '',
     secondAttendeeName: '',
+    discount_code:'',
+    organisation_name:''
   };
 
   
@@ -91,6 +93,10 @@ const ExampleCustomInput = React.forwardRef(
       value={value || ""}
        label="Date of Birth"
       autoComplete="off"
+      inputProps={{
+        readOnly: true, // Prevents the blinking cursor
+      }}
+      sx={{ cursor: "pointer" }} // Pointer cursor for the input
       InputProps={{
         endAdornment: (
           <IconButton
@@ -151,6 +157,10 @@ const ExampleCustomInput = React.forwardRef(
         value={value || ""}
         label="Friend's Date of Birth"
         autoComplete="off"
+        inputProps={{
+          readOnly: true, // Prevents the blinking cursor
+        }}
+        sx={{ cursor: "pointer" }} // Pointer cursor for the input
         InputProps={{
           endAdornment: (
             <IconButton
@@ -239,6 +249,16 @@ const ExampleCustomInput = React.forwardRef(
     secondAttendeeName: Yup.string().when('payment', {
       is:(value) => value === 'member',
       then: Yup.string().required('Second attendee name is required when payment is "member"'),
+      otherwise: Yup.string(),
+    }),
+    discount_code: Yup.string().when('payment', {
+      is: (value) => value ==='discount_code',
+      then: Yup.string().required('Please enter discount code.'),
+      otherwise: Yup.string(),
+    }),
+    organisation_name: Yup.string().when('payment', {
+      is:(value) => value === 'discount_code',
+      then: Yup.string().required('Please enter organisation name.'),
       otherwise: Yup.string(),
     }),
   });
@@ -450,6 +470,8 @@ const ExampleCustomInput = React.forwardRef(
     dateFormat="MM-dd-yyyy"
     minDate={minDateFormatted} // Disable past dates
     maxDate={maxDateFormatted}
+     showYearDropdown
+  dropdownMode="select"
     // InputLabelProps={{
     //   shrink: true, // Ensure the label stays shrunk
     // }}
@@ -586,6 +608,8 @@ const ExampleCustomInput = React.forwardRef(
                                                     dateFormat="MM-dd-yyyy"
                                                     minDate={minDateFormatted} // Disable past dates
                                                     maxDate={maxDateFormatted}
+                                                     showYearDropdown
+  dropdownMode="select"
                                                     InputLabelProps={{
                                                       shrink: true, // Ensures the label is always displayed in a shrunk state
                                                      
@@ -709,6 +733,15 @@ const ExampleCustomInput = React.forwardRef(
           </Typography>
         }
       />
+       <FormControlLabel
+        value="discount_code"
+        control={<Radio sx={{ color: "black" }} />}
+        label={
+          <Typography sx={{ color: "black" }}>
+          Discount Code
+          </Typography>
+        }
+      />
     </RadioGroup>
     {touched.payment && errors.payment && (
       <FormHelperText>{errors.payment}</FormHelperText>
@@ -774,7 +807,51 @@ const ExampleCustomInput = React.forwardRef(
                                 }} />
                             </Grid></>
                       )}
+
+{values.payment === 'discount_code' && (
+                        <><Grid item xs={12} sm={6}>
+                            <TextField
+                              fullWidth
+                              label="Enter Discount Code"
+                              name="discount_code"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.discount_code}
+                              error={touched.discount_code && Boolean(errors.discount_code)}
+                              helperText={touched.discount_code && errors.discount_code}
+                              InputLabelProps={{
+                                shrink: true, // Ensures the label is always displayed in a shrunk state
+                                sx: {
+                                  backgroundColor: 'white', // Prevent overlap visually
+                                  padding: '0 4px', // Adds space for clarity
+                                  transform: 'translate(14px, -6px)', // Adjusts the label position above the field
+                                },
+                              }}  />
+                          </Grid><Grid item xs={12} sm={6}>
+                              <TextField
+                                fullWidth
+                                label="Enter Organisation Name"
+                                name="organisation_name"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.organisation_name} 
+                                error={touched.organisation_name && Boolean(errors.organisation_name)}
+                                helperText={touched.organisation_name && errors.organisation_name}
+                                InputLabelProps={{
+                                  shrink: true, // Ensures the label is always displayed in a shrunk state
+                                  sx: {
+                                    backgroundColor: 'white', // Prevent overlap visually
+                                    padding: '0 4px', // Adds space for clarity
+                                    transform: 'translate(14px, -6px)', // Adjusts the label position above the field
+                                  },
+                                }} />
+                            </Grid>
+                            
+                            </>
+                      )}
                     </Grid>
+
+                    
              <Box mt={3} display="flex" justifyContent="space-between" alignItems="center">
                   <Button
                     type="submit"

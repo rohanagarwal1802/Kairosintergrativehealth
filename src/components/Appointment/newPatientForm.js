@@ -45,6 +45,10 @@ const ExampleCustomInput = React.forwardRef(
       value={value || ""}
       label="Patient's Date of Birth"
       autoComplete="off"
+      inputProps={{
+        readOnly: true, // Prevents the blinking cursor
+      }}
+      sx={{ cursor: "pointer" }} // Pointer cursor for the input
       InputProps={{
         endAdornment: (
           <IconButton
@@ -52,8 +56,8 @@ const ExampleCustomInput = React.forwardRef(
             size="small"
             onClick={onClick}
             sx={{
-              cursor: "pointer",
-              "&:hover": { backgroundColor: "transparent" },
+              cursor: "pointer", // Pointer cursor for the dropdown icon
+              "&:hover": { backgroundColor: "transparent" }, // Prevent hover background
             }}
           >
             <ArrowDropDownIcon />
@@ -62,11 +66,12 @@ const ExampleCustomInput = React.forwardRef(
       }}
       fullWidth
       ref={ref}
-      error={Boolean(error)} // Only show error if there is an error
-      helperText={error ? helperText : ""}
+      error={Boolean(error)} // Show error state if error exists
+      helperText={error ? helperText : ""} // Display helper text if there's an error
     />
   )
 );
+
 
 // Validation Schema
 const validationSchema = Yup.object({
@@ -483,26 +488,28 @@ const parseDate = (dateString) => {
 
         {/* DOB */}
         <Grid item xs={12} sm={6}>
-          <FormControl
-                          fullWidth
-                          // margin="normal"
-                        >
-                          <DatePicker
-                            selected={formik.values.dob}
-                            onChange={(date) => formik.setFieldValue("dob", date)}
-                            placeholderText={<RequiredLabel label="Patient's Date of Birth" />}
-                            dateFormat="MM-dd-yyyy"
-                            minDate={minDateFormatted} // Disable past dates
-                            maxDate={maxDateFormatted}
-                            customInput={
-                              <ExampleCustomInput
-                                onClear={() => formik.setFieldValue("dob", null)}
-                                error={formik.touched.dob && formik.errors.dob}
-                                helperText={formik.errors.dob}
-                              />
-                            }
-                          />
-                        </FormControl>
+        <FormControl fullWidth>
+  <DatePicker
+    selected={formik.values.dob}
+    onChange={(date) => formik.setFieldValue("dob", date)}
+    placeholderText={<RequiredLabel label="Patient's Date of Birth" />}
+    dateFormat="MM-dd-yyyy"
+    minDate={minDateFormatted} // Disable past dates
+    maxDate={maxDateFormatted}
+    showYearDropdown // Enable year dropdown
+    dropdownMode="select" // Allows year selection via dropdown
+    sx={{cursor:"pointer"}}
+    customInput={
+      <ExampleCustomInput
+        onClear={() => formik.setFieldValue("dob", null)}
+        error={formik.touched.dob && formik.errors.dob}
+        helperText={formik.errors.dob}
+        sx={{cursor:"pointer"}}
+      />
+    }
+  />
+</FormControl>
+
           {/* <TextField
              label={<RequiredLabel label="Patient's Date of Birth" />}
             name="dob"
