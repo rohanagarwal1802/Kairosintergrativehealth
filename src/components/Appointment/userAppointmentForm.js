@@ -59,7 +59,7 @@ function AppointmentFormModal({ open, onClose,patientId,getAppointMentData,userD
         if(appointment_id)
         data.appointmentId = appointment_id;
         const appointmentResp=await axios.post('/api/createNewAppointMent',data)
-        let username=userDetails?.timeSlot+" "+userDetails?.lastname
+        let username=userDetails?.firstname+" "+userDetails?.lastname
         let email=userDetails?.email
         let phone=userDetails?.mobile
         let emailValues = { ...data,username:username,email:email,phone:phone };

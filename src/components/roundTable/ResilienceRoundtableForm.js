@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -15,7 +15,11 @@ import {
   FormControl,
   FormLabel,
   FormHelperText ,
-  IconButton
+  IconButton,
+  InputLabel,
+  Select,
+  Link,
+  MenuItem
 } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import FullScreenDialog from './FullScreenDialog';
@@ -63,6 +67,9 @@ const ResilienceRoundtableForm = () => {
   const [scanner,setScanner]=useState(null) 
   const [type,setType]=useState(null)
   const {setSnackbar}=useCustomSnackbarStore()
+  const now = new Date();
+  const currentMonthIndex = now.getMonth();
+  const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"]
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -84,7 +91,9 @@ const ResilienceRoundtableForm = () => {
     firstAttendeeName: '',
     secondAttendeeName: '',
     discount_code:'',
-    organisation_name:''
+    organisation_name:'',
+    monthName:monthNames[currentMonthIndex],
+    terms:false
   };
 
   
@@ -253,6 +262,11 @@ const ExampleCustomInput = React.forwardRef(
       then: Yup.string().required('Second attendee name is required when payment is "member"'),
       otherwise: Yup.string(),
     }),
+    monthName: Yup.string().when('payment', {
+      is: (value) => value ==='discount_code',
+      then: Yup.string().required('Please enter Month name.'),
+      otherwise: Yup.string(),
+    }),
     discount_code: Yup.string().when('payment', {
       is: (value) => value ==='discount_code',
       then: Yup.string().required('Please enter discount code.'),
@@ -263,8 +277,12 @@ const ExampleCustomInput = React.forwardRef(
       then: Yup.string().required('Please enter organisation name.'),
       otherwise: Yup.string(),
     }),
+    terms: Yup.boolean()
+    .oneOf([true], 'Terms and Conditions and Privacy Policies is required to accept')
+    .required('Terms and Conditions and Privacy Policies is required to accept'),
   });
   
+
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
@@ -279,45 +297,44 @@ const ExampleCustomInput = React.forwardRef(
       }
       else{
         let code;
-        const now = new Date();
-const currentMonthIndex = now.getMonth();
+
 const currentYear = now.getFullYear(); // Get current year
-        switch(currentMonthIndex)
+        switch(values.monthName)
         {
-case 0:
+case 'January':
   code=process.env.NEXT_PUBLIC_JAN_CODE
 break;
-case 1:
+case 'February':
   code=process.env.NEXT_PUBLIC_FEB_CODE  
 break;
-case 2:
+case 'March':
   code=process.env.NEXT_PUBLIC_MAR_CODE
 break;
-case 3:
+case 'April':
   code=process.env.NEXT_PUBLIC_APR_CODE
 break;
-case 4:
+case 'May':
   code=process.env.NEXT_PUBLIC_MAY_CODE
 break;
-case 5:
+case 'June':
   code=process.env.NEXT_PUBLIC_JUN_CODE
 break;
-case 6:
+case 'July':
   code=process.env.NEXT_PUBLIC_JUL_CODE
 break;
-case 7:
+case 'August':
   code=process.env.NEXT_PUBLIC_AUG_CODE
 break;
-case 8:
+case 'September':
   code=process.env.NEXT_PUBLIC_SEP_CODE 
 break;
-case 9:
+case 'October':
   code=process.env.NEXT_PUBLIC_OCT_CODE 
 break;
-case 10:
+case 'November':
   code=process.env.NEXT_PUBLIC_NOV_CODE 
 break;
-case 11:
+case 'December':
   code=process.env.NEXT_PUBLIC_DEC_CODE 
 break;
 default:console.log("Invalid Month")
@@ -510,17 +527,17 @@ if(code.slice(-4)==currentYear && code!==values.discount_code)
                                                   // margin="normal"
                                                 >
                                                   <DatePicker
-                                                    selected={formik.values.dob}
-                                                    onChange={(date) => formik.setFieldValue("dob", date)}
+                                                    selected={values.dob}
+                                                    onChange={(date) => setFieldValue("dob", date)}
                                                     placeholderText={<RequiredLabel label="Patient's Date of Birth" />}
                                                     dateFormat="MM-dd-yyyy"
                                                     minDate={minDateFormatted} // Disable past dates
                                                     maxDate={maxDateFormatted}
                                                     customInput={
                                                       <ExampleCustomInput
-                                                        onClear={() => formik.setFieldValue("dob", null)}
-                                                        error={formik.touched.dob && formik.errors.dob}
-                                                        helperText={formik.errors.dob}
+                                                        onClear={() => setFieldValue("dob", null)}
+                                                        error={touched.dob && errors.dob}
+                                                        helperText={errors.dob}
                                                       />
                                                     }
                                                   />
@@ -872,7 +889,32 @@ if(code.slice(-4)==currentYear && code!==values.discount_code)
                       )}
 
 {values.payment === 'discount_code' && (
-                        <><Grid item xs={12} sm={6}>
+                        <>
+                        <Grid item xs={12} sm={6}>
+                        <FormControl fullWidth error={Boolean(touched.monthName && errors.monthName)}>
+  <InputLabel id="monthName-label">Month Name</InputLabel>
+  <Select
+    labelId="monthName-label"
+    name="monthName"
+    value={values.monthName}
+    onChange={handleChange}
+    onBlur={handleBlur}
+    label={"Month Name"}
+  >
+    {monthNames.map((name, index) => (
+      <MenuItem key={index} value={name}>
+        {name}
+      </MenuItem>
+    ))}
+  </Select>
+  {touched.monthName && errors.monthName && (
+    <FormHelperText>{errors.monthName}</FormHelperText>
+  )}
+</FormControl>
+
+</Grid>
+
+                        <Grid item xs={12} sm={6}>
                             <TextField
                               fullWidth
                               label="Enter Discount Code"
@@ -890,7 +932,8 @@ if(code.slice(-4)==currentYear && code!==values.discount_code)
                                   transform: 'translate(14px, -6px)', // Adjusts the label position above the field
                                 },
                               }}  />
-                          </Grid><Grid item xs={12} sm={6}>
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
                               <TextField
                                 fullWidth
                                 label="Enter Organisation Name"
@@ -912,6 +955,37 @@ if(code.slice(-4)==currentYear && code!==values.discount_code)
                             
                             </>
                       )}
+                        {/* Terms and Conditions Checkbox */}
+                                <Grid item xs={12}>
+                                  <FormControlLabel
+                                    control={
+                                      <Checkbox
+                                        name="terms"
+                                        color="primary"
+                                        checked={values.terms}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                      />
+                                    }
+                                    label={
+                                      <Typography variant="body2" sx={{ color: "black" }}>
+        By checking this box, you agree to the Kairos Integrative Health's{' '}
+        <Link href="/TermsAndConditions" target="_blank" rel="noopener noreferrer" color="primary">
+          Terms & Conditions
+        </Link>{' '}
+        and{' '}
+        <Link href="/PrivacyPolicy" target="_blank" rel="noopener noreferrer" color="primary">
+          Privacy Policies
+        </Link>
+        .
+      </Typography>
+                                    }
+                                  />
+                                  {touched.terms && errors.terms && (
+                                    <Typography color="error">{errors.terms}</Typography>
+                                  )}
+                                  {values.terms===true &&  <Typography color="primary"><i>By participating in this educational session, you acknowledge that the content provided is for educational purposes only and is not intended as medical advice. The information shared is meant to promote general understanding of mental health topics. Attending this session does not establish a patient-provider relationship, nor does it replace the need for individualized care. For specific concerns and individual guidance, please consult with your healthcare provider or a licensed mental health professional.</i></Typography>}
+                                </Grid>
                     </Grid>
 
                     

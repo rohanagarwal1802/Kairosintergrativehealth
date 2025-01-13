@@ -18,7 +18,9 @@ import {
   CircularProgress,
   List,
   ListItem,
-  FormHelperText 
+  FormHelperText ,
+  Checkbox,
+  Link
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import axios from 'axios';
@@ -95,6 +97,9 @@ const validationSchema = Yup.object({
   address: Yup.string().required('Address is required'),
   suggestion:Yup.string(),
   captchaVerification: Yup.string().required('Please verify the captcha'),
+  terms: Yup.boolean()
+    .oneOf([true], 'Terms and Conditions and Privacy Policies is required to accept')
+    .required('Terms and Conditions and Privacy Policies is required to accept'),
 });
 
 const PatientForm = () => {
@@ -134,6 +139,7 @@ const PatientForm = () => {
       address:'',
       suggestion:'',
       captchaVerification: '',
+      terms:false
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -706,6 +712,36 @@ const parseDate = (dateString) => {
             helperText={formik.touched.suggestion && formik.errors.suggestion}
           />
         </Grid>
+         {/* Terms and Conditions Checkbox */}
+         <Grid item xs={12}>
+  <FormControlLabel
+    control={
+      <Checkbox
+        name="terms"
+        color="primary"
+        checked={formik.values.terms}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+    }
+    label={
+      <Typography variant="body2" sx={{ color: "black" }}>
+        By checking this box, you agree to the Kairos Integrative Health's{' '}
+        <Link href="/TermsAndConditions" target="_blank" rel="noopener noreferrer" color="primary">
+          Terms & Conditions
+        </Link>{' '}
+        and{' '}
+        <Link href="/PrivacyPolicy" target="_blank" rel="noopener noreferrer" color="primary">
+          Privacy Policies
+        </Link>
+        .
+      </Typography>
+    }
+  />
+  {formik.touched.terms && formik.errors.terms && (
+    <Typography color="error">{formik.errors.terms}</Typography>
+  )}
+</Grid>
 </Grid>
 
   {/* Submit Button */}

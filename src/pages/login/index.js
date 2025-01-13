@@ -342,21 +342,41 @@ if(patient_detail.data.status===true)
     <Link href="#" passHref  onClick={(e) => { e.preventDefault(); openRequestedAccount(); }}>
     <LinkStyled>   Request an account</LinkStyled>
     </Link>
+    <br/>
+    {/* By participating in this educational session, you acknowledge that the content provided is for educational purposes only and is not intended as medical advice. The information shared is meant to promote general understanding of mental health topics. Attending this session does not establish a patient-provider relationship, nor does it replace the need for individualized care. For specific concerns and individual guidance, please consult with your healthcare provider or a licensed mental health professional. */}
   </Typography>
+  
 </Box>
 
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Typography variant="body2">
-                      <Link href="/">
-                        <LinkStyled>Go To Home Page</LinkStyled>
-                      </Link>
-                    </Typography>
-                  </Box>
+
+
+<Box
+  sx={{
+    display: "flex",
+    flexDirection: "column", // Align elements in a column
+    justifyContent: "center",
+    alignItems: "center", // Center align horizontally
+    textAlign: "center", // Center align text
+    gap: 2, // Add some space between each Box
+  }}
+>
+  <Typography variant="body2">
+    <Link href="/" underline="hover" color="primary">
+      Go To Home Page
+    </Link>
+  </Typography>
+  
+  <Typography variant="body2">
+   Note:- If you are having trouble logging in through the website,
+  
+
+  
+    you can login to Tebra directly at{" "}
+    <Link href="https://portal.kareo.com/pp-webapp/app/new/login" target="_blank" rel="noopener noreferrer" color="primary">
+    https://portal.kareo.com/pp-webapp/app/new/login
+    </Link>
+  </Typography>
+</Box>
                 </>
               ) : (
                 <Typography align="center">OTP Authentication...</Typography>

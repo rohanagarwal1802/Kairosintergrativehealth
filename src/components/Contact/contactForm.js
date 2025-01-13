@@ -225,11 +225,11 @@ const validationSchema = Yup.object({
                   By checking this box, you consent to receive text messages and emails at the
                   phone/email address provided. Standard messaging and data rates may apply. By
                   clicking below, you agree to our{' '}
-                  <a href="/terms" target="_blank" rel="noopener noreferrer">
+                  <a href="/TermsAndConditions" target="_blank" rel="noopener noreferrer">
                     Terms & Conditions
                   </a>{' '}
                   and{' '}
-                  <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                  <a href="/PrivacyPolicy" target="_blank" rel="noopener noreferrer">
                     Privacy Policies
                   </a>
                   .
