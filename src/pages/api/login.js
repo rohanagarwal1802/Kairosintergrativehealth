@@ -80,6 +80,10 @@ export default async function handler(req, res) {
     if (response === 'Wrong Password' || response === 'Patient Not Found') {
       return res.status(403).json({ message: response });
     }
+    else if(response==='Please check email and create your password')
+    {
+      return res.status(403).json({ message: response });
+    }
 
     const keyHash=hashSecretKey(secretKey)
         
