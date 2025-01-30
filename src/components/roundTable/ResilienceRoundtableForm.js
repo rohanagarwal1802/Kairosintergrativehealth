@@ -340,8 +340,8 @@ break;
 default:console.log("Invalid Month")
 
         }
-
-if(code.slice(-4)==currentYear && code!==values.discount_code)
+console.log("code =>",code)
+if(code && code.toString().slice(-4)==currentYear && code!==values.discount_code)
 {
  setSnackbar('warning','Please enter valid dicount code.')
   return;

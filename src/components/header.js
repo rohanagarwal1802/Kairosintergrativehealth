@@ -349,7 +349,7 @@ ADMIN DETAILS
 {!isMobile && !userDetails &&
 <Button
         color="inherit"
-        onClick={() =>router.push("/login") }
+        onClick={() => window.open("https://portal.kareo.com/app/new/login", "_blank", "noopener,noreferrer") }
         sx={{
           padding: "6px 12px",
           // borderBottom: isSelected(option.path) ? "2px solid #535945" : "none",
@@ -378,7 +378,8 @@ ADMIN DETAILS
       fontSize: "0.75rem",
     }}
     onClick={() => {
-      router.push('/bookanappointment')
+      // router.push('/bookanappointment')
+      window.open("https://practice.kareo.com/kih", "_blank", "noopener,noreferrer");
       // Define the action for button click
     }}
   >
@@ -636,7 +637,7 @@ ADMIN DETAILS
 {!userDetails &&
 <Button
       color="inherit"
-      onClick={() => router.push("/login")} // Navigate directly for normal options
+      onClick={() =>  window.open("https://portal.kareo.com/app/new/login", "_blank", "noopener,noreferrer")} // Navigate directly for normal options
       sx={{
         padding: "6px 12px",
         color: "#535945",
