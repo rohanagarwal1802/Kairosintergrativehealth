@@ -19,7 +19,11 @@ export default function Home() {
 
   const handlePhoneCallClick = () => {
     // Add logic to trigger the phone call box/modal
-    router.push('/bookanappointment');
+    // router.push('/bookanappointment');
+   
+      window.open("https://practice.kareo.com/kih", "_blank", "noopener,noreferrer");
+      // Define the action for button click
+  
   };
 
   return (
