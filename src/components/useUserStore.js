@@ -18,6 +18,9 @@ const useUserStore = create((set) => ({
   loginLoader: false,
   setLoginLoader: (value) => set({ loginLoader: value }),
 
+  preferedLocation:'Alabama',
+  setPreferedLocation:(value)=>set({preferedLocation:value}),
+
 }));
 
 export default useUserStore;

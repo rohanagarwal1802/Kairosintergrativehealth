@@ -25,10 +25,11 @@ import axios from "axios";
 import AdminOptions from "./adminDropdown";
 import useUserStore from "./useUserStore";
 import LogOutDialog from "./logoutDialog";
+import LocationPopup from "./locationPopup";
 import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 
 const Header = ({userDetails}) => {
-  console.log("userDetails ==>",userDetails)
+  // console.log("userDetails ==>",userDetails)
   const router = useRouter();
   const options = Options();
   const resourcesOptions = ResourcesOptions();
@@ -49,6 +50,7 @@ const Header = ({userDetails}) => {
   const isServicesMenuOpen=Boolean(anchorEl)
   const isAboutMenuOpen=Boolean(anchorE3)
   const {setSnackbar}=useCustomSnackbarStore()
+  const [openLocationBar,setOpenLocationBar]=useState(false)
 
   const isMobile = useMediaQuery("(max-width:900px)"); // Media query for responsiveness
 console.log(options)
@@ -256,7 +258,30 @@ ADMIN DETAILS
 
     {/* Dynamically rendered options */}
     {options.map((option, index) => {
-      if (
+      if(option.title==='LOCATION')
+      {
+        return(
+        <Button
+        key={index}
+        color="inherit"
+        onClick={() => setOpenLocationBar(true)}
+        sx={{
+          padding: "6px 12px",
+          borderBottom: isSelected(option.path)
+            ? "2px solid #535945"
+            : "none",
+          color: isSelected(option.path) ? "#535945" : "inherit",
+          "&:hover": { backgroundColor: "lightgray" },
+          fontSize: "0.75rem",
+        }}
+      >
+        {option.title}
+      </Button>
+        )
+
+      }
+     else 
+     if (
         option.title === "RESOURCES" ||
         option.title === "SERVICES" ||
         option.title === "ABOUT"
@@ -323,7 +348,7 @@ ADMIN DETAILS
           </Box>
         );
       }
-
+else{
       return (
         <Button
           key={index}
@@ -342,6 +367,7 @@ ADMIN DETAILS
           {option.title}
         </Button>
       );
+    }
     })}
   </>
 )}
@@ -676,6 +702,7 @@ ADMIN DETAILS
       </Toolbar>
     </AppBar>
     {openLogout && <LogOutDialog setOpen={setOpenLogout} open={openLogout} handleLogout={handleLogout}/>}
+    {openLocationBar && <LocationPopup open={openLocationBar} setOpen={setOpenLocationBar}/>}
     </>
   );
 };

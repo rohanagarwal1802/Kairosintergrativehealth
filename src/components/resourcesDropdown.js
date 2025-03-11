@@ -43,12 +43,12 @@ const ResourcesOptions = () => {
       // description: "Explore various mutual fund options to grow your wealth.",
       image: "/images/faq.jpg",
     },
-    // {
-    //   title: "Refer a Patient",
-    //   path: "/careers",
-    //   // description: "Let us manage your investment portfolio for optimal returns.",
-    //   image: "/images/client.jpg",
-    // },
+    {
+      title: "Contact",
+      path: "/contact",
+      // description: "Let us manage your investment portfolio for optimal returns.",
+      image: "/images/client.jpg",
+    },
     {
       title: "Terms of use",
       path: "/TermsAndConditions",
