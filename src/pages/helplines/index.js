@@ -8,7 +8,7 @@ import NorthCarolinaCauses from "@/components/Location/northCarolinaCauses";
 import { useEffect,useState } from "react";
 const HelpLinesPage=()=>{
     const { preferedLocation, setPreferedLocation } = useUserStore();
-    const [locationHelplines,setLocationHelplines]=useState(null);
+    const [locationHelplines,setLocationHelplines]=useState([]);
 useEffect(()=>{
   if(preferedLocation==='Alabama')
   {
