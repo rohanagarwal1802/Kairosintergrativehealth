@@ -24,11 +24,16 @@ const RoundTable = () => {
         }}
       >
 
-<Typography variant="h4" sx={{ mb: 2, fontWeight:'800', color: "black" ,mt:2}}>
-Resilience Roundtable
-            </Typography>
-  
-
+<h1
+  style={{
+    textAlign: 'center', // Centers the text horizontally
+    margin: '0', // Removes any default margins
+    padding: '10px 0', // Optional padding for spacing
+    color:"black"
+  }}
+>
+  Resilience Roundtable
+</h1>
 
         {/* First Section */}
         <Box
@@ -189,8 +194,8 @@ Resilience Roundtable
         To attend the Resilience Roundtable, please follow these steps:
       </Typography>
       <ul style={{ listStyleType: "disc", margin: 0, paddingLeft: "1.5em", fontWeight: "normal" }}>
-        <li>Fill out the form provided at the bottom of this page for each month you plan to attend.</li>
-        <li>Select entry fee option:
+        <li>Fill out the form provided.</li>
+        <li>After submitting, you will receive:
           <ul style={{ listStyleType: "circle", paddingLeft: "1.5em", fontWeight: "normal" }}>
           <li>Member Discounted Plan: $21 per session + 1 Free Friend/Family Member.</li>
           <li>Guest Access: $30 per session.</li>
