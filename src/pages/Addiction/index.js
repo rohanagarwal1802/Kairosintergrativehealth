@@ -2,8 +2,10 @@ import GoogleMap from "../../components/Contact/googleMap";
 import { Box, Typography, List, ListItem, Grid } from "@mui/material";
 import Image from "next/image";
 import ContactForm from "@/components/Contact/contactForm";
+import useUserStore from "@/components/useUserStore";
 
 const AddictionPage = () => {
+  const { preferedLocation, setPreferedLocation } = useUserStore();
 
 
   return (
@@ -121,41 +123,40 @@ const AddictionPage = () => {
 
         {/* List Section */}
         <Box sx={{ ml: "10%" }}>
-          <List>
-            {[
-              `Addiction is a complex, chronic condition that affects both the mind
-and body, that can lead to destructive behaviors and strained
-relationships. Whether it involves substances like alcohol,
-prescription medications, or illicit drugs, addiction can feel
-overwhelming, but recovery is possible. At KIH we are committed to
-providing compassionate, evidence-based care tailored to each
-individual's needs. We work together to develop a personalized
-treatment plan that addresses the underlying causes of addiction
-and promotes long-term recovery.`,
-            
-              `Please note we do not currently offer treatment with Suboxone or other
-medications containing buprenorphine as it is a controlled substance.`,
-            ].map((therapy, index) => (
-              <><ListItem
-                key={index}
-                sx={{
-                  display: "list-item",
-                  p: 0,
-                  "&::before": {
-                    content: '"•"',
-                    color: "black",
-                    fontSize: "1.5rem",
-                    position: "absolute",
-                    left: "-1.5rem",
-                  },
-                }}
-              >
-                <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                  {therapy}
-                </Typography>
-              </ListItem><br /></>
-            ))}
-          </List>
+        <List sx={{ paddingLeft: "20px" }}>
+  {[
+    `Addiction is a complex, chronic condition that affects both the mind
+    and body, leading to destructive behaviors and strained relationships. 
+    Whether it involves substances like alcohol, prescription medications, 
+    or illicit drugs, addiction can feel overwhelming, but recovery is possible. 
+    At KIH, we are committed to providing compassionate, evidence-based care 
+    tailored to each individual's needs. We work together to develop a personalized 
+    treatment plan that addresses the underlying causes of addiction and promotes long-term recovery.`,
+
+    preferedLocation === "Alabama" &&
+      `Please note we do not currently offer treatment with Suboxone or other 
+      medications containing buprenorphine as it is a controlled substance.`,
+  ]
+    .filter(Boolean) // Removes falsy values (false, null, undefined)
+    .map((therapy, index) => (
+      <ListItem
+        key={index}
+        sx={{ 
+          display: "list-item",  // Ensures it behaves like a list item
+          listStyleType: "disc", // Forces bullet points to appear
+          paddingLeft: "10px",
+          "&::marker": { color: "black", fontSize: "1.2rem" }, // Ensures bullet points are black
+        }}
+      >
+        <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+          {therapy}
+        </Typography>
+      </ListItem>
+    ))}
+</List>
+
+
+
         </Box>
 
        

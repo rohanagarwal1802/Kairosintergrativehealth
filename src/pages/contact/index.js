@@ -3,8 +3,10 @@ import { Box, Typography,useMediaQuery  } from '@mui/material';
 import Image from "next/image";
 import ContactForm from "@/components/Contact/contactForm";
 import OfficeImageGallery from "@/components/Contact/officeImages";
+import useUserStore from "@/components/useUserStore";
 const Contact=()=>{
   const isSmallScreen = useMediaQuery("(max-width: 768px)"); // Adjust the breakpoint as needed
+  const { preferedLocation, setPreferedLocation } = useUserStore();
 return (
     <>
     

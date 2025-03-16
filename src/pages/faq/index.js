@@ -8,9 +8,13 @@ import {
 } from "@mui/material";
 import AccordionQuestion from "@/components/FAQ/Questions"; // Adjust path if necessary
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import useUserStore from "@/components/useUserStore";
+
 
 const Faq = () => {
   const [expanded, setExpanded] = React.useState(false);
+     const { preferedLocation, setPreferedLocation } = useUserStore();
+  
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -192,12 +196,17 @@ const Faq = () => {
           <Typography variant="body1">Payment and Insurance</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ padding: "12px", backgroundColor: "white" }}>
-      
-             <AccordionQuestion
-            question="Do you accept insurance ?"
-            answer="Currently, we do not accept insurance, but we’re actively working to partner with
-             insurance companies to offer in-network services in the future."
-          />
+        <AccordionQuestion
+  question="Do you accept insurance?"
+  answer={
+    preferedLocation === "Alabama"
+      ? "Currently, we do not accept insurance, but we’re actively working to partner with insurance companies to offer in-network services in the future."
+      : preferedLocation === "North Carolina"
+      ? "We currently accept Aetna, BCBS, and Optum. Please call our office if you have Cigna or have questions regarding insurance. "
+      : ""
+  }
+/>
+
 
 <AccordionQuestion
             question="What are your fees ?"
@@ -241,11 +250,13 @@ const Faq = () => {
             question="Do you prescribe medications ?"
             answer="Yes, we offer medication management services. However, we do not prescribe controlled substances at this time."
           />
-            <AccordionQuestion
-            question="Do you offer addiction treatment ?"
-            answer="Absolutely. Our outpatient addiction recovery services are designed to meet your unique needs and provide compassionate care.
-             Please note that we currently do not offer treatment with Suboxone."
-          />
+           <AccordionQuestion
+  question="Do you offer addiction treatment?"
+  answer={`Absolutely. Our outpatient addiction recovery services are designed to meet your unique needs and provide compassionate care.${
+    preferedLocation === "Alabama" ? " Please note that we currently do not offer treatment with Suboxone." : ""
+  }`}
+/>
+
             <AccordionQuestion
             question="Do you treat men’s mental health concerns ?"
             answer="Yes, we specialize in addressing men’s health challenges, including stress, relationships, and addiction. Our tailored

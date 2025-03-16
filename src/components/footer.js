@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography, Container, IconButton, Link, Grid } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Phone, Email } from "@mui/icons-material";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -8,12 +8,40 @@ import ServicesOptions from "./servicesDropdown";
 import FaxIcon from '@mui/icons-material/Fax';
 import { useRouter } from "next/router";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import useUserStore from "./useUserStore";
+import { useState } from "react";
 
 const Footer = () => {
   const servicesOptions = ServicesOptions();
   const resourcesOptions = ResourcesOptions();
   const router=useRouter()
+  const { preferedLocation, setPreferedLocation } = useUserStore();
 
+  const [info,setInfo]=useState({
+    call: "919-918-0622",
+    address: "The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216",
+  });
+
+  const locationData = {
+    Alabama: {
+      call: "919-918-0622",
+      address: "The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216",
+    },
+    'North Carolina': {
+      call: "919-918-0620",
+      address: " 523 Keisler Drive Suite 202 Cary, NC 27518 ",
+    },
+    // California: {
+    //   call: "310-555-5678",
+    //   address: "5678 Sunset Blvd, Los Angeles, CA 90028",
+    // },
+  };
+
+  useEffect(() => {
+  
+
+    setInfo[locationData[preferedLocation]]
+  }, [preferedLocation]);
   return (
     <Box>
       {/* Wide Box Above Footer */}
@@ -125,13 +153,13 @@ const Footer = () => {
                   <Phone sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
                   Call :{" "}
                   <Link href="tel:256-980-0620" color="inherit" sx={{ fontSize: "16px" }}>
-                    256-980-0620
+                    {info.call}
                   </Link>
                   <br/>
                  &nbsp; &nbsp;  &nbsp;  {/* <FaxIcon sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} /> */}
                   Fax :{" "}
                   <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
-                    919-918-0622
+                   {info.call}
                   </Link>
                   <br />
                  
@@ -151,7 +179,7 @@ const Footer = () => {
                   </Link>
                 </Typography> */}
                 <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
-                The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216
+              {info.address}
                 </Typography>
               </Box>
             </Grid>

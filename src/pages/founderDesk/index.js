@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Typography, Stack,Grid } from "@mui/material";
+import { useState,useEffect } from "react";
+import useUserStore from "@/components/useUserStore";
 
 const data = [
   {
@@ -33,7 +35,9 @@ const data = [
   }
 ];
 
+
 const FounderDesk = () => {
+  const { preferedLocation } = useUserStore();
   return (
     <><Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", p: 4,  backgroundColor:"#C8AF8F",zIndex:-2, }}>
       {/* Image Section */}
@@ -146,13 +150,18 @@ const FounderDesk = () => {
 
 MSN, MBA, PMHNP-BC
         </Typography>
-        <Typography variant="body1" sx={{ color: "black", fontSize: 16 }}>
+      {preferedLocation==='Alabama' &&  <Typography variant="body1" sx={{ color: "black", fontSize: 16 }}>
           Mark Merritt is a dedicated Psychiatric Mental Health Nurse Practitioner (PMHNP) <b>born</b>, <b>raised</b>,
           and <b>practicing</b> in Birmingham, Alabama, with a passion for enhancing the well-being of his
           community. With an extensive educational background, including a Master of Science in Nursing specializing and psychiatric – mental health nursing, a Master of Business Administration, and a Bachelor of
           Science in Public Health, Mark utilizes his training and experience in population and individual
           based settings to provide a diverse understanding to each individual’s unique presentation as well as enhance the well-being of his community.
-        </Typography>
+        </Typography>}
+
+        {preferedLocation==='North Carolina' &&  <Typography variant="body1" sx={{ color: "black", fontSize: 16 }}>
+        Mark Merritt is a dedicated Psychiatric Mental Health Nurse Practitioner (PMHNP). <b>He has practiced in the triangle are for over 3 years.</b>
+         With an extensive educational background, including a Master of Science in Nursing specializing and psychiatric – mental health nursing, a Master of Business Administration, and a Bachelor of Science in Public Health, Mark utilizes his training and experience in population and individual based settings to provide a diverse understanding to each individual’s unique presentation as well as enhance the well-being of his community. 
+        </Typography>}
       </Stack>
    
     <Box

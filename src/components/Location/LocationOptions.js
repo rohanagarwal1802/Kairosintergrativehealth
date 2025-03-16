@@ -16,7 +16,7 @@ const locationOptions = () => {
      img: "https://via.placeholder.com/200x150?text=North+Carolina" ,
      content: "We meet you where you are, with the understanding that life is difficult at times and work together to develop a path for you to reach your goals.",},
 
-  { value: "Choose your location", label: "Choose your location",
+  { value: "Choose your location", label: "Don’t see your state?",
      img: "https://via.placeholder.com/200x150?text=Choose+Your+Location",
      content: "We meet you where you are, with the understanding that life is difficult at times and work together to develop a path for you to reach your goals.", }
   ];

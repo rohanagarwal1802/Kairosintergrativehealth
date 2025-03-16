@@ -38,7 +38,7 @@ const Options = () => {
       title: "LOCATION",
       src: "/images/social.png",
       icon: <div />,
-      path: "/contact",
+      path: "/locationPage",
       openInNewTab: false,
     },
     // {
