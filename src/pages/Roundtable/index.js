@@ -58,7 +58,7 @@ const RoundTable = () => {
           >
             <Box
               component="img"
-              src="/rr2.jpeg"
+              src="/rr2.png"
               alt="Mental Health Education"
               sx={{
                 height: "100%",

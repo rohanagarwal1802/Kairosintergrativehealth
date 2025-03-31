@@ -260,24 +260,17 @@ const CommunityOutreach = () => {
           </Typography>
 
           <Typography sx={{ fontSize: 18, pl: 2, mb: 2,color:"black"}}>
-            At our practice, we offer <strong>Resilience Roundtable</strong>, a once-per-month virtual
-            educational session designed to address a wide variety of mental health topics in a safe and
-            anonymous space. This idea came from <strong>Mark’s recognition of the significant gap in mental
-            health education within the community</strong>.
+          KIH focuses on returning knowledge to the community and helping build resilience to enhance individuals’ quality of life. 
           </Typography>
 
           <Typography sx={{ fontSize: 18, pl: 2, mb: 2 ,color:"black"}}>
-            As a dedicated mental health professional, Mark saw firsthand how a lack of accessible,
-            evidence-based information often leads to misunderstanding and stigma surrounding mental health
-            issues. Driven by a passion to bridge this gap, the Resilience Roundtable was created to offer
-            practical, expert-driven discussions on various topics ranging from “Neuroreceptors and their role in
-            mental health” to “Mental Health in the family: Genetics and cross-generational language.”
+          The flagship initiative is the Resilience Roundtable, which started as a monthly virtual discussion covering various mental health topics. Although it has continued in this way, the Resilience Roundtable has been featured as an opportunity for teenagers through partnerships with local schools, and professionals organization in the form of continuing education. 
           </Typography>
 
           <Typography sx={{ fontSize: 18, pl: 2, mb: 2 ,color:"black"}}>
-            These sessions provide individuals with valuable insights and tools to enhance their mental well-being,
-            all while maintaining privacy and anonymity. We believe that by fostering open, informed conversations,
-            we can empower people to take control of their mental health and build resilience for the challenges ahead.
+          Created by Mark to address the gap in mental health education, the Resilience Roundtable provides
+           expert-driven, evidence-based information on topics like “Neuroreceptors in mental health” and “Mental Health in the family: Genetics and language.” These sessions offer valuable insights,
+           empowering individuals to improve their well-being and build resilience.
           </Typography>
 
           <Typography sx={{ fontSize: 18, pl: 2,color:"black" }}>

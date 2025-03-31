@@ -200,7 +200,7 @@ const Faq = () => {
   question="Do you accept insurance?"
   answer={
     preferedLocation === "Alabama"
-      ? "Currently, we do not accept insurance, but we’re actively working to partner with insurance companies to offer in-network services in the future."
+      ? "We currently accept Aetna, BCBS, and Optum. Please call our office if you have Cigna or have questions regarding insurance."
       : preferedLocation === "North Carolina"
       ? "We currently accept Aetna, BCBS, and Optum. Please call our office if you have Cigna or have questions regarding insurance. "
       : ""

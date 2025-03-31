@@ -76,7 +76,7 @@ const About = () => {
       textAlign: { xs: "center", md: "center" }, // Center on small screens
     }}
   >
-        About Kairos Integrative Health (K.I.H) <br />
+        About Kairos Integrative Health (KIH) <br />
     </Typography>
     <Typography
     variant="subtitle1"

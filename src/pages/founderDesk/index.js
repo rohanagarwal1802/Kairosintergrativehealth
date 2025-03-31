@@ -242,19 +242,10 @@ color:"white", // Light blue with transparency
 
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Mark&#39;s diverse background provides him
-with a comprehensive view of the healthcare system, allowing him to
-understand the challenges patients face across different levels of care. His
-experience spans from the beginning stages of outpatient practice, through
-the fast paced and often critical environment of the emergency department, to
-the specialized care provided in inpatient settings and substance use centers.
-This broad exposure has ignited a deep passion in Mark to ensure that his
-patients do not &quot;fall through the cracks&quot; of the healthcare system. His
-commitment to continuity of care and preventing patients from being
-
-overlooked underscores his drive to improve patient outcomes and advocate
-for those who may otherwise struggle to navigate the complexities of
-healthcare.
+  Mark has extensive experience across various healthcare settings, including <b>Emergency Departments,
+   Inpatient Psychiatry, Outpatient Psychiatry, and Substance Abuse Centers.</b> This diverse background 
+   provides him with a comprehensive understanding of the challenges patients face at different levels of 
+  care, fueling his commitment to continuity of care and improving patient outcomes.  
   </Typography>
 {/* <Box sx={{backgroundColor: '#6F7863',
 color:"white", // Light blue with transparency
@@ -293,8 +284,8 @@ color:"white", // Light blue with transparency
 >
   {[ 
     'Patient Care', 
-    'Patient Advocacy', 
-    'Process and Policy Improvement', 
+    'Advocacy', 
+    'Process Improvement', 
     'Staff Education' 
   ].map((item, index) => (
     <div
@@ -317,16 +308,13 @@ color:"white", // Light blue with transparency
 
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Advancing in his career, Mark began his career as a <strong>Psychiatric Mental Health Nurse Practitioner</strong> in NC where he worked alongside Duke and Yale trained psychiatrist and addictionologist in general psychiatry and addiction specialties.
+  As a Psychiatric Mental Health Nurse Practitioner, Mark has worked alongside Duke and Yale-trained psychiatrists and addictionologists, while practicing in both general psychiatry and addiction. 
   </Typography>
 
  
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Mark provides comprehensive assessments, diagnoses, and
-personalized treatment plans that foster resilience and aim to improve an
-individual’s <b><i>well-being.</i></b> Mark treats various mental health challenges,
-including, but not limited to:
+  Mark treats a wide range of mental health challenges, including
   </Typography>
 
   <Grid container spacing={3}>
@@ -382,10 +370,11 @@ color:"white", // Light blue with transparency
     </Grid>
 
 <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-As an <b>Educator &amp; Mentor</b>, Mark is passionate about
-guiding the next generation of healthcare professionals. He has served as a
-clinical instructor, focusing on psychiatric and addiction nursing, while
-inspiring students through <strong>education</strong> and <strong>mentorship</strong>.
+An educator and mentor, Mark has been featured in alumni panels for the <b>UAB Ryals School of Public Health</b>,
+ hosted <b>educational sessions for the Birmingham BAR Association</b>, and <b>developed and executed curriculum
+  for high school students.</b> He has also served as a <b>clinical instructor</b>, specializing in psychiatric 
+  and addiction nursing, inspiring the next generation of healthcare professionals through education
+   and mentorship.
   </Typography>
   {/* <Box sx={{backgroundColor: '#6F7863',
 color:"white", // Light blue with transparency

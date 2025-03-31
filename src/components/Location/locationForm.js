@@ -17,28 +17,50 @@ import {
   Typography,
 } from "@mui/material";
 import locationOptions from "./LocationOptions";
+import MessageInfoDialog from "./locationMessage";
+import useUserStore from "../useUserStore";
 
-const LocationFormComponent = () => {
-  const [states, setStates] = useState([]);
+const LocationFormComponent = ({setLocation}) => {
+  const [states, setStates] = useState([
+  ]);
+  const [msgDialogOpen,setMsgDialogOpen]=useState(false);
 
-  // Fetch the list of US states
+  const availableLocations=locationOptions();
+  const {preferedLocation}=useUserStore();
   
-  useEffect(() => {
-    fetch("https://gist.githubusercontent.com/mshafrir/2646763/raw/states_titlecase.json")
-      .then((response) => response.json())
-      .then((data) => setStates(data))
-      .catch((error) => console.error("Error fetching states:", error));
-  }, []);
+  useEffect(()=>{
 
+    let allStates=["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", 
+    "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", 
+    "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", 
+    "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", 
+    "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", 
+    "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
+    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", 
+    "Wisconsin", "Wyoming"]
+    const normalizedAvailable = new Set(
+      availableLocations.map(loc => loc.value.trim().toLowerCase())
+    );
+    
+    // Filter states that are NOT in availableLocations
+    const filteredStates = allStates.filter(
+      state => !normalizedAvailable.has(state.toLowerCase())
+    );
 
-  const availableStates = locationOptions();
+    // console.log(filteredStates)
+    setStates(filteredStates)
+  },[])
+  
+  
 
-// Normalize the state names to lowercase and trim spaces for case-insensitive comparison
-const normalizedStates = new Set(states.map(state => state.trim().toLowerCase()));
+  // // Fetch the list of US states
+  // useEffect(() => {
+  //   fetch("https://gist.githubusercontent.com/mshafrir/2646763/raw/states_titlecase.json")
+  //     .then((response) => response.json())
+  //     .then((data) => setStates(data))
+  //     .catch((error) => console.error("Error fetching states:", error));
+  // }, []);
 
-const filteredAvailableStates = availableStates.filter(
-  (location) => !normalizedStates.has(location.value.trim().toLowerCase())
-);
   // Form validation schema using Yup
   const validationSchema = Yup.object({
     state: Yup.string().required("Please select a state."),
@@ -66,6 +88,7 @@ const RequiredLabel = ({ label }) => (
     </Typography>
   );
   return (
+    <>
    <Box
          sx={{
            width: '100%',
@@ -88,22 +111,17 @@ const RequiredLabel = ({ label }) => (
             <Select
               name="state"
               value={formik.values.state}
-              onChange={formik.handleChange}
+              onChange={()=>{setMsgDialogOpen(true);setLocation(preferedLocation)}}
               onBlur={formik.handleBlur}
               error={formik.touched.state && Boolean(formik.errors.state)}
             >
               {/* <MenuItem value="" sx={{ color: "#333"}}>Select a state</MenuItem> */}
-              {filteredAvailableStates.map((state) => (
-                <MenuItem key={state.abbreviation} value={state.name} sx={{ color: "#333"}}>
-                  {state.name}
+              {states.map((state,index) => (
+                <MenuItem key={index} value={state} sx={{ color: "#333"}}>
+                  {state}
                 </MenuItem>
               ))}
             </Select>
-            {formik.touched.state && formik.errors.state && (
-              <Typography color="error" variant="body2">
-                {formik.errors.state}
-              </Typography>
-            )}
           </FormControl>
 </Grid>
 
@@ -148,6 +166,10 @@ const RequiredLabel = ({ label }) => (
           </Button> */}
         </form>
       </Box>
+      {
+        msgDialogOpen && <MessageInfoDialog open={msgDialogOpen} onClose={()=>setMsgDialogOpen(false)}/>
+      }
+      </>
   );
 };
 

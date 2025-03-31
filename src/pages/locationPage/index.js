@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Button, Grid, Card, CardActionArea, CardContent, Typography,Box } from "@mui/material";
+import { Button, Grid, Card, CardActionArea, CardContent, Typography,Box ,Link} from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 import useUserStore from "@/components/useUserStore";
 import locationOptions from "@/components/Location/LocationOptions";
 import LocationFormComponent from "../../components/Location/locationForm";
 import { useRouter } from "next/router";
+import LocationVideo from "@/components/Location/locationVideo";
 
 export default function LocationPage() {
 //   const navigate = useNavigate(); // Navigation Hook
@@ -17,11 +18,14 @@ export default function LocationPage() {
     setLocation(value);
   };
 
+  
+
   const handleSubmit = (value) => {
     handleSelect(value)
-    setPreferedLocation(value);
+
     if(value!=='Choose your location')
     {
+      setPreferedLocation(value);
       router.push('/')
     }
    
@@ -37,7 +41,7 @@ export default function LocationPage() {
         flexDirection: "column",
         backgroundColor: "#C8AF8F",
         alignItems: "center",
-        padding: "80px",
+        padding: "1%",
         maxWidth:'1600px',
         pb:0,
       }}
@@ -50,7 +54,7 @@ export default function LocationPage() {
       mt: "3%",
       pl: 1,
       pr: 2,
-      width: "fit-content",
+      // width: "90%",
       borderRadius: 2,
       boxShadow: 3,
       fontWeight: "bold",
@@ -84,7 +88,7 @@ export default function LocationPage() {
       Our Vision: To be a recognized and trusted leader in the community, providing accessible, integrative mental health care that prioritizes open communication, holistic treatment, and efficient, personalized care.
     </Typography>
   </Box>
-
+<LocationVideo/>
       {/* Page Title */}
       <Box
     sx={{
@@ -155,15 +159,35 @@ export default function LocationPage() {
         {location.label}
       </Typography>
     </CardContent>
+    
   </CardActionArea>
+ 
 </Card>
 
           </Grid>
         ))}
+        <Grid xs={12}>
+         <Typography sx={{ fontSize: 18, pl: 2,color:"black",mt:2 }}>
+         Click here to sign up for the Resilience Roundtable with link to Resilience Roundtable..{" "}
+                <Link href="/Roundtable" passHref>
+                  <Typography
+                    component="span"
+                    sx={{
+                      color: "blue",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Click here
+                  </Typography>
+                </Link>
+              </Typography>
+              </Grid>
          <Grid item xs={12} key={location.value} sx={{ display: "flex" }}>
 {/* Additional Form Component */}
 {locationCheck==='Choose your location' &&
-      <LocationFormComponent />
+      <LocationFormComponent setLocation={setLocation}/>
           }
           
          </Grid>

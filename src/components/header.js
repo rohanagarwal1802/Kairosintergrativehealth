@@ -26,6 +26,7 @@ import AdminOptions from "./adminDropdown";
 import useUserStore from "./useUserStore";
 import LogOutDialog from "./logoutDialog";
 import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
+import DefaultLocationModal from "./Location/defaultLocationModal";
 
 const Header = ({userDetails}) => {
   const router = useRouter();
@@ -34,8 +35,9 @@ const Header = ({userDetails}) => {
   const servicesOptions=ServicesOptions()
   const aboutOptions=AboutOptions()
   const adminOptions=AdminOptions()
-  const {setLogin,setResetPassword,toResetPassword}=useUserStore()
+  const {setLogin,setResetPassword,toResetPassword,preferedLocation}=useUserStore()
   const [openLogout,setOpenLogout]=useState(false)
+  const [openLocationModal,setLocationModal]=useState(false)
 
   const currentPath=router.pathname
 
@@ -58,6 +60,11 @@ const [menuAnchor, setMenuAnchor] = useState(null);
 const [currentMenu, setCurrentMenu] = useState(null); // "RESOURCES" or "SERVICES"
 
 const [anchorE4, setAnchorE4] = useState(null);
+
+const locationLink={
+  Alabama:"https://practice.kareo.com/kih",
+  "North Carolina":"https://practice.kareo.com/kihnc"
+}
 
   const handleMenuOpen1 = (event) => {
     setAnchorE4(event.currentTarget);
@@ -164,6 +171,7 @@ const handleMenuClose = () => {
   {!isMobile && (
   <>
   
+
     {userDetails?.role==='admin' && (
 
 <Box
@@ -255,6 +263,7 @@ ADMIN DETAILS
 
     {/* Dynamically rendered options */}
     {options.map((option, index) => {
+   
       if (
         option.title === "RESOURCES" ||
         option.title === "SERVICES" ||
@@ -378,7 +387,7 @@ ADMIN DETAILS
     }}
     onClick={() => {
       // router.push('/bookanappointment')
-      window.open("https://practice.kareo.com/kih", "_blank", "noopener,noreferrer");
+      window.open(locationLink[preferedLocation], "_blank", "noopener,noreferrer");
       // Define the action for button click
     }}
   >
@@ -387,6 +396,32 @@ ADMIN DETAILS
     </Typography>
   </Box>
 }
+
+{!isMobile && preferedLocation!=="Alabama" && 
+  <Box
+    component="button"
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      backgroundColor: "#535945",
+      color: "white",
+      border: "none",
+      borderRadius: "4px",
+      padding: "6px 12px",
+      cursor: "pointer",
+      "&:hover": { backgroundColor: "#535945" },
+      fontSize: "0.75rem",
+    }}
+    onClick={() => {
+      // router.push('/bookanappointment')
+      setLocationModal(true)
+      // Define the action for button click
+    }}
+  >
+    <Typography variant="body2" sx={{ marginRight: 1 }}>
+      Back
+    </Typography>
+  </Box>}
   {!isMobile && userDetails &&
   <Box sx={{ display: "flex", alignItems: "center" }}>
   <Box
@@ -633,6 +668,7 @@ ADMIN DETAILS
     </Button>
   );
 })}
+
 {!userDetails &&
 <Button
       color="inherit"
@@ -666,6 +702,35 @@ ADMIN DETAILS
      Log Out
     </Button>
 }
+{preferedLocation!=="Alabama" && 
+  <Box
+    component="button"
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center", // Ensures content inside is centered
+      backgroundColor: "#535945",
+      color: "white",
+      width: "fit-content",
+      border: "none",
+      borderRadius: "4px",
+      padding: "6px 12px",
+      cursor: "pointer",
+      fontSize: "0.75rem",
+      "&:hover": { backgroundColor: "#535945" },
+      margin: "auto", // Centers the button horizontally
+    }}
+    
+    onClick={() => {
+      // router.push('/bookanappointment')
+      setLocationModal(true)
+      // Define the action for button click
+    }}
+  >
+    <Typography variant="body2" sx={{ marginRight: 1 }}>
+      Back
+    </Typography>
+  </Box>}
     </Box>
   )}
 </Box>
@@ -675,6 +740,7 @@ ADMIN DETAILS
       </Toolbar>
     </AppBar>
     {openLogout && <LogOutDialog setOpen={setOpenLogout} open={openLogout} handleLogout={handleLogout}/>}
+    {openLocationModal && <DefaultLocationModal onClose={()=>setLocationModal(false)}/>}
     </>
   );
 };

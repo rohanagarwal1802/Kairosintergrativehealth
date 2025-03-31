@@ -17,11 +17,6 @@ const Footer = () => {
   const router=useRouter()
   const { preferedLocation, setPreferedLocation } = useUserStore();
 
-  const [info,setInfo]=useState({
-    call: "919-918-0622",
-    address: "The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216",
-  });
-
   const locationData = {
     Alabama: {
       call: "919-918-0622",
@@ -37,10 +32,20 @@ const Footer = () => {
     // },
   };
 
-  useEffect(() => {
+  const [info,setInfo]=useState(locationData['Alabama']);
+
   
 
-    setInfo[locationData[preferedLocation]]
+  useEffect(() => {
+  
+if(!preferedLocation)
+{
+  setInfo(locationData['Alabama'])
+}
+else
+{
+    setInfo(locationData[preferedLocation])
+}
   }, [preferedLocation]);
   return (
     <Box>
