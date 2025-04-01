@@ -25,7 +25,12 @@ const AdminOptions = () => {
         // description: "Let us manage your investment portfolio for optimal returns.",
         image: "/images/client.jpg",
       },
-     
+      {
+        title: "Locations",
+        path: "/locationAdmin",
+        // description: "Let us manage your investment portfolio for optimal returns.",
+        image: "/images/client.jpg",
+      },
       
     ];
   };

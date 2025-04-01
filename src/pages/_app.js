@@ -11,6 +11,7 @@ import axios from "axios";
 import Loader from "@/components/Loader";
 import useUserStore from "@/components/useUserStore";
 import MakePassword from "@/components/makePassword";
+import LocationSelectionDialog from "@/components/Location/locationPopup";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -18,10 +19,28 @@ export default function App({ Component, pageProps }) {
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Tracks auth status
   const [userDetails, setUserDetails] = useState(null); // Stores user data
   const [loading,setLoading]=useState(true)
-  const { loginLoader, setLoginLoader } = useUserStore();
+  const { loginLoader, setLoginLoader,preferedLocation ,setPreferedLocation} = useUserStore();
 const url=router.asPath;
 const { snackbarOpen, alertType, alertMessage, closeSnackbar,setSnackbar } =
 useCustomSnackbarStore();
+
+const [openDialog, setOpenDialog] = useState(false);
+
+useEffect(() => {
+  // Check if a location is already stored
+  // const savedLocation = localStorage.getItem("preferredLocation");
+
+  if (!preferedLocation) {
+    setTimeout(() => {
+      setOpenDialog(true); // Open dialog after 3 seconds
+    }, 3000);
+  }
+  //  else {
+  //   setPreferedLocation(savedLocation);
+  // }
+}, []);
+
+
 
 // useEffect(() => {
 //   // Check if 'login' exists in localStorage and is "true"
@@ -151,5 +170,12 @@ setLoading(false); // Stop loading
                   alertType={alertType}
                   message={alertMessage}
                 />
+                {(router.pathname!=='/login' && isAuthChecked && userDetails?.role!=='admin') &&
+                 <LocationSelectionDialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        // handleSubmit={handleLocationSelect}
+      />
+                }
   </>;
 }

@@ -7,6 +7,10 @@ import useUserStore from "@/components/useUserStore";
 const Contact=()=>{
   const isSmallScreen = useMediaQuery("(max-width: 768px)"); // Adjust the breakpoint as needed
   const { preferedLocation, setPreferedLocation } = useUserStore();
+  const locationImage={
+    Alabama:"/Contact1.jpg",
+    'North Carolina':"/carolinaContact.png"
+  }
 return (
     <>
     
@@ -38,7 +42,7 @@ return (
   >
    <Box sx={{ flex: "1", display: "flex", justifyContent: "center" }}>
   <Image
-    src="/Contact1.jpg"
+    src={locationImage[preferedLocation]}
     alt="Mental Well-being"
     layout="responsive" // Ensures the image is responsive
     width={200}  // Base width for layout calculations
@@ -77,14 +81,15 @@ return (
         <br />
         We're here to help! Reach out to us for personalized assistance on your journey to wellness.
         <br /> */}
-        Call us, email us, or fill out the form below, and we'll get back to you promptly. At Kairos Integrative Health, your well-being is our priority. Let’s connect and take the first step toward a healthier you!
+        {/* Call us, email us, or fill out the form below, and we'll get back to you promptly. At Kairos Integrative Health, your well-being is our priority.  */}
+        Let’s connect and take the first step toward a healthier you!
       </Typography>
     </Box>
   </Box>
 </Box>
 
 
-<OfficeImageGallery/>
+{preferedLocation==="Alabama" && <OfficeImageGallery/>}
 
 <Box
       sx={{

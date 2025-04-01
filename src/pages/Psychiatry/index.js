@@ -1,7 +1,9 @@
 import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Image from "next/image";
+import useUserStore from '@/components/useUserStore';
 
 const PTSDPage = () => {
+    const { preferedLocation, setPreferedLocation } = useUserStore();
   const causes = [
     { title: 'Comprehensive Approach:', description: 'Integrative psychiatry looks at all aspects of a person’s well-being, recognizing that mental health disorders can be influenced by physical health, lifestyle, trauma, social context, and emotional balance.' },
     { title: 'Combination of Conventional and Alternative Treatments:', description: 'While traditional psychiatric methods like psychotherapy and medication are often used, integrative psychiatry also incorporates other treatments such as:', Options: ['Nutritional and dietary interventions', 'Mind-body techniques', 'Herbal supplements and vitamins', 'Exercise and physical activity'] },
@@ -36,7 +38,7 @@ const PTSDPage = () => {
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, '@media (max-width: 768px)': { flexDirection: 'column' } }}>
           <Box sx={{ maxWidth: '500px', width: '100%' }}>
             <Image
-              src="/psychiatry.jpeg"
+              src="/psychiatry.png"
               alt="Mental Well-being"
               width={500} // Adjust as needed
               height={300}
@@ -151,7 +153,7 @@ const PTSDPage = () => {
 
       <Box>
 
-      <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+      {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
           Interest form
           </Typography>
@@ -168,17 +170,17 @@ complimentary phone call.
               </Typography>
             </ListItem>
           </List>
-        </Box>
+        </Box> */}
 
-        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+        {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
           After filling out the interest form
           </Typography>
-        </Box>
+        </Box> */}
 
         
 
-        <Box sx={{ ml: "10%" }}>
+        {/* <Box sx={{ ml: "10%" }}>
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
@@ -188,9 +190,9 @@ you will be able to schedule your complimentary phone call.
               </Typography>
             </ListItem>
           </List>
-        </Box>
+        </Box> */}
 
-        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+        {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
           After creating your password
           </Typography>
@@ -204,23 +206,21 @@ you will be able to schedule your complimentary phone call.
               </Typography>
             </ListItem>
           </List>
-        </Box>
+        </Box> */}
 
        
-        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+        {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
           Our team will confirm the complimentary phone
           call appointment
           </Typography>
-        </Box>  
+        </Box>   */}
         <Box sx={{ ml: "10%" }}>
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-              Keep an eye out on your email for
-confirmation and we will connect with you at the scheduled time
-for a 10-minute phone call. This call will allow you to speak with
-our provider to see if KIH is a good fit for you.
+              Click <b>"Request Appointment"</b> to schedule a 
+              <b>"Complimentary Phone Call"</b> or <b>"Initial Visit Appointment."</b> Our team will confirm your requested time or suggest an alternative.
               </Typography>
             </ListItem>
           </List>
@@ -228,7 +228,7 @@ our provider to see if KIH is a good fit for you.
 
         <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-            Complementary Phone Call
+            Once Confirmed : 
           </Typography>
         </Box>
 
@@ -236,7 +236,13 @@ our provider to see if KIH is a good fit for you.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-             This phone call is to allow you to ask questions and get a better understanding of our mission at Kairos Integrative Health, as well as allow you and our provider to determine if we are the best team to help you meet your goals.
+              For a "Complimentary Phone Call," we’ll call you to answer questions and determine if KIH is the right fit. 
+              </Typography>
+            </ListItem>
+
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              For an "Initial Visit Appointment," you'll receive new patient paperwork to complete 24 hours before your appointment. If you chose a telehealth appointment, you will also receive a link to use to enter the appointment.  
               </Typography>
             </ListItem>
           </List>
@@ -277,11 +283,13 @@ our provider to see if KIH is a good fit for you.
                 If discovered through the initial evaluation that medication is appropriate, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Often, appointments will be stretched out to every 1-3 months as appropriate. Usually follow-ups will last 15-30 minutes as appropriate.
               </Typography>
             </ListItem>
+            {preferedLocation==='Alabama' &&
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
                 At this time, Kairos Integrative Health does not prescribe controlled substances. Familiar types of medications this includes are benzodiazepines (clonazepam, alprazolam, lorazepam, etc.), stimulants (amphetamines, methylphenidates, etc.), and hypnotics (zolpidem, eszopiclone, etc.), and other medications like gabapentin and pregabalin.
               </Typography>
             </ListItem>
+}
           </List>
         </Box>
 

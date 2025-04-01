@@ -1,7 +1,6 @@
 import { Divider, Typography, Box } from "@mui/material";
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm'; // Import the icon you want to use
 import { useRouter } from "next/router";
-import LocationPopup from "./locationPopup";
 import { useState } from "react";
 //
 const Options = () => {
