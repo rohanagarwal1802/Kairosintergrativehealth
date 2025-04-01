@@ -194,10 +194,13 @@ MSN, MBA, PMHNP-BC
     Meet Mark
   </Typography>
 
-  <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Mark’s vast experience in our healthcare system spans:
-  </Typography>
-  <div
+  {/* <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
+  Mark’s vast experience in our healthcare system spans: Emergency Departments, 
+    Inpatient Psychiatry, 
+    Outpatient Psychiatry, 
+    Substance Abuse Centers 
+  </Typography> */}
+  {/* <div
   style={{
     display: 'flex', // Enables Flexbox
     flexWrap: 'wrap', // Allows wrapping to the next line
@@ -235,7 +238,7 @@ color:"white", // Light blue with transparency
       </li>
     </div>
   ))}
-</div>
+</div> */}
 
 
 
@@ -263,9 +266,13 @@ color:"white", // Light blue with transparency
     {/* <b>St. Vincent’s East:</b>  */}
     {/* &nbsp; */}
     Mark began his career as a <strong>registered nurse</strong> in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
+    Patient Care, 
+    Advocacy, 
+    Process Improvement, 
+    Staff Education 
   </Typography>
 
-  <div
+  {/* <div
   style={{
     display: 'flex', // Enables Flexbox
     flexWrap: 'wrap', // Allows wrapping to the next line
@@ -303,7 +310,7 @@ color:"white", // Light blue with transparency
       </li>
     </div>
   ))}
-  </div>
+  </div> */}
 
 
 
@@ -317,59 +324,18 @@ color:"white", // Light blue with transparency
   Mark treats a wide range of mental health challenges, including
   </Typography>
 
-  <Grid container spacing={3}>
-      {data.map((box, index) => (
-        <Grid item xs={12} sm={6} md={6} key={index}>
-           <Box
-        sx={{
-          backgroundColor: '#6F7863',
-color:"white", // Light blue with transparency
-          borderRadius: '10px', // Rounded corners
-          padding: '20px', // Padding inside the box
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Optional shadow for better visibility
-          maxWidth: '100%', // Ensure it stays within the grid
-          height: '250px', // Fixed height for all boxes
-          overflow: 'hidden', // Prevents content from spilling
-          textOverflow: 'ellipsis', // For long text
-          mb:2
-        }}
-      >
-           <Typography
-  variant="h6"
-  component="div"
-  sx={{
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: '10px',
-    color: 'white',
-    overflow: 'hidden', // Allows the content to wrap but hides overflow outside container
-    whiteSpace: 'normal', // Allows the text to wrap
-    wordWrap: 'break-word', // Ensures long words are wrapped properly
-  }}
->
-  {box.title}
-</Typography>
-
-            <ul
-          style={{
-            paddingLeft: '20px',
-            color: 'white',
-            lineHeight: 1.8,
-            maxHeight: 'calc(100% - 40px)', // Adjust for the title
-            overflowY: 'auto', // Scrollable if too many items
-            wordWrap: 'break-word', // Break long text
-          }}
-        >
-              {box.items.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </Box>
-        </Grid>
-      ))}
+  <Grid container spacing={1}>
+  {data.map((box, index) => (
+    <Grid item xs={12}  key={index}>
+      <Typography variant="body1" sx={{ color: "black" }}>
+        <b>{box.title}:</b> {box.items.join(', ')}
+      </Typography>
     </Grid>
+  ))}
+</Grid>
 
-<Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
+
+<Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3,mt:3 }}>
 An educator and mentor, Mark has been featured in alumni panels for the <b>UAB Ryals School of Public Health</b>,
  hosted <b>educational sessions for the Birmingham BAR Association</b>, and <b>developed and executed curriculum
   for high school students.</b> He has also served as a <b>clinical instructor</b>, specializing in psychiatric 

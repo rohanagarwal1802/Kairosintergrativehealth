@@ -20,7 +20,7 @@ import locationOptions from "./LocationOptions";
 import MessageInfoDialog from "./locationMessage";
 import useUserStore from "../useUserStore";
 
-const LocationFormComponent = ({setLocation}) => {
+const LocationFormComponent = ({setLocation,locationDialogClose}) => {
   const [states, setStates] = useState([
   ]);
   const [msgDialogOpen,setMsgDialogOpen]=useState(false);
@@ -87,6 +87,12 @@ const RequiredLabel = ({ label }) => (
       </Typography>
     </Typography>
   );
+
+  const handleChange = async (event) => {
+    await formik.setFieldValue(event.target.name, event.target.value); // Ensure state update
+    setMsgDialogOpen(true); // Open dialog AFTER update
+  };
+  
   return (
     <>
    <Box
@@ -109,12 +115,13 @@ const RequiredLabel = ({ label }) => (
           <FormControl fullWidth margin="normal">
             <FormLabel sx={{ color: "#333"}}>Select Your State</FormLabel>
             <Select
-              name="state"
-              value={formik.values.state}
-              onChange={()=>{setMsgDialogOpen(true);setLocation(preferedLocation)}}
-              onBlur={formik.handleBlur}
-              error={formik.touched.state && Boolean(formik.errors.state)}
-            >
+  name="state"
+  value={formik.values.state}
+  onChange={handleChange} // Uses the updated function
+  onBlur={formik.handleBlur}
+  error={formik.touched.state && Boolean(formik.errors.state)}
+>
+
               {/* <MenuItem value="" sx={{ color: "#333"}}>Select a state</MenuItem> */}
               {states.map((state,index) => (
                 <MenuItem key={index} value={state} sx={{ color: "#333"}}>
@@ -167,7 +174,8 @@ const RequiredLabel = ({ label }) => (
         </form>
       </Box>
       {
-        msgDialogOpen && <MessageInfoDialog open={msgDialogOpen} onClose={()=>setMsgDialogOpen(false)}/>
+        msgDialogOpen && <MessageInfoDialog open={msgDialogOpen} onClose={()=>setMsgDialogOpen(false)} 
+        state={formik.values.state} locationDialogClose={locationDialogClose}/>
       }
       </>
   );

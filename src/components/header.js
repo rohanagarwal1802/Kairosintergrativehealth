@@ -397,7 +397,7 @@ ADMIN DETAILS
   </Box>
 }
 
-{!isMobile && preferedLocation!=="Alabama" && 
+{/* {!isMobile && preferedLocation!=="Alabama" && 
   <Box
     component="button"
     sx={{
@@ -421,7 +421,7 @@ ADMIN DETAILS
     <Typography variant="body2" sx={{ marginRight: 1 }}>
       Back
     </Typography>
-  </Box>}
+  </Box>} */}
   {!isMobile && userDetails &&
   <Box sx={{ display: "flex", alignItems: "center" }}>
   <Box
@@ -702,7 +702,7 @@ ADMIN DETAILS
      Log Out
     </Button>
 }
-{preferedLocation!=="Alabama" && 
+{/* {preferedLocation!=="Alabama" && 
   <Box
     component="button"
     sx={{
@@ -730,7 +730,7 @@ ADMIN DETAILS
     <Typography variant="body2" sx={{ marginRight: 1 }}>
       Back
     </Typography>
-  </Box>}
+  </Box>} */}
     </Box>
   )}
 </Box>

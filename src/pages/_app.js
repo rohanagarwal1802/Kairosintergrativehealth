@@ -170,10 +170,12 @@ setLoading(false); // Stop loading
                   alertType={alertType}
                   message={alertMessage}
                 />
+                {(router.pathname!=='/login' && isAuthChecked && userDetails?.role!=='admin') &&
                  <LocationSelectionDialog
         open={openDialog}
         onClose={() => setOpenDialog(false)}
         // handleSubmit={handleLocationSelect}
       />
+                }
   </>;
 }

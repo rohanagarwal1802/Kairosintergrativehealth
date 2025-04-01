@@ -168,7 +168,7 @@ export default function LocationPage() {
         ))}
         <Grid xs={12}>
          <Typography sx={{ fontSize: 18, pl: 2,color:"black",mt:2 }}>
-         Click here to sign up for the Resilience Roundtable with link to Resilience Roundtable..{" "}
+         Click here to sign up for the Resilience Roundtable ..{" "}
                 <Link href="/Roundtable" passHref>
                   <Typography
                     component="span"
@@ -184,6 +184,25 @@ export default function LocationPage() {
                 </Link>
               </Typography>
               </Grid>
+              <Grid xs={12}>
+  <Typography sx={{ fontSize: 18, pl: 2, color: "black", mt: 2 }}>
+    Interested in bringing the Resilience Roundtable to your organisation?{" "}
+    <Link href="mailto:info@kairosintegrativehealth.com">
+      <Typography
+        component="span"
+        sx={{
+          color: "blue",
+          textDecoration: "underline",
+          cursor: "pointer",
+          fontWeight: 500,
+        }}
+      >
+        email us
+      </Typography>
+    </Link>
+  </Typography>
+</Grid>
+
          <Grid item xs={12} key={location.value} sx={{ display: "flex" }}>
 {/* Additional Form Component */}
 {locationCheck==='Choose your location' &&

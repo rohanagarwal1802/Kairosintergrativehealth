@@ -146,7 +146,7 @@ const LocationSelectionDialog = ({ open, onClose }) => {
               {/* Additional Form Component */}
               {locationCheck === "Choose your location" && (
                 <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-                  <LocationFormComponent setLocation={setLocation}/>
+                  <LocationFormComponent setLocation={setLocation} locationDialogClose={onClose}/>
                 </Grid>
               )}
             </Grid>
