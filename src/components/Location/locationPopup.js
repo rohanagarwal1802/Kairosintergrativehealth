@@ -61,17 +61,20 @@ const LocationSelectionDialog = ({ open, onClose }) => {
       )}
 
       <Dialog open={open}  maxWidth="md" fullWidth>
-        {/* Dialog Title */}
-        <DialogTitle
+      <h1 style={{ textAlign: "center", width: "100%" }}>
+    Welcome to Kiaros Integrative Health
+  </h1>
+  <DialogTitle
     sx={{
       textAlign: "center",
       fontWeight: "bold",
       display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",  // Center-aligns vertically
+      justifyContent: "center",
+      alignItems: "center", // Center-aligns vertically
     }}
   >
     Please select the state you are located in.
+  
     <IconButton onClick={()=>handleSubmit("Alabama")} sx={{ position: "absolute", right: 8, top: 8 }}>
       <CloseIcon />
     </IconButton>

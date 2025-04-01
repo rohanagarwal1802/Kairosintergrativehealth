@@ -321,18 +321,18 @@ color:"white", // Light blue with transparency
  
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Mark treats a wide range of mental health challenges, including
-  </Typography>
+  Mark treats a wide range of mental health challenges, including: 
+{/* </Typography>
 
-  <Grid container spacing={1}>
+<Typography variant="body1" sx={{ color: "black" }}> */}
   {data.map((box, index) => (
-    <Grid item xs={12}  key={index}>
-      <Typography variant="body1" sx={{ color: "black" }}>
-        <b>{box.title}:</b> {box.items.join(', ')}
-      </Typography>
-    </Grid>
+    <span key={index}>
+      <b>{box.title}:</b> {box.items.join(', ')}
+      {index !== data.length - 1 && '; '}
+    </span>
   ))}
-</Grid>
+</Typography>
+
 
 
 <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3,mt:3 }}>

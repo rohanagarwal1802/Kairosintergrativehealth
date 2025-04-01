@@ -19,6 +19,7 @@ import {
 import locationOptions from "./LocationOptions";
 import MessageInfoDialog from "./locationMessage";
 import useUserStore from "../useUserStore";
+import axios from "axios";
 
 const LocationFormComponent = ({setLocation,locationDialogClose}) => {
   const [states, setStates] = useState([
@@ -89,8 +90,14 @@ const RequiredLabel = ({ label }) => (
   );
 
   const handleChange = async (event) => {
-    await formik.setFieldValue(event.target.name, event.target.value); // Ensure state update
-    setMsgDialogOpen(true); // Open dialog AFTER update
+    axios.post('/api/updateLocation',{state:event.target.value}).then(
+            async (res)=>{console.log(res);
+              await formik.setFieldValue(event.target.name, event.target.value); // Ensure state update
+              setMsgDialogOpen(true); // Open dialog AFTER update
+    
+            }
+          );
+   
   };
   
   return (

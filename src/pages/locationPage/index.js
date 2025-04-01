@@ -186,7 +186,7 @@ export default function LocationPage() {
               </Grid>
               <Grid xs={12}>
   <Typography sx={{ fontSize: 18, pl: 2, color: "black", mt: 2 }}>
-    Interested in bringing the Resilience Roundtable to your organisation?{" "}
+  Interested in offering a tailored educational program to help build resilience organization?{" "}
     <Link href="mailto:info@kairosintegrativehealth.com">
       <Typography
         component="span"

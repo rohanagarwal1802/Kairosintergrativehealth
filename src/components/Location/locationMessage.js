@@ -89,7 +89,7 @@ const handleRoundTableButton=()=>{
           </Button>
 
           {/* Checkbox */}
-          <FormControlLabel
+          {/* <FormControlLabel
             control={
               <Checkbox
                 checked={addToDatabase}
@@ -98,7 +98,7 @@ const handleRoundTableButton=()=>{
               />
             }
             label="I want these services in my state!"
-          />
+          /> */}
          
         </Box>
        

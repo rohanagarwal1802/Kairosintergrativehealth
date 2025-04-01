@@ -118,7 +118,7 @@ const CommunityOutreach = () => {
     </Typography>
     </ListItem>
 
-    <ListItem
+    {/* <ListItem
         sx={{ 
           display: "list-item",  // Ensures it behaves like a list item
           listStyleType: "disc", // Forces bullet points to appear
@@ -142,7 +142,7 @@ const CommunityOutreach = () => {
       </Typography>
     </Link>
     </Typography>
-      </ListItem>
+      </ListItem> */}
     </List>
   
   </Box>
@@ -268,16 +268,26 @@ const CommunityOutreach = () => {
               {/* <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
                 <FiberManualRecordIcon fontSize="small" />
               </ListItemIcon> */}
-             2. Community Outreach – KIH is currently working on partnerships with local nonprofits and high
+             2. Community Outreach – KIH is currently working on partnerships with local professional organizations and high
               schools to equip those in our community with education to help develop resilience.
             </ListItem>
-            {/* <ListItem sx={{ color: 'black' }}>
-              <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
-                <FiberManualRecordIcon fontSize="small" />
-              </ListItemIcon>
-              Both of these initiatives allow for KIH to return knowledge and experiences to our community in
-              hopes of building our communities' quality of life.
-            </ListItem> */}
+            <ListItem sx={{ color: 'black' }}>
+             
+              ► Interested in offering a tailored educational program to help build resilience organization? &nbsp;
+              <Link href="mailto:info@kairosintegrativehealth.com">
+      <Typography
+        component="span"
+        sx={{
+          color: "blue",
+          textDecoration: "underline",
+          cursor: "pointer",
+          fontWeight: 500,
+        }}
+      >
+        Email Us
+      </Typography>
+      </Link>
+            </ListItem>
           </List>
         </Box>
 
