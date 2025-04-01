@@ -5,7 +5,7 @@ const LocationVideo = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        backgroundColor: "#C8AF8F",
         color: "#333",
         mt: "3%",
         pl: 1,

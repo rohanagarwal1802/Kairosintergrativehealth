@@ -33,7 +33,7 @@ useEffect(() => {
   if (!preferedLocation) {
     setTimeout(() => {
       setOpenDialog(true); // Open dialog after 3 seconds
-    }, 3000);
+    }, 5000);
   }
   //  else {
   //   setPreferedLocation(savedLocation);

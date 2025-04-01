@@ -19,7 +19,7 @@ const Footer = () => {
 
   const locationData = {
     Alabama: {
-      call: "919-918-0622",
+      call: "256-980-0620",
       address: "The Walker Building: 400 Vestavia Parkway, Suite 406 Vestavia Hills, AL 35216",
     },
     'North Carolina': {
@@ -157,14 +157,16 @@ else
                 <Typography variant="body2" sx={{ marginBottom: "6px", fontSize: "16px" }}>
                   <Phone sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} />
                   Call :{" "}
-                  <Link href="tel:256-980-0620" color="inherit" sx={{ fontSize: "16px" }}>
+                  <Link href={`tel:${info.call}`} color="inherit" sx={{ fontSize: "16px" }}>
+ 
+
                     {info.call}
                   </Link>
                   <br/>
                  &nbsp; &nbsp;  &nbsp;  {/* <FaxIcon sx={{ verticalAlign: "middle", marginRight: "8px", fontSize: "20px" }} /> */}
                   Fax :{" "}
                   <Link href="tel:919-918-0622" color="inherit" sx={{ fontSize: "16px" }}>
-                   {info.call}
+                  919-918-0622
                   </Link>
                   <br />
                  
