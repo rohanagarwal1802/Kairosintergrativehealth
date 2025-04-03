@@ -265,7 +265,7 @@ color:"white", // Light blue with transparency
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     {/* <b>St. Vincent’s East:</b>  */}
     {/* &nbsp; */}
-    Mark began his career as a <strong>registered nurse</strong> in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
+    Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of Charge Nurse, where he focused on:
     Patient Care, 
     Advocacy, 
     Process Improvement, 
@@ -325,12 +325,12 @@ color:"white", // Light blue with transparency
 {/* </Typography>
 
 <Typography variant="body1" sx={{ color: "black" }}> */}
-  {data.map((box, index) => (
-    <span key={index}>
-      <b>{box.title}:</b> {box.items.join(', ')}
-      {index !== data.length - 1 && '; '}
-    </span>
-  ))}
+ {data.map((box, index) => 
+  index === data.length - 1 
+    ? `and ${box.title}` 
+    : `${box.title}${index === data.length - 2 ? ', ' : ', '}`
+)}
+
 </Typography>
 
 
