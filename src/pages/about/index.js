@@ -5,6 +5,7 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import AboutSection from "@/components/about/aboutSection";
 import { useRouter } from "next/router";
+import useUserStore from "@/components/useUserStore";
 
 const featureArray = [
   {
@@ -36,6 +37,11 @@ const featureArray = [
 
 const About = () => {
     const router=useRouter()
+      const {preferedLocation}=useUserStore()
+      const locationLink={
+  Alabama:"https://practice.kareo.com/kih",
+  "North Carolina":"https://practice.kareo.com/kihnc"
+}
   return (
     <>
     
@@ -254,7 +260,7 @@ const About = () => {
           textTransform: "capitalize",
           backgroundColor: "#C8AF8F",
         }}
-        onClick={() => router.push('/bookanappointment')}
+        onClick={() =>    window.open(locationLink[preferedLocation], "_blank", "noopener,noreferrer")}
         endIcon={<ArrowForwardIosIcon />}
       >
         Schedule Now
