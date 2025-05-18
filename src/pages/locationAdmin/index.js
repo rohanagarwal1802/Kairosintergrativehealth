@@ -122,7 +122,7 @@ const columns = [
     <Box>
 
 <Box sx={{ textAlign: 'center', margin: '20px 0',mt:8 }}>
-    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Contact locations</h1>
+    <h1 style={{ fontWeight: 'bold' ,color:"black"}}>Locations</h1>
   </Box>
       <Box
         sx={{

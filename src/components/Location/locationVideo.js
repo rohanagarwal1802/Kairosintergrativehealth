@@ -5,15 +5,16 @@ const LocationVideo = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        // backgroundColor: "#C8AF8F",
         color: "#333",
         mt: "3%",
         pl: 1,
         pr: 2,
         p: 2,
+        border:"none",
         width: "80%",
         borderRadius: 2,
-        boxShadow: 3,
+        boxShadow: 0,
         fontWeight: "bold",
         display: "flex",
         flexDirection: "column",

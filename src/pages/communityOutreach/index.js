@@ -100,6 +100,15 @@ const CommunityOutreach = () => {
     <Typography variant="h4" sx={{ mb: 2, color: "black", fontWeight: 600 ,textAlign:"center"}}>
       Community PartnerShips
     </Typography>
+     <List sx={{ paddingLeft: "20px" }}>
+     <ListItem
+        sx={{ 
+          display: "list-item",  // Ensures it behaves like a list item
+          listStyleType: "disc", // Forces bullet points to appear
+          paddingLeft: "10px",
+          "&::marker": { color: "black", fontSize: "1.2rem" }, // Ensures bullet points are black
+        }}
+      >
     <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16,color:"black" }}>
       After working in North Carolina with Duke and Yale trained Psychiatrists/Addictionologists,
       Mark returned to Birmingham to open his own practice, Kairos Integrative Health. Two key areas
@@ -107,6 +116,35 @@ const CommunityOutreach = () => {
       resilience in others to reach the ultimate goal of improving our communities' quality of life now
       and in the future.
     </Typography>
+    </ListItem>
+
+    {/* <ListItem
+        sx={{ 
+          display: "list-item",  // Ensures it behaves like a list item
+          listStyleType: "disc", // Forces bullet points to appear
+          paddingLeft: "10px",
+          "&::marker": { color: "black", fontSize: "1.2rem" }, // Ensures bullet points are black
+        }}
+      >
+    <Typography variant="body1" sx={{ color: "text.secondary", fontSize: 16,color:"black" }}>
+    Interested in bringing the Resilience Roundtable to your organisation?{" "}
+    <Link href="mailto:info@kairosintegrativehealth.com">
+      <Typography
+        component="span"
+        sx={{
+          color: "blue",
+          textDecoration: "underline",
+          cursor: "pointer",
+          fontWeight: 500,
+        }}
+      >
+        email us
+      </Typography>
+    </Link>
+    </Typography>
+      </ListItem> */}
+    </List>
+  
   </Box>
 
   {/* Right Image Section for Small Screens (Bottom Image) and Large Screens (Right Image) */}
@@ -230,16 +268,26 @@ const CommunityOutreach = () => {
               {/* <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
                 <FiberManualRecordIcon fontSize="small" />
               </ListItemIcon> */}
-             2. Community Outreach – KIH is currently working on partnerships with local nonprofits and high
+             2. Community Outreach – KIH is currently working on partnerships with local professional organizations and high
               schools to equip those in our community with education to help develop resilience.
             </ListItem>
-            {/* <ListItem sx={{ color: 'black' }}>
-              <ListItemIcon sx={{ minWidth: 'auto', color: 'black', mr: 1 }}>
-                <FiberManualRecordIcon fontSize="small" />
-              </ListItemIcon>
-              Both of these initiatives allow for KIH to return knowledge and experiences to our community in
-              hopes of building our communities' quality of life.
-            </ListItem> */}
+            <ListItem sx={{ color: 'black' }}>
+             
+              ► Interested in offering a tailored educational program to help build resilience organization? &nbsp;
+              <Link href="mailto:info@kairosintegrativehealth.com">
+      <Typography
+        component="span"
+        sx={{
+          color: "blue",
+          textDecoration: "underline",
+          cursor: "pointer",
+          fontWeight: 500,
+        }}
+      >
+        Email Us
+      </Typography>
+      </Link>
+            </ListItem>
           </List>
         </Box>
 
@@ -264,7 +312,7 @@ const CommunityOutreach = () => {
           </Typography>
 
           <Typography sx={{ fontSize: 18, pl: 2, mb: 2 ,color:"black"}}>
-          The flagship initiative is the Resilience Roundtable, which started as a monthly virtual discussion covering various mental health topics. Although it has continued in this way, the Resilience Roundtable has been featured as an opportunity for teenagers through partnerships with local schools, and professionals organization in the form of continuing education. 
+          The flagship initiative is the Resilience Roundtable, which started as a monthly virtual discussion covering various mental health topics. Although it has continued in this way, the Resilience Roundtable has been featured as an opportunity for teenagers through partnerships with local schools, and adult professional organizations in the form of continuing education. 
           </Typography>
 
           <Typography sx={{ fontSize: 18, pl: 2, mb: 2 ,color:"black"}}>

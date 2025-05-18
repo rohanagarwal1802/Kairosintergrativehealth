@@ -14,14 +14,36 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const { loadLoader, setLoadLoader } = useUserStore();
+  const { preferedLocation, setPreferedLocation } = useUserStore();
+  const [titleImage,setTitleImage]=useState('/alabamaTitle.jpg')
   const router = useRouter();
   const isLargeScreen = useMediaQuery("(min-width:600px)"); // Media query for large screens
+
+  const locationLink={
+    Alabama:"https://practice.kareo.com/kih",
+    "North Carolina":"https://practice.kareo.com/kihnc"
+  }
+
+  useEffect(()=>{
+    if(preferedLocation==='Alabama')
+    {
+      setTitleImage('/alabamaTitle.jpg')
+
+    }
+    else if(preferedLocation==='North Carolina')
+    {
+      setTitleImage('/ncTitle.jpg')
+    
+    }
+
+  },[preferedLocation])
 
   const handlePhoneCallClick = () => {
     // Add logic to trigger the phone call box/modal
     // router.push('/bookanappointment');
+    
    
-      window.open("https://practice.kareo.com/kih", "_blank", "noopener,noreferrer");
+       window.open(locationLink[preferedLocation], "_blank", "noopener,noreferrer");
       // Define the action for button click
   
   };
@@ -58,7 +80,7 @@ export default function Home() {
         }}
       >
         <Image
-          src="/Title.jpg"
+          src={titleImage}
           alt="Kairos Integrative Health Background"
           layout="fill"
           objectFit="contain"

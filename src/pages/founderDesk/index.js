@@ -265,7 +265,7 @@ color:"white", // Light blue with transparency
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
     {/* <b>St. Vincent’s East:</b>  */}
     {/* &nbsp; */}
-    Mark began his career as a <strong>registered nurse</strong> in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of <b>Charge Nurse</b>, where he focused on:
+    Mark began his career as a registered nurse in one of the busiest Emergency Departments in Alabama. He later transitioned to working in an inpatient Acute Behavioral Health Unit. His dedication earned him the role of Charge Nurse, where he focused on:
     Patient Care, 
     Advocacy, 
     Process Improvement, 
@@ -321,18 +321,18 @@ color:"white", // Light blue with transparency
  
 
   <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3 }}>
-  Mark treats a wide range of mental health challenges, including
-  </Typography>
+  Mark treats a wide range of mental health challenges, including: 
+{/* </Typography>
 
-  <Grid container spacing={1}>
-  {data.map((box, index) => (
-    <Grid item xs={12}  key={index}>
-      <Typography variant="body1" sx={{ color: "black" }}>
-        <b>{box.title}:</b> {box.items.join(', ')}
-      </Typography>
-    </Grid>
-  ))}
-</Grid>
+<Typography variant="body1" sx={{ color: "black" }}> */}
+ {data.map((box, index) => 
+  index === data.length - 1 
+    ? `and ${box.title}` 
+    : `${box.title}${index === data.length - 2 ? ', ' : ', '}`
+)}
+
+</Typography>
+
 
 
 <Typography variant="body1" sx={{ color: 'black', lineHeight: 1.8, mb: 3,mt:3 }}>
