@@ -1,16 +1,28 @@
 import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Image from "next/image";
 import useUserStore from '@/components/useUserStore';
+import { useState,useEffect } from 'react';
 
 const PTSDPage = () => {
     const { preferedLocation, setPreferedLocation } = useUserStore();
+    const [address,setAddress]=useState('')
   const causes = [
     { title: 'Comprehensive Approach:', description: 'Integrative psychiatry looks at all aspects of a person’s well-being, recognizing that mental health disorders can be influenced by physical health, lifestyle, trauma, social context, and emotional balance.' },
     { title: 'Combination of Conventional and Alternative Treatments:', description: 'While traditional psychiatric methods like psychotherapy and medication are often used, integrative psychiatry also incorporates other treatments such as:', Options: ['Nutritional and dietary interventions', 'Mind-body techniques', 'Herbal supplements and vitamins', 'Exercise and physical activity'] },
     { title: 'Focus on Personalized Care:', description: 'Integrative psychiatry takes a highly personalized approach to treatment, tailoring interventions to meet the unique needs of the individual. It seeks to create a holistic treatment plan based on the person’s specific symptoms, lifestyle, genetic predispositions, and personal preferences.' },
     { title: 'Prevention and Wellness:', description: 'This approach emphasizes not only treating mental health issues but also promoting long-term wellness and preventing mental health problems from arising in the first place. This could involve lifestyle adjustments, stress management techniques, and cultivating resilience.' },
   ];
+ useEffect(()=>{
+    if(preferedLocation==='Alabama')
+    {
+      setAddress('400 Vestavia Parkway suite 406, Vestavia Hills, AL')
 
+    }
+    else if(preferedLocation==='North Carolina')
+    {
+      setAddress('523 Keisler Drive Suite 202 Cary, NC 27518523 Keisler Drive Suite 202 Cary, NC 27518')
+    
+    }})
   return (
     <>
     
@@ -259,7 +271,7 @@ you will be able to schedule your complimentary phone call.
           <List>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
               <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 1-2 sessions and in some cases may involve two separate visits. Initial visits are scheduled via telehealth or in-person at 400 Vestavia Parkway suite 406, Vestavia Hills, AL.
+                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 1-2 sessions and in some cases may involve two separate visits. Initial visits are scheduled via telehealth or in-person at {address}.
               </Typography>
             </ListItem>
             <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>

@@ -2,12 +2,6 @@ import { Divider, Typography, Box } from "@mui/material";
 const ResourcesOptions = () => {
   return [
 
-    {
-      title: "Community Partnerships",
-      path: "/communityOutreach",
-      // description: "Let us manage your investment portfolio for optimal returns.",
-      image: "/images/client.jpg",
-    },
    
  
     {

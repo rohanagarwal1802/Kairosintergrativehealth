@@ -21,12 +21,12 @@ const ServicesOptions = () => {
       image:"/addiction_icon.png",
      
     },
-    {
-      title: "Resilience Roundtable",
-      path: "/Roundtable",
-      image:"/roundtable_icon.png",
+    // {
+    //   title: "Resilience Roundtable",
+    //   path: "/Roundtable",
+    //   image:"/roundtable_icon.png",
     
-    },
+    // },
     {
       title: "Genetic Testing",
       path: "/GTesting",
@@ -38,6 +38,13 @@ const ServicesOptions = () => {
       path: "/CNVSTesting",
       image:"/cnvs_icon.png",
      
+    },
+    
+    {
+      title: "Community Partnerships",
+      path: "/communityOutreach",
+      // description: "Let us manage your investment portfolio for optimal returns.",
+      image: "/images/client.jpg",
     },
   ];
 };

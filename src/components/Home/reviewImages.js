@@ -1,31 +1,57 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import Slider from "react-slick";
+import { Box } from "@mui/material";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function ImageGallery() {
   const images = [
-    { src: "/testimonial6.jpg", alt: "Image 1", title: "Image 1" },
-    { src: "/testimonial2.jpg", alt: "Image 2", title: "Image 2" },
-    { src: "/testimonial5.jpg", alt: "Image 3", title: "Image 3" },
-    { src: "/testimonial4.jpg", alt: "Image 4", title: "Image 4" },
+    { src: "/testimonial6.jpg", alt: "Image 1" },
+    { src: "/testimonial2.jpg", alt: "Image 2" },
+    { src: "/testimonial5.jpg", alt: "Image 3" },
+    { src: "/testimonial4.jpg", alt: "Image 4" },
+    { src: "/testimonial4.jpg", alt: "Image 4" },
+    { src: "/testimonial5.jpg", alt: "Image 3" },
   ];
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 18000,
+    autoplay: true,
+    autoplaySpeed: 0, // continuous scroll
+    cssEase: "linear", // smooth scroll
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: 900,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 600,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
+
   return (
-    <Box sx={{ width: "100%", padding: "4px" }}>
-      <Grid container spacing={3}>
+    <Box sx={{ width: "100%", padding: "10px" }}>
+      <Slider {...settings}>
         {images.map((image, index) => (
-          <Grid
-            item
-            xs={12} // Full width on small screens
-            sm={6}  // 2 images per row on medium screens
-            md={3}  // 4 images per row on large screens
+          <Box
             key={index}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
               padding: "10px",
-              borderRadius: "8px",
-              boxSizing: "border-box",
+              display: "flex !important",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <Box
@@ -36,14 +62,12 @@ function ImageGallery() {
                 width: "100%",
                 height: "auto",
                 borderRadius: "8px",
-                marginBottom: "8px",
-                border: "2px solid #000", // Bold border around the image
+                border: "2px solid #000",
               }}
             />
-           
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Slider>
     </Box>
   );
 }

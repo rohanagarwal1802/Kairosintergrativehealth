@@ -291,7 +291,7 @@ const CommunityOutreach = () => {
           </List>
         </Box>
 
-        <Box
+        {/* <Box
           sx={{
             // width: { xs: '95%', md: '70%' },
             margin: 'auto',
@@ -337,7 +337,7 @@ const CommunityOutreach = () => {
               </Typography>
             </Link>
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
     </>
   );

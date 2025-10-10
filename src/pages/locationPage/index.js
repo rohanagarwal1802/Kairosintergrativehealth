@@ -166,7 +166,7 @@ export default function LocationPage() {
 
           </Grid>
         ))}
-        <Grid xs={12}>
+        {/* <Grid xs={12}>
          <Typography sx={{ fontSize: 18, pl: 2,color:"black",mt:2 }}>
          Click here to sign up for the Resilience Roundtable ..{" "}
                 <Link href="/Roundtable" passHref>
@@ -183,7 +183,7 @@ export default function LocationPage() {
                   </Typography>
                 </Link>
               </Typography>
-              </Grid>
+              </Grid> */}
               <Grid xs={12}>
   <Typography sx={{ fontSize: 18, pl: 2, color: "black", mt: 2 }}>
   Interested in offering a tailored educational program to help build resilience organization?{" "}
