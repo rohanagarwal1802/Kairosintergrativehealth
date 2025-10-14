@@ -22,9 +22,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddictionPage = () => {
+const AddictionPage = ({open,setOpen}) => {
   const { preferedLocation } = useUserStore();
-  const [open, setOpen] = useState(false);
+ 
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -34,7 +34,7 @@ const AddictionPage = () => {
   return (
     <>
       {/* Button to Open Dialog */}
-      <Box sx={{ textAlign: "center", mt: 5 }}>
+      {/* <Box sx={{ textAlign: "center", mt: 5 }}>
         <Button
           variant="contained"
           sx={{ backgroundColor: "#535945", "&:hover": { backgroundColor: "#6F7863" } }}
@@ -42,7 +42,7 @@ const AddictionPage = () => {
         >
           Open Addiction Info
         </Button>
-      </Box>
+      </Box> */}
 
       {/* Dialog */}
       <Dialog
