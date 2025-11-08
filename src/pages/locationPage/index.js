@@ -121,18 +121,18 @@ export default function LocationPage() {
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    border: locationCheck === location.value ? "3px solid #1976D2" : "1px solid #ddd",
+    border: locationCheck === location.value ? "3px solid #1976D2" : "1px solid black",
     borderRadius: "12px",
     cursor: "pointer",
     transition: "all 0.3s ease-in-out",
     height: "100%",
-    background: "linear-gradient(to bottom, #ffffff, #f5f5f5)",
+    background: "transparent",
     boxShadow: 2,
     "&:hover": { 
       boxShadow: 6, 
       transform: "scale(1.05)", 
       background: "#2A3923",
-      color: "white" // This affects child components if they inherit color
+      color: "transparent"
     },
   }}
 >

@@ -50,9 +50,9 @@ const PTSDPage = () => {
         <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, '@media (max-width: 768px)': { flexDirection: 'column' } }}>
           <Box sx={{ maxWidth: '500px', width: '100%' }}>
             <Image
-              src="/psychiatry.png"
+              src="/psychiatry.jpg"
               alt="Mental Well-being"
-              width={500} // Adjust as needed
+              width={400} // Adjust as needed
               height={300}
               style={{ borderRadius: "8px", width: '100%', height: 'auto' }}
             />

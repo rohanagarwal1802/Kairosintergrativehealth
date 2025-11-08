@@ -12,6 +12,8 @@ function ImageGallery() {
     { src: "/testimonial4.jpg", alt: "Image 4" },
     { src: "/testimonial4.jpg", alt: "Image 4" },
     { src: "/testimonial5.jpg", alt: "Image 3" },
+    { src: "/testimonial4.jpg", alt: "Image 4" },
+    { src: "/testimonial5.jpg", alt: "Image 3" },
   ];
 
   const settings = {

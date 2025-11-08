@@ -25,7 +25,7 @@ const MessageInfoDialog = ({ open, onClose, state , locationDialogClose}) => {
   };
 
 const handleRoundTableButton=()=>{
-  router.push("/Roundtable");onClose();
+  router.push("/");onClose();
   if(locationDialogClose)
   locationDialogClose(false)
 }
@@ -67,9 +67,10 @@ const handleRoundTableButton=()=>{
       <DialogContent>
         <Box sx={{ textAlign: "center", p: 2 }}>
           <Typography variant="body1" sx={{ mb: 2 }}>
-            At this time, we only offer attendance to our Resilience Roundtable in this state.
+            At this time, we do not offer services in your state.
           </Typography>
 
+        
           <Button
   variant="contained"
   color="primary"
@@ -85,8 +86,9 @@ const handleRoundTableButton=()=>{
     "&:hover": { backgroundColor: "#414833" } // Darker shade on hover
   }}
 >
-            Read More About Resilience Roundtable
+            Home Page
           </Button>
+        
 
           {/* Checkbox */}
           {/* <FormControlLabel
