@@ -220,15 +220,15 @@ const About = () => {
 </Grid>
 
 {/* First Box (#535945) */}
-<Grid item xs={12} sm={6} md={3}>
+<Grid item xs={12} sm={6} md={6}>
 <Box
       sx={{
         backgroundColor: "#2A3923",
         color: "#535945",
         padding: 2,
-        mt: "5%",
-        width: "100%", // Ensures full width on all screens
-        height: 300, // Fixed height
+        mt: "2%",
+        // width: "100%", // Ensures full width on all screens
+        // height: 300, // Fixed height
         textAlign: "center",
         borderRadius: 2,
         boxShadow: 3,
@@ -244,7 +244,7 @@ const About = () => {
         },
       }}
     >
-    <Typography sx={{ color: "white", fontSize: "0.9rem", mb: "5%" }}>
+    <Typography sx={{ color: "white", fontSize: "0.9rem", mb: "2%" }}>
       “When it’s time, we’re here.”
     </Typography>
 

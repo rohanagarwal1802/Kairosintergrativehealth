@@ -6,14 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 function ImageGallery() {
   const images = [
-    { src: "/testimonial6.jpg", alt: "Image 1" },
-    { src: "/testimonial2.jpg", alt: "Image 2" },
-    { src: "/testimonial5.jpg", alt: "Image 3" },
-    { src: "/testimonial4.jpg", alt: "Image 4" },
-    { src: "/testimonial4.jpg", alt: "Image 4" },
-    { src: "/testimonial5.jpg", alt: "Image 3" },
-    { src: "/testimonial4.jpg", alt: "Image 4" },
-    { src: "/testimonial5.jpg", alt: "Image 3" },
+    { src: "/testimonial1.png", alt: "Image 1" },
+    { src: "/testimonial2.png", alt: "Image 2" },
+    { src: "/testimonial3.png", alt: "Image 3" },
+    { src: "/testimonial4.png", alt: "Image 4" },
+    { src: "/testimonial5.png", alt: "Image 4" },
+    // { src: "/testimonial5.png", alt: "Image 3" },
+    // { src: "/testimonial4.png", alt: "Image 4" },
+    // { src: "/testimonial5.png", alt: "Image 3" },
   ];
 
   const settings = {

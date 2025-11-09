@@ -3,8 +3,8 @@ import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 
 const IconContainer = styled("div")(({ size, colorFilter }) => ({
-  width: size || "40px", // Default width
-  height: size || "40px", // Default height
+  width: size || "40px",
+  height: size || "40px",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
@@ -12,21 +12,28 @@ const IconContainer = styled("div")(({ size, colorFilter }) => ({
   WebkitFilter: colorFilter || "none",
 }));
 
-const CustomIcon = ({ src, alt, color, size,path, ...props }) => {
+const CustomIcon = ({ src, alt, color, size, path, onClick, ...props }) => {
+  const router = useRouter();
+
   const isIconPage = color === "black";
-  const colorFilter = isIconPage
-    ? "invert(1) brightness(1)" // Change icon color to white
-    : "none";
-    const router=useRouter()
+  const colorFilter = isIconPage ? "invert(1) brightness(1)" : "none";
+
+  const handleClick = (e) => {
+    if (path) {
+      router.push(path);
+    } else if (onClick) {
+      onClick(e);
+    }
+  };
 
   return (
     <IconContainer
       size={size}
-      style={{ backgroundImage: `url(${src})`,cursor:"pointer" }}
+      style={{ backgroundImage: `url(${src})`, cursor: "pointer" }}
       aria-label={alt}
       colorFilter={colorFilter}
       {...props}
-      onClick={()=>router.push(path || '/')}
+      onClick={handleClick}
     />
   );
 };

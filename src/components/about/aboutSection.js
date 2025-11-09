@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Typography, Avatar, Grid,Divider } from "@mui/material";
-
+import { Box, Typography, Avatar, Grid,Divider ,List, ListItem, ListItemText} from "@mui/material";
+import useUserStore from "../useUserStore";
 // Fade-in hook using Intersection Observer
 const useFadeInOnScroll = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,6 +34,20 @@ const AboutSection = () => {
   const { isVisible: isAboutVisible, elementRef: aboutRef } = useFadeInOnScroll();
   const { isVisible: isVisionVisible, elementRef: visionRef } = useFadeInOnScroll();
   const { isVisible: isStoryVisible, elementRef: storyRef } = useFadeInOnScroll();
+      const [address,setAddress]=useState('')
+        const { preferedLocation, setPreferedLocation } = useUserStore();
+
+       useEffect(()=>{
+          if(preferedLocation==='Alabama')
+          {
+            setAddress('400 Vestavia Parkway suite 406, Vestavia Hills, AL')
+      
+          }
+          else if(preferedLocation==='North Carolina')
+          {
+            setAddress('523 Keisler Drive Suite 202 Cary, NC 27518523 Keisler Drive Suite 202 Cary, NC 27518')
+          
+          }})
 
   return (
     <>
@@ -214,7 +228,172 @@ integrative mental health services that empower individuals and strengthen the r
 
        
       </Box>
+     
+      <Box
+        sx={{
+          backgroundColor: `#Ece7E2`,
+       
+          // mb:-3.5
+          // backgroundSize: 'cover',
+          // backgroundPosition: 'top',
+          // backgroundRepeat: 'no-repeat',
+          // height: 'auto',
+        }}
+      >
+      <Box sx={{ p: 1, backgroundColor: "#535945", display: 'inline-block', ml: "5%",   mt:"2%" }}>
+        <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
+        How our process works
+        </Typography>
+      </Box>
 
+      <Box>
+
+      {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          Interest form
+          </Typography>
+        </Box>
+
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              Complete the interest form by clicking on the
+“Request Appointment” button (located on top right hand corner of
+this page). This allows you to be able to schedule your
+complimentary phone call.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box> */}
+
+        {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          After filling out the interest form
+          </Typography>
+        </Box> */}
+
+        
+
+        {/* <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              You will receive an
+email from Kairos Integrative Health to create a password with KIH through Tebra, where
+you will be able to schedule your complimentary phone call.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box> */}
+
+        {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          After creating your password
+          </Typography>
+        </Box>    
+
+         <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              You can login into Kairos Integrative Health with your registered email and created password to schedule your complimentary phone call.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box> */}
+
+       
+        {/* <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+          Our team will confirm the complimentary phone
+          call appointment
+          </Typography>
+        </Box>   */}
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              Click <b>"Request Appointment"</b> to schedule a 
+              <b>"Complimentary Phone Call"</b> or <b>"Initial Visit Appointment."</b> Our team will confirm your requested time or suggest an alternative.
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            Once Confirmed : 
+          </Typography>
+        </Box>
+
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              For a "Complimentary Phone Call," we’ll call you to answer questions and determine if KIH is the right fit. 
+              </Typography>
+            </ListItem>
+
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+              For an "Initial Visit Appointment," you'll receive new patient paperwork to complete 24 hours before your appointment. If you chose a telehealth appointment, you will also receive a link to use to enter the appointment.  
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+
+        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            Initial Comprehensive Evaluation
+          </Typography>
+        </Box>
+
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                Our initial comprehensive evaluation allows us to assess your unique situation, history, and goals. This thorough assessment forms the foundation for personalized treatment tailored to your needs. Initial evaluations typically take between 1-2 sessions and in some cases may involve two separate visits. Initial visits are scheduled via telehealth or in-person at {address}.
+              </Typography>
+            </ListItem>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                Please note that the initial consultation does not guarantee specific medications, treatments, or documentation. 
+              </Typography>
+            </ListItem>
+          </List>
+        </Box>
+
+        <Box sx={{ ml: "5%", mt: "1%", display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
+            Medication Management
+          </Typography>
+        </Box>
+
+        <Box sx={{ ml: "10%" }}>
+          <List>
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                If discovered through the initial evaluation that medication is appropriate, our providers will work with you to safely initiate treatment. Typically, we will meet every 2-4 weeks if a medication is being started to review, adjust, and discuss any benefits or side effects with the medication. Often, appointments will be stretched out to every 1-3 months as appropriate. Usually follow-ups will last 15-30 minutes as appropriate.
+              </Typography>
+            </ListItem>
+            {preferedLocation==='Alabama' &&
+            <ListItem sx={{ display: 'list-item', p: 0, '&::before': { content: '"•"', color: 'black', fontSize: '1.5rem', position: 'absolute', left: '-1.5rem' } }}>
+              <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
+                At this time, Kairos Integrative Health does not prescribe controlled substances. Familiar types of medications this includes are benzodiazepines (clonazepam, alprazolam, lorazepam, etc.), stimulants (amphetamines, methylphenidates, etc.), and hypnotics (zolpidem, eszopiclone, etc.), and other medications like gabapentin and pregabalin.
+              </Typography>
+            </ListItem>
+}
+          </List>
+        </Box>
+
+      
+
+        
+     
+      </Box>
+      </Box>
      
     </>
   );

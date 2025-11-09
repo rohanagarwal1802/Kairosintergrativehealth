@@ -10,6 +10,7 @@ import Loader from "@/components/Loader";
 import useUserStore from "@/components/useUserStore";
 import ComplimentaryCallBox from "@/components/Home/complemetaryPhone";
 import ImageGallery from "@/components/Home/reviewImages";
+import Logos from "@/components/Home/logos";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -94,6 +95,7 @@ export default function Home() {
       <ServicesBox />
       <PeoplePreferUs />
       <ImageGallery />
+      <Logos/>
       {/* <FeedbackClients /> */}
 
       {/* Sticky Button */}

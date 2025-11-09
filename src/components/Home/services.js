@@ -1,59 +1,79 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ServicesOptions from "../servicesDropdown";
 import CustomIcon from "../customIcon";
-// Services list with custom icons
-const services = ServicesOptions()
+
+const services = ServicesOptions();
 
 const ServicesBox = () => {
+  const [selectedService, setSelectedService] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const handleServiceClick = (service) => {
+    if (service?.component) {
+      setSelectedService(() => service.component); // store component function
+      setOpen(true);
+    }
+  };
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        backgroundColor: "#ECE7E2", // Light #535945 background
-        padding: "20px",
-        borderRadius: "8px",
-        overflowX: "auto", // Enable horizontal scrolling if items overflow
-        whiteSpace: "nowrap", // Prevent items from wrapping
-      }}
-    >
-      {services.map((service) => (
-        <Box
-          key={service.title}
-          sx={{
-            display: "inline-flex", // Ensure items stay in one line
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-            marginX: "10px", // Horizontal margin between items
-          }}
-        >
-           <CustomIcon
-          src={service.image}
-          alt={service.title}
-          color={"white"}
-          path={service.path}
-          size={50}
-        />
-          <Typography
-            variant="subtitle1"
+    <>
+      {/* Icons Row */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          backgroundColor: "#ECE7E2",
+          padding: "20px",
+          borderRadius: "8px",
+          overflowX: "auto",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {services.map((service) => (
+          <Box
+            key={service.title}
             sx={{
-              fontWeight: 500,
-              color: "black",
-              fontSize: {
-                xs: "14px", // Smaller text for mobile
-                sm: "16px",
-              },
-              marginTop: "8px", // Space between icon and text
+              display: "inline-flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              marginX: "10px",
+              cursor: "pointer",
             }}
+            onClick={() => handleServiceClick(service)}
           >
-            {service.title}
-          </Typography>
-        </Box>
-      ))}
-    </Box>
+            <CustomIcon
+              src={service.image}
+              alt={service.title}
+              color={"white"}
+              // path={service.path}
+              size={50}
+            />
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 500,
+                color: "black",
+                fontSize: { xs: "14px", sm: "16px" },
+                marginTop: "8px",
+              }}
+            >
+              {service.title}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+
+      {/* Dynamic Dialog Rendering */}
+      {selectedService &&
+        (() => {
+          const ComponentToRender = selectedService;
+          return <ComponentToRender open={open} setOpen={setOpen} />;
+        })()}
+    </>
   );
 };
 

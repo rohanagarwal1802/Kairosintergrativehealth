@@ -28,6 +28,7 @@ import LogOutDialog from "./logoutDialog";
 import useCustomSnackbarStore from "@/pages/utils/useCustomSnackbarStore";
 import DefaultLocationModal from "./Location/defaultLocationModal";
 
+
 const Header = ({userDetails}) => {
   const router = useRouter();
   const options = Options();
@@ -58,6 +59,8 @@ console.log(options)
 
 const [menuAnchor, setMenuAnchor] = useState(null);
 const [currentMenu, setCurrentMenu] = useState(null); // "RESOURCES" or "SERVICES"
+const [selectedServiceComponent, setSelectedServiceComponent] = useState(null);
+const [open,setOpen]=useState(false)
 
 const [anchorE4, setAnchorE4] = useState(null);
 
@@ -131,14 +134,24 @@ const handleMenuClose = () => {
     setAnchorE2(null);
   };
 
-  const handleMenuItemClick = (path) => {
-    console.log(path)
-    handleClose();
-    if (path && path!=='/services') {
+const handleMenuItemClick = (path, subOption) => {
+  handleClose();
+console.log(subOption)
+  if (subOption?.component) {
+    const ComponentToRender = subOption.component;
+    setSelectedServiceComponent(() => ComponentToRender);
+    setOpen(true);
+  } else if (path) {
+    setSelectedServiceComponent(null);
+    setOpen(false);
+    router.push(path);
+  }
+};
 
-      router.push(path);
-    }
-  };
+
+
+
+
 
   const isSelected = (path) => router.pathname === path;
 
@@ -317,7 +330,7 @@ ADMIN DETAILS
               ).map((subOption, idx) => (
                 <MenuItem
                   key={idx}
-                  onClick={() => handleMenuItemClick(subOption.path)}
+                  onClick={() => handleMenuItemClick(subOption.path,subOption)}
                   sx={{
                     "&:hover": { color: "lightblue" },
                     fontSize: "0.75rem",
@@ -739,8 +752,23 @@ ADMIN DETAILS
         
       </Toolbar>
     </AppBar>
+     <Box>
+  {/* Your Navbar / Menu / Header code here */}
+
+  {/* This is where service pages will appear */}
+{selectedServiceComponent && (() => {
+  const ComponentToRender = selectedServiceComponent;
+  return <ComponentToRender open={open} setOpen={setOpen} />;
+})()}
+
+
+
+</Box>
+
     {openLogout && <LogOutDialog setOpen={setOpenLogout} open={openLogout} handleLogout={handleLogout}/>}
     {openLocationModal && <DefaultLocationModal onClose={()=>setLocationModal(false)}/>}
+     
+
     </>
   );
 };

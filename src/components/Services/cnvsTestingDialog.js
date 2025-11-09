@@ -22,7 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddictionPage = ({open,setOpen}) => {
+const CNVSTestingDialog = ({open,setOpen}) => {
   const { preferedLocation } = useUserStore();
  
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -71,7 +71,7 @@ const AddictionPage = ({open,setOpen}) => {
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>
-              Addiction
+                 CNS-VS Testing
             </Typography>
             <Box>
               <IconButton color="inherit" onClick={toggleFullScreen} sx={{ color: "white" }}>
@@ -86,28 +86,28 @@ const AddictionPage = ({open,setOpen}) => {
 
         {/* Dialog Content */}
         <DialogContent sx={{ p: 0 }}>
-          <Box
+             <Box
             sx={{
               display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
+              flexDirection: { xs: "column", sm: "row" }, // Stack on small screens, row on larger screens
               justifyContent: "space-between",
               alignItems: "center",
-              backgroundColor: "#Ece7E2",
               p: 4,
-              gap: 2,
+              backgroundColor:"#Ece7E2",
+              gap: 2, // Space between elements
             }}
           >
-            {/* Left Image Section */}
+            {/* Left Image Section for Small Screens (Top Image) and Large Screens (Left Image) */}
             <Box
               sx={{
                 position: "relative",
-                height: { xs: 250, sm: 350, md: 450 },
-                width: { xs: "100%", sm: 300, md: 400 },
+                height: { xs: 250, sm: 350, md: 450 }, // Adjusted for responsiveness
+                width: { xs: "100%", sm: 300, md: 400 }, // Full width for small screens, fixed size for large screens
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                order: { xs: 1, sm: 0 },
-                mb: { xs: 3, sm: 0 },
+                order: { xs: 1, sm: 0 }, // Image on top on small screens, left on larger screens
+                mb: { xs: 3, sm: 0 }, // Margin for small screens to space from other elements
               }}
             >
               {/* Decorative Boxes */}
@@ -119,7 +119,7 @@ const AddictionPage = ({open,setOpen}) => {
                   width: "80%",
                   height: "35%",
                   backgroundColor: "#6F7863",
-                  zIndex: 2,
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
@@ -132,7 +132,7 @@ const AddictionPage = ({open,setOpen}) => {
                   height: "20%",
                   backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                   backgroundSize: "10px 10px",
-                  zIndex: 4,
+                  zIndex:1,
                   borderRadius: 1,
                 }}
               />
@@ -144,106 +144,75 @@ const AddictionPage = ({open,setOpen}) => {
                   width: "60%",
                   height: "50%",
                   backgroundColor: "#6F7863",
-                  zIndex: 2,
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
+              {/* Image */}
               <Box
                 component="img"
-                src="/addict.jpg"
+                src="/cnvImage.jpeg"
                 alt="Founder"
                 sx={{
                   height: "70%",
-                  width: "70%",
+                  width: "100%",
                   objectFit: "cover",
                   borderRadius: 2,
                   boxShadow: 3,
-                  zIndex: 4,
+                  zIndex: 1,
                 }}
               />
             </Box>
-
-            {/* Main Content */}
+          
+            {/* Main Content Section */}
             <Box
               sx={{
                 maxWidth: "500px",
-                textAlign: "left",
-                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                textAlign: "center",
+                backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
                 p: 3,
                 borderRadius: 2,
                 boxShadow: 3,
-                zIndex: 4,
-                order: { xs: 2, sm: 1 },
+                zIndex:2,
+                order: { xs: 2, sm: 1 }, // Content comes after the first image on small screens
               }}
             >
-              <Box
-                sx={{
-                  p: 1,
-                  backgroundColor: "#535945",
-                  display: "inline-block",
-                  ml: "5%",
-                  mt: 3,
-                }}
-              >
-                <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
-                  Addiction
-                </Typography>
-              </Box>
-
-              <Box sx={{ ml: "5%", mt: "1%" }}>
-                <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
-                  Substance Use and Medication-Assisted Treatment (MAT)
-                </Typography>
-              </Box>
-
-              <Box sx={{ ml: "10%" }}>
-                <List sx={{ paddingLeft: "20px" }}>
-                  {[
-                    `Addiction is a complex, chronic condition that affects both the mind
-                    and body, leading to destructive behaviors and strained relationships. 
-                    Whether it involves substances like alcohol, prescription medications, 
-                    or illicit drugs, addiction can feel overwhelming, but recovery is possible. 
-                    At KIH, we are committed to providing compassionate, evidence-based care 
-                    tailored to each individual's needs. We work together to develop a personalized 
-                    treatment plan that addresses the underlying causes of addiction and promotes long-term recovery.`,
-
-                    preferedLocation === "Alabama" &&
-                      `Please note we do not currently offer treatment with Suboxone or other 
-                      medications containing buprenorphine as it is a controlled substance.`,
-                  ]
-                    .filter(Boolean)
-                    .map((therapy, index) => (
-                      <ListItem
-                        key={index}
-                        sx={{
-                          display: "list-item",
-                          listStyleType: "disc",
-                          paddingLeft: "10px",
-                          "&::marker": { color: "black", fontSize: "1.2rem" },
-                        }}
-                      >
-                        <Typography variant="body2" sx={{ color: "black", lineHeight: 1.8 }}>
-                          {therapy}
-                        </Typography>
-                      </ListItem>
-                    ))}
-                </List>
-              </Box>
+              {/* Highlight Section */}
+        {/* <Box sx={{ p: 1, backgroundColor: "#535945", display: "inline-block", ml: "5%", mt: 3 }}>
+          <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
+          CNS-VS Testing
+          </Typography>
+        </Box> */}
+  
+        {/* Content Section */}
+        <Box>
+         
+  
+          <Box sx={{ ml: "5%" ,mt:"5%"}}>
+          <Typography variant="body2" sx={{ color: "black",textAlign:"left" }}>
+          Central Nervous System (CNS) Vital Signs testing is a comprehensive assessment that evaluates cognitive functioning, neurological health, and overall brain performance. This testing measures various domains, including attention, memory, language, and processing speed, providing a detailed overview of cognitive abilities. By tracking changes in CNS function over time, healthcare providers can develop tailored treatment plans and monitor progress effectively.
+          </Typography>
+        </Box>
+  
+        
+         
+        </Box>
             </Box>
-
-            {/* Right Image Section */}
+          
+            {/* Right Image Section for Small Screens (Bottom Image) and Large Screens (Right Image) */}
             <Box
               sx={{
                 position: "relative",
-                height: { xs: 250, sm: 350, md: 450 },
-                width: { xs: "100%", sm: 300, md: 400 },
+                height: { xs: 250, sm: 350, md: 450 }, // Adjusted for responsiveness
+                width: { xs: "100%", sm: 300, md: 400 }, // Full width for small screens, fixed size for large screens
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                order: { xs: 3, sm: 2 },
-                mt: { xs: 3, sm: 0 },
+                order: { xs: 3, sm: 2 }, // Image on bottom for small screens, right for large screens
+                mt: { xs: 3, sm: 0 }, // Margin for small screens to space from other elements
               }}
             >
+              {/* Decorative Boxes */}
               <Box
                 sx={{
                   position: "absolute",
@@ -252,7 +221,7 @@ const AddictionPage = ({open,setOpen}) => {
                   width: "80%",
                   height: "35%",
                   backgroundColor: "#6F7863",
-                  zIndex: 2,
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
@@ -265,7 +234,7 @@ const AddictionPage = ({open,setOpen}) => {
                   height: "20%",
                   backgroundImage: "radial-gradient(white 10%, transparent 10%)",
                   backgroundSize: "10px 10px",
-                  zIndex: 4,
+                  zIndex:1,
                   borderRadius: 1,
                 }}
               />
@@ -277,21 +246,22 @@ const AddictionPage = ({open,setOpen}) => {
                   width: "60%",
                   height: "50%",
                   backgroundColor: "#6F7863",
-                  zIndex: 2,
+                  zIndex:1,
                   borderRadius: 2,
                 }}
               />
+              {/* Image */}
               <Box
                 component="img"
-                src="/addiction2.jpeg"
+                src="/cnvImage2.jpeg"
                 alt="Founder"
                 sx={{
                   height: "70%",
-                  width: "70%",
+                  width: "100%",
                   objectFit: "cover",
                   borderRadius: 2,
                   boxShadow: 3,
-                  zIndex: 4,
+                  zIndex: 1,
                 }}
               />
             </Box>
@@ -302,4 +272,4 @@ const AddictionPage = ({open,setOpen}) => {
   );
 };
 
-export default AddictionPage;
+export default CNVSTestingDialog;
