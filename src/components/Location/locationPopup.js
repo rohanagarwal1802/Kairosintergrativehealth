@@ -84,7 +84,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   {/* Avatar positioned at top center, floating outside the dialog */}
 <Avatar
-  src="/locationPopup.png"
+  src="/locationPopup (2).png"
   sx={{
     width: 360,
     height: 150,

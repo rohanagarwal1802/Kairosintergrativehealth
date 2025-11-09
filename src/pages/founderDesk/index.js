@@ -97,7 +97,7 @@ const FounderDesk = () => {
         {/* Image */}
         <Box
           component="img"
-          src="/founder.jpg"
+          src="/profile.jpg"
           alt="Founder"
           sx={{
             height: "79%",
